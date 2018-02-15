@@ -1,5 +1,19 @@
-DOC ESPAÑOL- http://esp8266-arduino-spanish.readthedocs.io/es/latest/index.html
+Traducción al español de la documentación de ESP8266 Arduino 
+==============================================================
 
+El presente repositorio contiene una traducción al español de la documentación del core Arduino para ESP8266, que puedes encontrar en https://github.com/esp8266/Arduino. La documentación que aún no se ha traducido permanece en inglés hasta su traducción.
+
+Si encuentras algún problema en esta traducción siéntete libre de abrir un nuevo issue en este repositorio y si quieres colaborar puedes traducir los ficheros que aún quedan por traducir o colaborar con la traducción de los cambios. 
+
+**ATENCIÓN!!! Todos los "issue" y "pull request" respecto al core Arduino para ESP8266 deben realizarse en el [repositorio original](https://github.com/esp8266/Arduino) y SIEMPRE EN INGLÉS, ya que es el idioma oficial del proyecto. No atenderán peticiones en ningún otro idioma.**
+
+La mayor parte de la documentación en español puedes encontrarla en http://esp8266-arduino-spanish.readthedocs.io/es/latest/index.html.
+
+En este repositorio de Github encontrarás también el fichero POLICY.md donde se explican las reglas de comunicación del proyecto ESP8266/Arduino y el presente documento que es una traducción del fichero README.md.
+
+A partir de aquí la traducción de README.es
+
+-------------------------------------------
 Arduino core para el chip ESP8266 WiFi
 ===========================================
 
