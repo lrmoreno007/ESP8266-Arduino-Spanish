@@ -1,4 +1,4 @@
-DOC - http://arduino.readthedocs.io/projects/Spanish/es/latest/
+DOC ESPAÑOL- http://esp8266-arduino-spanish.readthedocs.io/es/latest/index.html
 
 Arduino core para el chip ESP8266 WiFi
 ===========================================
@@ -7,10 +7,7 @@ Este proyecto da soporte para el chip ESP8266 en el entorno Arduino. Permite esc
 
 ESP8266 Arduino core tiene librerías para comunicarse sobre WiFi usando TCP y UDP, establece HTTP, mDNS, SSDP, y servidores DNS, hace actualizaciones OTA, utiliza un sistema de ficheros en la memoria flash, trabaja con tarjetas SD, servos, perifericos SPI y I2C.
 
-## Lenguajes
-*Leer en otros lenguajes: [English](README.md).*
-
-**Todos los "issue" y "pull request" deben realizarse en inglés, ya que es el idioma oficial de este proyecto. No se atenderán peticiones en ningún otro idioma.**
+**Todos los "issue" y "pull request" deben realizarse en inglés, ya que es el idioma oficial del proyecto ESP8266/Arduino. No se atenderán peticiones en ningún otro idioma.**
 
 # Contenido
 - Opciones (tipos) de instalación:
@@ -35,7 +32,8 @@ A partir de 1.6.4, Arduino permite la instalación de paquetes de plataformas de
 #### Latest release [![Latest release](https://img.shields.io/github/release/esp8266/Arduino.svg)](https://github.com/esp8266/Arduino/releases/latest/)
 URL para el Gestor de Tarjetas: `http://arduino.esp8266.com/stable/package_esp8266com_index.json`
 
-Documentación: [http://arduino.readthedocs.io/projects/Spanish/es/latest/](http://arduino.readthedocs.io/projects/Spanish/es/latest/)
+Documentación Inglés: [https://arduino-esp8266.readthedocs.io/en/2.4.0/](https://arduino-esp8266.readthedocs.io/en/2.4.0/)
+Documentación Español: [http://esp8266-arduino-spanish.readthedocs.io/es/latest/index.html](http://esp8266-arduino-spanish.readthedocs.io/es/latest/index.html)
 
 ### Usando versión git
 [![Linux build status](https://travis-ci.org/esp8266/Arduino.svg)](https://travis-ci.org/esp8266/Arduino)
@@ -76,11 +74,13 @@ Su uso permite al Arduino IDE generar fácilmente compilaciones automatizadas y 
 
 ### Documentación
 
-Documentación para la última versión:  http://arduino.readthedocs.io/projects/Spanish/es/latest/
+Documentación para la última versión Inglés: https://arduino-esp8266.readthedocs.io/en/latest/
+Documentación para la última versión Español: http://esp8266-arduino-spanish.readthedocs.io/es/latest/index.html
 
 ### Problemas y soporte ###
 
-**Todos los "issue" y "pull request" deben realizarse en inglés, ya que es el idioma oficial de este proyecto. No se atenderán peticiones en ningún otro idioma.**
+**Todos los "issue" y "pull request" deben realizarse en inglés, ya que es el idioma oficial del proyecto ESP8266/Arduino. No se atenderán peticiones en ningún otro idioma.**
+
 
 [Foro de la comunidad ESP8266](http://www.esp8266.com/u/arduinoanswers) es una buena comunidad para preguntas y respuestas sobre Arduino para ESP8266.
 
@@ -100,7 +100,7 @@ Por favor, proporciona la mayor información posible:
 
 ### Contribuyendo
 
-**Todos los "issue" y "pull request" deben realizarse en inglés, ya que es el idioma oficial de este proyecto. No se atenderán peticiones en ningún otro idioma.**
+**Todos los "issue" y "pull request" deben realizarse en inglés, ya que es el idioma oficial del proyecto ESP8266/Arduino. No se atenderán peticiones en ningún otro idioma.**
 
 Para correcciones menores del código o la documentación, por favor da un paso adelante y envía un pull request.
 
