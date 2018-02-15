@@ -1,3 +1,5 @@
+BORRAME
+
 DOC ESPAÑOL- http://esp8266-arduino-spanish.readthedocs.io/es/latest/index.html
 
 Arduino core para el chip ESP8266 WiFi
