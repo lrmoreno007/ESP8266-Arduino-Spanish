@@ -7,7 +7,7 @@ Si encuentras algún problema en esta traducción siéntete libre de abrir un nu
 
 **ATENCIÓN!!! Todos los "issue" y "pull request" respecto al core Arduino para ESP8266 deben realizarse en el [repositorio original](https://github.com/esp8266/Arduino) y SIEMPRE EN INGLÉS, ya que es el idioma oficial del proyecto. No atenderán peticiones en ningún otro idioma.**
 
-#DOCUMENTACIÓN
+# DOCUMENTACIÓN
 ==================================
 La mayor parte de la documentación en español puedes encontrarla en http://esp8266-arduino-spanish.readthedocs.io/es/latest/index.html.
 
