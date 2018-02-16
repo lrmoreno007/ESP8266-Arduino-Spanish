@@ -1,7 +1,7 @@
 Traducción al español de la documentación de ESP8266 Arduino 
 ==============================================================
 
-El presente repositorio contiene la traducción al español (no oficial) de la documentación del core Arduino para ESP8266, que puedes encontrar en https://github.com/esp8266/Arduino. La documentación que aún no se ha traducido permanece en inglés hasta su traducción.
+Este repositorio contiene la traducción al español (no oficial) de la documentación del core Arduino para ESP8266 que puedes encontrar en https://github.com/esp8266/Arduino. La documentación que aún no se ha traducido permanece en inglés hasta su traducción.
 
 Si encuentras algún problema en esta traducción siéntete libre de abrir un nuevo issue en este repositorio y si quieres colaborar puedes traducir los ficheros que aún quedan por traducir o colaborar con la traducción de los cambios, mediante un pull request. 
 
@@ -13,7 +13,7 @@ Puedes encontrar la mayor parte de la documentación en español en http://esp82
 
 En este repositorio de Github encontrarás también el fichero POLICY.md donde se exponen las reglas de comunicación del proyecto ESP8266/Arduino y el presente documento que es una traducción del fichero README.md.
 
-A partir de aquí la traducción de README.es
+A partir de aquí la traducción de README.es del proyecto ESP8266/Arduino
 
 -------------------------------------------
 Arduino core para el chip ESP8266 WiFi
@@ -73,16 +73,14 @@ python get.py
 
 ### Usando PlatformIO
 
-[PlatformIO](http://platformio.org) es un ecosistema open source para desarrollo IoT con sistema multiplataforma, gestor de librerías y soporte completo para el desarrollo Espressif (ESP8266). Funciona con los sistemas operativos mas populares: macOS, Windows, Linux 32/64, Linux ARM (like Raspberry Pi, BeagleBone, CubieBoard).
+[PlatformIO](http://platformio.org?utm_source=github&utm_medium=arduino-esp8266) es un ecosistema open source para desarrollo IoT con sistema multiplataforma, gestor de librerías y soporte completo para el desarrollo Espressif (ESP8266). Funciona con los sistemas operativos mas populares: macOS, Windows, Linux 32/64, Linux ARM (like Raspberry Pi, BeagleBone, CubieBoard).
 
-- [Que es PlatformIO?](http://docs.platformio.org/page/what-is-platformio.html)
-- [PlatformIO IDE](http://platformio.org/platformio-ide)
-- Guía inicial de [PlatformIO IDE](http://docs.platformio.org/page/ide/atom.html#quick-start) o [PlatformIO Core](http://docs.platformio.org/page/core.html)
-- [Uso avanzado](http://docs.platformio.org/page/platforms/espressif.html) -
-  opciones personalizadas, uploading a SPIFFS, Over-the-Air (OTA) o uso de escenarios.
-- [Integración con Cloud y Standalone IDEs](http://docs.platformio.org/page/ide.html) -
-  Cloud9, Codeanywhere, Eclipse Che (Codenvy), Atom, CLion, Eclipse, Emacs, NetBeans, Qt Creator, Sublime Text, VIM y Visual Studio
-- [Ejemplos de proyectos](http://docs.platformio.org/page/platforms/espressif.html#examples)
+- [Que es PlatformIO?](http://docs.platformio.org/en/latest/what-is-platformio.html?utm_source=github&utm_medium=arduino-esp8266)
+- [PlatformIO IDE](http://platformio.org/platformio-ide?utm_source=github&utm_medium=arduino-esp8266)
+- [PlatformIO Core](http://docs.platformio.org/en/latest/core.html?utm_source=github&utm_medium=arduino-esp8266) (Herramienta de linea de comandos)
+- [Uso avanzado](http://docs.platformio.org/en/latest/platforms/espressif8266.html?utm_source=github&utm_medium=arduino-esp8266) - opciones personalizadas, uploading a SPIFFS, Over-the-Air (OTA), staging versión.
+- [Integración con Cloud y Standalone IDEs](http://docs.platformio.org/en/latest/ide.html?utm_source=github&utm_medium=arduino-esp8266) - Cloud9, Codeanywhere, Eclipse Che (Codenvy), Atom, CLion, Eclipse, Emacs, NetBeans, Qt Creator, Sublime Text, VIM, Visual Studio y VSCode.
+- [Ejemplos de proyectos](http://docs.platformio.org/en/latest/platforms/espressif8266.html?utm_source=github&utm_medium=arduino-esp8266#examples)
 
 ### Construyendo con make
 
