@@ -1,6 +1,6 @@
 Este documento describe las reglas a seguir en el repositorio [ESP8266/Arduino](https://github.com/esp8266/Arduino), destinado a todo aquel que contribuya en el seguidor de "issues" y en los "Pull request".
 
-**Todos los "issue" y "pull request" deben realizarse en inglés, ya que es el idioma oficial de este proyecto. No se atenderán peticiones en ningún otro idioma.**
+**Todos los "issue" y "pull request" deben realizarse en inglés, ya que es el idioma oficial del proyecto. No se atenderán peticiones en ningún otro idioma.**
 # Abriendo nuevos Issues
 1.   El seguidor de Issues es precisamente eso: una herramienta para seguir los issues en el código del core y no un foro de discusión. Abrir un "issue" significa que se ha encontrado un problema en el código del core y debe ser abordado por un "Contributor".
 2.   Cuando se abre un issue, se muestra una plantilla con campos para completar. La información requerida es importante. Si se ignora la plantilla, o no se facilita suficiente información, el issue puede ser cerrado debido a falta de información. Ejemplo:
