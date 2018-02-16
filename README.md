@@ -49,6 +49,7 @@ A partir de 1.6.4, Arduino permite la instalación de paquetes de plataformas de
 URL para el Gestor de Tarjetas: `http://arduino.esp8266.com/stable/package_esp8266com_index.json`
 
 Documentación Inglés: [https://arduino-esp8266.readthedocs.io/en/2.4.0/](https://arduino-esp8266.readthedocs.io/en/2.4.0/)
+
 Documentación Español: [http://esp8266-arduino-spanish.readthedocs.io/es/latest/index.html](http://esp8266-arduino-spanish.readthedocs.io/es/latest/index.html)
 
 ### Usando versión git
