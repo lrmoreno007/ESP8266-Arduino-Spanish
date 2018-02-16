@@ -3,7 +3,7 @@ Traducción al español de la documentación de ESP8266 Arduino
 
 El presente repositorio contiene la traducción al español (no oficial) de la documentación del core Arduino para ESP8266, que puedes encontrar en https://github.com/esp8266/Arduino. La documentación que aún no se ha traducido permanece en inglés hasta su traducción.
 
-Si encuentras algún problema en esta traducción siéntete libre de abrir un nuevo issue en este repositorio y si quieres colaborar puedes traducir los ficheros que aún quedan por traducir o colaborar con la traducción de los cambios. 
+Si encuentras algún problema en esta traducción siéntete libre de abrir un nuevo issue en este repositorio y si quieres colaborar puedes traducir los ficheros que aún quedan por traducir o colaborar con la traducción de los cambios, mediante un pull request. 
 
 **ATENCIÓN!!! Todos los "issue" y "pull request" respecto al core Arduino para ESP8266 deben realizarse en el [repositorio original](https://github.com/esp8266/Arduino) y SIEMPRE EN INGLÉS, ya que es el idioma oficial del proyecto. No se atenderán peticiones en ningún otro idioma.**
 
