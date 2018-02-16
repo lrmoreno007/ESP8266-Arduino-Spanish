@@ -1,4 +1,4 @@
-Este documento describe las reglas a seguir en este repositorio, destinado a todo aquel que contribuya en el seguidor de "issues" y en los "Pull request".
+Este documento describe las reglas a seguir en el repositorio [ESP8266/Arduino](https://github.com/esp8266/Arduino), destinado a todo aquel que contribuya en el seguidor de "issues" y en los "Pull request".
 
 **Todos los "issue" y "pull request" deben realizarse en inglés, ya que es el idioma oficial de este proyecto. No se atenderán peticiones en ningún otro idioma.**
 # Abriendo nuevos Issues
