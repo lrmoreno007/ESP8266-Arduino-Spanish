@@ -1,107 +1,69 @@
 FAQ
 ===
 
-The purpose of this FAQ / Troubleshooting is to respond to questions
-commonly asked in `Issues <https://github.com/esp8266/Arduino/issues>`__
-section and on `ESP8266 Community forum <http://www.esp8266.com/>`__.
+El propósito de este apartado de FAQ / Solución de problemas es responder a las preguntas mas comunes en la sección `Issues <https://github.com/esp8266/Arduino/issues>`__ y en el `Foro de la comunidad ESP8266 <http://www.esp8266.com/>`__.
 
-Where possible we are going right to the answer and provide it within
-one or two paragraphs. If it takes more than that, you will see a link
-:arrow\_right: to more details.
+Siempre que sea posible, vamos directamente a la respuesta y la proporcionamos dentro de uno o dos párrafos. Si la respuesta es mas larga, verá un enlace para leer mas detalles.
 
-Please feel free to contribute if you believe that some frequent issues
-are not covered below.
+Siéntase libre de contribuir si cree que alguna pregunta frecuente no se encuentra cubierta.
 
-
-I am getting "espcomm\_sync failed" error when trying to upload my ESP. How to resolve this issue?
+Obtengo el error "espcomm\_sync failed" cuando intento subir a mi ESP. ¿Como resuelvo este problema?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-This message indicates issue with uploading ESP module over a serial
-connection. There are couple of possible causes, that depend on the type
-of your module, if you use separate USB to serial converter.
+Este mensaje indica un problema al subir al módulo ESP mediante conexión por puerto serie. Existen varias posibles causas que dependen del tipo de módulo y de si tiene un convertidor serie independiente.
 
-:doc:`Read more <a01-espcomm_sync-failed>`.
+:doc:`Leer mas <a01-espcomm_sync-failed>`.
 
-Why esptool is not listed in "Programmer" menu? How do I upload ESP without it?
+¿Porqué no aparece esptool en el menú "Programador"? ¿Como subo al ESP sin él?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Do not worry about "Programmer" menu of Arduino IDE. It doesn't matter
-what is selected in it — upload now always defaults to using esptool.
+No te preocupes por el menú "Programador" del IDE Arduino. No importa qué se seleccione en él, siempre está predeterminado para usar esptool.
 
-Ref. `#138 <https://github.com/esp8266/Arduino/issues/138>`__,
-`#653 <https://github.com/esp8266/Arduino/issues/653>`__ and
-`#739 <https://github.com/esp8266/Arduino/issues/739>`__.
+Ref. `#138 <https://github.com/esp8266/Arduino/issues/138>`__, `#653 <https://github.com/esp8266/Arduino/issues/653>`__ y `#739 <https://github.com/esp8266/Arduino/issues/739>`__.
 
-My ESP crashes running some code. How to troubleshoot it?
+Mi ESP se bloquea al correr el programa. ¿Como lo resuelvo?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The code may crash because of s/w bug or issue with your h/w. Before
-entering an issue report, please perform initial troubleshooting.
+El programa puede bloquearse por un error software o hardware. Antes de abrir un nuevo issue, por favor realice una serie de comprobaciones iniciales.
 
-:doc:`Read more <a02-my-esp-crashes>`.
+:doc:`Leer mas <a02-my-esp-crashes>`.
 
-This Arduino library doesn't work on ESP. How do I make it working?
+Esta librería de Arduino no funciona en ESP. ¿Como la hago funcionar?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-You would like to use this Arduino library with ESP8266 and it does not
-perform. It is not listed among libraries verified to work with ESP8266.
+Te gustaría usar una librería de Arduino con ESP8266 y no funciona. Si no se encuentra entre las bibliotecas verificadas para trabajar con ESP8266:
 
-:doc:`Read more <a03-library-does-not-work>`.
+:doc:`Leer mas <a03-library-does-not-work>`.
 
-In the IDE, for ESP-12E that has 4M flash, I can choose 4M (1M SPIFFS) or 4M (3M SPIFFS). No matter what I select, the IDE tells me the maximum code space is about 1M. Where does my flash go?
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+En el IDE, para ESP-12E que tiene una flash de 4M, puedo seleccionar 4M (1M SPIFFS) o 4M (3M SPIFFS). No importa lo que seleccione, el IDE me dice que la capacidad máxima es de 1M. ¿Donde va mi flash?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The reason we cannot have more than 1MB of code in flash has to do with
-a hardware limitation. Flash cache hardware on the ESP8266 only allows
-mapping 1MB of code into the CPU address space at any given time. You
-can switch mapping offset, so technically you can have more than 1MB
-total, but switching such "banks" on the fly is not easy and efficient,
-so we don't bother doing that. Besides, no one has so far complained
-about 1MB of code space being insufficient for practical purposes.
+La razón de que no podamos tener mas de 1MB de código en la flash tiene que ver con limitaciones hardware. El hardware de la cache flash en el ESP8266 solo permite mapear 1MB de código en el espacio de direcciones de la CPU en cualquier momento dado. Puedes cambiar el desplazamiento de mapeo, por lo que técnicamente puede tener más de 1 MB total, pero cambiar esos "bancos" sobre la marcha no es fácil y eficiente, así que no nos molestamos en hacerlo. Además, nadie se ha quejado hasta ahora de que los aproximadamente 1 MB de espacio de código sea insuficiente para fines prácticos.
 
-The option to choose 4M or 1M SPIFFS is to optimize the upload time.
-Uploading 3MB takes a long time so sometimes you can just use 1MB. Other
-2MB of flash can still be used with ``ESP.flashRead`` and
-``ESP.flashWrite`` APIs if necessary.
+La opción de seleccionar 4M o 1M SPIFFS es para optimizar el tiempo de subida. Subir 3MB toma mas tiempo que subir 1MB. Otras capacidades de flash 2MB también pueden utilizarse con las APIs ``ESP.flashRead`` y ``ESP.flashWrite`` si es necesario.
 
-I have observed a case when ESP.restart() doesn't work. What is the reason for that?
+He observado un caso en que ESP.restart() no funciona. ¿Cual es la razón para esto?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-You will see this issue only if serial upload was not followed by a
-physical reset (e.g. power-on reset). For a device being in that state
-``ESP.restart`` will not work. Apparently the issue is caused by `one of
-internal registers not being properly updated until physical
-reset <https://github.com/esp8266/Arduino/issues/1017#issuecomment-200605576>`__.
-This issue concerns only serial uploads. OTA uploads are not affected.
-If you are using ``ESP.restart``, the work around is to reset ESP once
-after each serial upload.
+Verá este problema solo si después de subir el programa mediante puerto serie no realiza un reset físico (por ejemplo, reinicio de la alimentación). Para un dispositivo que se encuentre en ese estado, ``ESP.restart`` no funcionará. Aparentemente, el problema está causado por `uno de los registros internos que no se actualiza correctamente hasta el reseteo físico <https://github.com/esp8266/Arduino/issues/1017#issuecomment-200605576>`__. Este problema solo afecta a las subidas mediante puerto serie. Las subidas mediante OTA no se ven afectadas. Si está utilizando ``ESP.restart``, solo reinicie ESP físicamente una vez después de cada subida por puerto serie.
 
-Ref. `#1017 <https://github.com/esp8266/Arduino/issues/1017>`__,
-`#1107 <https://github.com/esp8266/Arduino/issues/1107>`__,
-`#1782 <https://github.com/esp8266/Arduino/issues/1782>`__
+Ref. `#1017 <https://github.com/esp8266/Arduino/issues/1017>`__, `#1107 <https://github.com/esp8266/Arduino/issues/1107>`__, `#1782 <https://github.com/esp8266/Arduino/issues/1782>`__
 
-How to resolve "Board generic (platform esp8266, package esp8266) is unknown" error?
+¿Como solucionar el error "Board generic (platform esp8266, package esp8266) is unknown"?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-This error may pop up after switching between
-`staging <https://github.com/esp8266/Arduino#staging-version->`__ and
-`stable <https://github.com/esp8266/Arduino#stable-version->`__ esp8266
-/ Arduino package installations, or after upgrading the package version
-:doc:`Read more <a04-board-generic-is-unknown>`.
+Este error puede aparecer al cambiar entre los paquetes de instalación de ESP8266/Arduino `staging <https://github.com/esp8266/Arduino#staging-version->`__ y `stable <https://github.com/esp8266/Arduino#stable-version->`__, o tras actualizar de versión de paquete.
 
+:doc:`Leer mas <a04-board-generic-is-unknown>`.
 
-How to clear TCP PCBs in time-wait state ?
+¿Cómo borrar PCBs TCP en estado de espera de tiempo?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-This is needed with lwIP-v1.4, less needed with lwIP-v2 but timeout is still
-too high.
+Esto es necesario con lwIP-v1.4 y menos necesario con lwIP-v2 pero el timeout es aún así muy alto.
 
-Time-wait PCB state helps TCP not confusing two consecutive connections with the
-same (s-ip,s-port,d-ip,d-port) when the first is already closed but still
-having duplicate packets lost in internet arriving later during the second. 
-Artificially clearing them is a workaround to help saving precious heap.
+El estado Time-wait PCB ayuda al TCP a no confundir dos conexiones consecutivas con el mismo: IP de origen ip, puerto de origen, IP de destino y puerto de destino, cuando el primero ya está cerrado pero aún están llegando tarde durante segundos paquetes duplicados perdidos en internet. Limpiarlos artificialmente es una solución alternativa para ayudar a salvar heap preciosos.
 
-The following lines are compatible with both lwIP versions:
+La líneas siguientes son compatibles con ambas versiones de lwIP:
 
 .. code:: cpp
 
