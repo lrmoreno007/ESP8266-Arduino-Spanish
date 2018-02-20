@@ -17,24 +17,24 @@ Este mensaje indica un problema al subir al módulo ESP mediante conexión por p
 
     Nota: Si estás comenzando con ESP, para reducir los problemas con la subida, selecciona una tarjeta ESP con convertidor USB a Serie integrado. Esto reducirá el número de factores dependientes del usuario o opciones de configuración que influyen en el proceso de subida.
 
-Ejemplo de tarjeta con convertidor USB a Serie integrado, que hará que el desarrollo de tus primeros proyectos sea mas sencillo:
+Ejemplo de tarjetas con convertidor USB a Serie integrado, que harán que el desarrollo de tus primeros proyectos sea mas sencillo:
 
 .. figure:: pictures/a01-example-boards-with-usb.png
-   :alt: Ejemplo de tarjeta con convertidor USB a Serie integrado
+   :alt: Ejemplos de tarjetas con convertidor USB a Serie integrado
 
-   Ejemplo de tarjeta con convertidor USB a Serie integrado
+   Ejemplos de tarjetas con convertidor USB a Serie integrado
 
 Si estás utilizando un módulo Genérico ESP8266, con convertidor USB a Serie separado y conectado por ti mismo, asegurate de que haces bien lo siguiente:
 1. Se suministra al módulo suficiente energía
 2. GPIO0, GPIO15 y CH_PD están conectados utilizando resistencias pull up / pull down. 
 3. El módulo entra en modo bootloader.
 
-Para detalles específicos consulta la sección `Módulo Genérico ESP8266 <../boards.rst#generic-esp8266-modules>`__. Ejemplo de módulo sin convertidor USB a Serie en la tarjeta:
+Para detalles específicos consulta la sección `Módulo Genérico ESP8266 <../boards.rst#generic-esp8266-modules>`__. Ejemplos de módulos sin convertidor USB a Serie en la tarjeta:
 
 .. figure:: pictures/a01-example-boards-without-usb.png
-   :alt: Ejemplo de módulo sin convertidor USB a Serie
+   :alt: Ejemplos de módulos sin convertidor USB a Serie
 
-   Ejemplo de módulo sin convertidor USB a Serie
+   Ejemplos de módulos sin convertidor USB a Serie
 
 Initial Checks
 ~~~~~~~~~~~~~~
