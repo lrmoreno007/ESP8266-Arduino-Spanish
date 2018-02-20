@@ -31,7 +31,7 @@ Si estás utilizando un módulo Genérico ESP8266, con convertidor USB a Serie s
 
 ``Módulo Genérico ESP8266 <../boards.rst#generic-esp8266-modules>`__
 
-Para detalles específicos consulta la sección :doc: Módulo Genérico ESP8266 <boards#generic-esp8266-modules>. Ejemplos de módulos sin convertidor USB a Serie en la tarjeta:
+Para detalles específicos consulta la sección :doc:`Módulo Genérico ESP8266 <boards#generic-esp8266-modules>`. Ejemplos de módulos sin convertidor USB a Serie en la tarjeta:
 
 .. figure:: pictures/a01-example-boards-without-usb.png
    :alt: Ejemplos de módulos sin convertidor USB a Serie
