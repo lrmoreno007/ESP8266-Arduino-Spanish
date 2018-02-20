@@ -19,9 +19,9 @@ Te gustaría usar una librería de Arduino con ESP8266 y no funciona. No aparece
 Identifica los problemas
 ~~~~~~~~~~~~~~~~~~~
 
-Comienza buscando todos los síntomas de que no es compatible con ESP8266. Lo ideal sería utilizar sketch de ejemplo proporcionados con la librería. Luego enumere todos los problemas que pueda identificar.
+Comienza buscando todos los síntomas de que no es compatible con ESP8266. Lo ideal sería utilizar sketch de ejemplo proporcionados con la librería. Luego enumera todos los problemas que puedas identificar.
 
-Es probable que vea uno o más de los siguientes:
+Es probable que veas uno o más de los siguientes:
 
 * La compilación arroja errores.
 
@@ -29,7 +29,7 @@ Es probable que vea uno o más de los siguientes:
 
 * La aplicación parece funcionar pero no funciona como se esperaba. p.ej los resultados del cálculo son incorrectos.
 
-Armado con la lista de problemas, contácta con el autor de la librería solicitando comentarios. Si los problemas son legítimos, solicita su ayuda para implementarlo en ESP8266. Siendo específico tienes mayores posibilidades de convencer al autor para que te ayude, ya sea actualizando la biblioteca o guiándote para resolver los problemas.
+Armado con la lista de problemas, contacta con el autor de la librería solicitando comentarios. Si los problemas son legítimos, solicita su ayuda para implementarlo en ESP8266. Siendo específico tienes mayores posibilidades de convencer al autor para que te ayude, ya sea actualizando la biblioteca o guiándote para resolver los problemas.
 
 Repáralo tú mismo
 ~~~~~~~~~~~~~~~
@@ -65,17 +65,17 @@ Problemas de funcionalidad
 
 *Problema:* La aplicación funciona pero devuelve valores numéricos extraños.
 
-*Solución:*: Comprueba el uso del tipo ``int`` en la libreríaa. En AVR, los enteros son de 16 bits y en ESP, son de 32 bits (como en ARM).
+*Solución:*: Comprueba el uso del tipo ``int`` en la librería. En AVR, los enteros son de 16 bits y en ESP, son de 32 bits (como en ARM).
 
-*Problema:* Algunos dispositivos con control de tiempo crítico como un servocontrolador o una tira de LEDs no funcionan sin problemas y tienden a cambiar aleatoriamente la posición o el patrón mostrado.
+*Problema:* Algunos dispositivos con control de tiempo crítico como un servo controlador o una tira de LEDs tienen problemas y tienden a cambiar aleatoriamente la posición o el patrón mostrado.
 
 *Solución:*: Comprueba el uso de interrupciones que puedan entrar en conflicto con la actividad WiFi de ESP8266. Puede desactivar temporalmente la comunicación WiFi ``WiFi.mode(WIFI_OFF);`` para comprobar si ayuda.
 
 Conclusión
 ~~~~~~~~~~
 
-Identifica problemas de compatibilidad y pide ayuda al autor de la librería. Si lo intentas solo, verifica el uso de la funcionalidad de acceso a bajo nivel del controlador. Utiliza `Esp Exception Decoder <https://github.com/me-no-dev/EspExceptionDecoder>`__ si se enfrenta con excepciones / reset watchdog.
+Identifica problemas de compatibilidad y pide ayuda al autor de la librería. Si lo intentas solo, verifica el uso de la funcionalidad de acceso a bajo nivel del controlador. Utiliza `ESP Exception Decoder <https://github.com/me-no-dev/EspExceptionDecoder>`__ si se enfrenta con excepciones / reset watchdog.
 
-La buena noticia es que la cantidad de librerías que no son compatibles con el ESP8266 se está reduciendo. La comunidad de entusiastas de ESP8266 está creciendo. Si no puedes resolver los problemas por tu cuenta, existen muchas probabilidades de que puedas encontrar a alguien más que te ayude.
+La buena noticia es que la cantidad de librerías no compatibles con el ESP8266 se está reduciendo. La comunidad de entusiastas de ESP8266 está creciendo. Si no puedes resolver los problemas por tu cuenta, existen muchas probabilidades de que puedas encontrar a alguien más que te ayude.
 
 `FAQ :back: <readme.rst>`__
