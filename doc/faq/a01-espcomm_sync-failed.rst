@@ -267,6 +267,7 @@ Verifica que tu diagrama de conexión y forma de onda tenga coherencia con el m�
 Si se queda atascado, pregunte en la `comunidad <http://www.esp8266.com/>`__ con un resumen de todas las verificaciones completadas.
 
 ---------------
+
 .. figure:: pictures/a01-test-stand.jpg
    :alt: Banco de pruebas realizado durante la comprobación del método de reinicio ck
 
