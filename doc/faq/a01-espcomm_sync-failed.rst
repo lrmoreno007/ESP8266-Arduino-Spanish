@@ -1,52 +1,40 @@
-I am getting "espcomm\_sync failed" error when trying to upload my ESP. How to resolve this issue?
+Obtengo el error "espcomm_sync failed" cuando intento subir a mi ESP. ¿Como resuelvo este problema?
 --------------------------------------------------------------------------------------------------
 
--  `Introduction <#Introduction>`__
--  `Initial Checks <#initial-checks>`__
--  `Advanced Checks <#advanced-checks>`__
--  `Reset Methods <#reset-methods>`__
+-  `Introducción <#Introduction>`__
+-  `Comprobaciones iniciales <#initial-checks>`__
+-  `Comprobaciones avanzadas <#advanced-checks>`__
+-  `Métodos de Reset <#reset-methods>`__
 -  `Ck <#ck>`__
 -  `Nodemcu <#nodemcu>`__
--  `I'm Stuck <#im-stuck>`__
--  `Conclusion <#conclusion>`__
+-  `Estoy atascado <#im-stuck>`__
+-  `Conclusión <#conclusion>`__
 
-Introduction
+Introducción
 ~~~~~~~~~~~~
 
-This message indicates issue with uploading ESP module over a serial
-connection. There are couple of possible causes, that depend on the type
-of module, if you use separate USB to serial converter, what parameters
-are selected for upload, etc. As result there is no single answer on the
-root cause. To find it out you may need to complete couple of
-troubleshooting steps.
+Este mensaje indica un problema al subir al módulo ESP mediante conexión por puerto serie. Existen varias posibles causas que dependen del tipo de módulo y de si tiene un convertidor serie independiente, que parámetros ha seleccionado para subir, etc. Como resultado no hay una solo respuesta a la causa raiz. Para solucionarlo necesitas completar una serie de pasos.
 
-    Note: If you are just starting with ESP, to reduce potential issues
-    with uploading, select ESP board with integrated USB to serial
-    converter. This will considerably reduce number of user depended
-    factors or configuration settings that influence upload process.
+    Nota: Si estás comenzando con ESP, para reducir los problemas con la subida, selecciona una tarjeta ESP con convertidor USB a Serie integrado. Esto reducirá el número de factores dependientes del usuario o opciones de configuración que influyen en el proceso de subida.
 
-Example boards with USB to serial converter build in, that will make
-your initial project development easier, are shown below.
+Ejemplo de tarjeta con convertidor USB a Serie integrado, que hará que el desarrollo de tus primeros proyectos sea mas sencillo:
 
 .. figure:: pictures/a01-example-boards-with-usb.png
-   :alt: Example boards with integrated USB to serial converter
+   :alt: Ejemplo de tarjeta con convertidor USB a Serie integrado
 
-   Example boards with integrated USB to serial converter
+   Ejemplo de tarjeta con convertidor USB a Serie integrado
 
-If you are using a Generic ESP8266 module, separate USB to serial
-converter and connect them by yourself, please make sure you have the
-following three things right: 1. Module is provided with enough power,
-2. GPIO0, GPIO15 and CH\_PD are connected using pull up / pull down
-resistors, 3. Module is put into boot loader mode.
+Si estás utilizando un módulo Genérico ESP8266, con convertidor USB a Serie separado y conectado por ti mismo, asegurate de que haces bien lo siguiente:
+1. Se suministra al módulo suficiente energía
+2. GPIO0, GPIO15 y CH_PD están conectados utilizando resistencias pull up / pull down. 
+3. El módulo entra en modo bootloader.
 
-For specific details please refer to section on `Generic ESP8266
-modules <../boards.rst#generic-esp8266-modules>`__. Example modules
-without USB to serial converter on board are shown below.
+Para detalles específicos consulta la sección `Módulo Genérico ESP8266 <../boards.rst#generic-esp8266-modules>`__. Ejemplo de módulo sin convertidor USB a Serie en la tarjeta:
 
 .. figure:: pictures/a01-example-boards-without-usb.png
-   :alt: Example ESP8266 modules without USB to serial converter
+   :alt: Ejemplo de módulo sin convertidor USB a Serie
 
-   Example ESP8266 modules without USB to serial converter
+   Ejemplo de módulo sin convertidor USB a Serie
 
 Initial Checks
 ~~~~~~~~~~~~~~
