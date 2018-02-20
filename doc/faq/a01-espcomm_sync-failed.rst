@@ -17,7 +17,7 @@ Este mensaje indica un problema al subir al módulo ESP mediante conexión por p
 
     Nota: Si estás comenzando con ESP, para reducir los problemas con la subida, selecciona una tarjeta ESP con convertidor USB a Serie integrado. Esto reducirá el número de factores dependientes del usuario o opciones de configuración que influyen en el proceso de subida.
 
-Ejemplo de tarjetas con convertidor USB a Serie integrado, que harán que el desarrollo de tus primeros proyectos sea mas sencillo:
+Ejemplos de tarjetas con convertidor USB a Serie integrado, que harán que el desarrollo de tus primeros proyectos sea mas sencillo:
 
 .. figure:: pictures/a01-example-boards-with-usb.png
    :alt: Ejemplos de tarjetas con convertidor USB a Serie integrado
