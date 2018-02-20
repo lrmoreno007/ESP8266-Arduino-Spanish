@@ -24,12 +24,12 @@ Para evitar que suceda, si está cambiando entre **staging** y **stable**, prime
 
    Si cambia entre staging y stable, elimine el paquete instalado actualmente
 
-No es necesario eliminar el paquete instalado si lo está cambiando a otra versión (sin cambiar entre staging y stable).
+No es necesario eliminar el paquete instalado si lo estás actualizando (sin cambiar entre staging y stable).
 
 .. figure:: pictures/a04-remove-package-no.png
-   :alt: No es necesario eliminar el paquete instalado si cambia entre versiones (actualiza)
+   :alt: No es necesario eliminar el paquete instalado si lo estás actualizando
 
-   No es necesario eliminar el paquete instalado si cambia entre versiones (actualiza)
+   No es necesario eliminar el paquete instalado si lo estás actualizando
 
 Dependiendo del módulo seleccionado, el mensaje de error es ligeramente diferente. Por ejemplo, si elige *Generic ESP8266 Module*, se verá de la siguiente manera:
 
