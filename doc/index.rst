@@ -3,6 +3,7 @@ Bienvenido a la documentación de ESP8266 Arduino Core!
 
 .. toctree::
    :maxdepth: 2
+   :numbered:
    :caption: Contenido:
 
    Instalación <installing>
