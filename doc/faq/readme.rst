@@ -1,4 +1,4 @@
-PREGUNTAS - FAQ
+Preguntas - FAQ
 =================
 
 El propósito de este apartado de PREGUNTAS - FAQ es responder a las preguntas mas comunes en la sección `Issues <https://github.com/esp8266/Arduino/issues>`__ y en el `Foro de la comunidad ESP8266 <http://www.esp8266.com/>`__.
