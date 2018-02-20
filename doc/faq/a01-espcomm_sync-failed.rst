@@ -228,7 +228,7 @@ Estoy atascado
  
 Es de esperar que en este punto hayas podido resolver el problema ``espcomm_sync failed`` y ahora disfrutes de cargas rápidas y confiables de tu módulo ESP.
 
-Si aún no es el caso, revisa una vez más todos los pasos discutidos en la siguiente lista de verificación.
+Si aún no lo resolvistes, revisa una vez más todos los pasos discutidos en la siguiente lista de verificación.
 
 **Comprobaciones iniciales**
 
