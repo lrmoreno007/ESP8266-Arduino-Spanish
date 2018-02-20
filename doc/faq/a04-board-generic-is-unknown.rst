@@ -56,7 +56,7 @@ Si el problema ya ocurre, desinstalar y volver a instalar el paquete con *Boards
 
 Desinstalar y reinstalar el IDE de Arduino no lo arreglará tampoco.
 
-Bien, bien, bien. Podrás arreglarlo con Boards Manager. Para hacerlo, debe ir paso a paso con cuidado eliminar el paquete nuevo y luego el anterior. Una vez hecho esto, puede instalar nuevamente el nuevo paquete. ¿Mencioné que entre tanto necesita cambiar dos veces `JSON <https://github.com/esp8266/Arduino#installing-with-boards-manager>`__ en *Gestor de URLs Adicionales de Tarjetas*?
+Bien, bien, bien. Podrás arreglarlo con Boards Manager. Para hacerlo, debe ir paso a paso con cuidado eliminar el paquete nuevo y luego el anterior. Una vez hecho esto, puede instalar nuevamente el nuevo paquete. ¿Mencioné que entre tanto necesita cambiar dos veces el `JSON <https://github.com/esp8266/Arduino#installing-with-boards-manager>`__ en *Gestor de URLs Adicionales de Tarjetas*?
 
 Afortunadamente hay una solución más rápida y efectiva. Vea abajo.
 
