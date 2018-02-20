@@ -12,7 +12,7 @@ Obtengo el error "espcomm\_sync failed" cuando intento subir a mi ESP. ¿Como re
 
 Este mensaje indica un problema al subir al módulo ESP mediante conexión por puerto serie. Existen varias posibles causas que dependen del tipo de módulo y de si tiene un convertidor serie independiente.
 
-:ref:`Leer mas <a01-espcomm_sync-failed>`.
+:doc:`Leer mas <a01-espcomm_sync-failed>`.
 
 ¿Porqué no aparece esptool en el menú "Programador"? ¿Como subo al ESP sin él?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
