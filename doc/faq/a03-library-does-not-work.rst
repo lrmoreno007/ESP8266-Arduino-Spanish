@@ -1,69 +1,51 @@
-:orphan:
-
-This Arduino library doesn't work on ESP. How do I make it working?
+Esta librería de Arduino no funciona en ESP. ¿Como la hago funcionar?
 -------------------------------------------------------------------
 
--  `Introduction <#introduction>`__
--  `Identify the Issues <#identify-the-issues>`__
--  `Fix it Yourself <#fix-it-yourself>`__
--  `Compilation Errors <#compilation-errors>`__
--  `Exceptions / Watchdog Resets <#exceptions--watchdog-resets>`__
--  `Functionality Issues <#functionality-issues>`__
--  `Conclusion <#conclusion>`__
+-  `Introducción <#introducción>`__
+-  `Identifica los problemas <#identifica-los-problemas>`__
+-  `Repáralo tú mismo <#repáralo-tú-mismo>`__
+-  `Errores de compilación <#errores-de-compilación>`__
+-  `Excepciones / Reset por Watchdog <#excepciones--reset-por-watchdog>`__
+-  `Problemas de funcionalidad <#problemas-de-funcionalidad>`__
+-  `Conclusión <#conclusión>`__
 
-Introduction
+Introducción
 ~~~~~~~~~~~~
 
-You would like to use this Arduino library with ESP8266 and it doesn't
-perform. It is not listed among `libraries verified to work with
-ESP8266 <../libraries.rst#other-libraries-not-included-with-the-ide>`__.
-You couldn't find any evidence on internet that it is compatible.
+Te gustaría usar una librería de Arduino con ESP8266 y no funciona. No aparece en la lista de las `bibliotecas verificadas para trabajar con ESP8266 <../ libraries.rst # other-libraries-not-included-with-the-ide>`__. No puedes encontrar ninguna evidencia en internet de que sea compatible.
 
-What are the odds to make it working?
+¿Cuáles son las probabilidades de hacerla funcionar?
 
-Identify the Issues
+Identifica los problemas
 ~~~~~~~~~~~~~~~~~~~
 
-Start with looking for all the symptoms that it is not compatible with
-ESP8266. Ideally use example sketches provided with the library. Then
-list all the issues you are able to identify.
+Comienza buscando todos los síntomas de que no es compatible con ESP8266. Lo ideal sería utilizar sketch de ejemplo proporcionados con la librería. Luego enumere todos los problemas que pueda identificar.
 
-You are likely to see one or more of the following: \* Compilation drops
-errors \* There are no issues with compilation but application restarts
-because of exception or watchdog (wdt) \* Application seems to work, but
-does not function as expected, e.g. calculation results are incorrect.
+Es probable que vea uno o más de los siguientes:
 
-Armed with the list of issues, contact the library author asking for
-comments. If issues are legitimate, then ask for his / her support to
-implement it for ESP8266. Being specific you have bigger chances
-convincing the author to help you either by updating the library or
-guiding you how to resolve the issues.
+* La compilación arroja errores.
 
-Fix it Yourself
+* No hay problemas con la compilación, pero la aplicación se reinicia debido a una excepción o watchdog (WDT).
+
+* La aplicación parece funcionar pero no funciona como se esperaba. p.ej los resultados del cálculo son incorrectos.
+
+Armado con la lista de problemas, contácta con el autor de la librería solicitando comentarios. Si los problemas son legítimos, solicita su ayuda para implementarlo en ESP8266. Siendo específico tienes mayores posibilidades de convencer al autor para que te ayude, ya sea actualizando la biblioteca o guiándote para resolver los problemas.
+
+Repáralo tú mismo
 ~~~~~~~~~~~~~~~
 
-If library author is unable to provide support, then assess the chances
-of fixing it yourself.
+Si el autor de la librería no puede brindarte soporte, evalúa las posibilidades de solucionarlo tú mismo.
 
-Compilation Errors
+Errores de compilación
 ^^^^^^^^^^^^^^^^^^
 
-*Issue:* Compiler complains about usage of AVR registers (PORTx, PINx,
-TCR1A, etc).
+*Problema:* El compilador se queja sobre el uso de registros AVR (PORTx, PINx, TCR1A, etc.).
 
-*Solution:* Check if usage of registers is well localized in a few
-functions, try to replace GPIO registers usage with digitalRead /
-digitalWrite, timer registers usage with timerX\_ functions. If usage of
-AVR registers happens all over the code, this library might not be worth
-the effort. Also may be worth checking if someone got the library
-working on ARM (Due/STM), PIC, etc. If this is the case, maybe there
-already is a version of the library which uses Arduino APIs instead of
-raw registers.
+*Solución:* Comprueba si el uso de los registros está bien localizado en algunas funciones, intenta reemplazar el uso de registros GPIO con digitalRead / digitalWrite, el temporizador registra el uso con funciones timerX\_. Si el uso de los registros AVR ocurre en todo el código, es posible que esta librería no valga la pena. También puede valer la pena verificar si alguien consiguió que la biblioteca trabaje en ARM (Due / STM), PIC, etc. Si este es el caso, tal vez ya exista una versión de la biblioteca que use API de Arduino en lugar de registros sin formato.
 
-*Issue:* Compiler complains about ``<avr/pgmspace.h>``.
+*Problema:* El compilador se queja de ``<avr/pgmspace.h>``..
 
-*Solution:* modify the library by adding conditional include of ESP's
-pgmspace.h.
+*Solución:* modifica la librería agregando inclusión condicional a "pgmspace.h" de ESP.
 
 ::
 
@@ -73,40 +55,27 @@ pgmspace.h.
       #include <avr/pgmspace.h>
     #endif
 
-Exceptions / Watchdog Resets
+Excepciones / Reset por Watchdog
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-To troubleshoot resets follow FAQ item `My ESP crashes running some
-code <a02-my-esp-crashes.rst>`__.
+Para solucionar los reinicios, ve a la sección de la FAQ: "`Mi ESP se bloquea al correr el programa. ¿Como lo resuelvo? <a02-my-esp-crashes.rst>`__".
 
-Functionality Issues
+Problemas de funcionalidad
 ^^^^^^^^^^^^^^^^^^^^
 
-*Issue:* Application works but returns weird numerical values.
+*Problema:* La aplicación funciona pero devuelve valores numéricos extraños.
 
-*Solution:*: Check the usage of ``int`` type in the library. On AVRs
-integers are 16 bit, and on ESPs they are 32 bit (just like on ARM).
+*Solución:*: Comprueba el uso del tipo ``int`` en la libreríaa. En AVR, los enteros son de 16 bits y en ESP, son de 32 bits (como en ARM).
 
-*Issue:* Some device with time critical control like a servo drive or a
-strip pf LEDs does not operate smoothly and tends to randomly change
-position or displayed pattern.
+*Problema:* Algunos dispositivos con control de tiempo crítico como un servocontrolador o una tira de LEDs no funcionan sin problemas y tienden a cambiar aleatoriamente la posición o el patrón mostrado.
 
-*Solution:*: Check for usage of interrupts that may get in conflict with
-Wi-Fi activity of ESP8266. You may temporarily disable Wi-Fi
-communication ``WiFi.mode(WIFI_OFF);`` to check if it helps.
+*Solución:*: Comprueba el uso de interrupciones que puedan entrar en conflicto con la actividad WiFi de ESP8266. Puede desactivar temporalmente la comunicación WiFi ``WiFi.mode(WIFI_OFF);`` para comprobar si ayuda.
 
-Conclusion
+Conclusión
 ~~~~~~~~~~
 
-Identify compatibility issues and ask library author for support. If
-left on your own, then check for usage of controller's low level access
-functionality. Use `Esp Exception
-Decoder <https://github.com/me-no-dev/EspExceptionDecoder>`__ if
-confronted with exceptions / watchdogs resets.
+Identifica problemas de compatibilidad y pide ayuda al autor de la librería. Si lo intentas solo, verifica el uso de la funcionalidad de acceso a bajo nivel del controlador. Utiliza `Esp Exception Decoder <https://github.com/me-no-dev/EspExceptionDecoder>`__ si se enfrenta con excepciones / reset watchdog.
 
-The good news is that the number of libraries which aren't supported on
-the ESP8266 is shrinking. Community of ESP8266 enthusiasts is growing.
-If you are unable to resolve the issues yourself, there are very good
-odds that you will be able to find somebody else to help you.
+La buena noticia es que la cantidad de librerías que no son compatibles con el ESP8266 se está reduciendo. La comunidad de entusiastas de ESP8266 está creciendo. Si no puedes resolver los problemas por tu cuenta, existen muchas probabilidades de que puedas encontrar a alguien más que te ayude.
 
-`FAQ list :back: <readme.rst>`__
+`FAQ :back: <readme.rst>`__
