@@ -1,19 +1,19 @@
 Obtengo el error "espcomm_sync failed" cuando intento subir a mi ESP. ¿Como resuelvo este problema?
 --------------------------------------------------------------------------------------------------
 
--  `Introducción <#Introduction>`__
--  `Comprobaciones iniciales <#initial-checks>`__
--  `Comprobaciones avanzadas <#advanced-checks>`__
--  `Métodos de Reset <#reset-methods>`__
+-  `Introducción <#introducción>`__
+-  `Comprobaciones iniciales <#comprobaciones-iniciales>`__
+-  `Comprobaciones avanzadas <#comprobaciones-avanzadas>`__
+-  `Métodos de Reset <#métodos-de-reset>`__
 -  `Ck <#ck>`__
 -  `NodeMCU <#nodemcu>`__
--  `Estoy atascado <#im-stuck>`__
--  `Conclusión <#conclusion>`__
+-  `Estoy atascado <#estoy-atascado>`__
+-  `Conclusión <#conclusión>`__
 
 Introducción
 ~~~~~~~~~~~~
 
-Este mensaje indica un problema al subir al módulo ESP mediante conexión por puerto serie. Existen varias posibles causas que dependen del tipo de módulo y de si tiene un convertidor serie independiente, que parámetros ha seleccionado para subir, etc. Como resultado no hay una solo respuesta a la causa raiz. Para solucionarlo necesitas completar una serie de pasos.
+Este mensaje indica un problema al subir al módulo ESP mediante conexión por puerto serie. Existen varias posibles causas que dependen del tipo de módulo y de si tiene un convertidor serie independiente, que parámetros ha seleccionado para subir, etc. Como resultado no hay una solo respuesta a la causa raíz. Para solucionarlo necesitas completar una serie de pasos.
 
     Nota: Si estás comenzando con ESP, para reducir los problemas con la subida, selecciona una tarjeta ESP con convertidor USB a Serie integrado. Esto reducirá el número de factores dependientes del usuario o opciones de configuración que influyen en el proceso de subida.
 
@@ -24,7 +24,7 @@ Ejemplos de tarjetas con convertidor USB a Serie integrado, que harán que el de
 
    Ejemplos de tarjetas con convertidor USB a Serie integrado
 
-Si estás utilizando un módulo Genérico ESP8266, con convertidor USB a Serie separado y conectado por ti mismo, asegurate de que haces bien lo siguiente:
+Si estás utilizando un módulo Genérico ESP8266, con convertidor USB a Serie separado y conectado por ti mismo, asegúrate de que haces bien lo siguiente:
 1. Se suministra al módulo suficiente energía
 2. GPIO0, GPIO15 y CH_PD están conectados utilizando resistencias pull up / pull down. 
 3. El módulo entra en modo bootloader.
@@ -41,7 +41,7 @@ Para detalles específicos consulta la sección :doc:`Módulo Genérico ESP8266 
 Comprobaciones iniciales
 ~~~~~~~~~~~~~~
 
-Para solucionar el error "espcomm\_sync failed", por favor proceda paso por paso a través de la siguiente lista de tareas. Esta lista está organizada comenzando por lo mas común y simple a lo mas complejo.
+Para solucionar el error "espcomm_sync failed", por favor proceda paso por paso a través de la siguiente lista de tareas. Esta lista está organizada comenzando por lo mas común y simple a lo mas complejo.
 
 1. Comienza leyendo el mensaje mostrado en la ventana de debug del IDE Arduino. En muchos casos provee información directa de donde está el problema.
 
@@ -57,7 +57,7 @@ Por ejemplo, el mensaje anterior sugiere que Arduino IDE no puede abrir un puert
 
    Selección de puerto Serie
 
-2. Si el módulo está conectado al puerto Serie pero no responde como un dispositivo válido, el mensaje será ligeramente diferente (ver debajo). Si tienes otros módulos conectados a tu PC, asegurate de que estás subiendo el programa al ESP8266 y no p. ej. a un Arduino Uno.
+2. Si el módulo está conectado al puerto Serie pero no responde como un dispositivo válido, el mensaje será ligeramente diferente (ver debajo). Si tienes otros módulos conectados a tu PC, asegúrate de que estás subiendo el programa al ESP8266 y no p. ej. a un Arduino Uno.
 
 .. figure:: pictures/a01-espcomm_sync-failed.png
    :alt: error "espcomm_sync failed"
@@ -95,7 +95,7 @@ Abre un terminal a 74880 baudios y observa que mensaje obtienes cuando el ESP es
 
 ``ets Jan  8 2013,rst cause:2, boot mode:(1,7)``
 
-Si obtienes un mensaje similar pero diferentes valores, decodificalo utilizando `Mensajes de arranque y modos <../boards.rst#boot-messages-and-modes>`__. Lo importante de la información está contenida en el primer dígito y tres bits más a la derecha del mensaje "boot mode" como se muestra a continuación.
+Si obtienes un mensaje similar pero diferentes valores, decodifícalo utilizando `Mensajes de arranque y modos <../boards.rst#boot-messages-and-modes>`__. Lo importante de la información está contenida en el primer dígito y tres bits más a la derecha del mensaje "boot mode" como se muestra a continuación.
 
 .. figure:: pictures/a01-boot-mode-decoding.png
    :alt: Decodificando el mensaje del modo de arranque
@@ -117,7 +117,7 @@ Por ejemplo el mensaje ``boot mode (3,3)`` indica que los pines GPIO2 y GPIO0 es
 
 ``C:\Users\Krzysztof\AppData\Local\Arduino15\packages\esp8266\tools\esptool\0.4.8/esptool.exe -vv -cd ck -cb 115200 -cp COM3 -ca 0x00000 -cf C:\Users\KRZYSZ~1\AppData\Local\Temp\build7e44b372385012e74d64fb272d24b802.tmp/Blink.ino.bin    esptool v0.4.8 - (c) 2014 Ch. Klippel <ck@atelier-klippel.de>       setting board to ck       setting baudrate from 115200 to 115200       setting port from COM1 to COM3       setting address from 0x00000000 to 0x00000000       espcomm_upload_file       espcomm_upload_mem       setting serial port timeouts to 1000 ms   opening bootloader   resetting board   trying to connect       flush start       setting serial port timeouts to 1 ms       setting serial port timeouts to 1000 ms       flush complete       espcomm_send_command: sending command header       espcomm_send_command: sending command payload       read 0, requested 1   trying to connect       flush start       setting serial port timeouts to 1 ms       setting serial port timeouts to 1000 ms       flush complete       espcomm_send_command: sending command header       espcomm_send_command: sending command payload       espcomm_send_command: receiving 2 bytes of data       espcomm_send_command: receiving 2 bytes of data       espcomm_send_command: receiving 2 bytes of data       espcomm_send_command: receiving 2 bytes of data       espcomm_send_command: receiving 2 bytes of data       espcomm_send_command: receiving 2 bytes of data       espcomm_send_command: receiving 2 bytes of data       espcomm_send_command: receiving 2 bytes of data   Uploading 226368 bytes from to flash at 0x00000000       erasing flash       size: 037440 address: 000000       first_sector_index: 0       total_sector_count: 56       head_sector_count: 16       adjusted_sector_count: 40       erase_size: 028000       espcomm_send_command: sending command header       espcomm_send_command: sending command payload       setting serial port timeouts to 15000 ms       setting serial port timeouts to 1000 ms       espcomm_send_command: receiving 2 bytes of data       writing flash   ..............................................................................................................................................................................................................................   starting app without reboot       espcomm_send_command: sending command header       espcomm_send_command: sending command payload       espcomm_send_command: receiving 2 bytes of data   closing bootloader       flush start       setting serial port timeouts to 1 ms       setting serial port timeouts to 1000 ms       flush complete``
 
-El registro de subida puede ser muy largo dependiendo del número de intentos hechos por esptool. Analizalo en busca de anomalías de configuración que tengas seleccionado en el IDE Arduino, como diferente puerto serie, método de reset, upload speed, etc. Resuelve las diferencias encontradas.
+El registro de subida puede ser muy largo dependiendo del número de intentos hechos por esptool. Analízalo en busca de anomalías de configuración que tengas seleccionado en el IDE Arduino, como diferente puerto serie, método de reset, upload speed, etc. Resuelve las diferencias encontradas.
 
 Métodos de Reset
 ~~~~~~~~~~~~~
@@ -131,7 +131,7 @@ Compara tus medidas con las formas de ondas recogidas en los siguientes circuito
 Ck
 ^^
 
-El siguiente circuito ha sido preparado para coleccionar ondas del metodo de reset ck (`get fzz source <pictures/a01-circuit-ck-reset.fzz>`__). Es mas simple que el método de reset `nodemcu <#nodemcu>`__ y por lo tanto, a menudo se utiliza para conectar los módulos Genéricos ESP en una placa de prueba. Compruébalo las medidas contra tu cableado con las formas de onda a continuación.
+El siguiente circuito ha sido preparado para coleccionar ondas del método de reset ck (`get fzz source <pictures/a01-circuit-ck-reset.fzz>`__). Es mas simple que el método de reset `nodemcu <#nodemcu>`__ y por lo tanto, a menudo se utiliza para conectar los módulos Genéricos ESP en una placa de prueba. Compruébalo las medidas contra tu cableado con las formas de onda a continuación.
 
 .. figure:: pictures/a01-circuit-ck-reset.png
    :alt: Ejemplo de circuito para comprobar método ck
@@ -154,7 +154,7 @@ La siguiente imagen muestra una subida completa del ejemplo `Blink.ino <https://
 
    Método reset: ck, subida completa
 
-Observa que esptool no es capaz de inicializar la subida al promer intento, entonces reintenta el procedimiento de reset. El caso de un solo intento se muestra como forma de onda a continuación.
+Observa que esptool no es capaz de inicializar la subida al primer intento, entonces reintenta el procedimiento de reset. El caso de un solo intento se muestra como forma de onda a continuación.
 
 .. figure:: pictures/a01-reset-ck-complete-1-retry.png
    :alt: Método reset: ck, subida completa
@@ -198,7 +198,7 @@ Observa las señales de voltaje en los pines GPIO0 y RST al comienzo de la subid
 .. figure:: pictures/a01-reset-nodemcu-closeup.png
    :alt: Metodo de reset: nodemcu, observa al comienzo de la subida
 
-   Metodo de reset: nodemcu, observa al comienzo de la subida
+   Método de reset: nodemcu, observa al comienzo de la subida
 
 Observa que la secuencia de reset es mas o menos unas 10 veces mas corta comparada con el método de reset `ck <@ck>`__ (sobre 25ms contra 250ms).
 
@@ -216,7 +216,7 @@ A continuación se muestra la forma de onda para otra subida del ejemplo `Blink.
 
    Método de reset: nodemcu, reintentos de reset
 
-Si estás interesado en como está implementado el método de reset nodemcu, comprueba el circuito a continuación. Como se dijo este circuito no une a GND las lineas RTS y DTR una vez que abre el Monitor Serie en el IDE Arduino.
+Si estás interesado en como está implementado el método de reset nodemcu, comprueba el circuito a continuación. Como se dijo este circuito no une a GND las líneas RTS y DTR una vez que abre el Monitor Serie en el IDE Arduino.
 
 .. figure:: pictures/a01-nodemcu-reset-implementation.png
    :alt: Implementación del reset nodemcu
@@ -239,7 +239,7 @@ Si aún no es el caso, revisa una vez más todos los pasos discutidos en la sigu
 * [] ¿Has intentado reducir la velocidad de carga? ¿Qué velocidades has probado?
 
 **Comprobaciones avanzadas**
-* [] ¿Qué mensaje informa ESP a 74880 baud al entrar en modo bootloader?
+* [] ¿Qué mensaje informa ESP a 74880 baudios al entrar en modo bootloader?
 * [] ¿Has comprobado tu convertidor de USB a serie haciendo un bucle? ¿Cual es el resultado?
 * [] ¿Tu registro de subida detallado es consistente con la configuración en el IDE? ¿Cuál es el registro?
 
