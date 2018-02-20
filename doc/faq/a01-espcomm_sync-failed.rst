@@ -230,26 +230,39 @@ Es de esperar que en este punto hayas podido resolver el problema ``espcomm_sync
 
 Si aún no es el caso, revisa una vez más todos los pasos discutidos en la siguiente lista de verificación.
 
-**Comprobaciones iniciales** 
-* [] ¿Está tu módulo conectado al puerto serie y visible en el IDE?
-* [] ¿El dispositivo conectado está respondiendo al IDE? ¿Cuál es el mensaje exacto en la ventana de depuración?
-* [] ¿Has seleccionado el tipo correcto de módulo ESP en el menú *Placa*? ¿Cuál es la selección?
-* [] ¿Has intentado reducir la velocidad de carga? ¿Qué velocidades has probado?
+**Comprobaciones iniciales**
+
+* [ ] ¿Está tu módulo conectado al puerto serie y visible en el IDE?
+
+* [ ] ¿El dispositivo conectado está respondiendo al IDE? ¿Cuál es el mensaje exacto en la ventana de depuración?
+
+* [ ] ¿Has seleccionado el tipo correcto de módulo ESP en el menú *Placa*? ¿Cuál es la selección?
+
+* [ ] ¿Has intentado reducir la velocidad de carga? ¿Qué velocidades has probado?
 
 **Comprobaciones avanzadas**
-* [] ¿Qué mensaje informa ESP a 74880 baudios al entrar en modo bootloader?
-* [] ¿Has comprobado tu convertidor de USB a serie haciendo un bucle? ¿Cual es el resultado?
-* [] ¿Tu registro de subida detallado es consistente con la configuración en el IDE? ¿Cuál es el registro?
+
+* [ ] ¿Qué mensaje informa ESP a 74880 baudios al entrar en modo bootloader?
+
+* [ ] ¿Has comprobado tu convertidor de USB a serie haciendo un bucle? ¿Cual es el resultado?
+
+* [ ] ¿Tu registro de subida detallado es consistente con la configuración en el IDE? ¿Cuál es el registro?
 
 **Método de reset**
-* [] ¿Qué método de reset utilizas?
-* [] ¿Cuál es tu circuito de conexión? ¿Coincide con alguno de los circuitos descritos?
-* [] ¿Cuál es tu forma de onda de reset de la placa? ¿Concuerda con la forma de onda descrito?
-* [] ¿Cuál es tu forma de onda de subida completa? ¿Concuerda con la forma de onda descrita?
+
+* [ ] ¿Qué método de reset utilizas?
+
+* [ ] ¿Cuál es tu circuito de conexión? ¿Coincide con alguno de los circuitos descritos?
+
+* [ ] ¿Cuál es tu forma de onda de reset de la placa? ¿Concuerda con la forma de onda descrito?
+
+* [ ] ¿Cuál es tu forma de onda de subida completa? ¿Concuerda con la forma de onda descrita?
 
 **Software**
-* [] ¿Utiliza la última versión estable de `ESP8266/Arduino <https://github.com/esp8266/Arduino>`__? ¿Qué es?
-* [] ¿Cuál es el nombre y la versión de su IDE y O/S?
+
+* [ ] ¿Utiliza la última versión estable de `ESP8266/Arduino <https://github.com/esp8266/Arduino>`__? ¿Cual es?
+
+* [ ] ¿Cuál es el nombre y la versión de su IDE y O/S?
 
 Si está atascado en cierto paso, publique esta lista rellena en el `foro de la comunidad ESP8266 <http://www.esp8266.com/>`__ pidiendo ayuda.
 
