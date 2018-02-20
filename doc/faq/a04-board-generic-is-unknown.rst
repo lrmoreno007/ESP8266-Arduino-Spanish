@@ -1,151 +1,100 @@
-:orphan:
-
-How to resolve "Board generic (platform esp8266, package esp8266) is unknown" error?
+¿Como solucionar el error "Board generic (platform esp8266, package esp8266) is unknown"?
 ------------------------------------------------------------------------------------
 
-This error may pop up after switching between
-`staging <https://github.com/esp8266/Arduino#staging-version->`__ and
-`stable <https://github.com/esp8266/Arduino#stable-version->`__ esp8266
-/ Arduino package installations, or after upgrading the package version.
+Este error puede aparecer al cambiar entre los paquetes de instalación de ESP8266/Arduino `staging <https://github.com/esp8266/Arduino#staging-version->`__ y `stable <https://github.com/esp8266/Arduino#stable-version->`__, o tras actualizar de versión de paquete.
 
 .. figure:: pictures/a04-board-is-unknown-error.png
    :alt: Board nodemcu2 (platform esp8266, package esp8266) is unknown error
 
-   alt text
+   Board nodemcu2 (platform esp8266, package esp8266) is unknown error
 
-If you face this issue, you will not be able to compile any sketch for
-any ESP8266 module type.
+Si te enfrentas a este problema, no podrás compilar ningún boceto para ningún tipo de módulo ESP8266.
 
-Read below what is the error root cause or jump straight to the
-`resolution <#how-to-fix-it>`__
+Lee a continuación cuál es la causa raíz del error o salte directamente a la `solución <#cómo-arreglarlo>`__
 
-The Root Cause
+La causa raiz
 ~~~~~~~~~~~~~~
 
-This issue is attributed to Arduino IDE Boards Manager not cleaning up
-previous package installation before a new one is applied. As this is
-not done, then it is user responsibility to remove previous package
-before applying a new one.
+Este problema se atribuye al Gestor de Tarjetas del IDE Arduino, no limpiando la instalación previa del paquete antes de aplicar uno nuevo. Como esto no se hace, es responsabilidad del usuario eliminar el paquete anterior antes de aplicar uno nuevo.
 
-To prevent it from happening, if you are changing between **staging**
-and **stable**, first press *Remove* button to delete currently used
-installation.
+Para evitar que suceda, si está cambiando entre **staging** y **stable**, primero presione en el Gestor de Tarjetas el botón *Eliminar* para eliminar la instalación actualmente utilizada.
 
 .. figure:: pictures/a04-remove-package-yes.png
-   :alt: If changing between staging and stable, remove currently installed package
+   :alt: Si cambia entre staging y stable, elimine el paquete instalado actualmente
 
-   alt text
+   Si cambia entre staging y stable, elimine el paquete instalado actualmente
 
-There is no need to remove the installed package if you are changing it
-to another version (without switching between staging and stable).
+No es necesario eliminar el paquete instalado si lo está cambiando a otra versión (sin cambiar entre staging y stable).
 
 .. figure:: pictures/a04-remove-package-no.png
-   :alt: No need to remove installed package if changing its version
+   :alt: No es necesario eliminar el paquete instalado si cambia entre versiones (actualiza)
 
-   alt text
+   No es necesario eliminar el paquete instalado si cambia entre versiones (actualiza)
 
-Depending on selected module the error message is slightly different.
-For instance, if you choose *Generic ESP8266 Module*, it will look as
-follows:
+Dependiendo del módulo seleccionado, el mensaje de error es ligeramente diferente. Por ejemplo, si elige *Generic ESP8266 Module*, se verá de la siguiente manera:
 
 ::
 
     Board generic (platform esp8266, package esp8266) is unknown
     Error compiling for board Generic ESP8266 Module.
 
-Below is an example messages for
-`WeMos <../boards.rst#wemos-d1-r2-mini>`__:
+A continuación un mensaje de ejemplo para `WeMos <../boards.rst#wemos-d1-r2-mini>`__:
 
 ::
 
     Board d1_mini (platform esp8266, package esp8266) is unknown
     Error compiling for board WeMos D1 R2 & mini.
 
-... and another one for `Adafruit Feather
-HUZZAH <../boards.rst#adafruit-feather-huzzah-esp8266>`__:
+... y otro para `Adafruit Feather HUZZAH <../boards.rst#adafruit-feather-huzzah-esp8266>`__:
 
 ::
 
     Board huzzah (platform esp8266, package esp8266) is unknown
     Error compiling for board Adafruit HUZZAH ESP8266.
 
-If the issue already happens, then uninstalling and re-installing the
-package with *Boards Manager* typically will not fix it.
+Si el problema ya ocurre, desinstalar y volver a instalar el paquete con *Boards Manager* normalmente no lo arreglará.
 
-Uninstalling and re-installing the Arduino IDE will not fix it as well.
+Desinstalar y reinstalar el IDE de Arduino no lo arreglará tampoco.
 
-Well, OK, fine. You will be able to fix it with Boards Manager. To do
-so, you need to carefully go step by step through the effort of removing
-new and then the old package. Once done you can install again the new
-package. Did I mention that in between you need to change twice
-`JOSN <https://github.com/esp8266/Arduino#installing-with-boards-manager>`__
-in *Additional Boards Manager URLs*?
+Bien, bien, bien. Podrás arreglarlo con Boards Manager. Para hacerlo, debe ir paso a paso con cuidado eliminar el paquete nuevo y luego el anterior. Una vez hecho esto, puede instalar nuevamente el nuevo paquete. ¿Mencioné que entre tanto necesita cambiar dos veces `JSON <https://github.com/esp8266/Arduino#installing-with-boards-manager>`__ en *Gestor de URLs Adicionales de Tarjetas*?
 
-Fortunately there is a quicker and more effective fix. See below.
+Afortunadamente hay una solución más rápida y efectiva. Vea abajo.
 
-How to Fix it?
+Cómo arreglarlo
 ~~~~~~~~~~~~~~
 
-Issue resolution is as simple as deleting a folder with older esp8266 /
-Arduino installation.
+La resolución de problemas es tan simple como eliminar la carpeta con la instalación anterior de esp8266/Arduino.
 
-Procedure is identical on Windows, Linux and Mac OS. The only difference
-is folder path. For instance, on Mac, it will be
-``/Users/$USER/Library/Arduino15/packages/esp8266/hardware/esp8266``.
-Example below shows the path for Windows.
+El procedimiento es idéntico en Windows, Linux y Mac OS. La única diferencia es la ruta de la carpeta. Por ejemplo, en Mac, será ``/Users/$USER/Library/Arduino15/packages/esp8266/hardware/esp8266``. El siguiente ejemplo muestra la ruta para Windows.
 
-1. Check location of installation folder by going to *File >
-   Preferences* (Ctrl+,). The folder location is at the very bottom of
-   the *Preferences* window.
+1. Comprueba la ubicación de la carpeta de instalación yendo a *Archivo > Preferencias* (Ctrl+,). La ubicación de la carpeta se encuentra en la parte inferior de la ventana *Preferencias*.
 
 .. figure:: pictures/a04-arduino-ide-preferences.png
-   :alt: Checking of Arduino IDE Preferences
+   :alt: Comprueba las preferencias del IDE Arduino
 
-   alt text
+   Comprueba las preferencias del IDE Arduino
 
-2. Click provided link to open the folder. For Windows 7 it will look as
-   follows:
+2. Haz clic en el enlace para abrir la carpeta. Para Windows 7 se verá de la siguiente manera:
 
 .. figure:: pictures/a04-contents-of-preferences-folder.png
-   :alt: Contents of Arduino IDE preferences folder
+   :alt: Contenido de la carpeta de preferencias del IDE Arduino
 
-   alt text
+   Contenido de la carpeta de preferencias del IDE Arduino
 
-3. Navigate further down to
-   ``Arduino15\packages\esp8266\hardware\esp8266`` directory. Inside you
-   will find two folders with different esp8266 / Arduino package
-   installations.
+3. Ve hasta el directorio ``Arduino15\packages\esp8266\hardware\esp8266``. En el interior, encontrarás dos carpetas con diferentes instalaciones del paquete ESP8266/Arduino.
 
 .. figure:: pictures/a04-contents-of-package-folder.png
-   :alt: Checking of contents of esp8266 / Arduino package folder
+   :alt: Comprueba el contenido de la carpeta del paquete ESP8266/Arduino
 
-   alt text
+   Comprueba el contenido de la carpeta del paquete ESP8266/Arduino
 
-4. Delete the older folder. Restart Arduino IDE, select your ESP module
-   and the error should be gone.
+4. Elimina la carpeta anterior. Reinicia Arduino IDE, selecciona tu módulo ESP y el error desaparecerá.
 
-Note: If you are not sure which folder to delete, then remove both of
-them. Restart Arduino IDE, go to *Tools > Board: > Boards Manager* and
-install the esp8266 / Arduino package again. Select ESP8266 module and
-the issue should be resolved.
+Nota: Si no estás seguro de qué carpeta eliminar, elimina ambas. Reinicia Arduino IDE, ve a *Herramientas> "última placa seleccionada" > Gestor de Tarjetas* e instala el paquete ESP8266/Arduino nuevamente. Selecciona el módulo ESP8266 deseado y el problema debería resolverse.
 
-More Information
+Mas información
 ~~~~~~~~~~~~~~~~
 
-This issue has been reported quite frequently in
-`Issues <https://github.com/esp8266/Arduino/issues>`__ section of
-esp8266 / Arduino repository. The most appreciated solution was provided
-by [@anhhuy0501](https://github.com/anhhuy0501) in
-`#1387 <https://github.com/esp8266/Arduino/issues/1387#issuecomment-204865028>`__.
+Este problema ha sido informado con bastante frecuencia en la sección de `Issues <https://github.com/esp8266/Arduino/issues>`__ del repositorio ESP8266/Arduino. La solución más apreciada fue proporcionada por [@anhhuy0501](https://github.com/anhhuy0501) en `#1387 <https://github.com/esp8266/Arduino/issues/1387#issuecomment-204865028>`__.
 
-If you are interested in more details, please refer to
-`#2297 <https://github.com/esp8266/Arduino/issues/2297>`__,
-`#2156 <https://github.com/esp8266/Arduino/issues/2156>`__,
-`#2022 <https://github.com/esp8266/Arduino/issues/2022>`__,
-`#1802 <https://github.com/esp8266/Arduino/issues/1802>`__,
-`#1514 <https://github.com/esp8266/Arduino/issues/1514>`__,
-`#1387 <https://github.com/esp8266/Arduino/issues/1387>`__,
-`#1377 <https://github.com/esp8266/Arduino/issues/1377>`__,
-`#1251 <https://github.com/esp8266/Arduino/issues/1251>`__,
-`#1247 <https://github.com/esp8266/Arduino/issues/1247>`__,
-`#948 <https://github.com/esp8266/Arduino/issues/948>`__
+Si estás interesado en más detalles, consulta `#2297 <https://github.com/esp8266/Arduino/issues/2297>`__, `#2156 <https://github.com/esp8266/Arduino/issues/2156>`__, `#2022 <https://github.com/esp8266/Arduino/issues/2022>`__, `#1802 <https://github.com/esp8266/Arduino/issues/1802>`__, `#1514 <https://github.com/esp8266/Arduino/issues/1514>`__, `#1387 <https://github.com/esp8266/Arduino/issues/1387>`__, `#1377 <https://github.com/esp8266/Arduino/issues/1377>`__, `#1251 <https://github.com/esp8266/Arduino/issues/1251>`__, `#1247 <https://github.com/esp8266/Arduino/issues/1247>`__, `#948 <https://github.com/esp8266/Arduino/issues/948>`__
