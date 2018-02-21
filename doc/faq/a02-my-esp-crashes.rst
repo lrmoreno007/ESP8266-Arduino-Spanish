@@ -2,11 +2,11 @@ Mi ESP se bloquea al correr el programa. ¿Como lo resuelvo?
 ---------------------------------------------------------
 
 -  `Introducción <#introducción>`__
--  `Que debe decir ESP <#que-debe-decir-esp>`__
+-  `Que debe decir el ESP <#que-debe-decir-el-esp>`__
 -  `Pon tu hardware correctamente <#pon-tu-hardware-correctamente>`__
 -  `¿Cual es la causa del reinicio? <#cual-es-la-causa-del-reinicio>`__
 -  `Excepción <#excepción>`__
--  `Watchdog <#watchdog>`__
+-  `Watchdog (Perro Guardián) <#watchdog-perro-guardián>`__
 -  `Comprueba donde se bloquea el código <#comprueba-donde-se-bloquea-el-código>`__
 -  `Otras causas de bloqueo <#otras-causas-de-bloqueo>`__
 -  `Contra la pared, abre un Issue <#contra-la-pared-abre-un-issue>`__
@@ -15,85 +15,85 @@ Mi ESP se bloquea al correr el programa. ¿Como lo resuelvo?
 Introducción
 ~~~~~~~~~~~~
 
-Your ESP is self restarting. You don't know why and what to do about it.
+Tu ESP se auto resetea. No sabes por qué y que hacer al respecto.
 
-Do not panic.
+No te asustes.
 
-In most of cases ESP provides enough clues on serial monitor, that you can interpret to pin down the root cause. The first step is then checking what ESP is saying on serial monitor when it crashes.
+En la mayoría de los casos el ESP proporciona suficientes pistas en el Monitor Serie que puedes interpretar para identificar la causa raíz. El primer paso es verificar qué dice el ESP en el Monitor Serie cuando falla.
 
-Que debe decir ESP
-~~~~~~~~~~~~~~~~~~~
+Que debe decir el ESP
+~~~~~~~~~~~~~~~~~~~~~
 
-Start off by opening a Serial Monitor (Ctrl+Shift+M) to observe the output. Typical crash log looks as follows:
+Comienza abriendo el Monitor Serie (Ctrl+Shift+M) para ver los mensajes. Un registro de bloqueo típico se ve así:
 
 .. figure:: pictures/a02-typical-crash-log.png
-   :alt: Typical crash log
+   :alt: Registro de bloqueo típico
 
-   Typical crash log
+   Registro de bloqueo típico
 
-Before rushing to copy and paste displayed code to Google, reflect for a while on the nature of observed restarts:
+Antes de apresurarte a copiar y pegar el código mostrado en Google, reflexiona por un momento sobre la naturaleza de los reinicios observados:
 
--  Does ESP restart on random basis, or under certain conditions, like serving a web page?
--  Do you see always the same exception code and stack trace or it changes?
--  Does this issue occur with unmodified standard example code (Arduino IDE > *File > Examples*)?
+- ¿Se reinicia el ESP aleatoriamente, o bajo ciertas condiciones, como servir una página web?
+- ¿Ves siempre el mismo código de excepción y el mismo volcado de pila o este cambia?
+- ¿Este problema ocurre con el código de un ejemplo estándar no modificado (IDE Arduino > *Archivo > Ejemplos*)?
 
-If restarts are random or the exception code differs between restarts, then the problem may be caused by h/w. If the issue occurs for standard examples and stable `ESP8266/Arduino <https://github.com/esp8266/Arduino>`__ core, them the issue is almost certainly caused by h/w.
+Si los reinicios son aleatorios o el código de excepción difiere entre reinicios, entonces el problema puede ser causado por hardware. Si el problema se produce para los ejemplos estándar y el core stable de `ESP8266/Arduino <https://github.com/esp8266/Arduino>`__, es casi seguro que el problema se debe al hardware.
 
 Pon tu hardware correctamente
-~~~~~~~~~~~~~~~~~~
-
-If you suspect the h/w, before troubleshooting the s/w, make sure to get your h/w right. There is no much sense in diagnosing the s/w if you board is randomly crashing because of not enough power, missing boot strapping resistors or loose connections.
-
-If you are using generic ESP modules, please follow `recommendations <Generic%20ESP8266%20modules>`__ on power supply and boot strapping resistors.
-
-For boards with integrated USB to serial converter and power supply, usually it is enough to connect it to an USB hub that provides standard 0.5A and is not shared with other USB devices.
-
-In any case make sure that your module is able to stable run standard example sketches that establish Wi-Fi connection like e.g. `HelloServer.ino <https://github.com/esp8266/Arduino/tree/master/libraries/ESP8266WebServer/examples/HelloServer>`__.
-
-¿Cual es la causa del reinicio?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-You have verified that the ESP h/w is healthy but it still restarts. This is how ESP reacts to abnormal behavior of application. If something is wrong, it restarts itself to tell you about it.
+Si sospechas del hardware, antes de resolver problemas en el software pon tu hardware a punto. No tiene mucho sentido diagnosticar el software si la tarjeta se cuelga aleatoriamente debido a que no hay suficiente energía, faltan resistencias de arranque (pull up - pull down) o hay conexiones sueltas.
 
-There are two typical scenarios that trigger ESP restarts:
+Si está utilizando módulos ESP genéricos, siga las `recomendaciones <Generic% 20ESP8266% 20modules>`__ sobre la fuente de alimentación y las resistencias de arranque.
 
--  **Exception** - when code is performing `illegal operation <../exception_causes.rst>`__, like trying to write to non-existent memory location.
--  **Watchdog** - if code is `locked up <https://en.wikipedia.org/wiki/Watchdog_timer>`__ staying too long in a loop or processing some task, so vital processes like Wi-Fi communication are not able to run.
+Para tarjetas con convertidor de USB a serie integrado y fuente de alimentación, por lo general es suficiente con conectarlo a un concentrador USB que proporcione 0.5A estándar y no compartir con otros dispositivos USB.
 
-Please check below how to recognize `exception <#exception>`__ and `watchdog <#watchdog>`__ scenarios and what to do about it.
+En cualquier caso, asegúrese de que su módulo pueda ejecutar sketch de ejemplo estándar stable que establezcan una conexión Wi-Fi, como p. ej. `HelloServer.ino <https://github.com/esp8266/Arduino/tree/master/libraries/ESP8266WebServer/examples/HelloServer>`__.
+
+¿Cual es la causa del reinicio?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Ya has verificado el hardware del ESP pero sigues teniendo reinicios. Así es como el ESP reacciona al comportamiento anormal de la aplicación. Si algo está mal, se reinicia para contártelo.
+
+Hay dos escenarios típicos que desencadenan reinicios del ESP:
+
+- **Excepción** - cuando el código está realizando una `operación ilegal <../exception_causes.rst>`__, como intentar escribir en una ubicación de memoria inexistente.
+- **Watchdog** - si el código está `bloqueado <https://en.wikipedia.org/wiki/Watchdog_timer>`__ permaneciendo demasiado tiempo en un bucle o procesando alguna tarea, por lo que los procesos vitales como la comunicación Wi-Fi no pueden correr.
+
+Por favor, compruebe a continuación cómo reconocer los escenarios `excepción <#excepción>`__ y `watchdog <#watchdog>`__ y qué hacer al respecto.
 
 Excepción
 ^^^^^^^^^
 
-Typical restart because of exception looks like follows:
+El reinicio típico debido una excepción, se ve como a continuación:
 
 .. figure:: pictures/a02-exception-cause-decoding.png
-   :alt: Exception cause decoding
+   :alt: Decodificación de la causa de excepción
 
-   Exception cause decoding
+   Decodificación de la causa de excepción
 
-Start with looking up exception code in the `Exception Causes (EXCCAUSE) <../exception_causes.rst>`__ table to understand what kind of issue it is. If you have no clues what it's about and where it happens, then use `Arduino ESP8266/ESP32 Exception Stack Trace Decoder <https://github.com/me-no-dev/EspExceptionDecoder>`__ to find out in which line of application it is triggered. Please refer to `Check Where the Code Crashes <#check-where-the-code-crashes>`__ point below for a quick example how to do it.
+Comienza buscando el código de excepción en la tabla `Causas de excepción (EXCCAUSE) <../exception_causes.rst>`__ para comprender qué tipo de problema tienes. Si no tienes pistas de qué se trata y dónde ocurre, utiliza el `Decodificador del volcado de pila de excepciones para Arduino ESP8266/ESP3226 <https://github.com/me-no-dev/EspExceptionDecoder>`__ para averiguar en qué línea de la aplicación se desencadena. Consulta `Comprobar dónde se bloquea el código <#check-where-the-code-crashes>`__ mas adelante para ver un ejemplo rápido de cómo hacerlo.
 
-Watchdog
-^^^^^^^^
+Watchdog (Perro Guardián)
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
-ESP provides two watchdog timers (wdt) that observe application for lock up.
+ESP proporciona dos temporizadores de vigilancia (WDT) que observan el bloqueo de la aplicación.
 
--  **Software Watchdog** - provided by `SDK <http://bbs.espressif.com/viewforum.php?f=46>`__, that is part of `esp8266 / arduino <https://github.com/esp8266/Arduino>`__ core loaded to module together with your application.
--  **Hardware Watchdog** - build in ESP8266 hardware and acting if software watchdog is disabled for too long, in case it fails, or if it is not provided at all.
+- **Software Watchdog** - proporcionado por el `SDK <http://bbs.espressif.com/viewforum.php?f=46>`__, forma parte del core  `ESP8266/Arduino <https://github.com/esp8266/Arduino> `__ cargado en el módulo junto a su aplicación.
+- **Hardware Watchdog** - construido dentro del hardware ESP8266 y actúa si el watchdog software está desactivado durante demasiado tiempo, en caso de que falle o si no se proporciona en absoluto.
 
-Restart by particular type of watchdog is clearly identified by ESP on serial monitor.
+El reinicio por watchdog está claramente identificado por el ESP en el Monitor Seri.
 
-An example of application crash triggered by software wdt is shown below.
+A continuación, se muestra un ejemplo de bloqueo de la aplicación provocada por el software wdt.
 
 .. figure:: pictures/a02-sw-watchdog-example.png
-   :alt: Example of restart by s/w watchdog
+   :alt: Ejemplo de reinicio debido a watchdog software
 
-   Example of restart by s/w watchdog
+   Ejemplo de reinicio debido a watchdog software
 
-Restart by the software watchdog is generally easier to troubleshoot since log includes the stack trace. The trace can be then used to find particular line in code where wdt has been triggered.
+El reinicio debido a software watchdog es generalmente mas facil de resolver porque el registro incluye el volcado de pila. El volcado de pila puede usarse para encontrar la linea en particular en el código donde salta el WDT.
 
-Reset by hardware watchdog timer is shown on picture below.
+A continuación se muestra un reset debido al watchdog hardware.
 
 .. figure:: pictures/a02-hw-watchdog-example.png
    :alt: Example of restart by h/w watchdog
