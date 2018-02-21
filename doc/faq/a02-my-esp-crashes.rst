@@ -48,7 +48,7 @@ Si está utilizando módulos ESP genéricos, siga las `recomendaciones <Generic%
 
 Para tarjetas con convertidor de USB a serie integrado y fuente de alimentación, por lo general es suficiente con conectarlo a un concentrador USB que proporcione 0.5A estándar y no compartir con otros dispositivos USB.
 
-En cualquier caso, asegúrese de que su módulo pueda ejecutar sketch de ejemplo estándar stable que establezcan una conexión Wi-Fi, como p. ej. `HelloServer.ino <https://github.com/esp8266/Arduino/tree/master/libraries/ESP8266WebServer/examples/HelloServer>`__.
+En cualquier caso, asegúrese de que su módulo pueda ejecutar sketch de ejemplo estándar stable que establezcan una conexión WiFi, como p. ej. `HelloServer.ino <https://github.com/esp8266/Arduino/tree/master/libraries/ESP8266WebServer/examples/HelloServer>`__.
 
 ¿Cual es la causa del reinicio?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -84,16 +84,16 @@ ESP proporciona dos temporizadores de vigilancia (WDT) que observan el bloqueo d
 
 El reinicio por watchdog está claramente identificado por el ESP en el Monitor Seri.
 
-A continuación, se muestra un ejemplo de bloqueo de la aplicación provocada por el software wdt.
+A continuación, se muestra un ejemplo de bloqueo de la aplicación provocada por un WDT software.
 
 .. figure:: pictures/a02-sw-watchdog-example.png
    :alt: Ejemplo de reinicio debido a watchdog software
 
    Ejemplo de reinicio debido a watchdog software
 
-El reinicio debido a software watchdog es generalmente mas facil de resolver porque el registro incluye el volcado de pila. El volcado de pila puede usarse para encontrar la linea en particular en el código donde salta el WDT.
+El reinicio debido a software watchdog es generalmente mas fácil de resolver porque el registro incluye el volcado de pila. El volcado de pila puede usarse para encontrar la línea en particular en el código donde salta el WDT.
 
-A continuación se muestra un reset debido al watchdog hardware.
+A continuación se muestra un reset debido al WDT hardware.
 
 .. figure:: pictures/a02-hw-watchdog-example.png
    :alt: Ejemplo de reset debido a watchgog hardware
@@ -125,7 +125,7 @@ Si no tienes ningún sketch que genere un WDT para intentar solucionarlo, usa el
       //
       while(true);
       //
-      Serial.println("Esta linea no debe verse nunca");
+      Serial.println("Esta línea no debe verse nunca");
     }
 
     void loop(){}
@@ -137,7 +137,7 @@ Sube este código a tu ESP (Ctrl+U) e inicia el Monitor Serie (Ctrl+Shift+M). De
 
    Decodifica el volcado de pila, pasos 1 y 2
 
-Ahora pegua el volcado de pila en la ventana del decodificador de excepciones. En la parte inferior de esta ventana, deberías ver una lista de líneas decodificadas del boceto que acabas de cargar en tu ESP. En la parte superior de la lista, como en la parte superior del volcado de pila, hay una referencia a la última línea ejecutada justo antes de que se disparara el temporizador de WDT software, lo que provocó el reinicio del ESP. Verifique el número de esta línea y búsquela en el boceto. Debería ser la línea ``Serial.println("Vamos a provocar el disparo del WDT...")``, que está justo antes de ``while(true)`` el cual hizo que watchdog se disparara (ignorar las líneas con comentarios, son descartadas por el compilador).
+Ahora pega el volcado de pila en la ventana del decodificador de excepciones. En la parte inferior de esta ventana, deberías ver una lista de líneas decodificadas del boceto que acabas de cargar en tu ESP. En la parte superior de la lista, como en la parte superior del volcado de pila, hay una referencia a la última línea ejecutada justo antes de que se disparara el temporizador de WDT software, lo que provocó el reinicio del ESP. Verifique el número de esta línea y búsquela en el boceto. Debería ser la línea ``Serial.println("Vamos a provocar el disparo del WDT...")``, que está justo antes de ``while(true)`` el cual hizo que watchdog se disparara (ignorar las líneas con comentarios, son descartadas por el compilador).
 
 .. figure:: pictures/a02-decode-stack-tace-3-6.png
    :alt: Decodifica el volcado de pila, pasos del 3 al 6
@@ -164,20 +164,20 @@ Callbacks asíncronos
 Memoria, memoria, memoria
    Quedarse sin pila es la causa más común de bloqueos. Debido a que el proceso de compilación para el ESP deja de lado las excepciones (usan memoria), las asignaciones de memoria que fallan lo harán en silencio. Un ejemplo típico es cuando se establece o concatena una cadena grande. Si la asignación ha fallado internamente, la copia de cadena interna puede dañar los datos y el ESP se bloqueará.
    
-Además, al realizar muchas concatenaciones de cadenas en secuencia, por ejemplo, al usar el operador+() varias veces, se producirá la fragmentación de la memoria. Cuando eso sucede, las asignaciones pueden fallar silenciosamente a pesar de que hay suficiente pila total disponible. El motivo del fallo es que una asignación requiere encontrar un único bloque de memoria libre que sea lo suficientemente grande para el tamaño que se solicita. Una secuencia de concatenaciones de cadenas causa muchas asignaciones/desasignaciones/reasignaciones, que hacen "agujeros" en el mapa de memoria. Después de muchas operaciones de este tipo, puede suceder que todos los agujeros disponibles sean demasiado pequeños para cumplir con el tamaño solicitado, aunque la suma de todos los agujeros sea mayor que el tamaño solicitado.
+Además, al realizar muchas concatenaciones de cadenas en secuencia, por ejemplo, al usar el operador+() varias veces, se producirá la fragmentación de la memoria. Cuando eso sucede, las asignaciones pueden fallar silenciosamente a pesar de que hay suficiente pila total disponible. El motivo del fallo es que una asignación requiere encontrar un único bloque de memoria libre que sea lo suficientemente grande para el tamaño que se solicita. Una secuencia de concatenaciones de cadenas causa muchas asignaciones/deasignaciones/reasignaciones, que hacen "agujeros" en el mapa de memoria. Después de muchas operaciones de este tipo, puede suceder que todos los agujeros disponibles sean demasiado pequeños para cumplir con el tamaño solicitado, aunque la suma de todos los agujeros sea mayor que el tamaño solicitado.
 
 Entonces, ¿por qué existen estos fallos silenciosos? Por un lado, hay interfaces específicos que deben cumplirse. Por ejemplo, los métodos del objeto String no permiten el manejo de errores a nivel de aplicación de usuario (es decir, no se devuelve ningún error de la vieja escuela). Por otro lado, algunas librerías no tienen el código de asignación accesible para su modificación. Por ejemplo, std::vector está disponible para su uso. Las implementaciones estándar se basan en excepciones para el manejo de errores, que no están disponibles para el ESP y en cualquier caso no hay acceso al código subyacente.
 
 *Algunas técnicas para reducir el uso de memoria*
 
-* No uses ``const char*`` con literales. En su lugar, utiliza const char[] PROGMEM. Esto es particularmente cierto si tienes la intención, por ejemplo de incrustar cadenas html.
+* No uses ``const char*`` con literales. En su lugar, utiliza const char[] PROGMEM. Esto es particularmente cierto si tienes la intención, por ejemplo de incrustar cadenas HTML.
 
 * No utilices matrices estáticas globales, como uint8_t buffer [1024]. En cambio, asigna dinámicamente. Esto te obliga a pensar en el tamaño de la matriz y su alcance (duración), para que se libere cuando ya no se necesite. Si no estás seguro acerca de la asignación dinámica, usa std libs (por ejemplo, std:vector, std::string) o punteros inteligentes. Son ligeramente menos eficientes en cuanto a la memoria que asignarlo dinámicamente tu mismo, pero la seguridad de la memoria proporcionada vale la pena.
 
 * Si usas std libs como std::vector, asegúrate de llamar a su método ::reserve() antes de completarlo. Esto permite asignar solo una vez, lo que reduce la fragmentación de la memoria y garantiza que no queden espacios vacíos sin usar en el contenedor al final.
 
 Apilado
-   La cantidad de pila en el ESP es pequeña, solo 4 KB. Para un desarrollo normal en sistemas grandes, es una buena práctica usar y abusar de la pila, porque es más rápido para la asignación/desasignación, el alcance del objeto está bien definido y la desasignación ocurre automáticamente en orden inverso a la asignación, lo que significa que no hay fragmentación de las memoria. Sin embargo, con una pequeña cantidad de pila disponible en ESP, esa práctica no es realmente viable, al menos no para objetos grandes.
+   La cantidad de pila en el ESP es pequeña, solo 4 KB. Para un desarrollo normal en sistemas grandes, es una buena práctica usar y abusar de la pila, porque es más rápido para la asignación/deasignación, el alcance del objeto está bien definido y la deasignación ocurre automáticamente en orden inverso a la asignación, lo que significa que no hay fragmentación de las memoria. Sin embargo, con una pequeña cantidad de pila disponible en ESP, esa práctica no es realmente viable, al menos no para objetos grandes.
    
 * Los objetos grandes que tienen memoria administrada internamente, como String, std::string, std::vector, etc., están bien en la pila, porque asignan internamente sus búferes en el montón.
       
