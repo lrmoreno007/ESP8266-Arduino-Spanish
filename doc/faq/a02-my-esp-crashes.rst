@@ -121,7 +121,7 @@ Si no tienes ningún sketch que genere un WDT para intentar solucionarlo, usa el
       Serial.println();
       Serial.println("Vamos a provocar el disparo del WDT...");
       //
-      // wait for s/w wdt in infinite loop below
+      // El siguiente bucle infinito generará el WDT software
       //
       while(true);
       //
