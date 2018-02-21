@@ -286,4 +286,4 @@ Si se queda atascado, pregunte en la `comunidad <http://www.esp8266.com/>`__ con
 
 Ningún módulo ESP ha sido dañado durante la preparación de esta FAQ.
 
-`FAQ :back: <readme>`__
+`FAQ :back: <readme.rst#>`__
