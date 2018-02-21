@@ -146,7 +146,7 @@ Ahora pegua el volcado de pila en la ventana del decodificador de excepciones. E
 
 Armado con `Arduino ESP8266/ESP32 Exception Stack Trace Decoder <https://github.com/me-no-dev/EspExceptionDecoder>`__ puedes rastrear dónde se bloquea el módulo cada vez que se genere un volcado de pila. El mismo procedimiento se aplica a los bloqueos causados por excepciones.
 
-    Nota: Para decodificar la línea exacta de código donde se colgó la aplicación, debe usar el Decodificador de Excepciones ESP en el contexto del sketch que acabas de cargar en el módulo para el diagnóstico. El decodificador no puede decodificar correctamente el volcado de pila que cayó por alguna otra aplicación no compilada y cargada desde su IDE de Arduino.
+    Nota: Para decodificar la línea exacta de código donde se colgó la aplicación, debes usar el Decodificador de Excepciones ESP en el contexto del sketch que acabas de cargar en el módulo para el diagnóstico. El decodificador no puede decodificar correctamente el volcado de pila generado por alguna otra aplicación no compilada y cargada desde su IDE de Arduino.
 
 Otras causas de bloqueo
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -166,13 +166,15 @@ Memoria, memoria, memoria
    
 Además, al realizar muchas concatenaciones de cadenas en secuencia, por ejemplo, al usar el operador+() varias veces, se producirá la fragmentación de la memoria. Cuando eso sucede, las asignaciones pueden fallar silenciosamente a pesar de que hay suficiente pila total disponible. El motivo del fallo es que una asignación requiere encontrar un único bloque de memoria libre que sea lo suficientemente grande para el tamaño que se solicita. Una secuencia de concatenaciones de cadenas causa muchas asignaciones/desasignaciones/reasignaciones, que hacen "agujeros" en el mapa de memoria. Después de muchas operaciones de este tipo, puede suceder que todos los agujeros disponibles sean demasiado pequeños para cumplir con el tamaño solicitado, aunque la suma de todos los agujeros sea mayor que el tamaño solicitado.
 
-   Entonces, ¿por qué existen estos fallos silenciosos? Por un lado, hay interfaces específicos que deben cumplirse. Por ejemplo, los métodos del objeto String no permiten el manejo de errores a nivel de aplicación de usuario (es decir, no se devuelve ningún error de la vieja escuela). Por otro lado, algunas librerías no tienen el código de asignación accesible para su modificación. Por ejemplo, std::vector está disponible para su uso. Las implementaciones estándar se basan en excepciones para el manejo de errores, que no están disponibles para el ESP y en cualquier caso no hay acceso al código subyacente.
+Entonces, ¿por qué existen estos fallos silenciosos? Por un lado, hay interfaces específicos que deben cumplirse. Por ejemplo, los métodos del objeto String no permiten el manejo de errores a nivel de aplicación de usuario (es decir, no se devuelve ningún error de la vieja escuela). Por otro lado, algunas librerías no tienen el código de asignación accesible para su modificación. Por ejemplo, std::vector está disponible para su uso. Las implementaciones estándar se basan en excepciones para el manejo de errores, que no están disponibles para el ESP y en cualquier caso no hay acceso al código subyacente.
 
 *Algunas técnicas para reducir el uso de memoria*
 
-   * No uses const char* con literales. En su lugar, utiliza const char[] PROGMEM. Esto es particularmente cierto si tienes la intención, por ejemplo de incrustar cadenas html.
-   * No utilices matrices estáticas globales, como uint8_t buffer [1024]. En cambio, asigna dinámicamente. Esto te obliga a pensar en el tamaño de la matriz y su alcance (duración), para que se libere cuando ya no se necesite. Si no estás seguro acerca de la asignación dinámica, usa std libs (por ejemplo, std:vector, std::string) o punteros inteligentes. Son ligeramente menos eficientes en cuanto a la memoria que asignarlo dinámicamente tu mismo, pero la seguridad de la memoria proporcionada vale la pena.
-   * Si usas std libs como std::vector, asegúrate de llamar a su método ::reserve() antes de completarlo. Esto permite asignar solo una vez, lo que reduce la fragmentación de la memoria y garantiza que no queden espacios vacíos sin usar en el contenedor al final.
+* No uses ``const char*`` con literales. En su lugar, utiliza const char[] PROGMEM. Esto es particularmente cierto si tienes la intención, por ejemplo de incrustar cadenas html.
+
+* No utilices matrices estáticas globales, como uint8_t buffer [1024]. En cambio, asigna dinámicamente. Esto te obliga a pensar en el tamaño de la matriz y su alcance (duración), para que se libere cuando ya no se necesite. Si no estás seguro acerca de la asignación dinámica, usa std libs (por ejemplo, std:vector, std::string) o punteros inteligentes. Son ligeramente menos eficientes en cuanto a la memoria que asignarlo dinámicamente tu mismo, pero la seguridad de la memoria proporcionada vale la pena.
+
+* Si usas std libs como std::vector, asegúrate de llamar a su método ::reserve() antes de completarlo. Esto permite asignar solo una vez, lo que reduce la fragmentación de la memoria y garantiza que no queden espacios vacíos sin usar en el contenedor al final.
 
 Apilado
  La cantidad de pila en el ESP es pequeña, solo 4 KB. Para un desarrollo normal en sistemas grandes, es una buena práctica usar y abusar de la pila, porque es más rápido para la asignación/desasignación, el alcance del objeto está bien definido y la desasignación ocurre automáticamente en orden inverso a la asignación, lo que significa que no hay fragmentación de las memoria. Sin embargo, con una pequeña cantidad de pila disponible en ESP, esa práctica no es realmente viable, al menos no para objetos grandes.
