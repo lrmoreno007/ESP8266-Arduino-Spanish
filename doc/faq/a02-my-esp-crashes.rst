@@ -177,9 +177,12 @@ Entonces, ¿por qué existen estos fallos silenciosos? Por un lado, hay interfac
 * Si usas std libs como std::vector, asegúrate de llamar a su método ::reserve() antes de completarlo. Esto permite asignar solo una vez, lo que reduce la fragmentación de la memoria y garantiza que no queden espacios vacíos sin usar en el contenedor al final.
 
 Apilado
- La cantidad de pila en el ESP es pequeña, solo 4 KB. Para un desarrollo normal en sistemas grandes, es una buena práctica usar y abusar de la pila, porque es más rápido para la asignación/desasignación, el alcance del objeto está bien definido y la desasignación ocurre automáticamente en orden inverso a la asignación, lo que significa que no hay fragmentación de las memoria. Sin embargo, con una pequeña cantidad de pila disponible en ESP, esa práctica no es realmente viable, al menos no para objetos grandes.
+   La cantidad de pila en el ESP es pequeña, solo 4 KB. Para un desarrollo normal en sistemas grandes, es una buena práctica usar y abusar de la pila, porque es más rápido para la asignación/desasignación, el alcance del objeto está bien definido y la desasignación ocurre automáticamente en orden inverso a la asignación, lo que significa que no hay fragmentación de las memoria. Sin embargo, con una pequeña cantidad de pila disponible en ESP, esa práctica no es realmente viable, al menos no para objetos grandes.
+   
       * Los objetos grandes que tienen memoria administrada internamente, como String, std::string, std::vector, etc., están bien en la pila, porque asignan internamente sus búferes en el montón.
+      
       * Las grandes matrices, como uint8_t buffer[2048] deben evitarse en la pila y asignarse dinámicamente (considere los punteros inteligentes).
+      
       * Los objetos que tienen grandes datos, como grandes matrices, deben evitarse en la pila y asignarse dinámicamente (considere los punteros inteligentes).
       
 Contra la pared, abre un Issue
