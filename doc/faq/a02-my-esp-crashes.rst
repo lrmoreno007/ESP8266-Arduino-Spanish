@@ -130,7 +130,7 @@ Si no tienes ningún sketch que genere un WDT para intentar solucionarlo, usa el
 
     void loop(){}
 
-Sube este código a tu ESP (Ctrl+U) e inicie el Monitor Serie (Ctrl+Shift+M). Deberías ver en breve al ESP reiniciando cada dos segundos y el mensaje `Soft WDT reset`` junto con el volcado de pila en cada reinicio. Desactiva la casilla de verificación Autoscroll en Monitor Serie para detener el desplazamiento de los mensajes. Selecciona y copia el volcado de pila, ve a *Herramientas* y abre *ESP Exception Decoder*.
+Sube este código a tu ESP (Ctrl+U) e inicia el Monitor Serie (Ctrl+Shift+M). Deberías ver en breve al ESP reiniciando cada dos segundos y el mensaje `Soft WDT reset`` junto con el volcado de pila en cada reinicio. Desactiva la casilla de verificación Autoscroll en Monitor Serie para detener el desplazamiento de los mensajes. Selecciona y copia el volcado de pila, ve a *Herramientas* y abre *ESP Exception Decoder*.
 
 .. figure:: pictures/a02-decode-stack-tace-1-2.png
    :alt: Decodifica el volcado de pila, pasos 1 y 2
