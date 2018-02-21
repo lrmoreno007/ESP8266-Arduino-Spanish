@@ -79,7 +79,7 @@ Watchdog (Perro Guardián)
 
 ESP proporciona dos temporizadores de vigilancia (WDT) que observan el bloqueo de la aplicación.
 
-- **Software Watchdog** - proporcionado por el `SDK <http://bbs.espressif.com/viewforum.php?f=46>`__, forma parte del core  `ESP8266/Arduino <https://github.com/esp8266/Arduino> `__ cargado en el módulo junto a su aplicación.
+- **Software Watchdog** - proporcionado por el `SDK <http://bbs.espressif.com/viewforum.php?f=46>`__, forma parte del core  `ESP8266/Arduino <https://github.com/esp8266/Arduino>`__ cargado en el módulo junto a su aplicación.
 - **Hardware Watchdog** - construido dentro del hardware ESP8266 y actúa si el watchdog software está desactivado durante demasiado tiempo, en caso de que falle o si no se proporciona en absoluto.
 
 El reinicio por watchdog está claramente identificado por el ESP en el Monitor Seri.
@@ -96,24 +96,22 @@ El reinicio debido a software watchdog es generalmente mas facil de resolver por
 A continuación se muestra un reset debido al watchdog hardware.
 
 .. figure:: pictures/a02-hw-watchdog-example.png
-   :alt: Example of restart by h/w watchdog
+   :alt: Ejemplo de reset debido a watchgog hardware
 
-   Example of restart by h/w watchdog
+   Ejemplo de reset debido a watchdog hardware
 
-Hardware wdt is the last resort of ESP to tell you that application is locked up (if s/w wdt timer is disabled or not working).
+El WDT hardware es el último recurso del ESP para decirte que la aplicación está bloqueada (si el temporizador WDT software está desactivado o no funciona).
 
-Please note that for restarts initialized by h/w wdt, there is no stack trace to help you identify the place in code where the lockup has happened. In such case, to identify the place of lock up, you need to rely on debug messages like ``Serial.print`` distributed across the application. Then by observing what was the last debug message printed out before restart, you should be able to narrow down part of code firing the h/w wdt reset. If diagnosed application or library has debug option then switch it on to aid this troubleshooting.
+Ten en cuenta que para los reinicios iniciados por WDT hardware, no hay un volcado de pila que te ayude a identificar el lugar en el código donde ocurrió el bloqueo. En tal caso, para identificar el lugar de bloqueo, debes confiar en los mensajes de depuración como ``Serial.print`` distribuidos en la aplicación. Luego, al observar cuál fue el último mensaje de depuración antes de reiniciar, deberías poder reducir parte del código que disparó el reinicio WDT hardware. Si la aplicación diagnosticada o la librería tiene una opción de depuración, enciéndela para ayudar en la solución de problemas.
 
 Comprueba donde se bloquea el código
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Decoding of ESP stack trace is now easy and available to everybody thanks to great `Arduino ESP8266/ESP32 Exception Stack Trace
-Decoder <https://github.com/me-no-dev/EspExceptionDecoder>`__ developed by @me-no-dev.
+La decodificación del volcado de pila del ESP es ahora mas fácil y está disponible para todos gracias al gran `Arduino ESP8266/ESP32 Exception Stack Trace Decoder <https://github.com/me-no-dev/EspExceptionDecoder>`__ desarrollado por @me-no-dev.
 
-Installation for Arduino IDE is quick and easy following the `installation <https://github.com/me-no-dev/EspExceptionDecoder#installation>`__
-instructions.
+La instalación en el IDE Arduino es rápida y sencilla siguiendo las instrucciones de `instalación <https://github.com/me-no-dev/EspExceptionDecoder#installation>`__.
 
-If you don't have any code for troubleshooting, use the example below:
+Si no tienes ningún sketch que genere un WDT para intentar solucionarlo, usa el siguiente ejemplo:
 
 ::
 
@@ -121,97 +119,105 @@ If you don't have any code for troubleshooting, use the example below:
     {
       Serial.begin(115200);
       Serial.println();
-      Serial.println("Let's provoke the s/w wdt firing...");
+      Serial.println("Vamos a provocar el disparo del WDT...");
       //
       // wait for s/w wdt in infinite loop below
       //
       while(true);
       //
-      Serial.println("This line will not ever print out");
+      Serial.println("Esta linea no debe verse nunca");
     }
 
     void loop(){}
 
-Upload this code to your ESP (Ctrl+U) and start Serial Monitor (Ctrl+Shift+M). You should shortly see ESP restarting every couple of seconds and ``Soft WDT reset`` message together with stack trace showing up on each restart. Click the Autoscroll check-box on Serial Monitor to stop the messages scrolling up. Select and copy the stack trace, go to the *Tools* and open the *ESP Exception Decoder*.
+Sube este código a tu ESP (Ctrl+U) e inicie el Monitor Serie (Ctrl+Shift+M). Deberías ver en breve al ESP reiniciando cada dos segundos y el mensaje `Soft WDT reset`` junto con el volcado de pila en cada reinicio. Desactiva la casilla de verificación Autoscroll en Monitor Serie para detener el desplazamiento de los mensajes. Selecciona y copia el volcado de pila, ve a *Herramientas* y abre *ESP Exception Decoder*.
 
 .. figure:: pictures/a02-decode-stack-tace-1-2.png
-   :alt: Decode the stack trace, steps 1 and 2
+   :alt: Decodifica el volcado de pila, pasos 1 y 2
 
-   Decode the stack trace, steps 1 and 2
+   Decodifica el volcado de pila, pasos 1 y 2
 
-Now paste the stack trace to Exception Decoder's window. At the bottom of this window you should see a list of decoded lines of sketch you have just uploaded to your ESP. On the top of the list, like on the top of the stack trace, there is a reference to the last line executed just before the software watchdog timer fired causing the ESP's restart. Check the number of this line and look it up on the sketch. It should be the line ``Serial.println("Let's provoke the s/w wdt firing...")``, that happens to be just before ``while(true)`` that made the watchdog fired (ignore the lines with comments, that are discarded by compiler).
+Ahora pegua el volcado de pila en la ventana del decodificador de excepciones. En la parte inferior de esta ventana, deberías ver una lista de líneas decodificadas del boceto que acabas de cargar en tu ESP. En la parte superior de la lista, como en la parte superior del volcado de pila, hay una referencia a la última línea ejecutada justo antes de que se disparara el temporizador de WDT software, lo que provocó el reinicio del ESP. Verifique el número de esta línea y búsquela en el boceto. Debería ser la línea ``Serial.println("Vamos a provocar el disparo del WDT...")``, que está justo antes de ``while(true)`` el cual hizo que watchdog se disparara (ignorar las líneas con comentarios, son descartadas por el compilador).
 
 .. figure:: pictures/a02-decode-stack-tace-3-6.png
-   :alt: Decode the stack trace, steps 3 through 6
+   :alt: Decodifica el volcado de pila, pasos del 3 al 6
 
-   Decode the stack trace, steps 3 through 6
+   Decodifica el volcado de pila, pasos del 3 al 6
 
-Armed with `Arduino ESP8266/ESP32 Exception Stack Trace Decoder <https://github.com/me-no-dev/EspExceptionDecoder>`__ you can track down where the module is crashing whenever you see the stack trace dropped. The same procedure applies to crashes caused by exceptions.
+Armado con `Arduino ESP8266/ESP32 Exception Stack Trace Decoder <https://github.com/me-no-dev/EspExceptionDecoder>`__ puedes rastrear dónde se bloquea el módulo cada vez que se genere un volcado de pila. El mismo procedimiento se aplica a los bloqueos causados por excepciones.
 
-    Note: To decode the exact line of code where the application crashed, you need to use ESP Exception Decoder in context of sketch you have just loaded to the module for diagnosis. Decoder is not able to correctly decode the stack trace dropped by some other application not compiled and loaded from your Arduino IDE.
-
+    Nota: Para decodificar la línea exacta de código donde se colgó la aplicación, debe usar el Decodificador de Excepciones ESP en el contexto del sketch que acabas de cargar en el módulo para el diagnóstico. El decodificador no puede decodificar correctamente el volcado de pila que cayó por alguna otra aplicación no compilada y cargada desde su IDE de Arduino.
 
 Otras causas de bloqueo
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-Interrupt Service Routines
-   By default, all functions are compiled into flash, which means that the cache may kick in for that code. However, the cache currently can't be used during hardware interrupts. That means that, if you use a hardware ISR, such as attachInterrupt(gpio, myISR, CHANGE) for a GPIO change, the ISR must have the ICACHE_RAM_ATTR attribute declared. Not only that, but the entire function tree called from the ISR must also have the ICACHE_RAM_ATTR declared. Be aware that every function that has this attribute reduces available memory.
+Rutinas de servicio de interrupción (ISR)
+   Por defecto, todas las funciones se compilan en la flash, lo que significa que la memoria caché puede activarse para ese código. Sin embargo, la memoria caché actualmente no se puede usar durante las interrupciones de hardware. Eso significa que, si utilizas un ISR hardware, como ``attachInterrupt(gpio, myISR, CHANGE)`` para un cambio de GPIO, el ISR debe tener el atributo ``ICACHE_RAM_ATTR`` declarado. No solo eso, sino que todo el árbol de funciones llamado desde el ISR también debe tener el ``ICACHE_RAM_ATTR`` declarado. Ten en cuenta que cada función que tiene este atributo reduce la memoria disponible.
 
-   In addition, it is not possible to execute delay() or yield() from an ISR, or do blocking operations, or operations that disable the interrupts, e.g.: read a DHT.
+   Además, no es posible ejecutar ``delay()`` o ``yield()`` desde un ISR, o realizar operaciones de bloqueo, o operaciones que deshabilitan las interrupciones, por ejemplo, leer un DHT.
 
-   Finally, an ISR has very high restrictions on timing for the executed code, meaning that executed code should not take longer than a very few microseconds. It is considered best practice to set a flag within the ISR, and then from within the loop() check and clear that flag, and execute code.
+   Finalmente, un ISR tiene restricciones muy altas en el tiempo para el código ejecutado, lo que significa que el código ejecutado no debería tomar más de unos pocos microsegundos. Se considera mejor práctica establecer un flag dentro del ISR y luego desde dentro del loop() verificar y borrar ese flag, y ejecutar el código.
 
-Asynchronous Callbacks
-   Asynchronous CBs, such as for the Ticker or ESPAsync* libs, have looser restrictions than ISRs, but some restrictions still apply. It is not possible to execute delay() or yield() from an asynchronous callback. Timing is not as tight as an ISR, but it should remain below a few milliseconds. This is a guideline. The hard timing requirements depend on the WiFi configuration and amount of traffic. In general, the CPU must not be hogged by the user code, as the longer it is away from servicing the WiFi stack, the more likely that memory corruption can happen.
+Callbacks asíncronos
+   Los CB asíncronos, como los de Ticker o ESPAsync* libs, tienen restricciones más flexibles que los ISR, pero también se aplican algunas restricciones. No es posible ejecutar ``delay()`` o ``yield()`` desde un callback asíncrono. El tiempo no está tan ajustado como en un ISR, pero debe permanecer por debajo de unos pocos milisegundos. Esta es una guía. Los requisitos de tiempo difíciles dependen de la configuración WiFi y la cantidad de tráfico. En general, la CPU no debe ser acaparada por el código de usuario, ya que mientras más tiempo esté sin atender la pila de WiFi, es más probable que la corrupción de la memoria pueda producirse.
 
-Memory, memory, memory
-   Running out of heap is the most common cause for crashes. Because the build process for the ESP leaves out exceptions (they use memory), memory allocations that fail will do so silently. A typical example is when setting or concatenating a large String. If allocation has failed internally, then the internal string copy can corrupt data, and the ESP will crash.
+Memoria, memoria, memoria
+   Quedarse sin pila es la causa más común de bloqueos. Debido a que el proceso de compilación para el ESP deja de lado las excepciones (usan memoria), las asignaciones de memoria que fallan lo harán en silencio. Un ejemplo típico es cuando se establece o concatena una cadena grande. Si la asignación ha fallado internamente, la copia de cadena interna puede dañar los datos y el ESP se bloqueará.
+   
+Además, al realizar muchas concatenaciones de cadenas en secuencia, por ejemplo, al usar el operador+() varias veces, se producirá la fragmentación de la memoria. Cuando eso sucede, las asignaciones pueden fallar silenciosamente a pesar de que hay suficiente pila total disponible. El motivo del fallo es que una asignación requiere encontrar un único bloque de memoria libre que sea lo suficientemente grande para el tamaño que se solicita. Una secuencia de concatenaciones de cadenas causa muchas asignaciones/desasignaciones/reasignaciones, que hacen "agujeros" en el mapa de memoria. Después de muchas operaciones de este tipo, puede suceder que todos los agujeros disponibles sean demasiado pequeños para cumplir con el tamaño solicitado, aunque la suma de todos los agujeros sea mayor que el tamaño solicitado.
 
-   In addition, doing many String concatenations in sequence, e.g.: using operator+() multiple times, will cause memory fragmentation. When that happens, allocations may silently fail even though there is enough total heap available. The reason for the failure is that an allocation requires finding a single free memory block that is large enough for the size being requested. A sequence of String concatenations causes many allocations/deallocations/reallocations, which makes "holes" in the memory map. After many such operations, it can happen that all available holes are too small to comply with the requested size, even though the sum of all holes is greater than the requested size.
+   Entonces, ¿por qué existen estos fallos silenciosos? Por un lado, hay interfaces específicos que deben cumplirse. Por ejemplo, los métodos del objeto String no permiten el manejo de errores a nivel de aplicación de usuario (es decir, no se devuelve ningún error de la vieja escuela). Por otro lado, algunas librerías no tienen el código de asignación accesible para su modificación. Por ejemplo, std::vector está disponible para su uso. Las implementaciones estándar se basan en excepciones para el manejo de errores, que no están disponibles para el ESP y en cualquier caso no hay acceso al código subyacente.
 
-   So why do these silent failures exist? On the one hand, there are specific interfaces that must be adhered to. For example, the String object methods don't allow for error handling at the user application level (i.e.: no old-school error returns). On the other hand, some libraries don't have the allocation code accessible for modification. For example, std::vector is available for use. The standard implementations rely on exceptions for error handling, which is not available for the ESP, and in any case there is no access to the underlying code.
+*Algunas técnicas para reducir el uso de memoria*
 
-*Some techniques for reducing memory usage*
+   * No uses const char* con literales. En su lugar, utiliza const char[] PROGMEM. Esto es particularmente cierto si tienes la intención, por ejemplo de incrustar cadenas html.
+   * No utilices matrices estáticas globales, como uint8_t buffer [1024]. En cambio, asigna dinámicamente. Esto te obliga a pensar en el tamaño de la matriz y su alcance (duración), para que se libere cuando ya no se necesite. Si no estás seguro acerca de la asignación dinámica, usa std libs (por ejemplo, std:vector, std::string) o punteros inteligentes. Son ligeramente menos eficientes en cuanto a la memoria que asignarlo dinámicamente tu mismo, pero la seguridad de la memoria proporcionada vale la pena.
+   * Si usas std libs como std::vector, asegúrate de llamar a su método ::reserve() antes de completarlo. Esto permite asignar solo una vez, lo que reduce la fragmentación de la memoria y garantiza que no queden espacios vacíos sin usar en el contenedor al final.
 
-   * Don't use const char * with literals. Instead, use const char[] PROGMEM. This is particularly true if you intend to, e.g.: embed html strings.
-   * Don't use global static arrays, such as uint8_t buffer[1024]. Instead, allocate dynamically. This forces you to think about the size of the array, and its scope (lifetime), so that it gets released when it's no longer needed. If you are not certain about dynamic allocation, use std libs (e.g.: std:vector, std::string), or smart pointers. They are slightly less memory efficient than dynamically allocating yourself, but the provided memory safety is well worth it.
-   * If you use std libs like std::vector, make sure to call its ::reserve() method before filling it. This allows allocating only once, which reduces mem fragmentation, and makes sure that there are no empty unused slots left over in the container at the end.
-
-Stack
-   The amount of stack in the ESP is tiny at only 4KB. For normal developement in large systems, it is good practice to use and abuse the stack, because it is faster for allocation/deallocation, the scope of the object is well defined, and deallocation automatically happens in reverse order as allocation, which means no mem fragmentation. However, with the tiny amount of stack available in the ESP, that practice is not really viable, at least not for big objects.
-      * Large objects that have internally managed memory, such as String, std::string, std::vector, etc, are ok on the stack, because they internally allocate their buffers on the heap.
-      * Large arrays on the stack, such as uint8_t buffer[2048] should be avoided on the stack and be dynamically allocated (consider smart pointers).
-      * Objects that have large data members, such as large arrays, should be avoided on the stack, and be dynamicaly allocated (consider smart pointers).
-
-
+Apilado
+ La cantidad de pila en el ESP es pequeña, solo 4 KB. Para un desarrollo normal en sistemas grandes, es una buena práctica usar y abusar de la pila, porque es más rápido para la asignación/desasignación, el alcance del objeto está bien definido y la desasignación ocurre automáticamente en orden inverso a la asignación, lo que significa que no hay fragmentación de las memoria. Sin embargo, con una pequeña cantidad de pila disponible en ESP, esa práctica no es realmente viable, al menos no para objetos grandes.
+      * Los objetos grandes que tienen memoria administrada internamente, como String, std::string, std::vector, etc., están bien en la pila, porque asignan internamente sus búferes en el montón.
+      * Las grandes matrices, como uint8_t buffer[2048] deben evitarse en la pila y asignarse dinámicamente (considere los punteros inteligentes).
+      * Los objetos que tienen grandes datos, como grandes matrices, deben evitarse en la pila y asignarse dinámicamente (considere los punteros inteligentes).
+      
 Contra la pared, abre un Issue
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Using the procedure above you should be able to troubleshoot all the code you write. It may happen that ESP is crashing inside some library or code you are not familiar enough to troubleshoot. If this is the case then contact the application author by writing an issue report.
+Usando el procedimiento anterior, debería poder solucionar todos los códigos que escriba. Puede suceder que ESP se bloquee dentro de una librería o código que no esté familiarizado a solucionarlo. Si este es el caso, póngase en contacto con el autor de la aplicación escribiendo un informe de problema.
 
-Follow the guidelines on issue reporting that may be provided by the author of code in his / her repository.
+Siga las pautas sobre informes de problemas que pueda proporcionar el autor del código en su repositorio.
 
-If there are no guidelines, include in your report the following:
+Si no hay pautas, incluya en su informe lo siguiente:
 
--  [ ] Exact steps by step instructions to reproduce the issue
--  [ ] Your exact hardware configuration including the schematic
--  [ ] If the issue concerns standard, commercially available ESP board with power supply and USB interface, without extra h/w attached, then provide just the board type or link to description
--  [ ] Configuration settings in Arduino IDE used to upload the application
--  [ ] Error log & messages produced by the application (enable debugging for more details)
--  [ ] Decoded stack trace
--  [ ] Copy of your sketch
--  [ ] Copy of all the libraries used by the sketch
--  [ ] If you are using standard libraries available in Library Manager, then provide just version numbers
--  [ ] Version of `ESP8266/Arduino <https://github.com/esp8266/Arduino>`__ core
--  [ ] Name and version of your programming IDE and O/S
+- [ ] Instrucciones exactas paso a paso para reproducir el problema
 
-With plenty of ESP module types available, several versions of libraries or `esp8266 / Arduino <https://github.com/esp8266/Arduino>`__ core, types and versions of O/S, you need to provide exact information what your application is about. Only then people willing to look into your issue may be able to refer it to configuration they have. If you are lucky, they may even attempt to reproduce your issue on their equipment. This will be far more difficult if you are providing only vague details, so somebody would need to ask you to find out what is really happening.
+- [ ] Su configuración exacta de hardware, incluido el esquema
 
-On the other hand if you flood your issue report with hundreds lines of code, you may also have difficulty to find somebody willing to analyze it. Therefore reduce your code to the bare minimum that is still causing the issue. It will help you as well to isolate the issue and pin done the root cause.
+- [ ] Si el problema se refiere a una tarjeta ESP estándar disponible en el mercado con fuente de alimentación e interfaz USB, sin hardware adicional conectado, proporcione solo el tipo de placa o enlace a la descripción
+
+- [ ] Configuración y ajustes en el IDE Arduino utilizados para cargar la aplicación
+
+- [ ] Registro de errores y mensajes producidos por la aplicación (habilite la depuración para obtener más detalles)
+
+- [ ] Desglose de la pila descifrada
+
+- [ ] Copia de tu sketch
+
+- [ ] Copia de todas las librerías utilizadas por el sketch
+
+- [ ] Si está utilizando librerías estándar disponibles en el Gestor de librerías, proporcione solo los números de la versión
+
+- [ ] Versión del core `ESP8266/Arduino <https://github.com/esp8266/Arduino>`__
+
+- [ ] Nombre y versión de su programador IDE y sistema operativo
+
+Existen muchos tipos de módulos ESP disponibles, varias versiones de librerías o cores `ESP8266/Arduino <https://github.com/esp8266/Arduino>`__, tipos y versiones de SO, debes proporcionar información exacta sobre su aplicación. Solo entonces las personas dispuestas a analizar su problema pueden referirlo a la configuración que tienes. Si tienes suerte, incluso pueden intentar reproducir tu problema en sus equipos. Esto será mucho más difícil si proporcionas solo detalles vagos, por lo que alguien debería pedirte que averigües qué está sucediendo realmente.
+
+Por otro lado, si inundas tu informe de problemas con cientos de líneas de código, también puedes tener dificultades para encontrar a alguien dispuesto a analizarlo. Por lo tanto, reduce tu código al mínimo que sigue causando el problema. También te ayudará a aislar el problema y fijar la raíz del mismo.
 
 Conclusión
 ~~~~~~~~~~
 
-Do not be afraid to troubleshoot ESP exception and watchdog restarts. `ESP8266/Arduino <https://github.com/esp8266/Arduino>`__ core provides detailed diagnostics that will help you pin down the issue. Before checking the s/w, get your h/w right. Use `ESP Exception Decoder <https://github.com/me-no-dev/EspExceptionDecoder>`__ to find out where the code fails. If you do you homework and still unable to identify the root cause, enter the issue report. Provide enough details. Be specific and isolate the issue. Then ask community for support. There are plenty of people that like to work with ESP and willing to help with your problem.
+No tengas miedo de solucionar problemas de excepción del ESP o reinicios por watchdog. El core `ESP8266/Arduino <https://github.com/esp8266/Arduino>`__ proporciona diagnósticos detallados que te ayudarán a determinar el problema. Antes de verificar el software, asegúrate de tener perfectamente el hardware. Utiliza el `ESP Exception Decoder <https://github.com/me-no-dev/EspExceptionDecoder>`__ para averiguar dónde falla el código. Si haces tus tarea y aún así no puedes identificar la causa raíz, haz un informe de problema. Proporciona detalles suficientes. Se específico y aísla el problema. Luego pide ayuda a la comunidad. Hay muchas personas a las que les gusta trabajar con ESP y están dispuestas a ayudarte con tu problema.
 
 `FAQ :back: <readme.rst>`__
