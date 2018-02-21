@@ -175,7 +175,7 @@ Cada intento se muestra en la ventana de debug de la siguiente manera:
 
 El circuito ck tiene una limitación importante cuando se trata de trabajar con el IDE Arduino. Después de abrir el Monitor Serie (Ctrl-Shift-M), tanto las líneas RTS como las líneas DTR se reducen (pulled down) permanentemente. Como la línea RTS está conectada a la entrada RST de ESP, el módulo se mantiene en estado de reinicio / no se puede ejecutar. Por lo tanto, después de cargar el módulo, debes desconectar ambas líneas o utilizar un programa de terminal en serie diferente que no esté tirando de las líneas RTS y DTR. De lo contrario, el módulo se atascará esperando a que se libere la señal RST y no verá nada en el monitor serie.
 
-Puedes probar el add-on para el IDE Arduino `Serial Monitor for ESP8266 <(https://github.com/esp8266/Arduino/issues/1360)>`__ desarrollado por el usuario [@mytrain](https://github.com/mytrain) y discutido en `#1360 <https://github.com/esp8266/Arduino/issues/1360>`__.
+Puedes probar el add-on para el IDE Arduino `Serial Monitor for ESP8266 <https://github.com/esp8266/Arduino/issues/1360>`__ desarrollado por el usuario [@mytrain](https://github.com/mytrain) y discutido en `#1360 <https://github.com/esp8266/Arduino/issues/1360>`__.
 
 Si prefieres un programa de terminal externo, entonces para usuarios Windows recomendamos la herramienta libre y práctica: `Termite <http://www.compuphase.com/software_termite.htm>`__.
 
@@ -198,9 +198,9 @@ Observa las señales de voltaje en los pines GPIO0 y RST al comienzo de la subid
 
    Método de reset: nodemcu, observa al comienzo de la subida
 
-Observa que la secuencia de reset es mas o menos unas 10 veces mas corta comparada con el método de reset `ck <@ck>`__ (sobre 25ms contra 250ms).
+Observa que la secuencia de reset es mas o menos unas 10 veces mas corta comparada con el método de reset `ck <#ck>`__ (sobre 25ms contra 250ms).
 
-La siguiente imagen muestra una subida completa del ejemplo `Blink.ino <https://github.com/esp8266/Arduino/blob/master/libraries/esp8266/examples/Blink/Blink.ino>`__ a 921600 baudios. Salvo la diferencia de la secuencia de la señal de reset, la subida completa es similar a `ck <@ck>`__.
+La siguiente imagen muestra una subida completa del ejemplo `Blink.ino <https://github.com/esp8266/Arduino/blob/master/libraries/esp8266/examples/Blink/Blink.ino>`__ a 921600 baudios. Salvo la diferencia de la secuencia de la señal de reset, la subida completa es similar a `ck <#ck>`__.
 
 .. figure:: pictures/a01-reset-nodemcu-complete.png
    :alt: Método de reset: nodemcu, subida completa
