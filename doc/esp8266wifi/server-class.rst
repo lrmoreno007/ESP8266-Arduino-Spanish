@@ -1,9 +1,7 @@
-:orphan:
-
-Server Class
+Clase Server
 ------------
 
-Methods documented for the `Server Class <https://www.arduino.cc/en/Reference/WiFiServerConstructor>`__ in `Arduino <https://github.com/arduino/Arduino>`__
+Métodos documentados para la `clase Server <https://www.arduino.cc/en/Reference/WiFiServerConstructor>`__ en `Arduino <https://github.com/arduino/Arduino>`__
 
 1. `WiFiServer() <https://www.arduino.cc/en/Reference/WiFiServer>`__
 2. `begin() <https://www.arduino.cc/en/Reference/WiFiServerBegin>`__
@@ -12,7 +10,7 @@ Methods documented for the `Server Class <https://www.arduino.cc/en/Reference/Wi
 5. `print() <https://www.arduino.cc/en/Reference/WiFiServerPrint>`__
 6. `println() <https://www.arduino.cc/en/Reference/WiFiServerPrintln>`__
 
-Methods and properties described further down are specific to ESP8266. They are not covered in `Arduino WiFi library <https://www.arduino.cc/en/Reference/WiFi>`__ documentation. Before they are fully documented please refer to information below.
+Los métodos y propiedades que se describen en esta sección son específicos de ESP8266. No están cubiertos en la documentación de la `librería WiFi de Arduino <https://www.arduino.cc/en/Reference/WiFi>`__. Antes de que estén complétamente documentados, consulte la información a continuación.
 
 setNoDelay
 ~~~~~~~~~~
@@ -21,18 +19,18 @@ setNoDelay
 
     setNoDelay(nodelay)
 
-With ``nodelay`` set to ``true``, this function will to disable `Nagle algorithm <https://en.wikipedia.org/wiki/Nagle%27s_algorithm>`__.
+Con ``nodelay`` establecido a ``true``, esta función desactivará el `Algoritmo de Nagle <https://es.wikipedia.org/wiki/Algoritmo_de_Nagle>`__.
 
-This algorithm is intended to reduce TCP/IP traffic of small packets sent over the network by combining a number of small outgoing messages, and sending them all at once. The downside of such approach is effectively delaying individual messages until a big enough packet is assembled.
+Este algoritmo está destinado a reducir el tráfico TCP/IP de pequeños paquetes enviados a través de la red combinando varios mensajes salientes pequeños y enviándolos todos a la vez. La desventaja de tal enfoque es que efectivamente se retrasan los mensajes individuales hasta que se ensamble un paquete lo suficientemente grande.
 
-*Example:*
+*Ejemplo:*
 
 .. code:: cpp
 
     server.begin();
     server.setNoDelay(true);
 
-Other Function Calls
+Otras llamas a funciones
 ~~~~~~~~~~~~~~~~~~~~
 
 .. code:: cpp
@@ -44,6 +42,6 @@ Other Function Calls
     void  close () 
     void  stop ()
 
-Documentation for the above functions is not yet prepared.
+La documentación para las funciones anteriores aún no se ha realizado.
 
-For code samples please refer to separate section with :doc:`examples <server-examples>` dedicated specifically to the Server Class.
+Consulte la sección separada con `ejemplos <server-examples.rst>`__ dedicados específicamente a la clase Server.
