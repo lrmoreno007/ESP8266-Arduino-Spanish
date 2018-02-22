@@ -140,10 +140,15 @@ Devuelve el tipo de encriptado de una red descubierta durante el escaneo.
     WiFi.encryptionType(networkItem) 
 
 La función devuelve un número de tipo de encriptado, de la siguiente manera: 
+
 * 5 : ``ENC_TYPE_WEP`` - WEP 
+
 * 2 : ``ENC_TYPE_TKIP`` - WPA / PSK 
+
 * 4 : ``ENC_TYPE_CCMP`` - WPA2 / PSK
+
 * 7 : ``ENC_TYPE_NONE`` - open network
+
 * 8 : ``ENC_TYPE_AUTO`` - WPA / WPA2 / PSK
 
 El ``networkItem`` es un índice basado en cero de las redes descubiertas durante el escaneo.
