@@ -1,5 +1,3 @@
-:any:
-
 Obtengo el error "espcomm_sync failed" cuando intento subir a mi ESP. ¿Como resuelvo este problema?
 --------------------------------------------------------------------------------------------------
 
