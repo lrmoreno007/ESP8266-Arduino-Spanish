@@ -1,76 +1,90 @@
-:orphan:
-
-Soft Access Point Class
+Clase Soft Access Point
 -----------------------
 
-Section below is ESP8266 specific as `Arduino WiFi library <https://www.arduino.cc/en/Reference/WiFi>`__ documentation does not cover soft access point. The API description is broken down into three short chapters. They cover how to setup soft-AP, manage connection, and obtain information on soft-AP interface configuration.
+Los métodos y propiedades descritos más abajo son específicos de ESP8266. No están cubiertos en la documentación de librería WiFi de Arduino. Antes de que estén complétamente documentados, consulte la información a continuación.
 
-Table of Contents
+La siguiente sección es específica para ESP8266, porque la documentación de la `librería WiFi de Arduino <https://www.arduino.cc/en/Reference/WiFi>`__ no cubre los puntos de acceso wireless. La descripción de la API está dividida en tres capítulos cortos. Cubren como: configurar soft-AP, gestionar la conexión y obtener información sobre la configuración del interfaz soft-AP.
+
+Tabla de contenidos
 -----------------
 
--  `Set up Network <#set-up-network>`__
+-  `Establecer la red <#establecer-la-red>`__
 
    -  `softAP <#softap>`__
    -  `softAPConfig <#softapconfig>`__
 
--  `Manage Network <#manage-network>`__
+-  `Gestión de red <#gestión-de-red>`__
 
    -  `softAPdisconnect <#softapdisconnect>`__
    -  `softAPgetStationNum <#softapgetstationnum>`__
 
--  `Network Configuration <#network-configuration>`__
+-  `Configuración de red <#configuración-de-red>`__
 
    -  `softAPIP <#softapip>`__
    -  `softAPmacAddress <#softapmacaddress>`__
 
-Set up Network
+Establecer la red
 ~~~~~~~~~~~~~~
 
-This section describes functions to set up and configure ESP8266 in the soft access point (soft-AP) mode.
+Esta sección describe las funciones para establecer y configurar ESP8266 en el modo punto de acceso wireless (soft-AP).
 
 softAP
 ^^^^^^
 
-Set up a soft access point to establish a Wi-Fi network.
+Establece un punto de acceso wireless para crear una red WiFi.
 
-The simplest version (`an overload in C++
-terms <https://en.wikipedia.org/wiki/Function_overloading>`__) of this function requires only one parameter and is used to set up an open Wi-Fi network.
+La versión mas simple de esta función requiere solo un parámetro y se utiliza para establecer una red WiFi abierta.
 
 .. code:: cpp
 
     WiFi.softAP(ssid)
 
-To set up password protected network, or to configure additional network parameters, use the following overload:
+Para establecer una red protegida con contraseña, o para configurar parámetros de red adicionales, utilice la siguiente sobrecarga:
 
 .. code:: cpp
 
     WiFi.softAP(ssid, password, channel, hidden)
 
-The first parameter of this function is required, remaining three are optional.
+El primer parámetro de esta función es obligatorio, los otros tres son opcionales.
 
-Meaning of all parameters is as follows: - ``ssid`` - character string containing network SSID (max. 63 characters) \* ``password`` - optional character string with a password. For WPA2-PSK network it should be at least 8 character long. If not specified, the access point will be open for anybody to connect. \* ``channel`` - optional parameter to set Wi-Fi channel, from 1 to 13. Default channel = 1. \* ``hidden`` - optional parameter, if set to ``true`` will hide SSID
+El significado de todos los parámetros es el siguiente:
 
-Function will return ``true`` or ``false`` depending on result of setting the soft-AP.
+* ``ssid`` - cadena de caracteres que contiene el SSID de la red (máximo 63 caracteres)
 
-Notes: \* The network established by softAP will have default IP address of 192.168.4.1. This address may be changed using ``softAPConfig`` (see below). \* Even though ESP8266 can operate in soft-AP + station mode, it actually has only one hardware channel. Therefore in soft-AP + station mode, the soft-AP channel will default to the number used by station. For more information how this may affect operation of stations connected to ESP8266's soft-AP, please check `this FAQ entry <http://bbs.espressif.com/viewtopic.php?f=10&t=324>`__ on Espressif forum.
+* ``password`` - cadena de caracteres opcional con una contraseña. Para la red WPA2-PSK, debe tener al menos 8 caracteres de longitud. Si no se especifica, el punto de acceso estará abierto para que cualquiera pueda conectarse.
+
+* ``channel`` - parámetro opcional para establecer el canal de WiFi, del 1 aa 13. Canal predeterminado = 1.
+
+* ``hidden`` - parámetro opcional, si se establece en ``true`` se ocultará el SSID
+
+La función devolverá ``true`` o ``false`` según el resultado de configurar el soft-AP.
+
+Notas: 
+
+* La red establecida por softAP tendrá una dirección IP predeterminada de 192.168.4.1. Esta dirección puede cambiarse usando ``softAPConfig`` (ver a continuación). 
+
+* A pesar de que ESP8266 puede operar en modo soft-AP + station, en realidad solo tiene un canal de hardware. Por lo tanto, en el modo soft-AP + station, el canal soft-AP se predeterminará al número utilizado por la estación. Para obtener más información sobre cómo puede esto afectar al funcionamiento de las estaciones conectadas al soft-AP de ESP8266, consulte `esta entrada de preguntas frecuentes <http://bbs.espressif.com/viewtopic.php?f=10&t=324>`__ en el foro de Espressif.
 
 softAPConfig
 ^^^^^^^^^^^^
 
-Configure the soft access point's network interface.
+Configura el interfaz de red del punto de acceso wireless.
 
 .. code:: cpp
 
     softAPConfig (local_ip, gateway, subnet) 
 
-| All parameters are the type of ``IPAddress`` and defined as follows:
-  \* ``local_ip`` - IP address of the soft access point \* ``gateway`` -
-  gateway IP address
-| \* ``subnet`` - subnet mask
+Todos los parametros son del tipo ``IPAddress`` y se definen de la siguiente manera:
 
-Function will return ``true`` or ``false`` depending on result of changing the configuration.
+* ``local_ip`` - Dirección IP del punto de acceso
 
-*Example code:*
+* ``gateway`` - Dirección IP del gateway o puerta de enlace
+
+* ``subnet`` - Máscara de subred
+
+La función devolverá ``true`` o ``false`` dependiendo del resultado de cambiar la configuración.
+
+*Código de ejemplo:*
 
 .. code:: cpp
 
@@ -85,111 +99,111 @@ Function will return ``true`` or ``false`` depending on result of changing the c
       Serial.begin(115200);
       Serial.println();
 
-      Serial.print("Setting soft-AP configuration ... ");
-      Serial.println(WiFi.softAPConfig(local_IP, gateway, subnet) ? "Ready" : "Failed!");
+      Serial.print("Estableciendo configuración Soft-AP... ");
+      Serial.println(WiFi.softAPConfig(local_IP, gateway, subnet) ? "Listo" : "Falló!");
 
-      Serial.print("Setting soft-AP ... ");
-      Serial.println(WiFi.softAP("ESPsoftAP_01") ? "Ready" : "Failed!");
+      Serial.print("Estableciendo modo Soft-AP... ");
+      Serial.println(WiFi.softAP("ESPsoftAP_01") ? "Listo" : "Falló!");
 
-      Serial.print("Soft-AP IP address = ");
+      Serial.print("Dirección IP Soft-AP = ");
       Serial.println(WiFi.softAPIP());
     }
 
     void loop() {}
 
-*Example output:*
+*Ejemplo de salida:*
 
 ::
 
-    Setting soft-AP configuration ... Ready
-    Setting soft-AP ... Ready
-    Soft-AP IP address = 192.168.4.22
+    Estableciendo configuración Soft-AP... Listo
+    Estableciendo modo Soft-AP... Listo
+    Dirección IP Soft-AP =  192.168.4.22
 
-Manage Network
+Gestión de red
 ~~~~~~~~~~~~~~
 
-Once soft-AP is established you may check the number of stations connected, or shut it down, using the following functions.
+Una vez que Soft-AP está establecido puedes comprobar el número de estaciones conectadas, o desactivarlo, utilizando las siguientes funciones.
 
 softAPgetStationNum
 ^^^^^^^^^^^^^^^^^^^
 
-Get the count of the stations that are connected to the soft-AP interface.
+Obtiene el número de estaciones que están conectadas al interfaz Soft-AP.
 
 .. code:: cpp
 
     WiFi.softAPgetStationNum() 
 
-*Example code:*
+*Código de ejemplo:*
 
 .. code:: cpp
 
-    Serial.printf("Stations connected to soft-AP = %d\n", WiFi.softAPgetStationNum());
+    Serial.printf("Estaciones conectadas a soft-AP = %d\n", WiFi.softAPgetStationNum());
 
-*Example output:*
+*Ejemplo de salida:*
 
 ::
 
-    Stations connected to soft-AP = 2
+    Estaciones conectadas a soft-AP = 2
 
-Note: the maximum number of stations that may be connected to ESP8266 soft-AP is five.
+Nota: el número máximo de estaciones que pueden estar conectadas al Soft-AP ESP8266 son cinco.
 
 softAPdisconnect
 ^^^^^^^^^^^^^^^^
 
-Disconnect stations from the network established by the soft-AP.
+Desconecta estaciones de la red establecida por el soft-AP.
 
 .. code:: cpp
 
     WiFi.softAPdisconnect(wifioff) 
 
-Function will set currently configured SSID and password of the soft-AP to null values. The parameter ``wifioff`` is optional. If set to ``true`` it will switch the soft-AP mode off.
+La función establece un SSID y password del soft-AP a valores nulos (null). El parámetro ``wifioff`` es opcional. Si se establece a ``true`` se cambiará el soft-AP a modo apagado (off).
 
-Function will return ``true`` if operation was successful or ``false`` if otherwise.
+La función devuelve ``true`` si la operación se realizó satisfactoriamente o ``false`` en caso contrario.
 
-Network Configuration
+Configuración de red
 ~~~~~~~~~~~~~~~~~~~~~
 
-Functions below provide IP and MAC address of ESP8266's soft-AP.
+La siguientes funciones permiten obtener la dirección IP y MAC del Soft-AP de ESP8266.
 
 softAPIP
 ^^^^^^^^
 
-Return IP address of the soft access point's network interface.
+Devuelve la dirección IP del interfaz de red del punto de acceso.
 
 .. code:: cpp
 
     WiFi.softAPIP() 
 
-Returned value is of ``IPAddress`` type.
+El retorno es un valor del tipo ``IPAddress``.
 
-*Example code:*
+*Código de ejemplo:*
 
 .. code:: cpp
 
-    Serial.print("Soft-AP IP address = ");
+    Serial.print("Dirección IP Soft-AP = ");
     Serial.println(WiFi.softAPIP());
 
-*Example output:*
+*Ejemplo de salida:*
 
 ::
 
-    Soft-AP IP address = 192.168.4.1
+    Dirección IP Soft-AP = 192.168.4.1
 
 softAPmacAddress
 ^^^^^^^^^^^^^^^^
 
-Return MAC address of soft access point. This function comes in two versions, which differ in type of returned values. First returns a pointer, the second a ``String``.
+Devuelve la dirección MAC del punto de acceso. Esta función tiene dos versiones, que se diferencian por el tipo de valor devuelto. El primero devuelve un puntero, el segundo un ``String``.
 
-Pointer to MAC
+MAC como puntero
 ''''''''''''''
 
 .. code:: cpp
 
     WiFi.softAPmacAddress(mac)
 
-Function accepts one parameter ``mac`` that is a pointer to memory location (an ``uint8_t`` array the size of 6 elements) to save the mac address. The same pointer value is returned by the function itself.
+La función acepta un parámetro ``mac`` que es un puntero a la dirección de memoria (un ``uint8_t`` array de tamaño 6 elementos) para guardar la dirección MAC. El mismo puntero es devuelto por la función a si misma.
 
-*Example code:*
+*Codigo de ejemplo:*
 
 .. code:: cpp
 
@@ -197,16 +211,16 @@ Function accepts one parameter ``mac`` that is a pointer to memory location (an 
     WiFi.softAPmacAddress(macAddr);
     Serial.printf("MAC address = %02x:%02x:%02x:%02x:%02x:%02x\n", macAddr[0], macAddr[1], macAddr[2], macAddr[3], macAddr[4], macAddr[5]);
 
-*Example output:*
+*Ejemplo de salida:*
 
 ::
 
     MAC address = 5e:cf:7f:8b:10:13
 
-MAC as a String
+MAC como una String
 '''''''''''''''
 
-Optionally you can use function without any parameters that returns a ``String`` type value.
+Opcionalmente puedes utilizar esta función sin ningún parámetro que devuelva el valor tipo ``String``.
 
 .. code:: cpp
 
@@ -224,4 +238,4 @@ Optionally you can use function without any parameters that returns a ``String``
 
     MAC address = 5E:CF:7F:8B:10:13
 
-For code samples please refer to separate section with :doc:`examples <soft-access-point-examples>` dedicated specifically to the Soft Access Point Class.
+Consulte la sección separada con `ejemplos <soft-access-point-examples.rst>`__ dedicados específicamente a la clase Client.
