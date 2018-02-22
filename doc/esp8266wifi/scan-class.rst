@@ -112,7 +112,7 @@ Parámetros de la función:
     4: Hack-4-fun-net, Ch:9 (-91dBm)
     5: UPC Wi-Free, Ch:11 (-79dBm)
 
-Mostrando resultado
+Mostrando resultados
 ~~~~~~~~~~~~
 
 Las funciones a continuación brindan acceso al resultado del escaneo. No importa si el escaneo se ha realizado en modo síncrono o asíncrono, los resultados del escaneo están disponibles utilizando la misma API.
