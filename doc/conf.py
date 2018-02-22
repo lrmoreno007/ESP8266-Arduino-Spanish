@@ -167,4 +167,3 @@ if not env_readthedocs:  # only import and set the theme if we're building docs 
     html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 
 
-from sphinx.ext.docutils import rst2html
