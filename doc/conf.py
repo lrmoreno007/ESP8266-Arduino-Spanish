@@ -23,7 +23,7 @@ import sys
 from recommonmark.parser import CommonMarkParser
 source_parsers = {
     '.md': CommonMarkParser,
-    '.rst': CommonMarkParser,
+#    '.rst': CommonMarkParser,
 }
 
 from recommonmark.transform import AutoStructify
