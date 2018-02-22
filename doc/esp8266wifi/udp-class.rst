@@ -1,9 +1,7 @@
-:orphan:
-
-UDP Class
+Clase UDP
 ---------
 
-Methods documented for `WiFiUDP Class <https://www.arduino.cc/en/Reference/WiFiUDPConstructor>`__ in `Arduino <https://github.com/arduino/Arduino>`__
+Metodos documentados para la `Clase WiFiUDP <https://www.arduino.cc/en/Reference/WiFiUDPConstructor>`__ en `Arduino <https://github.com/arduino/Arduino>`__
 
 1.  `begin() <https://www.arduino.cc/en/Reference/WiFiUDPBegin>`__
 2.  `available() <https://www.arduino.cc/en/Reference/WiFiUDPAvailable>`__
@@ -18,8 +16,7 @@ Methods documented for `WiFiUDP Class <https://www.arduino.cc/en/Reference/WiFiU
 11. `remoteIP() <https://www.arduino.cc/en/Reference/WiFiUDPRemoteIP>`__
 12. `remotePort() <https://www.arduino.cc/en/Reference/WiFiUDPRemotePort>`__
 
-Methods and properties described further down are specific to ESP8266.
-They are not covered in `Arduino WiFi library <https://www.arduino.cc/en/Reference/WiFi>`__ documentation. Before they are fully documented please refer to information below.
+Los métodos y propiedades descritos más abajo son específicos de ESP8266. No están cubiertos en la documentación de `librería WiFi de Arduino <https://www.arduino.cc/en/Reference/WiFi>`__. Antes de que estén complétamente documentados, consulte la información a continuación.
 
 Multicast UDP
 ~~~~~~~~~~~~~
@@ -31,6 +28,6 @@ Multicast UDP
     IPAddress  destinationIP () 
     uint16_t  localPort ()
 
-The ``WiFiUDP`` class supports sending and receiving multicast packets on STA interface. When sending a multicast packet, replace ``udp.beginPacket(addr, port)`` with ``udp.beginPacketMulticast(addr, port, WiFi.localIP())``. When listening to multicast packets, replace ``udp.begin(port)`` with ``udp.beginMulticast(WiFi.localIP(), multicast_ip_addr, port)``. You can use ``udp.destinationIP()`` to tell whether the packet received was sent to the multicast or unicast address.
+La clase ``WiFiUDP`` admite el envío y recepción de paquetes de multidifusión en la interfaz STA. Al enviar un paquete de multidifusión, reemplace ``udp.beginPacket (addr, port)`` con ``udp.beginPacketMulticast (addr, port, WiFi.localIP ())``. Al escuche paquetes de multidifusión, reemplace ``udp.begin(port)`` con ``udp.beginMulticast(WiFi.localIP(), multicast_ip_addr, port)``. Puede usar ``udp.destinationIP()`` para saber si el paquete recibido se envió a la dirección de multidifusión o unicast.
 
-For code samples please refer to separate section with :doc:`examples <udp-examples>` dedicated specifically to the UDP Class.
+Consulte la sección separada con `ejemplos <udp-examples.rst>`__ dedicados específicamente a la clase UDP.
