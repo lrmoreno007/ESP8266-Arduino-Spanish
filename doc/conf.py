@@ -20,34 +20,6 @@ import os
 import sys
 # sys.path.insert(0, os.path.abspath('.'))
 
-from recommonmark.parser import CommonMarkParser
-source_parsers = {
-    '.md': CommonMarkParser,
-    '.rst': RSTParser,
-}
-
-from docutils.core import publish_parts
-def rst2html(input, output):
-    """
-    Create html file from rst file.
-    
-    :param input: Path to rst source file
-    :type: `str`
-    :param output: Path to html output file
-    :type: `str`
-    """
-    file = os.path.abspath(input)
-    rst = open(file, 'r').read()
-    html = publish_parts(rst, writer_name='html')
-    body = html['html_body']
-
-    tmp = open(output, 'w')
-    tmp.write(body)
-    tmp.close()
-    
-    return body
-
-
 # -- General configuration ------------------------------------------------
 
 # If your documentation needs a minimal Sphinx version, state it here.
@@ -66,8 +38,7 @@ templates_path = ['_templates']
 # You can specify multiple suffix as a list of string:
 #
 # source_suffix = ['.rst', '.md']
-source_suffix = ['.rst', '.md']
-#source_suffix = '.rst'
+source_suffix = '.rst'
 
 # The master toctree document.
 master_doc = 'index'
@@ -194,10 +165,3 @@ if not env_readthedocs:  # only import and set the theme if we're building docs 
     html_theme = 'sphinx_rtd_theme'
     html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 
-from recommonmark.transform import AutoStructify
-def setup(app):
-    app.add_config_value('recommonmark_config', {
-            'url_resolver': lambda url: github_doc_root + url,
-            'auto_toc_tree_section': 'Contents',
-            }, True)
-    app.add_transform(AutoStructify)
