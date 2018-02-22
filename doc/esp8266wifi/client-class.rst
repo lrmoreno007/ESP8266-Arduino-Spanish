@@ -56,4 +56,4 @@ Otras llamadas a funciones
 
 La documentación para las funciones anteriores aún no se ha realizado.
 
-Consulte la sección separada con `ejemplos <client-examples.rst>`__ dedicados específicamente a la clase de Client.
+Consulte la sección separada con `ejemplos <client-examples.rst>`__ dedicados específicamente a la clase Client.
