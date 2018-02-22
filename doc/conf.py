@@ -20,11 +20,11 @@ import os
 import sys
 # sys.path.insert(0, os.path.abspath('.'))
 
-#from recommonmark.parser import CommonMarkParser
-#source_parsers = {
-#    '.md': CommonMarkParser,
-#    '.rst': CommonMarkParser,
-#}
+from recommonmark.parser import CommonMarkParser
+source_parsers = {
+    '.md': CommonMarkParser,
+    '.rst': CommonMarkParser,
+}
 
 from recommonmark.transform import AutoStructify
 def setup(app):
