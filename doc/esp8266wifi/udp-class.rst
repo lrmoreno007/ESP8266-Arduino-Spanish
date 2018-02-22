@@ -28,6 +28,6 @@ Multicast UDP
     IPAddress  destinationIP () 
     uint16_t  localPort ()
 
-La clase ``WiFiUDP`` admite el envío y recepción de paquetes de multidifusión en la interfaz STA. Al enviar un paquete de multidifusión, reemplace ``udp.beginPacket(addr, port)`` con ``udp.beginPacketMulticast(addr, port, WiFi.localIP ())``. Al escuche paquetes de multidifusión, reemplace ``udp.begin(port)`` con ``udp.beginMulticast(WiFi.localIP(), multicast_ip_addr, port)``. Puede usar ``udp.destinationIP()`` para saber si el paquete recibido se envió a la dirección de multidifusión o unicast.
+La clase ``WiFiUDP`` admite el envío y recepción de paquetes de multidifusión en la interfaz STA. Al enviar un paquete de multidifusión, reemplace ``udp.beginPacket(addr, port)`` con ``udp.beginPacketMulticast(addr, port, WiFi.localIP ())``. Cuando escuche paquetes de multidifusión, reemplace ``udp.begin(port)`` con ``udp.beginMulticast(WiFi.localIP(), multicast_ip_addr, port)``. Puede usar ``udp.destinationIP()`` para saber si el paquete recibido se envió a la dirección de multidifusión o unicast.
 
 Consulte la sección separada con `ejemplos <udp-examples.rst>`__ dedicados específicamente a la clase UDP.
