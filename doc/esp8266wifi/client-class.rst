@@ -23,7 +23,7 @@ setNoDelay
 
     setNoDelay(nodelay)
 
-Con ``nodelay`` establecido a ``true``, esta función no desactivará el `Algoritmo de Nagle <https://es.wikipedia.org/wiki/Algoritmo_de_Nagle>`__.
+Con ``nodelay`` establecido a ``true``, esta función desactivará el `Algoritmo de Nagle <https://es.wikipedia.org/wiki/Algoritmo_de_Nagle>`__.
 
 Este algoritmo está destinado a reducir el tráfico TCP/IP de pequeños paquetes enviados a través de la red combinando varios mensajes salientes pequeños y enviándolos todos a la vez. La desventaja de tal enfoque es que efectivamente se retrasan los mensajes individuales hasta que se ensamble un paquete lo suficientemente grande.
 
