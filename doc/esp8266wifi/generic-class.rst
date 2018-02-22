@@ -1,9 +1,7 @@
-:orphan:
-
-Generic Class
+Clase genérica
 -------------
 
-Methods and properties described in this section are specific to ESP8266. They are not covered in `Arduino WiFi library <https://www.arduino.cc/en/Reference/WiFi>`__ documentation. Before they are fully documented please refer to information below.
+Los métodos y propiedades que se describen en esta sección son específicos de ESP8266. No están cubiertos en la documentación de la librería WiFi de Arduino. Antes de que estén completamente documentados, consulte la información a continuación.
 
 onEvent
 ~~~~~~~
@@ -12,7 +10,7 @@ onEvent
 
     void  onEvent (WiFiEventCb cb, WiFiEvent_t event=WIFI_EVENT_ANY) __attribute__((deprecated)) 
 
-To see how to use ``onEvent`` please check example sketch `WiFiClientEvents.ino <https://github.com/esp8266/Arduino/blob/master/libraries/ESP8266WiFi/examples/WiFiClientEvents/WiFiClientEvents.ino>`__ available inside examples folder of the ESP8266WiFi library.
+Para ver como se utiliza ``onEvent`` comprueba el sketch de ejemplo `WiFiClientEvents.ino <https://github.com/esp8266/Arduino/blob/master/libraries/ESP8266WiFi/examples/WiFiClientEvents/WiFiClientEvents.ino>`__ disponible dentro de la carpeta de ejemplos de la librería ESP8266WiFi.
 
 WiFiEventHandler
 ~~~~~~~~~~~~~~~~
@@ -27,7 +25,7 @@ WiFiEventHandler
     WiFiEventHandler  onSoftAPModeStationConnected (std::function< void(const WiFiEventSoftAPModeStationConnected &)>) 
     WiFiEventHandler  onSoftAPModeStationDisconnected (std::function< void(const WiFiEventSoftAPModeStationDisconnected &)>) 
 
-To see a sample application with ``WiFiEventHandler``, please check separate section with `examples :arrow\_right: <generic-examples.rst>`__ dedicated specifically to the Generic Class..
+Para ver un ejemplo de aplicación con ``WiFiEventHandler``, comprueba la seccion separada con `ejamplos <generic-examples.rst>`__ dedicado especificamente a la clase genérica.
 
 persistent
 ~~~~~~~~~~
@@ -36,15 +34,16 @@ persistent
 
     WiFi.persistent (persistent) 
 
-Module is able to reconnect to last used Wi-Fi network on power up or reset basing on settings stored in specific sectors of flash memory. By default these settings are written to flash each time they are used in functions like ``WiFi.begin(ssid, password)``. This happens no matter if SSID or password has been actually changed.
 
-This might result in some wear of flash memory depending on how often such functions are called.
+El módulo puede volver a conectarse a la red Wi-Fi utilizada por última vez al encenderse o restablecerse basándose en configuraciones almacenadas en sectores específicos de la memoria flash. De forma predeterminada, estas configuraciones se escriben en la flash cada vez que se usan en funciones como ``WiFi.begin(ssid, password)``. Esto sucede sin importar si el SSID o la contraseña han sido cambiados realmente.
 
-Setting ``persistent`` to ``false`` will get SSID / password written to flash only if currently used values do not match what is already stored in flash.
+Esto podría ocasionar un desgaste de la memoria flash dependiendo de la frecuencia con la que se invocan dichas funciones.
 
-Please note that functions ``WiFi.disconnect`` or ``WiFi.softAPdisconnect`` reset currently used SSID / password. If ``persistent`` is set to ``false``, then using these functions will not affect SSID / password stored in flash.
+Configurando ``persistent`` a ``false`` hará que SSID / contraseña se grabe solo si los valores actualmente utilizados no coinciden con los que ya están almacenados en flash.
 
-To learn more about this functionality, and why it has been introduced, check issue report `#1054 <https://github.com/esp8266/Arduino/issues/1054>`__.
+Tenga en cuenta que las funciones ``WiFi.disconnect`` o ``WiFi.softAPdisconnect`` restablecen el SSID/contraseña actualmente utilizado. Si ``persistent`` está establecido en ``false``, entonces el uso de estas funciones no afectará el SSID/contraseña almacenado en flash.
+
+Para obtener más información sobre esta funcionalidad y por qué se ha introducido, consulte el informe de problemas `#1054 <https://github.com/esp8266/Arduino/issues/1054>`__.
 
 mode
 ~~~~
@@ -54,12 +53,10 @@ mode
     WiFi.mode(m) 
     WiFi.getMode() 
 
--  ``WiFi.mode(m)``: set mode to ``WIFI_AP``, ``WIFI_STA``,
-   ``WIFI_AP_STA`` or ``WIFI_OFF``
--  ``WiFi.getMode()``: return current Wi-Fi mode (one out of four modes
-   above)
+-  ``WiFi.mode(m)``: establece el modo a ``WIFI_AP``, ``WIFI_STA``, ``WIFI_AP_STA`` o ``WIFI_OFF``
+-  ``WiFi.getMode()``: devuelve el modo WiFi actual (alguno de los cuatro anteriores)
 
-Other Function Calls
+Otras llamadas a funciones
 ~~~~~~~~~~~~~~~~~~~~
 
 .. code:: cpp
@@ -79,4 +76,4 @@ Other Function Calls
 
 Documentation for the above functions is not yet prepared.
 
-For code samples please refer to separate section with `examples <generic-examples.rst>`__ dedicated specifically to the Generic Class.
+Consulte la sección separada con `ejemplos <generic-examples.rst>`__ dedicados específicamente a la clase genérica.
