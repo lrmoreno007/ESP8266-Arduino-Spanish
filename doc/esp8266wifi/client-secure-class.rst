@@ -1,26 +1,24 @@
-:orphan:
-
-Client Secure Class
+Clase: Client Secure
 -------------------
 
-Methods and properties described in this section are specific to ESP8266. They are not covered in `Arduino WiFi library <https://www.arduino.cc/en/Reference/WiFi>`__ documentation. Before they are fully documented please refer to information below.
+Los métodos y propiedades que se describen en esta sección son específicos de ESP8266. No están cubiertos en la documentación de la `librería WiFi de Arduino <https://www.arduino.cc/en/Reference/WiFi>`__. Antes de que estén completamente documentados, consulte la información a continuación.
 
-Supported crypto
+Criptografía soportada
 ~~~~~~~~~~~~~~~~
 
-In the background the library `axtls <http://axtls.sourceforge.net>`_ is used. The library supports only rsa certificates and no new eliptic curve certificates. TLSv1.2 is supported since SDK 2.4.0-rc1.
+En el fondo, se usa la librería `axtls <http://axtls.sourceforge.net>`_. La librería solo admite certificados de RSA y no hay nuevos certificados de curva elíptica. TLSv1.2 es compatible desde SDK 2.4.0-rc1.
 
-The following ciphers and digests are supported by `specification <http://axtls.sourceforge.net/specifications.htm>`_:
+Los siguientes cifrados y compendios son compatibles con las `especificaciones <http://axtls.sourceforge.net/specifications.htm>`_:
 
-* Symmetric Ciphers
+* Cifrado simétrico
     * AES128-SHA
     * AES256-SHA
     * AES128-SHA256
     * AES256-SHA256
-* Asymmetric Ciphers
-    * RSA 512/1024/2048/4096 bit encryption/decryption.
-    * RSA signing/verification
-* Digests
+* Cifrado asimétrico
+    * RSA 512/1024/2048/4096 bit encriptado/desencriptado.
+    * RSA firma/verificación
+* Compendios
     * SHA1
     * MD5
     * SHA256/384/512
@@ -31,13 +29,13 @@ The following ciphers and digests are supported by `specification <http://axtls.
 loadCertificate
 ~~~~~~~~~~~~~~~
 
-Load client certificate from file system.
+Carga el certificado de cliente desde el sistema de archivos.
 
 .. code:: cpp
 
     loadCertificate(file) 
 
-*Declarations*
+*Declaración*
 
 .. code:: cpp
 
@@ -47,45 +45,46 @@ Load client certificate from file system.
 
     const char* certyficateFile = "/client.cer";
 
-*setup() or loop()*
+*setup() o loop()*
 
 .. code:: cpp
 
     if (!SPIFFS.begin()) 
     {
-      Serial.println("Failed to mount the file system");
+      Serial.println("Fallo al montar el sistema de ficheros");
       return;
     }
 
-    Serial.printf("Opening %s", certyficateFile);
+    Serial.printf("Abriendo %s", certyficateFile);
     File crtFile = SPIFFS.open(certyficateFile, "r");
     if (!crtFile)
     {
-      Serial.println(" Failed!");
+      Serial.println(" Falló!");
     }
 
     WiFiClientSecure client;
 
-    Serial.print("Loading %s", certyficateFile);
+    Serial.print("Cargando %s", certyficateFile);
     if (!client.loadCertificate(crtFile))
     {
-      Serial.println(" Failed!");
+      Serial.println(" Falló!");
     }
 
-    // proceed with connecting of client to the host
+    // proceder con la conexión del cliente al host
+
 
 setCertificate
 ~~~~~~~~~~~~~~
 
-Load client certificate from C array.
+Carga el certificado de cliente desde un array C.
 
 .. code:: cpp
 
     setCertificate (array, size) 
 
-For a practical example please check `this interesting blog <https://nofurtherquestions.wordpress.com/2016/03/14/making-an-esp8266-web-accessible/>`__.
+Para un ejemplo práctico, compruebe `este interesante blog <https://nofurtherquestions.wordpress.com/2016/03/14/making-an-esp8266-web-accessible/>`__.
 
-Other Function Calls
+Otras llamadas a funciones
 ~~~~~~~~~~~~~~~~~~~~
 
 .. code:: cpp
@@ -96,6 +95,6 @@ Other Function Calls
     bool  loadPrivateKey (Stream &stream, size_t size) 
     template<typename TFile >  bool  loadPrivateKey (TFile &file)
 
-Documentation for the above functions is not yet prepared.
+La documentación para las funciones anteriores aún no se ha realizado.
 
-For code samples please refer to separate section with `examples <client-secure-examples.rst>`__ dedicated specifically to the Client Secure Class.
+Consulte la sección separada con `ejemplos <client-secure-examples.rst>`__ dedicados específicamente a la clase Client Secure.
