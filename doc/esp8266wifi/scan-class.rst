@@ -128,7 +128,7 @@ Devuelve el SSID de una red descubierta durante el escaneo.
 
     WiFi.SSID(networkItem) 
 
-El retorno de SSID es del tipo ``String``. El ``networkItem`` es un índice basado en cero de las redes descubiertas durante el escaneo.
+El retorno de SSID es del tipo ``String``. ``networkItem`` es un índice basado en cero de las redes descubiertas durante el escaneo.
 
 encryptionType
 ^^^^^^^^^^^^^^
@@ -151,7 +151,7 @@ La función devuelve un número de tipo de encriptado, de la siguiente manera:
 
 * 8 : ``ENC_TYPE_AUTO`` - WPA / WPA2 / PSK
 
-El ``networkItem`` es un índice basado en cero de las redes descubiertas durante el escaneo.
+``networkItem`` es un índice basado en cero de las redes descubiertas durante el escaneo.
 
 RSSI
 ^^^^
@@ -162,7 +162,7 @@ Devuelve el `RSSI <https://en.wikipedia.org/wiki/Received_signal_strength_indica
 
     WiFi.RSSI(networkItem) 
 
-El retorno de RSSI es del tipo ``int32_t``. El ``networkItem`` es un índice basado en cero de las redes descubiertas durante el escaneo.
+El retorno de RSSI es del tipo ``int32_t``. ``networkItem`` es un índice basado en cero de las redes descubiertas durante el escaneo.
 
 BSSID
 ^^^^^
@@ -181,7 +181,7 @@ Si no te gustan los punteros, hay otra versión que devuelve un ``String``.
 
     WiFi.BSSIDstr(networkItem) 
 
-El ``networkItem`` es un índice basado en cero de las redes descubiertas durante el escaneo.
+``networkItem`` es un índice basado en cero de las redes descubiertas durante el escaneo.
 
 channel
 ^^^^^^^
@@ -192,7 +192,7 @@ Devuelve el canal de una red descubierta durante el escaneo.
 
     WiFi.channel(networkItem) 
 
-El retorno del canal es del tipo ``int32_t``. El ``networkItem`` es un índice basado en cero de las redes descubiertas durante el escaneo.
+El retorno del canal es del tipo ``int32_t``. ``networkItem`` es un índice basado en cero de las redes descubiertas durante el escaneo.
 
 isHidden
 ^^^^^^^^
@@ -203,7 +203,7 @@ Devuelve información de si una red descubierta durante el escaneo es oculta o n
 
     WiFi.isHidden(networkItem)
 
-El retorno es un valor del tipo ``bolean`` y ``true`` significa que la red es oculta. El ``networkItem`` es un índice basado en cero de las redes descubiertas durante el escaneo.
+El retorno es un valor del tipo ``bolean`` y ``true`` significa que la red es oculta. ``networkItem`` es un índice basado en cero de las redes descubiertas durante el escaneo.
 
 getNetworkInfo
 ^^^^^^^^^^^^^^
@@ -214,7 +214,7 @@ Devuelve toda la información discutida anteriormente en este capítulo en una s
 
     WiFi.getNetworkInfo(networkItem, &ssid, &encryptionType, &RSSI, *&BSSID, &channel, &isHidden) 
 
-El ``networkItem`` es un índice basado en cero de las redes descubiertas durante el escaneo. Todos los demás parámetros de entrada se pasan a la función por referencia. Por lo tanto, se actualizarán con los valores reales recuperados para un ``networkItem`` particular. La función en sí devuelve un ``boolean``, con `` true`` o `` false`` para confirmar si la recuperación de información fue exitosa o no.
+``networkItem`` es un índice basado en cero de las redes descubiertas durante el escaneo. Todos los demás parámetros de entrada se pasan a la función por referencia. Por lo tanto, se actualizarán con los valores reales recuperados para un ``networkItem`` particular. La función en sí devuelve un ``boolean``, con `` true`` o `` false`` para confirmar si la recuperación de información fue exitosa o no.
 
 *Código de ejemplo:*
 
