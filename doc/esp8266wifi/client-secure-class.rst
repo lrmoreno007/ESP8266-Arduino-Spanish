@@ -1,7 +1,7 @@
 Clase: Client Secure
 -------------------
 
-Los métodos y propiedades que se describen en esta sección son específicos de ESP8266. No están cubiertos en la documentación de la `librería WiFi de Arduino <https://www.arduino.cc/en/Reference/WiFi>`__. Antes de que estén completamente documentados, consulte la información a continuación.
+Los métodos y propiedades que se describen en esta sección son específicos de ESP8266. No están cubiertos en la documentación de la `librería WiFi de Arduino <https://www.arduino.cc/en/Reference/WiFi>`__. Antes de que estén complétamente documentados, consulte la información a continuación.
 
 Criptografía soportada
 ~~~~~~~~~~~~~~~~
