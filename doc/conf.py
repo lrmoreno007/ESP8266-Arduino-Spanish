@@ -26,15 +26,6 @@ source_parsers = {
 #    '.rst': CommonMarkParser,
 }
 
-from recommonmark.transform import AutoStructify
-def setup(app):
-    app.add_config_value('recommonmark_config', {
-            'url_resolver': lambda url: github_doc_root + url,
-            'auto_toc_tree_section': 'Contents',
-            }, True)
-    app.add_transform(AutoStructify)
-
-
 from docutils.core import publish_parts
 def rst2html(input, output):
     """
@@ -203,4 +194,10 @@ if not env_readthedocs:  # only import and set the theme if we're building docs 
     html_theme = 'sphinx_rtd_theme'
     html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 
-
+from recommonmark.transform import AutoStructify
+def setup(app):
+    app.add_config_value('recommonmark_config', {
+            'url_resolver': lambda url: github_doc_root + url,
+            'auto_toc_tree_section': 'Contents',
+            }, True)
+    app.add_transform(AutoStructify)
