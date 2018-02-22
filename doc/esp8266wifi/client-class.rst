@@ -1,9 +1,7 @@
-:orphan:
-
-Client Class
+Clase: Client
 ------------
 
-Methods documented for `Client <https://www.arduino.cc/en/Reference/WiFiClientConstructor>`__ in `Arduino <https://github.com/arduino/Arduino>`__
+Metodos documentados para `Client <https://www.arduino.cc/en/Reference/WiFiClientConstructor>`__ en `Arduino <https://github.com/arduino/Arduino>`__
 
 1.  `WiFiClient() <https://www.arduino.cc/en/Reference/WiFiClient>`__
 2.  `connected() <https://www.arduino.cc/en/Reference/WiFiClientConnected>`__
@@ -16,7 +14,7 @@ Methods documented for `Client <https://www.arduino.cc/en/Reference/WiFiClientCo
 9.  `flush() <https://www.arduino.cc/en/Reference/WiFiClientFlush>`__
 10. `stop() <https://www.arduino.cc/en/Reference/WiFIClientStop>`__
 
-Methods and properties described further down are specific to ESP8266. They are not covered in `Arduino WiFi library <https://www.arduino.cc/en/Reference/WiFi>`__ documentation. Before they are fully documented please refer to information below.
+Los métodos y propiedades descritos más abajo son específicos de ESP8266. No están cubiertos en la documentación de 'librería WiFi de Arduino <https://www.arduino.cc/en/Reference/WiFi>`__. Antes de que estén completamente documentados, consulte la información a continuación.
 
 setNoDelay
 ~~~~~~~~~~
@@ -25,17 +23,17 @@ setNoDelay
 
     setNoDelay(nodelay)
 
-With ``nodelay`` set to ``true``, this function will to disable `Nagle algorithm <https://en.wikipedia.org/wiki/Nagle%27s_algorithm>`__.
+Con ``nodelay`` establecido a ``true``, esta función no desactivará el `Algoritmo de Nagle <https://es.wikipedia.org/wiki/Algoritmo_de_Nagle>`__.
 
-This algorithm is intended to reduce TCP/IP traffic of small packets sent over the network by combining a number of small outgoing messages, and sending them all at once. The downside of such approach is effectively delaying individual messages until a big enough packet is assembled.
+Este algoritmo está destinado a reducir el tráfico TCP/IP de pequeños paquetes enviados a través de la red combinando varios mensajes salientes pequeños y enviándolos todos a la vez. La desventaja de tal enfoque es que efectivamente se retrasan los mensajes individuales hasta que se ensamble un paquete lo suficientemente grande.
 
-*Example:*
+*Ejemplo:*
 
 .. code:: cpp
 
     client.setNoDelay(true);
 
-Other Function Calls
+Otras llamadas a funciones
 ~~~~~~~~~~~~~~~~~~~~
 
 .. code:: cpp
@@ -56,7 +54,6 @@ Other Function Calls
     uint16_t  localPort () 
     bool  getNoDelay () 
 
-Documentation for the above functions is not yet prepared.
+La documentación para las funciones anteriores aún no se ha realizado.
 
-For code samples please refer to separate section with `examples
-:arrow\_right: <client-examples.rst>`__ dedicated specifically to the Client Class.
+Consulte la sección separada con `ejemplos <client-examples.rst>`__ dedicados específicamente a la clase de Client.
