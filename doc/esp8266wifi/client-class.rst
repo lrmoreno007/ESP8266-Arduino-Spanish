@@ -14,7 +14,7 @@ Metodos documentados para `Client <https://www.arduino.cc/en/Reference/WiFiClien
 9.  `flush() <https://www.arduino.cc/en/Reference/WiFiClientFlush>`__
 10. `stop() <https://www.arduino.cc/en/Reference/WiFIClientStop>`__
 
-Los métodos y propiedades descritos más abajo son específicos de ESP8266. No están cubiertos en la documentación de 'librería WiFi de Arduino <https://www.arduino.cc/en/Reference/WiFi>`__. Antes de que estén completamente documentados, consulte la información a continuación.
+Los métodos y propiedades descritos más abajo son específicos de ESP8266. No están cubiertos en la documentación de `librería WiFi de Arduino <https://www.arduino.cc/en/Reference/WiFi>`__. Antes de que estén completamente documentados, consulte la información a continuación.
 
 setNoDelay
 ~~~~~~~~~~
