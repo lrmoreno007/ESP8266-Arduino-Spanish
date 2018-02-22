@@ -20,11 +20,19 @@ import os
 import sys
 # sys.path.insert(0, os.path.abspath('.'))
 
-from recommonmark.parser import CommonMarkParser
-source_parsers = {
-    '.md': CommonMarkParser,
-    '.rst': CommonMarkParser,
-}
+#from recommonmark.parser import CommonMarkParser
+#source_parsers = {
+#    '.md': CommonMarkParser,
+#    '.rst': CommonMarkParser,
+#}
+
+from recommonmark.transform import AutoStructify
+def setup(app):
+    app.add_config_value('recommonmark_config', {
+            'url_resolver': lambda url: github_doc_root + url,
+            'auto_toc_tree_section': 'Contents',
+            }, True)
+    app.add_transform(AutoStructify)
 
 
 from docutils.core import publish_parts
