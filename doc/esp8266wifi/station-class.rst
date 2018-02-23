@@ -76,7 +76,7 @@ A continuación se muestra la sintaxis de otra sobrecarga de ``begin`` con todos
 
     WiFi.begin(ssid, password, channel, bssid, connect)
 
-Meaning of parameters is as follows: 
+El significado de los parámetros es el siguiente:
 
 * ``ssid`` - Una String que contiene el SSID del punto de acceso que queremos conectarno, Puede tener hasta 32 caracteres. 
 
