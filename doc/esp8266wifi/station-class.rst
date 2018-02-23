@@ -262,7 +262,7 @@ Obtiene la dirección MAC de la interfaz de estación ESP.
 
     WiFi.macAddress(mac) 
 
-Se debe proporcionar a la función ``mac`` que es un puntero a la ubicación de la memoria (una matriz ``uint8_t`` de tamaño de 6 elementos) para guardar la dirección MAC. El mismo valor de puntero es devuelto por la función.
+Se debe proporcionar a la función la variable ``mac`` que es un puntero a la ubicación de la memoria (una matriz ``uint8_t`` de tamaño de 6 elementos) para guardar la dirección MAC. El mismo valor de puntero es devuelto por la función.
 
 *Código de ejemplo:*
 
