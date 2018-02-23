@@ -25,7 +25,7 @@ Tabla de contenidos
 
 -  `Configuración <#configuración>`__
 
-   -  `macAddress <#macAddress>`__
+   -  `macAddress <#macaddress>`__
    -  `localIP <#localip>`__
    -  `subnetMask <#subnetmask>`__
    -  `gatewayIP <#gatewayip>`__
@@ -97,22 +97,16 @@ Desactiva el cliente `DHCP <https://es.wikipedia.org/wiki/Protocolo_de_configura
 
     WiFi.config(local_ip, gateway, subnet, dns1, dns2) 
 
-Function will return ``true`` if configuration change is applied successfully. If configuration can not be applied, because e.g. module is not in station or station + soft access point mode, then ``false`` will be returned.
+Función que devuelve ``true`` si la configuración se aplica satisfactoriamente. Si la configuración no puede aplicarse, porque p. ej. el módulo no está en modo estación o estacion + punto de acceso, entonces devolverá ``false``.
 
-The following IP configuration may be provided:
+La siguiente configuración IP debe proveerse:
 
--  ``local_ip`` - enter here IP address you would like to assign the ESP
-   station's interface
--  ``gateway`` - should contain IP address of gateway (a router) to
-   access external networks
--  ``subnet`` - this is a mask that defines the range of IP addresses of
-   the local network
--  ``dns1``, ``dns2`` - optional parameters that define IP addresses of
-   Domain Name Servers (DNS) that maintain a directory of domain names
-   (like e.g. *www.google.co.uk*) and translate them for us to IP
-   addresses
+-  ``local_ip`` - Introduce aquí la dirección IP que quieras asignar al interfaz estación del ESP.
+-  ``gateway`` - Debe contener la dirección IP de la puerta de enlace (getaway - de un router) para acceder a redes externas.
+-  ``subnet`` - Esta es la máscara de subred que define el rango de direcciones IP de la red local.
+-  ``dns1``, ``dns2`` - Parámetro opcional que define la dirección IP del servidor de dominio (DNS) que mantiene un directorio de nombres de dominio (como p.ej. *www.google.es*) y nos las traduce a direcciones IP.
 
-*Example code:*
+*Código de ejemplo:*
 
 .. code:: cpp
 
@@ -130,7 +124,7 @@ The following IP configuration may be provided:
       Serial.begin(115200);
       Serial.println();
 
-      Serial.printf("Connecting to %s\n", ssid);
+      Serial.printf("Conectando a %s\n", ssid);
       WiFi.begin(ssid, password);
       WiFi.config(staticIP, gateway, subnet);
       while (WiFi.status() != WL_CONNECTED)
@@ -139,7 +133,7 @@ The following IP configuration may be provided:
         Serial.print(".");
       }
       Serial.println();
-      Serial.print("Connected, IP address: ");
+      Serial.print("Conectado, dirección IP: ");
       Serial.println(WiFi.localIP());
     }
 
@@ -149,12 +143,11 @@ The following IP configuration may be provided:
 
 ::
 
-    Connecting to sensor-net
+    Conectando a sensor-net
     .
-    Connected, IP address: 192.168.1.22
+    Conectado, dirección IP: 192.168.1.22
 
-Please note that station with static IP configuration usually connects to the network faster. In the above example it took about 500ms (one dot `.` displayed). This is because obtaining of IP configuration by DHCP client takes time and in this case this step is skipped. If you pass all three parameter as 0.0.0.0 (local_ip, gateway and subnet), it will re enable DHCP. You need to re-connect the device to get new IPs.
-
+Tenga en cuenta que la estación con configuración de IP estática por lo general se conecta a la red más rápido. En el ejemplo anterior, tomó aproximadamente 500 ms (se muestra un punto `.`). Esto se debe a que la obtención de la configuración IP por parte del cliente DHCP lleva tiempo y en este caso este paso se omite. Si pasa los tres parámetros como 0.0.0.0 (local_ip, gateway y subred), volverá a habilitar DHCP. Necesita volver a conectar el dispositivo para obtener nuevas direcciones IP.
 
 Gestión de la conexión
 ~~~~~~~~~~~~~~~~~
@@ -162,13 +155,17 @@ Gestión de la conexión
 reconnect
 ^^^^^^^^^
 
-Reconnect the station. This is done by disconnecting from the access point an then initiating connection back to the same AP.
+Reconecta la estación. Esto se hace por desconexión del punto de acceso y entonces volviendo a conectar al mismo punto de acceso.
 
 .. code:: cpp
 
     WiFi.reconnect() 
 
-Notes: 1. Station should be already connected to an access point. If this is not the case, then function will return ``false`` not performing any action. 2. If ``true`` is returned it means that connection sequence has been successfully started. User should still check for connection status, waiting until ``WL_CONNECTED`` is reported:
+Notes: 
+
+1. Station should be already connected to an access point. If this is not the case, then function will return ``false`` not performing any action.
+
+2. If ``true`` is returned it means that connection sequence has been successfully started. User should still check for connection status, waiting until ``WL_CONNECTED`` is reported:
 
 .. code:: cpp
 
@@ -568,7 +565,7 @@ Signal strength value is provided in dBm. The type of returned value is ``int32_
 
     RSSI: -68 dBm
 
-Connect Different
+Conexiones diferentes
 ~~~~~~~~~~~~~~~~~
 
 `ESP8266 SDK <http://bbs.espressif.com/viewtopic.php?f=51&t=1023>`__ provides alternate methods to connect ESP station to an access point. Out of them `esp8266 / Arduino <https://github.com/esp8266/Arduino>`__ core implements `WPS <#wps>`__ and `Smart Config <#smart-config>`__ as described in more details below.
