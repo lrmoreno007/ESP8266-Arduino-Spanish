@@ -662,5 +662,3 @@ Detiene Smart Config y libera el buffer tomado por ``beginSmartConfig()``. Depen
     stopSmartConfig() 
 
 Para obtener más información acerca de Smart Config, consulte la guía de usuario de la `API ESP8266 <http://bbs.espressif.com/viewtopic.php?f=51&t=1023>`__.
-
-For additional details regarding Smart Config please refer to `ESP8266 API User Guide <http://bbs.espressif.com/viewtopic.php?f=51&t=1023>`__.
