@@ -563,7 +563,7 @@ A continuación se muestra una función similar, pero que devuelve BSSID como de
 RSSI
 ^^^^
 
-Devuelve la potencia de la señal WiFi, que formalmente se llama 'Received Signal Strength Indicator (RSSI) <https://es.wikipedia.org/wiki/Indicador_de_fuerza_de_la_se%C3%B1al_recibida> `__.
+Devuelve la potencia de la señal WiFi, que formalmente se llama `Received Signal Strength Indicator (RSSI) <https://es.wikipedia.org/wiki/Indicador_de_fuerza_de_la_se%C3%B1al_recibida>`__.
 
 .. code:: cpp
 
