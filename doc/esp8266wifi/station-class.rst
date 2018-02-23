@@ -1,21 +1,19 @@
-:orphan:
-
-Station Class
+Clase Station
 -------------
 
-The number of features provided by ESP8266 in the station mode is far more extensive than covered in original `Arduino WiFi library <https://www.arduino.cc/en/Reference/WiFi>`__. Therefore, instead of supplementing original documentation, we have decided to write a new one from scratch.
+La cantidad de características proporcionadas por ESP8266 en el modo de estación es mucho más extensa que la que se cubre en la libreríaa original `Arduino WiFi <https://www.arduino.cc/en/Reference/WiFi>`__. Por lo tanto, en lugar de complementar la documentación original, hemos decidido escribir una nueva desde cero.
 
-Description of station class has been broken down into four parts. First discusses methods to establish connection to an access point. Second provides methods to manage connection like e.g. ``reconnect`` or ``isConnected``. Third covers properties to obtain information about connection like MAC or IP address. Finally the fourth section provides alternate methods to connect like e.g. Wi-Fi Protected Setup (WPS).
+La descripción de la clase de estación se ha dividido en cuatro partes. Primero analiza los métodos para establecer la conexión a un punto de acceso. Segundo proporciona métodos para administrar la conexión, como p. ej. ``reconnect`` o ``isConnected``. En tercer lugar, se cubren las propiedades para obtener información sobre la conexión, como la dirección MAC o IP. Finalmente, la cuarta sección proporciona métodos alternativos para conectarse, como p. ej. Configuración protegida WiFi (WPS).
 
-Table of Contents
+Tabla de contenidos
 -----------------
 
--  `Start Here <#start-here>`__
+-  `Comienza aquí <#comienza-aquí>`__
 
    -  `begin <#begin>`__
    -  `config <#config>`__
 
--  `Manage Connection <#manage-connection>`__
+-  `Gestión de la conexión <#gestión-de-la-conexión>`__
 
    -  `reconnect <#reconnect>`__
    -  `disconnect <#disconnect>`__
@@ -25,7 +23,7 @@ Table of Contents
    -  `setAutoReconnect <#setautoreconnect>`__
    -  `waitForConnectResult <#waitforconnectresult>`__
 
--  `Configuration <#configuration>`__
+-  `Configuración <#configuración>`__
 
    -  `macAddress <#macAddress>`__
    -  `localIP <#localip>`__
@@ -39,53 +37,61 @@ Table of Contents
    -  `BSSID <#bssid>`__
    -  `RSSI <#rssi>`__
 
--  `Connect Different <#connect-different>`__
+-  `Conexiones diferentes <#conexiones-diferentes>`__
 
    -  `WPS <#wps>`__
    -  `Smart Config <#smart-config>`__
 
-Points below provide description and code snippets how to use particular methods.
+Los puntos siguientes proporcionan descripciones y retazos de código sobre como usar métodos particulares.
 
-For more code samples please refer to separate section with :doc:`examples <station-examples>` dedicated specifically to the Station Class.
+Para obtener más muestras de código, consulte la sección separada con: doc:`ejemplos <station-examples>` dedicado específicamente a la Clase Station.
 
-Start Here
+Comienza aquí
 ~~~~~~~~~~
 
-Switching the module to Station mode is done with ``begin`` function. Typical parameters passed to ``begin`` include SSID and password, so module can connect to specific Access Point.
+El cambio del módulo al modo estación se realiza con la función ``begin``. Los parámetros típicos de ``begin`` incluyen SSID y contraseña, por lo que el módulo se puede conectar a un punto de acceso específico.
 
 .. code:: cpp
 
     WiFi.begin(ssid, password)
 
-By default, ESP will attempt to reconnect to Wi-Fi network whenever it is disconnected. There is no need to handle this by separate code. A good way to simulate disconnection would be to reset the access point. ESP will report disconnection, and then try to reconnect automatically.
+Por defecto, ESP intentará volver a conectarse a la red WiFi cada vez que se desconecte. No hay necesidad de manejar esto con código separado. Una buena forma de simular la desconexión sería resetear el punto de acceso. ESP reportará la desconexión y luego tratará de reconectarse automáticamente.
 
 begin
 ^^^^^
 
-There are several versions (called *`function overloads <https://en.wikipedia.org/wiki/Function_overloading>`__* in C++) of ``begin`` function. One was presented just above:
-``WiFi.begin(ssid, password)``. Overloads provide flexibility in number or type of accepted parameters.
+Hay varias versiones (sobrecargas) de la función ``begin``. Una presentada justo ahora: ``WiFi.begin(ssid, password)``. Sobrecargas que proveen flexibilidad en el número o tipos de parámetros aceptados.
 
-The simplest overload of ``begin`` is as follows:
+La sobrecarga mas simple de ``begin`` es la siguiente:
 
 .. code:: cpp
 
     WiFi.begin()
 
-Calling it will instruct module to switch to the station mode and connect to the last used access point basing on configuration saved in flash memory.
+Al llamarla se le indicará al módulo que cambie al modo estación y se conecte al último punto de acceso utilizado basándose en la configuración guardada en la memoria flash.
 
-Below is the syntax of another overload of ``begin`` with the all possible parameters:
+A continuación se muestra la sintaxis de otra sobrecarga de ``begin`` con todos los parámetros posibles:
 
 .. code:: cpp
 
     WiFi.begin(ssid, password, channel, bssid, connect)
 
-Meaning of parameters is as follows: \* ``ssid`` - a character string containing the SSID of Access Point we would like to connect to, may have up to 32 characters \* ``password`` to the access point, a character string that should be minimum 8 characters long and not longer than 64 characters \* ``channel`` of AP, if we like to operate using specific channel, otherwise this parameter may be omitted \* ``bssid`` -
-mac address of AP, this parameter is also optional \* ``connect`` - a ``boolean`` parameter that if set to ``false``, will instruct module just to save the other parameters without actually establishing connection to the access point
+Meaning of parameters is as follows: 
+
+* ``ssid`` - Una String que contiene el SSID del punto de acceso que queremos conectarno, Puede tener hasta 32 caracteres. 
+
+* ``password`` - Contraseña del punto de acceso, un String que debe tener como mínimo una longitud de 8 caracteres y menos de 64 caracteres.
+
+* ``channel`` Canal del AP, si queremos operar en un canal específico, de lo contrario, este parámetro puede omitirse. 
+
+* ``bssid`` - Dirección MAC del AP, este parámetro es también opcional.
+
+* ``connect`` - Un parámetro ``boolean`` que si se establece a ``false``, instruirá al módulo para que solo guarde los parámetros sin establecer conexión con el punto de acceso.
 
 config
 ^^^^^^
 
-Disable `DHCP <https://en.wikipedia.org/wiki/Dynamic_Host_Configuration_Protocol>`__ client (Dynamic Host Configuration Protocol) and set the IP configuration of station interface to user defined arbitrary values. The interface will be a static IP configuration instead of values provided by DHCP.
+Desactiva el cliente `DHCP <https://es.wikipedia.org/wiki/Protocolo_de_configuraci%C3%B3n_din%C3%A1mica_de_host>`__ y establece la configuración IP del interfaz de estación con valores definidos por el usuario. El interfaz tendrá una configuración IP estática en vez de los valores servidos por el DHCP.
 
 .. code:: cpp
 
@@ -150,7 +156,7 @@ The following IP configuration may be provided:
 Please note that station with static IP configuration usually connects to the network faster. In the above example it took about 500ms (one dot `.` displayed). This is because obtaining of IP configuration by DHCP client takes time and in this case this step is skipped. If you pass all three parameter as 0.0.0.0 (local_ip, gateway and subnet), it will re enable DHCP. You need to re-connect the device to get new IPs.
 
 
-Manage Connection
+Gestión de la conexión
 ~~~~~~~~~~~~~~~~~
 
 reconnect
@@ -239,7 +245,7 @@ Wait until module connects to the access point. This function is intended for mo
 
 Function returns one of the following connection statuses: \* ``WL_CONNECTED`` after successful connection is established \* ``WL_NO_SSID_AVAIL``\ in case configured SSID cannot be reached \* ``WL_CONNECT_FAILED`` if password is incorrect \* ``WL_IDLE_STATUS`` when Wi-Fi is in process of changing between statuses \* ``WL_DISCONNECTED`` if module is not configured in station mode
 
-Configuration
+Configuración
 ~~~~~~~~~~~~~
 
 macAddress
