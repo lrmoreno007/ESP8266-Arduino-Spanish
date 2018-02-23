@@ -1,7 +1,7 @@
 Clase Station
 -------------
 
-La cantidad de características proporcionadas por ESP8266 en el modo de estación es mucho más extensa que la que se cubre en la libreríaa original `Arduino WiFi <https://www.arduino.cc/en/Reference/WiFi>`__. Por lo tanto, en lugar de complementar la documentación original, hemos decidido escribir una nueva desde cero.
+La cantidad de características proporcionadas por ESP8266 en el modo de estación es mucho más extensa que la que se cubre en la librería original `Arduino WiFi <https://www.arduino.cc/en/Reference/WiFi>`__. Por lo tanto, en lugar de complementar la documentación original, hemos decidido escribir una nueva desde cero.
 
 La descripción de la clase de estación se ha dividido en cuatro partes. Primero analiza los métodos para establecer la conexión a un punto de acceso. Segundo proporciona métodos para administrar la conexión, como p. ej. ``reconnect`` o ``isConnected``. En tercer lugar, se cubren las propiedades para obtener información sobre la conexión, como la dirección MAC o IP. Finalmente, la cuarta sección proporciona métodos alternativos para conectarse, como p. ej. Configuración protegida WiFi (WPS).
 
@@ -44,7 +44,7 @@ Tabla de contenidos
 
 Los puntos siguientes proporcionan descripciones y retazos de código sobre como usar métodos particulares.
 
-Para obtener más muestras de código, consulte la sección separada con: doc:`ejemplos <station-examples>` dedicado específicamente a la Clase Station.
+Para obtener más muestras de código, consulte la sección separada con :doc:`ejemplos <station-examples>` dedicada específicamente a la Clase Station.
 
 Comienza aquí
 ~~~~~~~~~~
@@ -78,7 +78,7 @@ A continuación se muestra la sintaxis de otra sobrecarga de ``begin`` con todos
 
 El significado de los parámetros es el siguiente:
 
-* ``ssid`` - Una String que contiene el SSID del punto de acceso que queremos conectarno, Puede tener hasta 32 caracteres. 
+* ``ssid`` - Una String que contiene el SSID del punto de acceso que queremos conectarnos, Puede tener hasta 32 caracteres. 
 
 * ``password`` - Contraseña del punto de acceso, un String que debe tener como mínimo una longitud de 8 caracteres y menos de 64 caracteres.
 
@@ -97,13 +97,13 @@ Desactiva el cliente `DHCP <https://es.wikipedia.org/wiki/Protocolo_de_configura
 
     WiFi.config(local_ip, gateway, subnet, dns1, dns2) 
 
-Función que devuelve ``true`` si la configuración se aplica satisfactoriamente. Si la configuración no puede aplicarse, porque p. ej. el módulo no está en modo estación o estacion + punto de acceso, entonces devolverá ``false``.
+Función que devuelve ``true`` si la configuración se aplica satisfactoriamente. Si la configuración no puede aplicarse, porque p. ej. el módulo no está en modo estación o estación + punto de acceso, entonces devolverá ``false``.
 
 La siguiente configuración IP debe proveerse:
 
 *  ``local_ip`` - Introduce aquí la dirección IP que quieras asignar al interfaz estación del ESP.
 
-*  ``gateway`` - Debe contener la dirección IP de la puerta de enlace (getaway - de un router) para acceder a redes externas.
+*  ``gateway`` - Debe contener la dirección IP de la puerta de enlace (Gateway - de un router) para acceder a redes externas.
 
 *  ``subnet`` - Esta es la máscara de subred que define el rango de direcciones IP de la red local.
 
@@ -208,7 +208,7 @@ Configura el módulo para conectarse automáticamente tras encenderse al último
 
     WiFi.setAutoConnect(autoConnect) 
 
-El parámetro ``autoConnect`` es opcional. Si se establece a ``false`` la funcionalidad de autoconexión será desactivada. Si se omite o se establece a ``true``, la autoconexión se activará.
+El parámetro ``autoConnect`` es opcional. Si se establece a ``false`` la funcionalidad de auto conexión será desactivada. Si se omite o se establece a ``true``, la auto conexión se activará.
 
 getAutoConnect
 ^^^^^^^^^^^^^^
@@ -219,7 +219,7 @@ Es una función "compañera" a ``setAutoConnect()``. Si devuelve ``true`` el mó
 
     WiFi.getAutoConnect()
 
-Si la funcionalidad de autoconexión está desactivada, la función devuelve ``false``.
+Si la funcionalidad de auto conexión está desactivada, la función devuelve ``false``.
 
 setAutoReconnect
 ^^^^^^^^^^^^^^^^
@@ -310,7 +310,7 @@ Función utilizada para obtener la dirección IP de la interfaz de estación ESP
 
     WiFi.localIP() 
 
-El tipo de valor devuelto es `IPAddress <https://github.com/esp8266/Arduino/blob/master/cores/esp8266/IPAddress.h>`__. Hay un par de métodos disponibles para mostrar este tipo de datos. Se presentan en ejemplos a continuación que cubren la descripción de ``subnetMask``, ``gatewayIP`` y ``dnsIP`` que también devuelven valores IPAdress.
+El tipo de valor devuelto es `IPAddress <https://github.com/esp8266/Arduino/blob/master/cores/esp8266/IPAddress.h>`__. Hay un par de métodos disponibles para mostrar este tipo de datos. Se presentan en ejemplos a continuación que cubren la descripción de ``subnetMask``, ``gatewayIP`` y ``dnsIP`` que también devuelven valores IPAddress.
 
 *Código de ejemplo:*
 
@@ -367,7 +367,7 @@ Obtiene la dirección IP de la puerta de acceso o gateway.
 
     Serial.printf("Getaway IP: %s\n", WiFi.gatewayIP().toString().c_str());
 
-*Eejemplo de salida:*
+*Ejemplo de salida:*
 
 ::
 
@@ -528,7 +528,7 @@ El valor devuelto es del tipo ``String``.
 psk
 ^^^
 
-Devuelve la clave precompartida actual (contraseña) asociada a la red WiFi.
+Devuelve la clave pre compartida actual (contraseña) asociada a la red WiFi.
 
 .. code:: cpp
 
@@ -616,9 +616,9 @@ Dependiendo del resultado de la conexión, la función devuelve ``true`` o ``fal
       Serial.begin(115200);
       Serial.println();
 
-      Serial.printf("Modo WiFi establecido a WIFI_STA %s\n", WiFi.mode(WIFI_STA) ? "" : "Failed!");
+      Serial.printf("Modo WiFi establecido a WIFI_STA %s\n", WiFi.mode(WIFI_STA) ? "" : "Falló!");
       Serial.print("Comienzo WPS (presione el botón WPS en su router) ... ");
-      Serial.println(WiFi.beginWPSConfig() ? "OK" : "Fallo");
+      Serial.println(WiFi.beginWPSConfig() ? "OK" : "Falló!");
 
       while (WiFi.status() != WL_CONNECTED)
       {
@@ -667,3 +667,6 @@ Detiene Smart Config y libera el buffer tomado por ``beginSmartConfig()``. Depen
     stopSmartConfig() 
 
 Para obtener más información acerca de Smart Config, consulte la guía de usuario de la `API ESP8266 <http://bbs.espressif.com/viewtopic.php?f=51&t=1023>`__.
+
+
+Consulte la sección separada con :doc:`ejemplos <station-examples>` dedicada específicamente a la Clase Station.
