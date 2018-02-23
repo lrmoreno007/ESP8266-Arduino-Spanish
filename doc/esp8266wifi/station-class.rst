@@ -317,7 +317,7 @@ El tipo de valor devuelto es `IPAddress <https://github.com/esp8266/Arduino/blob
       Serial.println(WiFi.localIP());
     }
 
-*Example output:*
+*Ejemplo de salida:*
 
 ::
 
