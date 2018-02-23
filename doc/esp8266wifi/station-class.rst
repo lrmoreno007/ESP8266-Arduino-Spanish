@@ -82,7 +82,7 @@ Meaning of parameters is as follows:
 
 * ``password`` - Contraseña del punto de acceso, un String que debe tener como mínimo una longitud de 8 caracteres y menos de 64 caracteres.
 
-* ``channel`` Canal del AP, si queremos operar en un canal específico, de lo contrario, este parámetro puede omitirse. 
+* ``channel`` - Canal del AP, si queremos operar en un canal específico, de lo contrario, este parámetro puede omitirse. 
 
 * ``bssid`` - Dirección MAC del AP, este parámetro es también opcional.
 
