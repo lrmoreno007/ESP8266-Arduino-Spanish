@@ -102,8 +102,11 @@ Función que devuelve ``true`` si la configuración se aplica satisfactoriamente
 La siguiente configuración IP debe proveerse:
 
 -  ``local_ip`` - Introduce aquí la dirección IP que quieras asignar al interfaz estación del ESP.
+
 -  ``gateway`` - Debe contener la dirección IP de la puerta de enlace (getaway - de un router) para acceder a redes externas.
+
 -  ``subnet`` - Esta es la máscara de subred que define el rango de direcciones IP de la red local.
+
 -  ``dns1``, ``dns2`` - Parámetro opcional que define la dirección IP del servidor de dominio (DNS) que mantiene un directorio de nombres de dominio (como p.ej. *www.google.es*) y nos las traduce a direcciones IP.
 
 *Código de ejemplo:*
@@ -139,7 +142,7 @@ La siguiente configuración IP debe proveerse:
 
     void loop() {}
 
-*Example output:*
+*Ejemplo de salida:*
 
 ::
 
@@ -163,9 +166,9 @@ Reconecta la estación. Esto se hace por desconexión del punto de acceso y ento
 
 Notes: 
 
-1. Station should be already connected to an access point. If this is not the case, then function will return ``false`` not performing any action.
+1. La estación debe estar ya conectada a un punto de acceso. Si no es el caso, la función devolverá ``false`` sin realizar ninguna acción.
 
-2. If ``true`` is returned it means that connection sequence has been successfully started. User should still check for connection status, waiting until ``WL_CONNECTED`` is reported:
+2. Si se devuelve ``true`` significa que la secuencia de conexión se ha iniciado con éxito. El usuario aún debe verificar el estado de la conexión, esperando hasta que se informe ``WL_CONNECTED``:
 
 .. code:: cpp
 
@@ -179,18 +182,18 @@ Notes:
 disconnect
 ^^^^^^^^^^
 
-Sets currently configured SSID and password to ``null`` values and disconnects the station from an access point.
+Establece la SSID y contraseña actualmente configurada al valor ``null`` y desconecta la estación del punto de acceso.
 
 .. code:: cpp
 
     WiFi.disconnect(wifioff) 
 
-The ``wifioff`` is an optional ``boolean`` parameter. If set to ``true``, then the station mode will be turned off.
+El parámetro ``wifioff`` es de tipo ``boolean`` opcional. Si se establece a ``true``, el modo estación será apagado.
 
 isConnected
 ^^^^^^^^^^^
 
-Returns ``true`` if Station is connected to an access point or ``false`` if not.
+Devuelve ``true`` si la estación está conecta a un punto de acceso, en caso contrario devuelve ``false``.
 
 .. code:: cpp
 
@@ -199,48 +202,53 @@ Returns ``true`` if Station is connected to an access point or ``false`` if not.
 setAutoConnect
 ^^^^^^^^^^^^^^
 
-Configure module to automatically connect on power on to the last used access point.
+Configura el módulo para conectarse automáticamente tras encenderse al último punto de acceso utilizado.
 
 .. code:: cpp
 
     WiFi.setAutoConnect(autoConnect) 
 
-The ``autoConnect`` is an optional parameter. If set to ``false`` then auto connection functionality up will be disabled. If omitted or set to ``true``, then auto connection will be enabled.
+El parámetro ``autoConnect`` es opcional. Si se establece a ``false`` la funcionalidad de autoconexión será desactivada. Si se omite o se establece a ``true``, la autoconexión se activará.
 
 getAutoConnect
 ^^^^^^^^^^^^^^
 
-This is "companion" function to ``setAutoConnect()``. It returns ``true`` if module is configured to automatically connect to last used access point on power on.
+Es una función "compañera" a ``setAutoConnect()``. Si devuelve ``true`` el módulo está configurado para conectar al último punto de acceso tras encenderse.
 
 .. code:: cpp
 
     WiFi.getAutoConnect()
 
-If auto connection functionality is disabled, then function returns ``false``.
+Si la funcionalidad de autoconexión está desactivada, la función devuelve ``false``.
 
 setAutoReconnect
 ^^^^^^^^^^^^^^^^
 
-Set whether module will attempt to reconnect to an access point in case it is disconnected.
+Establece si el módulo intentará volver a conectarse a un punto de acceso en caso de que esté desconectado.
 
 .. code:: cpp
 
     WiFi.setAutoReconnect(autoReconnect)  
 
-If parameter ``autoReconnect`` is set to ``true``, then module will try to reestablish lost connection to the AP. If set to ``false`` then module will stay disconnected.
+Si el parámetro ``autoReconnect`` está establecido en ``true``, el módulo intentará restablecer la conexión perdida al punto de acceso. Si se establece en ``false``, el módulo permanecerá desconectado.
 
-Note: running ``setAutoReconnect(true)`` when module is already disconnected will not make it reconnect to the access point. Instead ``reconnect()`` should be used.
+Nota: ejecutar ``setAutoReconnect(true)`` cuando el módulo ya está desconectado no lo hará volver a conectarse al punto de acceso. En cambio, debería utilizarse ``reconnect()``.
 
 waitForConnectResult
 ^^^^^^^^^^^^^^^^^^^^
 
-Wait until module connects to the access point. This function is intended for module configured in station or station + soft access point mode.
+Espera hasta que el módulo se conecte al punto de acceso. Esta función está destinada para el módulo configurado modo estación o estación + punto de acceso SoftAP.
 
 .. code:: cpp
 
     WiFi.waitForConnectResult()  
 
-Function returns one of the following connection statuses: \* ``WL_CONNECTED`` after successful connection is established \* ``WL_NO_SSID_AVAIL``\ in case configured SSID cannot be reached \* ``WL_CONNECT_FAILED`` if password is incorrect \* ``WL_IDLE_STATUS`` when Wi-Fi is in process of changing between statuses \* ``WL_DISCONNECTED`` if module is not configured in station mode
+La función devuelve uno de los siguientes estados de conexión:
+* ``WL_CONNECTED`` - Después de establecida una conexión exitosa.
+* ``WL_NO_SSID_AVAIL`` - En caso de que no se pueda alcanzar el SSID configurado.
+* ``WL_CONNECT_FAILED`` - Si la contraseña es incorrecta.
+* ``WL_IDLE_STATUS`` - Cuando WiFi está en proceso de cambio entre estados.
+* ``WL_DISCONNECTED`` - Si el módulo no está configurado en modo de estación.
 
 Configuración
 ~~~~~~~~~~~~~
@@ -248,15 +256,15 @@ Configuración
 macAddress
 ^^^^^^^^^^
 
-Get the MAC address of the ESP station's interface.
+Obtiene la dirección MAC de la interfaz de estación ESP.
 
 .. code:: cpp
 
     WiFi.macAddress(mac) 
 
-Function should be provided with ``mac`` that is a pointer to memory location (an ``uint8_t`` array the size of 6 elements) to save the mac address. The same pointer value is returned by the function itself.
+Se debe proporcionar a la función ``mac`` que es un puntero a la ubicación de la memoria (una matriz ``uint8_t`` de tamaño de 6 elementos) para guardar la dirección MAC. El mismo valor de puntero es devuelto por la función.
 
-*Example code:*
+*Código de ejemplo:*
 
 .. code:: cpp
 
@@ -264,48 +272,48 @@ Function should be provided with ``mac`` that is a pointer to memory location (a
     {
       uint8_t macAddr[6];
       WiFi.macAddress(macAddr);
-      Serial.printf("Connected, mac address: %02x:%02x:%02x:%02x:%02x:%02x\n", macAddr[0], macAddr[1], macAddr[2], macAddr[3], macAddr[4], macAddr[5]);
+      Serial.printf("Conectado, dirección MAC: %02x:%02x:%02x:%02x:%02x:%02x\n", macAddr[0], macAddr[1], macAddr[2], macAddr[3], macAddr[4], macAddr[5]);
     }
 
-*Example output:*
+*Ejemplo de salida:*
 
 ::
 
-    Mac address: 5C:CF:7F:08:11:17
+    Conectado, dirección MAC: 5C:CF:7F:08:11:17
 
-If you do not feel comfortable with pointers, then there is optional version of this function available. Instead of the pointer, it returns a formatted ``String`` that contains the same mac address.
+Si no se siente cómodo con los punteros, existe una versión opcional de esta función disponible. En lugar del puntero, devuelve un ``String`` que contiene la misma dirección MAC.
 
 .. code:: cpp
 
     WiFi.macAddress() 
 
-*Example code:*
+*Código de ejemplo:*
 
 .. code:: cpp
 
     if (WiFi.status() == WL_CONNECTED)
     {
-      Serial.printf("Connected, mac address: %s\n", WiFi.macAddress().c_str());
+      Serial.printf("Conectado, dirección MAC: %s\n", WiFi.macAddress().c_str());
     }
 
 localIP
 ^^^^^^^
 
-Function used to obtain IP address of ESP station's interface.
+Función utilizada para obtener la dirección IP de la interfaz de estación ESP.
 
 .. code:: cpp
 
     WiFi.localIP() 
 
-The type of returned value is `IPAddress <https://github.com/esp8266/Arduino/blob/master/cores/esp8266/IPAddress.h>`__. There is a couple of methods available to display this type of data. They are presented in examples below that cover description of ``subnetMask``, ``gatewayIP`` and ``dnsIP`` that return the IPAdress as well.
+El tipo de valor devuelto es `IPAddress <https://github.com/esp8266/Arduino/blob/master/cores/esp8266/IPAddress.h>`__. Hay un par de métodos disponibles para mostrar este tipo de datos. Se presentan en ejemplos a continuación que cubren la descripción de ``subnetMask``, ``gatewayIP`` y ``dnsIP`` que también devuelven valores IPAdress.
 
-*Example code:*
+*Código de ejemplo:*
 
 .. code:: cpp
 
     if (WiFi.status() == WL_CONNECTED)
     {
-      Serial.print("Connected, IP address: ");
+      Serial.print("Conectado, dirección IP: ");
       Serial.println(WiFi.localIP());
     }
 
@@ -313,128 +321,138 @@ The type of returned value is `IPAddress <https://github.com/esp8266/Arduino/blo
 
 ::
 
-    Connected, IP address: 192.168.1.10
+    Conectado, dirección IP: 192.168.1.10
 
 subnetMask
 ^^^^^^^^^^
 
-Get the subnet mask of the station's interface.
+Obtiene la máscara de subred de la interfaz de estación.
 
 .. code:: cpp
 
     WiFi.subnetMask()
 
-Module should be connected to the access point to obtain the subnet mask.
+El módulo debe estar conectado al punto de acceso para obtener la máscara de subred.
 
-*Example code:*
+*Código de ejemplo:*
 
 .. code:: cpp
 
-    Serial.print("Subnet mask: ");
+    Serial.print("Máscara de subred: ");
     Serial.println(WiFi.subnetMask());
 
-*Example output:*
+*Ejemplo de salida:*
 
 ::
 
-    Subnet mask: 255.255.255.0
+    Máscara de subred: 255.255.255.0
 
 gatewayIP
 ^^^^^^^^^
 
-Get the IP address of the gateway.
+Obtiene la dirección IP de la puerta de acceso o gateway.
 
 .. code:: cpp
 
     WiFi.gatewayIP()
 
-*Example code:*
+*Código de ejemplo:*
 
 .. code:: cpp
 
-    Serial.printf("Gataway IP: %s\n", WiFi.gatewayIP().toString().c_str());
+    Serial.printf("Getaway IP: %s\n", WiFi.gatewayIP().toString().c_str());
 
-*Example output:*
+*Eejemplo de salida:*
 
 ::
 
-    Gataway IP: 192.168.1.9
+    Getaway IP: 192.168.1.9
 
 dnsIP
 ^^^^^
 
-Get the IP addresses of Domain Name Servers (DNS).
+Obtiene la dirección IP del Servidor de Nombres de Dominio (DNS).
 
 .. code:: cpp
 
     WiFi.dnsIP(dns_no)
 
-With the input parameter ``dns_no`` we can specify which Domain Name Server's IP we need. This parameter is zero based and allowed values are none, 0 or 1. If no parameter is provided, then IP of DNS #1 is returned.
+Con el parámetro de entrada ``dns_no`` podemos especificar qué IP del servidor de nombres de dominio necesitamos. Este parámetro está basado en cero y los valores permitidos son ninguno, 0 o 1. Si no se proporciona ningún parámetro, se devuelve la IP del DNS n.° 1.
 
-*Example code:*
+*Código de ejemplo:*
 
 .. code:: cpp
 
-    Serial.print("DNS #1, #2 IP: ");
+    Serial.print("DNS: #1, #2 IP: ");
     WiFi.dnsIP().printTo(Serial);
     Serial.print(", ");
     WiFi.dnsIP(1).printTo(Serial);
     Serial.println();
 
-*Example output:*
+*Ejemplo de salida:*
 
 ::
 
-    DNS #1, #2 IP: 62.179.1.60, 62.179.1.61
+    DNS: #1, #2 IP: 62.179.1.60, 62.179.1.61
 
 hostname
 ^^^^^^^^
 
-Get the DHCP hostname assigned to ESP station.
+Obtiene el nombre del servidor DHCP asignado a la estación ESP.
 
 .. code:: cpp
 
     WiFi.hostname()
 
-Function returns ``String`` type. Default hostname is in format ``ESP_24xMAC``\ where 24xMAC are the last 24 bits of module's MAC address.
+La función devuelve un valor del tipo ``String``. El nombre de host predeterminado está en formato ``ESP_24xMAC`` donde 24xMAC son los últimos 24 bits de la dirección MAC del módulo.
 
-The hostname may be changed using the following function:
+El nombre del servidor DHCP puede cambiarse usando la siguiente función:
 
 .. code:: cpp
 
     WiFi.hostname(aHostname) 
 
-Input parameter ``aHostname`` may be a type of ``char*``, ``const char*`` or ``String``. Maximum length of assigned hostname is 32 characters. Function returns either ``true`` or ``false`` depending on result. For instance, if the limit of 32 characters is exceeded, function will return ``false`` without assigning the new hostname.
+El parámetro de entrada ``aHostname`` puede ser del tipo ``char*``, ``const char*`` o ``String``. La longitud máxima del nombre de host asignado es de 32 caracteres. La función devuelve ``true`` o ``false`` según el resultado. Por ejemplo, si se excede el límite de 32 caracteres, la función devolverá ``falso`` sin asignar el nuevo nombre de host.
 
-*Example code:*
+*Código de ejemplo:*
 
 .. code:: cpp
 
-    Serial.printf("Default hostname: %s\n", WiFi.hostname().c_str());
+    Serial.printf("Hostname por defecto: %s\n", WiFi.hostname().c_str());
     WiFi.hostname("Station_Tester_02");
-    Serial.printf("New hostname: %s\n", WiFi.hostname().c_str());
+    Serial.printf("Nuevo hostname: %s\n", WiFi.hostname().c_str());
 
-*Example output:*
+*Ejemplo de salida:*
 
 ::
 
-    Default hostname: ESP_081117
-    New hostname: Station_Tester_02
+    Hostname por defecto: ESP_081117
+    Nuevo hostname: Station_Tester_02
 
 status
 ^^^^^^
 
-Return the status of Wi-Fi connection.
+Devuelve el estado de la conexión WiFi.
 
 .. code:: cpp
 
     WiFi.status()
 
-Function returns one of the following connection statuses: \* ``WL_CONNECTED`` after successful connection is established \* ``WL_NO_SSID_AVAIL``\ in case configured SSID cannot be reached \* ``WL_CONNECT_FAILED`` if password is incorrect \* ``WL_IDLE_STATUS`` when Wi-Fi is in process of changing between statuses \* ``WL_DISCONNECTED`` if module is not configured in station mode
+La función devuelve uno de los siguientes estados de conexión:
 
-Returned value is type of ``wl_status_t`` defined in `wl\_definitions.h <https://github.com/esp8266/Arduino/blob/master/libraries/ESP8266WiFi/src/include/wl_definitions.h>`__
+* ``WL_CONNECTED`` - Después de que se establece una conexión exitosa.
 
-*Example code:*
+* ``WL_NO_SSID_AVAIL`` - En caso de que no se pueda alcanzar el SSID configurado.
+
+* ``WL_CONNECT_FAILED`` - Si la contraseña es incorrecta.
+
+* ``WL_IDLE_STATUS`` - Cuando WiFi está cambiando de estado.
+
+* ``WL_DISCONNECTED`` - Si el módulo no está configurado en modo de estación.
+
+El valor devuelto es del tipo ``wl_status_t`` definido en `wl\_definitions.h <https://github.com/esp8266/Arduino/blob/master/libraries/ESP8266WiFi/src/include/wl_definitions.h>`__
+
+*Código de ejemplo:*
 
 .. code:: cpp
 
@@ -443,17 +461,17 @@ Returned value is type of ``wl_status_t`` defined in `wl\_definitions.h <https:/
     void setup(void)
     {
       Serial.begin(115200);
-      Serial.printf("Connection status: %d\n", WiFi.status());
-      Serial.printf("Connecting to %s\n", ssid);
+      Serial.printf("Estado de la conexión: %d\n", WiFi.status());
+      Serial.printf("Conectando a %s\n", ssid);
       WiFi.begin(ssid, password);
-      Serial.printf("Connection status: %d\n", WiFi.status());
+      Serial.printf("Estado de la conexión: %d\n", WiFi.status());
       while (WiFi.status() != WL_CONNECTED)
       {
         delay(500);
         Serial.print(".");
       }
-      Serial.printf("\nConnection status: %d\n", WiFi.status());
-      Serial.print("Connected, IP address: ");
+      Serial.printf("\nEstado de la conexión: %d\n", WiFi.status());
+      Serial.print("Conectado, dirección IP: ");
       Serial.println(WiFi.localIP());
     }
 
@@ -463,40 +481,40 @@ Returned value is type of ``wl_status_t`` defined in `wl\_definitions.h <https:/
 
 ::
 
-    Connection status: 6
-    Connecting to sensor-net
-    Connection status: 6
+    Estado de la conexión: 6
+    Conectando a sensor-net
+    Estado de la conexión: 6
     ......
-    Connection status: 3
-    Connected, IP address: 192.168.1.10
+    Estado de la conexión: 3
+    Conectado, dirección IP: 192.168.1.10
 
-Particular connection statuses 6 and 3 may be looked up in `wl\_definitions.h <https://github.com/esp8266/Arduino/blob/master/libraries/ESP8266WiFi/src/include/wl_definitions.h>`__ as follows:
+Los estatus de conexión 6 y 3 como puede verse en `wl\_definitions.h <https://github.com/esp8266/Arduino/blob/master/libraries/ESP8266WiFi/src/include/wl_definitions.h>`__ son:
 
 ::
 
     3 - WL_CONNECTED
     6 - WL_DISCONNECTED
 
-Basing on this example, when running above code, module is initially disconnected from the network and returns connection status ``6 - WL_DISCONNECTED``. It is also disconnected immediately after running ``WiFi.begin(ssid, password)``. Then after about 3 seconds (basing on number of dots displayed every 500ms), it finally gets connected returning status ``3 - WL_CONNECTED``.
+Según este ejemplo, cuando se ejecuta el código anterior, el módulo está desconectado inicialmente de la red y devuelve el estado de conexión ``6 - WL_DISCONNECTED``. También está desconectado inmediatamente después de ejecutar ``WiFi.begin(ssid, password)``. Luego, después de unos 3 segundos (basándose en el número de puntos que se muestran cada 500 ms), finalmente se activa el estado de conexión ``3 - WL_CONNECTED``.
 
 SSID
 ^^^^
 
-Return the name of Wi-Fi network, formally called `Service Set Identification (SSID) <http://www.juniper.net/techpubs/en_US/network-director1.1/topics/concept/wireless-ssid-bssid-essid.html#jd0e34>`__.
+Devuelve el nombre de la red WiFi, formalmente llamada `Service Set Identifier (SSID) <https://es.wikipedia.org/wiki/SSID>`__.
 
 .. code:: cpp
 
     WiFi.SSID()
 
-Returned value is of the ``String`` type.
+El valor devuelto es del tipo ``String``.
 
-*Example code:*
+*Código de ejemplo:*
 
 .. code:: cpp
 
     Serial.printf("SSID: %s\n", WiFi.SSID().c_str());
 
-*Example output:*
+*Ejemplo de salida:*
 
 ::
 
@@ -505,38 +523,38 @@ Returned value is of the ``String`` type.
 psk
 ^^^
 
-Return current pre shared key (password) associated with the Wi-Fi network.
+Devuelve la clave precompartida actual (contraseña) asociada a la red WiFi.
 
 .. code:: cpp
 
     WiFi.psk()
 
-Function returns value of the ``String`` type.
+El valor devuelto es del tipo ``String``.
 
 BSSID
 ^^^^^
 
-Return the mac address the access point where ESP module is connected to. This address is formally called `Basic Service Set Identification (BSSID) <http://www.juniper.net/techpubs/en_US/network-director1.1/topics/concept/wireless-ssid-bssid-essid.html#jd0e47>`__.
+Devuelve la dirección MAC del punto de acceso al que está conectado el módulo ESP. Esta dirección se denomina formalmente `Basic Service Set Identifier (BSSID) <https://es.wikipedia.org/wiki/BSSID>`__.
 
 .. code:: cpp
 
     WiFi.BSSID()
 
-The ``BSSID()`` function returns a pointer to the memory location (an ``uint8_t`` array with the size of 6 elements) where the BSSID is saved.
+La función ``BSSID()`` devuelve un puntero a la ubicación de la memoria (una matriz ``uint8_t`` con tamaño de 6 elementos) donde se guarda el BSSID.
 
-Below is similar function, but returning BSSID but as a ``String`` type.
+A continuación se muestra una función similar, pero que devuelve BSSID como del tipo ``String``.
 
 .. code:: cpp
 
     WiFi.BSSIDstr()  
 
-*Example code:*
+*Código de ejemplo:*
 
 .. code:: cpp
 
     Serial.printf("BSSID: %s\n", WiFi.BSSIDstr().c_str());
 
-*Example output:*
+*Ejemplo de salida:*
 
 ::
 
@@ -545,21 +563,21 @@ Below is similar function, but returning BSSID but as a ``String`` type.
 RSSI
 ^^^^
 
-Return the signal strength of Wi-Fi network, that is formally called `Received Signal Strength Indication (RSSI) <https://en.wikipedia.org/wiki/Received_signal_strength_indication>`__.
+Devuelve la potencia de la señal WiFi, que formalmente se llama 'Received Signal Strength Indicator (RSSI) <https://es.wikipedia.org/wiki/Indicador_de_fuerza_de_la_se%C3%B1al_recibida> `__.
 
 .. code:: cpp
 
     WiFi.RSSI() 
 
-Signal strength value is provided in dBm. The type of returned value is ``int32_t``.
+El valor de intensidad de la señal se proporciona en dBm (decibelios). El tipo del valor devuelto es ``int32_t``.
 
-*Example code:*
+*Código de ejemplo:*
 
 .. code:: cpp
 
     Serial.printf("RSSI: %d dBm\n", WiFi.RSSI());
 
-*Example output:*
+*Ejemplo de salida:*
 
 ::
 
@@ -568,20 +586,21 @@ Signal strength value is provided in dBm. The type of returned value is ``int32_
 Conexiones diferentes
 ~~~~~~~~~~~~~~~~~
 
-`ESP8266 SDK <http://bbs.espressif.com/viewtopic.php?f=51&t=1023>`__ provides alternate methods to connect ESP station to an access point. Out of them `esp8266 / Arduino <https://github.com/esp8266/Arduino>`__ core implements `WPS <#wps>`__ and `Smart Config <#smart-config>`__ as described in more details below.
+El `SDK de ESP8266 <http://bbs.espressif.com/viewtopic.php?f=51&t=1023>`__ proporciona métodos para conectar la estación ESP a un punto de acceso. Aparte el core `ESP8266/Arduino <https://github.com/esp8266/Arduino>`__ implementa `WPS <#wps>`__ y `Smart Config <#smart-config>`__ como se describe con más detalle a continuación.
+
 
 WPS
 ^^^
 
-The following ``beginWPSConfig`` function allows connecting to a network using `Wi-Fi Protected Setup (WPS) <https://en.wikipedia.org/wiki/Wi-Fi_Protected_Setup>`__. Currently only `push-button configuration <http://www.wi-fi.org/knowledge-center/faq/how-does-wi-fi-protected-setup-work>`__ (``WPS_TYPE_PBC`` mode) is supported (SDK 1.5.4).
+La siguiente función ``beginWPSConfig`` permite conectarse a una red usando `Wi-Fi Protected Setup (WPS) <https://es.wikipedia.org/wiki/Wi-Fi_Protected_Setup>`__. Actualmente solo se permite el método `PBC (Push Button Configuration) <https://es.wikipedia.org/wiki/Wi-Fi_Protected_Setup>`__ (``modo WPS_TYPE_PBC``) compatible (SDK 1.5.4).
 
 .. code:: cpp
 
     WiFi.beginWPSConfig()
 
-Depending on connection result function returns either ``true`` or ``false`` (``boolean`` type).
+Dependiendo del resultado de la conexión, la función devuelve ``true`` o ``false`` (tipo ``boolean``).
 
-*Example code:*
+*Código de ejemplo:*
 
 .. code:: cpp
 
@@ -592,9 +611,9 @@ Depending on connection result function returns either ``true`` or ``false`` (``
       Serial.begin(115200);
       Serial.println();
 
-      Serial.printf("Wi-Fi mode set to WIFI_STA %s\n", WiFi.mode(WIFI_STA) ? "" : "Failed!");
-      Serial.print("Begin WPS (press WPS button on your router) ... ");
-      Serial.println(WiFi.beginWPSConfig() ? "Success" : "Failed");
+      Serial.printf("Modo WiFi establecido a WIFI_STA %s\n", WiFi.mode(WIFI_STA) ? "" : "Failed!");
+      Serial.print("Comienzo WPS (presione el botón WPS en su router) ... ");
+      Serial.println(WiFi.beginWPSConfig() ? "OK" : "Fallo");
 
       while (WiFi.status() != WL_CONNECTED)
       {
@@ -602,44 +621,46 @@ Depending on connection result function returns either ``true`` or ``false`` (``
         Serial.print(".");
       }
       Serial.println();
-      Serial.print("Connected, IP address: ");
+      Serial.print("Conectado, dirección IP: ");
       Serial.println(WiFi.localIP());
     }
 
     void loop() {}
 
-*Example output:*
+*Ejemplo de salida:*
 
 ::
 
-    Wi-Fi mode set to WIFI_STA 
-    Begin WPS (press WPS button on your router) ... Success
+    Modo WiFi establecido a WIFI_STA 
+    Comienzo WPS (presione el botón WPS en su router) ...  OK
     .........
-    Connected, IP address: 192.168.1.102
+    Conectado, dirección IP: 192.168.1.102
 
 Smart Config
 ^^^^^^^^^^^^
 
-The Smart Config connection of an ESP module an access point is done by sniffing for special packets that contain SSID and password of desired AP. To do so the mobile device or computer should have functionality of broadcasting of encoded SSID and password.
+La conexión Smart Config de un módulo ESP y un punto de acceso se realiza olfateando (sniffing) los paquetes especiales que contienen SSID y la contraseña del AP deseado. Para hacerlo, el dispositivo móvil o la computadora deben tener la funcionalidad de transmisión de SSID y contraseña codificados.
 
-The following three functions are provided to implement Smart Config.
+Las siguientes tres funciones se proporcionan para implementar Smart Config.
 
-Start smart configuration mode by sniffing for special packets that contain SSID and password of desired Access Point. Depending on result either ``true`` or \`false is returned.
+Inicie el modo Smart Config olfateando los paquetes especiales que contienen el SSID y la contraseña del punto de acceso deseado. Dependiendo del resultado, se devuelve ``true`` o ``false``.
 
 .. code:: cpp
 
     beginSmartConfig() 
 
-Query Smart Config status, to decide when stop configuration. Function returns either ``true`` or ``false of``\ boolean\` type.
+Consulta el estado de Smart Config, para decidir cuándo detener la configuración. La función devuelve ``true`` o ``false`` de tipo ``boolean``.
 
 .. code:: cpp
 
     smartConfigDone()
 
-Stop smart config, free the buffer taken by ``beginSmartConfig()``. Depending on result function return either ``true`` or ``false`` of ``boolean`` type.
+Detiene Smart Config y libera el buffer tomado por ``beginSmartConfig()``. Dependiendo del resultado de la función, devuelve ``true`` o `` false`` de tipo `` boolean``.
 
 .. code:: cpp
 
     stopSmartConfig() 
+
+Para obtener más información acerca de Smart Config, consulte la guía de usuario de la `API ESP8266 <http://bbs.espressif.com/viewtopic.php?f=51&t=1023>`__.
 
 For additional details regarding Smart Config please refer to `ESP8266 API User Guide <http://bbs.espressif.com/viewtopic.php?f=51&t=1023>`__.
