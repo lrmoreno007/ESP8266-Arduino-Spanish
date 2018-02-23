@@ -477,7 +477,7 @@ El valor devuelto es del tipo ``wl_status_t`` definido en `wl\_definitions.h <ht
 
     void loop() {}
 
-*Example output:*
+*Ejemplo de salida:*
 
 ::
 
