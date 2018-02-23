@@ -101,13 +101,13 @@ Función que devuelve ``true`` si la configuración se aplica satisfactoriamente
 
 La siguiente configuración IP debe proveerse:
 
--  ``local_ip`` - Introduce aquí la dirección IP que quieras asignar al interfaz estación del ESP.
+*  ``local_ip`` - Introduce aquí la dirección IP que quieras asignar al interfaz estación del ESP.
 
--  ``gateway`` - Debe contener la dirección IP de la puerta de enlace (getaway - de un router) para acceder a redes externas.
+*  ``gateway`` - Debe contener la dirección IP de la puerta de enlace (getaway - de un router) para acceder a redes externas.
 
--  ``subnet`` - Esta es la máscara de subred que define el rango de direcciones IP de la red local.
+*  ``subnet`` - Esta es la máscara de subred que define el rango de direcciones IP de la red local.
 
--  ``dns1``, ``dns2`` - Parámetro opcional que define la dirección IP del servidor de dominio (DNS) que mantiene un directorio de nombres de dominio (como p.ej. *www.google.es*) y nos las traduce a direcciones IP.
+*  ``dns1``, ``dns2`` - Parámetro opcional que define la dirección IP del servidor de dominio (DNS) que mantiene un directorio de nombres de dominio (como p.ej. *www.google.es*) y nos las traduce a direcciones IP.
 
 *Código de ejemplo:*
 
@@ -244,10 +244,15 @@ Espera hasta que el módulo se conecte al punto de acceso. Esta función está d
     WiFi.waitForConnectResult()  
 
 La función devuelve uno de los siguientes estados de conexión:
+
 * ``WL_CONNECTED`` - Después de establecida una conexión exitosa.
+
 * ``WL_NO_SSID_AVAIL`` - En caso de que no se pueda alcanzar el SSID configurado.
+
 * ``WL_CONNECT_FAILED`` - Si la contraseña es incorrecta.
+
 * ``WL_IDLE_STATUS`` - Cuando WiFi está en proceso de cambio entre estados.
+
 * ``WL_DISCONNECTED`` - Si el módulo no está configurado en modo de estación.
 
 Configuración
