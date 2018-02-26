@@ -1,25 +1,23 @@
-ESP8266WiFi library
+Librería ESP8266WiFi
 ===================
 
-ESP8266 is all about Wi-Fi. If you are eager to connect your new ESP8266 module to Wi-Fi network to start sending and receiving data, this is a good place to start. If you are looking for more in depth details of how to program specific Wi-Fi networking functionality, you are also in the right place.
+Todo sobre el WiFi de ESP8266. Si está ansioso por conectar su nuevo módulo ESP8266 a la red WiFi para comenzar a enviar y recibir datos, este es un buen lugar para comenzar. Si está buscando detalles más en profundidad sobre cómo programar una funcionalidad de red WiFi específica, también se encuentra en el lugar correcto.
 
-
-Introduction
+Introducción
 ------------
 
-The `Wi-Fi library for ESP8266 <https://github.com/esp8266/Arduino/tree/master/libraries/ESP8266WiFi>`__ has been developed basing on `ESP8266 SDK <http://bbs.espressif.com/viewtopic.php?f=51&t=1023>`__, using naming convention and overall functionality philosophy of `Arduino WiFi library <https://www.arduino.cc/en/Reference/WiFi>`__. Over time the wealth Wi-Fi features ported from ESP9266 SDK to `esp8266 /
-Adruino <https://github.com/esp8266/Arduino>`__ outgrow `Arduino WiFi library <https://www.arduino.cc/en/Reference/WiFi>`__ and it became apparent that we need to provide separate documentation on what is new and extra.
+La `librería WiFi para ESP8266 <https://github.com/esp8266/Arduino/tree/master/libraries/ESP8266WiFi>`__ ha sido desarrollada basándose en el `SDK de ESP8266 <http://bbs.espressif.com/viewtopic.php?f=51&t=1023>`__, usando nombres convencionales y la filosofía de funcionalidades generales de la `librería WiFi de Arduino <https://www.arduino.cc/en/Reference/WiFi>`__. Con el tiempo, la riqueza de las funciones Wi-Fi del SDK de ESP9266 pasadas a `ESP8266/Adruino <https://github.com/esp8266/Arduino>`__ superan a la  `librería WiFi de Arduino <https://www.arduino.cc/en/Reference/WiFi>`__ y se hizo evidente que tenemos que proporcionar documentación por separado sobre lo que es nuevo y extra.
 
-This documentation will walk you through several classes, methods and properties of `ESP8266WiFi <https://github.com/esp8266/Arduino/tree/master/libraries/ESP8266WiFi>`__ library. If you are new to C++ and Arduino, don't worry. We will start from general concepts and then move to detailed description of members of each particular class including usage examples.
+Esta documentación lo guiará a través de varias clases, métodos y propiedades de la librería `ESP8266WiFi <https://github.com/esp8266/Arduino/tree/master/libraries/ESP8266WiFi>`__. Si eres nuevo en C++ y Arduino, no te preocupes. Comenzaremos por conceptos generales y luego pasaremos a la descripción detallada de los miembros de cada clase en particular, incluidos los ejemplos de uso.
 
-The scope of functionality offered by `ESP8266WiFi <https://github.com/esp8266/Arduino/tree/master/libraries/ESP8266WiFi>`__ library is quite extensive and therefore this description has been broken up into separate documents marked with :arrow\_right:.
+El alcance de la funcionalidad que ofrece la biblioteca `ESP8266WiFi <https://github.com/esp8266/Arduino/tree/master/libraries/ESP8266WiFi>`__ es bastante extensa y por lo tanto, esta descripción se ha dividido en documentos separados marcados con :arrow_right:.
 
-Quick Start
+Comienzo rápido
 ~~~~~~~~~~~
 
-Hopefully you are already familiar how to load `Blink.ino <https://github.com/esp8266/Arduino/blob/master/libraries/esp8266/examples/Blink/Blink.ino>`__ sketch to ESP8266 module and get the LED blinking. If not, please check `this tutorial <https://learn.adafruit.com/adafruit-huzzah-esp8266-breakout/using-arduino-ide>`__ by Adafruit or `another great tutorial <https://learn.sparkfun.com/tutorials/esp8266-thing-hookup-guide/introduction>`__ developed by Sparkfun.
+Esperamos que ya esté familiarizado con la carga del sketch `Blink.ino <https://github.com/esp8266/Arduino/blob/master/libraries/esp8266/examples/Blink.bin>`__ en el módulo ESP8266 y obtenga el LED parpadeando. De lo contrario, compruebe `este tutorial <https://learn.adafruit.com/adafruit-huzzah-esp8266-breakout/using-arduinoide>`__ de Adafruit o este `otro gran tutorial <https://learn.sparkfun.com/tutorials/esp8266-thing-hookup-guide/introduction>`__ desarrollado por Sparkfun.
 
-To hook up ESP module to Wi-Fi (like hooking up a mobile phone to a hot spot), you need just couple of lines of code:
+Para conectar el módulo ESP al WiFi (como conectar un teléfono móvil a un punto caliente), solo necesita un par de líneas de código:
 
 .. code:: cpp
 
@@ -30,9 +28,9 @@ To hook up ESP module to Wi-Fi (like hooking up a mobile phone to a hot spot), y
       Serial.begin(115200);
       Serial.println();
 
-      WiFi.begin("network-name", "pass-to-network");
+      WiFi.begin("nombre-red", "contraseña-red");
       
-      Serial.print("Connecting");
+      Serial.print("Conectando");
       while (WiFi.status() != WL_CONNECTED)
       {
         delay(500);
@@ -40,28 +38,28 @@ To hook up ESP module to Wi-Fi (like hooking up a mobile phone to a hot spot), y
       }
       Serial.println();
       
-      Serial.print("Connected, IP address: ");
+      Serial.print("Conectado, dirección IP: ");
       Serial.println(WiFi.localIP());
     }
 
     void loop() {}
 
-In the line ``WiFi.begin("network-name", "pass-to-network")`` replace ``network-name`` and ``pass-to-network`` with name and password to the Wi-Fi network you like to connect. Then upload this sketch to ESP module and open serial monitor. You should see something like:
+En la linea ``WiFi.begin("nombre-red", "contraseña-red")`` reemplace ``nombre-red`` y ``contraseña-red`` con el nombre y contraseña a la red WiFi que quiere conectarse. Entonces suba el sketch al módulo ESP y abra el Monitor Serie. Deberías ver algo como:
 
 .. figure:: pictures/wifi-simple-connect-terminal.png
-   :alt: Connection log on Arduino IDE's Serial Monitor
+   :alt: Registro de conexión en el Monitor Serie del IDE Arduino
 
-   alt text
+   Registro de conexión en el Monitor Serie del IDE Arduino
 
-How does it work? In the first line of sketch ``#include <ESP8266WiFi.h>`` we are including `ESP8266WiFi <https://github.com/esp8266/Arduino/tree/master/libraries/ESP8266WiFi>`__ library. This library provides ESP8266 specific Wi-Fi routines we are calling to connect to network.
+¿Como funciona? En la primera línea del boceto ``#include <ESP8266WiFi.h> `` estamos incluyendo la librería `ESP8266WiFi <https://github.com/esp8266/Arduino/tree/master/libraries/ESP8266WiFi>`__. Esta librería proporciona las rutinas específicas WiFi de ESP8266 a las que llamamos para conectarse a la red.
 
-Actual connection to Wi-Fi is initialized by calling:
+La conexión real a Wi-Fi se inicia llamando al:
 
 .. code:: cpp
 
-    WiFi.begin("network-name", "pass-to-network");
+      WiFi.begin("nombre-red", "contraseña-red");
 
-Connection process can take couple of seconds and we are checking for this to complete in the following loop:
+El proceso de conexión puede demorar unos segundos, así que comprobamos que esto se complete en el siguiente ciclo:
 
 .. code:: cpp
 
@@ -71,90 +69,88 @@ Connection process can take couple of seconds and we are checking for this to co
         Serial.print(".");
       }
 
-The ``while()`` loop will keep looping while ``WiFi.status()`` is other than ``WL_CONNECTED``. The loop will exit only if the status changes to ``WL_CONNECTED``.
+El bucle ``while () `` seguirá en bucle mientras ``WiFi.status()`` no es ``WL_CONNECTED``. El ciclo saldrá solo si el estado cambia a ``WL_CONNECTED``.
 
-The last line will then print out IP address assigned to ESP module by `DHCP <http://whatismyipaddress.com/dhcp>`__:
+La última línea imprimirá la dirección IP asignada al módulo ESP por `DHCP <http://whatismyipaddress.com/dhcp>`__:
 
 .. code:: cpp
 
     Serial.println(WiFi.localIP());
 
-If you don't see the last line but just more and more dots ``.........``, then likely name or password to the Wi-Fi network in sketch is entered incorrectly. Verify name and password by connecting from scratch to this Wi-Fi a PC or a mobile phone.
+Si no ve la última línea sino solo más y más puntos ``......... ``, entonces probablemente el nombre o la contraseña de la red WiFi en el sketch son incorrectos. Verifique el nombre y la contraseña conectando desde cero a esta WiFi una PC o un teléfono móvil.
 
-*Note:* if connection is established, and then lost for some reason, ESP will automatically reconnect to last used access point once it is again back on-line. This will be done automatically by Wi-Fi library, without any user intervention.
+*Nota:* si la conexión se establece y luego se pierde por algún motivo, ESP se reconectará automáticamente al último punto de acceso utilizado una vez que vuelva a estar en línea. Esto se hará automáticamente mediante la librería WiFi, sin intervención del usuario.
 
-That's all you need to connect ESP8266 to Wi-Fi. In the following chapters we will explain what cool things can be done by ESP once connected.
+Eso es todo lo que necesita para conectar su ESP8266 al WiFi. En los siguientes capítulos, explicaremos qué cosas interesantes se pueden hacer con ESP una vez conectados.
 
-Who is Who
+Quien es quien
 ~~~~~~~~~~
 
-Devices that connect to Wi-Fi network are called stations (STA). Connection to Wi-Fi is provided by an access point (AP), that acts as a hub for one or more stations. The access point on the other end is connected to a wired network. An access point is usually integrated with a router to provide access from Wi-Fi network to the internet. Each access point is recognized by a SSID (**S**\ ervice **S**\ et **ID**\ entifier), that essentially is the name of network you select when connecting a device (station) to the Wi-Fi.
+Los dispositivos que se conectan a la red WiFi se llaman estaciones (STA). La conexión a Wi-Fi es proporcionada por un punto de acceso (AP), que actúa como un centro para una o más estaciones. El punto de acceso en el otro extremo está conectado a una red cableada. Un punto de acceso generalmente se integra con un router para proporcionar acceso desde la red WiFi a Internet. Cada punto de acceso es reconocido por un SSID (**S**\ervice **S**\et **ID**\entifier), que esencialmente es el nombre de la red que usted selecciona cuando conecta un dispositivo (estación) al WiFi.
 
-ESP8266 module can operate as a station, so we can connect it to the Wi-Fi network. It can also operate as a soft access point (soft-AP), to establish its own Wi-Fi network. Therefore we can connect other stations to such ESP module. ESP8266 is also able to operate both in station and soft access point mode. This provides possibility of building e.g. `mesh networks <https://en.wikipedia.org/wiki/Mesh_networking>`__.
+El módulo ESP8266 puede funcionar como una estación, por lo que podemos conectarlo a la red WiFi. Y también puede funcionar como un punto de acceso wireless (SoftAP), para establecer su propia red WiFi. Por lo tanto, podemos conectar otras estaciones a dicho módulo ESP. ESP8266 también puede operar tanto en modo estación como en modo punto de acceso. Esto proporciona la posibilidad de construir, p. ej. `redes de malla <https://en.wikipedia.org/wiki/Mesh_networking>`__.
 
 .. figure:: pictures/esp8266-station-soft-access-point.png
-   :alt: ESP8266 operating in the Station + Soft Access Point mode
+   :alt: ESP8266 operando en modo Estación + Punto de Acceso
 
-   alt text
+   ESP8266 operando en modo Estación + Punto de Acceso
 
-The `ESP8266WiFi <https://github.com/esp8266/Arduino/tree/master/libraries/ESP8266WiFi>`__ library provides wide collection of C++
-`methods <https://en.wikipedia.org/wiki/Method_(computer_programming)>`__ (functions) and `properties <https://en.wikipedia.org/wiki/Property_(programming)>`__ to configure and operate an ESP8266 module in station and / or soft access point mode. They are described in the following chapters.
+La biblioteca `ESP8266WiFi <https://github.com/esp8266/Arduino/tree/master/libraries/ESP8266WiFi>`__ proporciona una amplia colección de métodos C++ `<https://es.wikipedia.org/wiki/M%C3%A9todo_(inform%C3%A1tica)>`__ y `propiedades o atributos <https://es.wikipedia.org/wiki/Atributo_(inform%C3%A1tica)>`__ para configurar y operar un módulo ESP8266 en modo estación y/o punto de acceso. Se describen en los siguientes capítulos.
 
-Class Description
+Descripción de la clase
 -----------------
 
-The `ESP8266WiFi <https://github.com/esp8266/Arduino/tree/master/libraries/ESP8266WiFi>`__ library is broken up into several classes. In most of cases, when writing the code, user is not concerned with this classification. We are using it to break up description of this library into more manageable pieces.
+La librería `ESP8266WiFi <https://github.com/esp8266/Arduino/tree/master/libraries/ESP8266WiFi>`__ se divide en varias clases. En la mayoría de los casos, al escribir el código, el usuario no está interesado en esta clasificación. Lo usamos para dividir la descripción de esta librería en piezas más manejables.
 
 .. figure:: pictures/doxygen-class-index.png
-   :alt: Index of classes of ESP8266WiFi library
+   :alt: Índice de clases de la librería ESP8266WiFi
 
-   alt text
+   Índice de clases de la librería ESP8266WiFi
 
-Chapters below describe all function calls (`methods <https://en.wikipedia.org/wiki/Method_(computer_programming)>`__ and `properties <https://en.wikipedia.org/wiki/Property_(programming)>`__ in C++ terms) listed in particular classes of `ESP8266WiFi <https://github.com/esp8266/Arduino/tree/master/libraries/ESP8266WiFi>`__. Description is illustrated with application examples and code snippets to show how to use functions in practice. Most of this information is broken up into separate documents. Please follow to access them.
+Los siguientes capítulos describen todas las llamadas a funciones (`methods <https://es.wikipedia.org/wiki/M%C3%A9todo_(inform%C3%A1tica)>`__ y `propiedades <https://es.wikipedia.org/wiki/Atributo_(inform%C3%A1tica)> `__ en términos C++) enumerados en clases particulares de `ESP8266WiFi <https://github.com/esp8266/Arduino/tree/master/libraries/ESP8266WiFi>`__. La descripción se ilustra con ejemplos de aplicaciones y fragmentos de código para mostrar cómo usar las funciones en la práctica. La mayoría de esta información se divide en documentos separados. Por favor, sigue para acceder a ellos.
 
-Station
+Estación
 ~~~~~~~
 
-Station (STA) mode is used to get ESP module connected to a Wi-Fi network established by an access point.
+El modo de estación (STA) se utiliza para conectar el módulo ESP a una red WiFi establecida por un punto de acceso.
 
 .. figure:: pictures/esp8266-station.png
-   :alt: ESP8266 operating in the Station mode
+   :alt: ESP8266 operando en modo estación
 
-   alt text
+   ESP8266 operando en modo estación
 
-Station class has several features to facilitate management of Wi-Fi connection. In case the connection is lost, ESP8266 will automatically reconnect to the last used access point, once it is again available. The same happens on module reboot. This is possible since ESP is saving credentials to last used access point in flash (non-volatile) memory. Using the saved data ESP will also reconnect if sketch has been changed but code does not alter the Wi-Fi mode or credentials.
+La clase de estación tiene varias características para facilitar la administración de la conexión WiFi. En caso de que se pierda la conexión, el ESP8266 se volverá a conectar automáticamente al último punto de acceso utilizado, una vez que esté nuevamente disponible. Lo mismo ocurre en el reinicio del módulo. Esto es posible ya que ESP guarda las credenciales al último punto de acceso utilizado en la memoria flash (no volátil). Usando los datos guardados, ESP también se volverá a conectar si se modificó el sketch, si el código no altera el modo WiFi o las credenciales.
 
 :doc:`Station Class documentation <station-class>`
 
-Check out separate section with :doc:`examples <station-examples>`.
+Echa un vistazo a la sección separada con :doc:`ejemplos <station-examples>`.
 
-Soft Access Point
+Punto de Acceso Wireless
 ~~~~~~~~~~~~~~~~~
 
-An `access point (AP) <https://en.wikipedia.org/wiki/Wireless_access_point>`__ is a device that provides access to Wi-Fi network to other devices (stations)
-and connects them further to a wired network. ESP8266 can provide similar functionality except it does not have interface to a wired network. Such mode of operation is called soft access point (soft-AP). The maximum number of stations connected to the soft-AP is five.
+Un `punto de acceso inalámbrico (AP) <https://es.wikipedia.org/wiki/Punto_de_acceso_inal%C3%A1mbrico>`__ es un dispositivo que proporciona acceso a la red WiFi a otros dispositivos (estaciones) y los conecta a una red cableada. ESP8266 puede proporcionar una funcionalidad similar, excepto que no tiene interfaz para una red cableada. Tal modo de operación se llama punto de acceso SoftAP. La cantidad máxima de estaciones conectadas al SoftAP es de cinco.
 
 .. figure:: pictures/esp8266-soft-access-point.png
-   :alt: ESP8266 operating in the Soft Access Point mode
+   :alt: ESP8266 operando en modo Punto de acceso SoftAP
 
-   alt text
+   ESP8266 operando en modo Punto de acceso SoftAP
 
-The soft-AP mode is often used and an intermediate step before connecting ESP to a Wi-Fi in a station mode. This is when SSID and password to such network is not known upfront. ESP first boots in soft-AP mode, so we can connect to it using a laptop or a mobile phone. Then we are able to provide credentials to the target network. Once done ESP is switched to the station mode and can connect to the target Wi-Fi.
+El modo SoftAP se usa a menudo y es un paso intermedio antes de conectar ESP a una red WiFi en modo estación. Esto es cuando el SSID y la contraseña de dicha red no se conocen por adelantado. ESP primero arranca en modo SoftAP, para que podamos conectarnos a él usando un ordenador portátil o un teléfono móvil. Luego, podemos proporcionar credenciales a la red objetivo. Una vez hecho esto, ESP se cambia al modo estación y se puede conectar al WiFi objetivo.
 
-Another handy application of soft-AP mode is to set up `mesh networks <https://en.wikipedia.org/wiki/Mesh_networking>`__. ESP can operate in both soft-AP and Station mode so it can act as a node of a mesh network.
+Otra aplicación práctica del modo SoftAP es configurar una `red mallada <https://es.wikipedia.org/wiki/Red_inal%C3%A1mbrica_mallada>`__. ESP puede funcionar tanto en modo SoftAP como en modo Estación para que pueda actuar como un nodo de una red mallada.
 
 :doc:`Soft Access Point Class documentation <soft-access-point-class>`
 
-Check out separate section with :doc:`examples <soft-access-point-examples>`.
+Echa un vistazo a la sección separada con :doc:`ejemplos <soft-access-point-examples>`.
 
 Scan
 ~~~~
 
-To connect a mobile phone to a hot spot, you typically open Wi-Fi settings app, list available networks and pick the hot spot you need. Then enter a password (or not) and you are in. You can do the same with ESP. Functionality of scanning for, and listing of available networks in range is implemented by the Scan Class.
+Para conectar un teléfono móvil a un punto de acceso público, normalmente abre la aplicación de configuración de Wi-Fi, enumera las redes disponibles y elige el punto de acceso que necesita. Luego ingresa una contraseña (o no) y estás dentro. Puedes hacer lo mismo con ESP. La clase de escaneo implementa la funcionalidad del escaneo y la lista de redes disponibles en el rango.
 
 :doc:`Scan Class documentation <scan-class>`.
 
-Check out separate section with :doc:`examples <scan-examples>`.
+Echa un vistazo a la sección separada con :doc:`ejemplos <scan-examples>`.
 
 Client
 ~~~~~~
@@ -166,93 +162,93 @@ The Client class creates `clients <https://en.wikipedia.org/wiki/Client_(computi
 
    alt text
 
-Check out separate section with :doc:`examples <client-examples>` / :doc:`list of functions
+Echa un vistazo a la sección separada con :doc:`ejemplos <client-examples>` / :doc:`list of functions
 <client-class>`
 
 Client Secure
 ~~~~~~~~~~~~~
 
-The Client Secure is an extension of `Client Class <#client>`__ where connection and data exchange with servers is done using a `secure protocol <https://en.wikipedia.org/wiki/Transport_Layer_Security>`__. It supports `TLS 1.1 <https://en.wikipedia.org/wiki/Transport_Layer_Security#TLS_1.1>`__. The `TLS 1.2 <https://en.wikipedia.org/wiki/Transport_Layer_Security#TLS_1.2>`__ is not supported.
+Client Secure es una extensión de la `clase Client <#client>`__ donde la conexión y el intercambio de datos con los servidores se hace usando un `protocolo seguro <https://es.wikipedia.org/wiki/Transport_Layer_Security>`__. Es compatible con `TLS 1.1 <https://es.wikipedia.org/wiki/Transport_Layer_Security#TLS_1.1>`__. El `TLS 1.2 <https://es.wikipedia.org/wiki/Transport_Layer_Security#TLS_1.2>`__ no es compatible.
 
 .. figure:: pictures/esp8266-client-secure.png
-   :alt: ESP8266 operating as the Client Secure
+   :alt: ESP8266 operando como Cliente seguro
 
-   alt text
+   ESP8266 operando como Cliente seguro
 
-Secure applications have additional memory (and processing) overhead due to the need to run cryptography algorithms. The stronger the certificate's key, the more overhead is needed. In practice it is not possible to run more than a single secure client at a time. The problem concerns RAM memory we can not add, the flash memory size is usually not the issue. If you like to learn how `client secure library <https://github.com/esp8266/Arduino/blob/master/libraries/ESP8266WiFi/src/WiFiClientSecure.h>`__ has been developed, access to what servers have been tested, and how memory limitations have been overcame, read fascinating issue report `#43 <https://github.com/esp8266/Arduino/issues/43>`__.
+Las aplicaciones seguras tienen una sobrecarga adicional de memoria (y procesamiento) debido a la necesidad de ejecutar algoritmos de criptografía. Cuanto más fuerte sea la clave del certificado, más gastos generales se necesitan. En la práctica, no es posible ejecutar más de un único cliente seguro a la vez. El problema se refiere a la memoria RAM que no podemos agregar, el tamaño de la memoria flash por lo general no es el problema. Si desea aprender cómo se ha desarrollado `la librería de Client Secure <https://github.com/esp8266/Arduino/blob/master/libraries/ESP8266WiFi/src/WiFiClientSecure.h>`__, qué servidores se han probado y cómo se han superado las limitaciones de la memoria, lea el fascinante informe de problemas `#43 <https://github.com/esp8266/Arduino/issues/43>`__.
 
-Check out separate section with :doc:`examples <client-secure-examples>` / :doc:`list of functions <client-secure-class>`
+Echa un vistazo a la sección separada con :doc:`ejemplos <client-secure-examples>` / :doc:`list of functions <client-secure-class>`
 
 Server
 ~~~~~~
 
-The Server Class creates `servers <https://en.wikipedia.org/wiki/Server_(computing)>`__ that provide functionality to other programs or devices, called `clients <https://en.wikipedia.org/wiki/Client_(computing)>`__.
+La clase de Server crea `Servidores <https://es.wikipedia.org/wiki/Servidor>`__ que proporcionan funcionalidad a otros programas o dispositivos, llamados `Clientes <https://es.wikipedia.org/wiki/Cliente_(inform%C3%A1tica)>`__.
 
 .. figure:: pictures/esp8266-server.png
-   :alt: ESP8266 operating as the Server
+   :alt: ESP8266 operando como Servidor
 
-   alt text
+   ESP8266 operando como Servidor
 
-Clients connect to sever to send and receive data and access provided functionality.
+Los clientes se conectan para enviar y recibir datos y acceder a la funcionalidad provista.
 
-Check out separate section with :doc:`examples <server-examples>` / :doc:`list of functions <server-class>`.
+Echa un vistazo a la sección separada con :doc:`ejemplos <server-examples>` / :doc:`list of functions <server-class>`.
 
 UDP
 ~~~
 
-The UDP Class enables the `User Datagram Protocol (UDP) <https://en.wikipedia.org/wiki/User_Datagram_Protocol>`__ messages to be sent and received. The UDP uses a simple "fire and forget" transmission model with no guarantee of delivery, ordering, or duplicate protection. UDP provides checksums for data integrity, and port numbers for addressing different functions at the source and destination of the datagram.
+La clase UDP permite el envío y recepción de mensajes `User Datagram Protocol (UDP) <https://es.wikipedia.org/wiki/User_Datagram_Protocol>`__. El UDP usa un modelo de transmisión simple de "disparar y olvidar" sin garantía de entrega, pedido o protección duplicada. UDP proporciona sumas de comprobación para la integridad de datos y números de puertos para direccionar diferentes funciones a la fuente y el destino del datagrama.
 
-Check out separate section with :doc:`examples <udp-examples>` / :doc:`list of functions <udp-class>`.
+Echa un vistazo a la sección separada con :doc:`ejemplos <udp-examples>` / :doc:`list of functions <udp-class>`.
 
 Generic
 ~~~~~~~
 
-There are several functions offered by ESP8266's `SDK <http://bbs.espressif.com/viewtopic.php?f=51&t=1023>`__ and not present in `Arduino WiFi library <https://www.arduino.cc/en/Reference/WiFi>`__. If such function does not fit into one of classes discussed above, it will likely be in Generic Class. Among them is handler to manage Wi-Fi events like connection, disconnection or obtaining an IP, Wi-Fi mode changes, functions to manage module sleep mode, hostname to an IP address resolution, etc.
+Hay varias funciones ofrecidas por el `SDK <http://bbs.espressif.com/viewtopic.php?f=51&t=1023>`__ de ESP8266 y no están presentes en la biblioteca `Arduino WiFi <https://www.arduino.cc/en/Reference/WiFi>`__. Si una función no encaja en una de las clases discutidas anteriormente, probablemente estará en la Clase Genérica. Entre ellas se encuentra el controlador para gestionar eventos WiFi como conexión, desconexión u obtención de una IP, cambios en el modo WiFi, funciones para gestionar el modo de suspensión del módulo, nombre de host para una resolución de dirección IP, etc.
 
-Check out separate section with :doc:`examples <generic-examples>` / :doc:`list of functions <generic-class>`.
+Echa un vistazo a la sección separada con :doc:`ejemplos <generic-examples>` / :doc:`list of functions <generic-class>`.
 
-Diagnostics
+Diagnóstico
 -----------
 
-There are several techniques available to diagnose and troubleshoot issues with getting connected to Wi-Fi and keeping connection alive.
+Hay varias técnicas disponibles para diagnosticar y solucionar problemas al conectarse a WiFi y mantener la conexión activa.
 
-Check Return Codes
+Comprobar los códigos devueltos
 ~~~~~~~~~~~~~~~~~~
 
-Almost each function described in chapters above returns some diagnostic information.
+Casi todas las funciones descritas en los capítulos anteriores devuelven información de diagnóstico.
 
-Such diagnostic may be provided as a simple ``boolean`` type ``true' or``\ false\` to indicate operation result. You may check this result as described in examples, for instance:
-
-.. code:: cpp
-
-    Serial.printf("Wi-Fi mode set to WIFI_STA %s\n", WiFi.mode(WIFI_STA) ? "" : "Failed!");
-
-Some functions provide more than just a binary status information. A good example is ``WiFi.status()``.
+Tal diagnóstico se puede proporcionar como un simple ``booleano``, ``true`` o ``false``, para indicar el resultado de la operación. Puede verificar este resultado como se describe en los ejemplos, por ejemplo:
 
 .. code:: cpp
 
-    Serial.printf("Connection status: %d\n", WiFi.status());
+    Serial.printf("Modo WiFi establecido a WIFI_STA %s\n", WiFi.mode(WIFI_STA) ? "" : "Falló!");
 
-This function returns following codes to describe what is going on with Wi-Fi connection: 
+Algunas funciones proporcionan más que solo una información binaria. Un buen ejemplo es ``WiFi.status()``.
 
-* 0 : ``WL_IDLE_STATUS`` when Wi-Fi is in process of changing between statuses 
-* 1 : ``WL_NO_SSID_AVAIL``\ in case configured SSID cannot be reached 
-* 3 : ``WL_CONNECTED`` after successful connection is established 
-* 4 : ``WL_CONNECT_FAILED`` if password is incorrect 
-* 6 : ``WL_DISCONNECTED`` if module is not configured in station mode
+.. code:: cpp
 
-It is a good practice to display and check information returned by functions. Application development and troubleshooting will be easier with that.
+    Serial.printf("Estado de la conexión: %d\n", WiFi.status());
 
-Use printDiag
+Esta función devuelve los siguientes códigos para describir lo que está sucediendo con la conexión WiFi:
+
+* 0 : ``WL_IDLE_STATUS`` cuando WiFi está en proceso de cambio de estado
+* 1 : ``WL_NO_SSID_AVAIL`` en caso de que no se pueda alcanzar el SSID configurado
+* 3 : ``WL_CONNECTED`` después de establecida una conexión exitosa
+* 4 : ``WL_CONNECT_FAILED`` si la contraseña es incorrecta
+* 6 : ``WL_DISCONNECTED`` si el módulo no está configurado en modo estación
+
+Es una buena práctica mostrar y verificar la información devuelta por las funciones. El desarrollo de aplicaciones y la resolución de problemas serán así más fáciles.
+
+Usar printDiag
 ~~~~~~~~~~~~~
 
-There is a specific function available to print out key Wi-Fi diagnostic information:
+Hay una función específica disponible para imprimir la información clave de diagnóstico del WiFi:
 
 .. code:: cpp
 
     WiFi.printDiag(Serial);
 
-A sample output of this function looks as follows:
+Una salida de muestra de esta función se ve de la siguiente manera:
 
 ::
 
@@ -266,18 +262,18 @@ A sample output of this function looks as follows:
     Passphrase (12): 123!$#0&*esP
     BSSID set: 0
 
-Use this function to provide snapshot of Wi-Fi status in these parts of application code, that you suspect may be failing.
+Utilice esta función para proporcionar una instantánea del estado de Wi-Fi en partes del código de la aplicación, que sospecha que puede estar fallando.
 
-Enable Wi-Fi Diagnostic
+Activar el diagnóstico WiFi
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-By default the diagnostic output from Wi-Fi libraries is disabled when you call ``Serial.begin``. To enable debug output again, call ``Serial.setDebugOutput(true)``. To redirect debug output to ``Serial1`` instead, call ``Serial1.setDebugOutput(true)``. For additional details regarding diagnostics using serial ports please refer to :doc:`the documentation <../reference>`.
+Por defecto, la salida de diagnóstico de las librerías WiFi están desactivadas cuando se invoca ``Serial.begin``. Para habilitar nuevamente la salida de depuración, llame a ``Serial.setDebugOutput(true)``. Para redirigir la salida de depuración a ``Serial1``, llame a ``Serial1.setDebugOutput(true)``. Para obtener más detalles sobre el diagnóstico con puertos serie, consulte :doc:`the documentation <../reference>`.
 
-Below is an example of output for sample sketch discussed in `Quick Start <#quick-start>`__ above with ``Serial.setDebugOutput(true)``:
+A continuación se muestra un ejemplo de salida para el sketch de muestra discutido mas arriba en `Inicio rápido <#inicio rápido>`__ con ``Serial.setDebugOutput(true)``:
 
 ::
 
-    Connectingscandone
+    Conectandoscandone
     state: 0 -> 2 (b0)
     state: 2 -> 3 (0)
     state: 3 -> 5 (10)
@@ -290,49 +286,49 @@ Below is an example of output for sample sketch discussed in `Quick Start <#quic
     chg_B1:-40
     ...ip:192.168.1.10,mask:255.255.255.0,gw:192.168.1.9
     .
-    Connected, IP address: 192.168.1.10
+    Conectado, dirección IP: 192.168.1.10
 
-The same sketch without ``Serial.setDebugOutput(true)`` will print out only the following:
+El mismo sketch sin ``Serial.setDebugOutput(true)`` imprimirá lo siguiente:
 
 ::
 
-    Connecting....
-    Connected, IP address: 192.168.1.10
+    Conectando....
+    Conectado, dirección IP: 192.168.1.10
 
-Enable Debugging in IDE
+Activar Debug en el IDE
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-Arduino IDE provides convenient method to `enable debugging <../Troubleshooting/debugging.rst>`__ for specific libraries.
+El IDE Arduino provee métodos para `activar la depuración <../Troubleshooting/debugging.rst>`__ para librerías específicas.
 
-What's Inside?
+¿Que hay dentro?
 --------------
 
-If you like to analyze in detail what is inside of the ESP8266WiFi library, go directly to the `ESP8266WiFi <https://github.com/esp8266/Arduino/tree/master/libraries/ESP8266WiFi/src>`__ folder of esp8266 / Arduino repository on the GitHub.
+Si desea analizar en detalle qué hay dentro de la librería ESP8266WiFi, vaya directamente a la carpeta `ESP8266WiFi <https://github.com/esp8266/Arduino/tree/master/libraries/ESP8266WiFi/src>`__ del repositorio ESP8266/Arduino en GitHub.
 
-To make the analysis easier, rather than looking into individual header or source files, use one of free tools to automatically generate documentation. The class index in chapter `Class Description <class-description>`__ above has been prepared in no time using great `Doxygen <http://www.stack.nl/~dimitri/doxygen/>`__, that is the de facto standard tool for generating documentation from annotated C++ sources.
+Para facilitar el análisis, en lugar de buscar en el encabezado individual o en los archivos fuente, use una de las herramientas gratuitas para generar documentación automáticamente. El índice de clase en el capítulo de mas arriba `Descripción de clase <class-description>`__ ha sido preparado en muy poco tiempo usando el gran `Doxygen <http://www.stack.nl/~dimitri/doxygen/>`__, que es el herramienta estándar de facto para generar documentación a partir de fuentes anotadas de C++.
 
 .. figure:: pictures/doxygen-esp8266wifi-documentation.png
-   :alt: Example of documentation prepared by Doxygen
+   :alt: Ejemplo de documentación preparada con Doxygen
 
-   alt text
+   Ejemplo de documentación preparada con Doxygen
 
-The tool crawls through all header and source files collecting information from formatted comment blocks. If developer of particular class annotated the code, you will see it like in examples below.
+La herramienta rastrea todos los archivos de encabezado y fuente, recopilando información de los bloques de comentarios formateados. Si el desarrollador de una clase particular anotó el código, lo verá como en los ejemplos a continuación.
 
 .. figure:: pictures/doxygen-example-station-begin.png
-   :alt: Example of documentation for station begin method by Doxygen
+   :alt: Ejemplo de documentación para el método begin STA por Doxygen
 
-   alt text
+   Ejemplo de documentación para el método begin STA por Doxygen
 
 .. figure:: pictures/doxygen-example-station-hostname.png
-   :alt: Example of documentation for station hostname propert by Doxygen
+   :alt: Ejemplo de documentación para la propiedad hostname por Doxygen
 
-   alt text
+   Ejemplo de documentación para la propiedad hostname por Doxygen
 
-If code is not annotated, you will still see the function prototype including types of arguments, and can use provided links to jump straight to the source code to check it out on your own. Doxygen provides really excellent navigation between members of library.
+Si el código no está anotado, aún verá el prototipo de la función, incluidos los tipos de argumentos y puede usar los enlaces proporcionados para ir directamente al código fuente para verificarlo por su cuenta. Doxygen proporciona una navegación realmente excelente entre los miembros de la librería.
 
 .. figure:: pictures/doxygen-example-udp-begin.png
-   :alt: Example of documentation for UDP begin method (not annotaed in code)by Doxygen
+   :alt: Ejemplo de documentación para el método begin UDP (no anotado en el código) por Doxygen
 
-   alt text
+   Ejemplo de documentación para el método begin UDP (no anotado en el código) por Doxygen
 
-Several classes of `ESP8266WiFi <https://github.com/esp8266/Arduino/tree/master/libraries/ESP8266WiFi>`__ are not annotated. When preparing this document, `Doxygen <http://www.stack.nl/~dimitri/doxygen/>`__ has been tremendous help to quickly navigate through almost 30 files that make this library.
+Varias clases de `ESP8266WiFi <https://github.com/esp8266/Arduino/tree/master/libraries/ESP8266WiFi>`__ no están anotadas. Al preparar este documento, `Doxygen <http://www.stack.nl/~dimitri/doxygen/>`__ ha sido de gran ayuda para navegar rápidamente a través de casi 30 archivos que componen esta librería.
