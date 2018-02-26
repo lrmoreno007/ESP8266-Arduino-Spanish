@@ -6,7 +6,7 @@ Todo sobre el WiFi de ESP8266. Si está ansioso por conectar su nuevo módulo ES
 Introducción
 ------------
 
-La `librería WiFi para ESP8266 <https://github.com/esp8266/Arduino/tree/master/libraries/ESP8266WiFi>`__ ha sido desarrollada basándose en el `SDK de ESP8266 <http://bbs.espressif.com/viewtopic.php?f=51&t=1023>`__, usando nombres convencionales y la filosofía de funcionalidades generales de la `librería WiFi de Arduino <https://www.arduino.cc/en/Reference/WiFi>`__. Con el tiempo, la riqueza de las funciones Wi-Fi del SDK de ESP9266 pasadas a `ESP8266/Adruino <https://github.com/esp8266/Arduino>`__ superan a la  `librería WiFi de Arduino <https://www.arduino.cc/en/Reference/WiFi>`__ y se hizo evidente que tenemos que proporcionar documentación por separado sobre lo que es nuevo y extra.
+La `librería WiFi para ESP8266 <https://github.com/esp8266/Arduino/tree/master/libraries/ESP8266WiFi>`__ ha sido desarrollada basándose en el `SDK de ESP8266 <http://bbs.espressif.com/viewtopic.php?f=51&t=1023>`__, usando nombres convencionales y la filosofía de funcionalidades generales de la `librería WiFi de Arduino <https://www.arduino.cc/en/Reference/WiFi>`__. Con el tiempo, la riqueza de las funciones WiFi del SDK de ESP8266 pasadas a `ESP8266/Arduino <https://github.com/esp8266/Arduino>`__ superan a la  `librería WiFi de Arduino <https://www.arduino.cc/en/Reference/WiFi>`__ y se hizo evidente que tenemos que proporcionar documentación por separado sobre lo que es nuevo y extra.
 
 Esta documentación lo guiará a través de varias clases, métodos y propiedades de la librería `ESP8266WiFi <https://github.com/esp8266/Arduino/tree/master/libraries/ESP8266WiFi>`__. Si eres nuevo en C++ y Arduino, no te preocupes. Comenzaremos por conceptos generales y luego pasaremos a la descripción detallada de los miembros de cada clase en particular, incluidos los ejemplos de uso.
 
@@ -44,7 +44,7 @@ Para conectar el módulo ESP al WiFi (como conectar un teléfono móvil a un pun
 
     void loop() {}
 
-En la linea ``WiFi.begin("nombre-red", "contraseña-red")`` reemplace ``nombre-red`` y ``contraseña-red`` con el nombre y contraseña a la red WiFi que quiere conectarse. Entonces suba el sketch al módulo ESP y abra el Monitor Serie. Deberías ver algo como:
+En la línea ``WiFi.begin("nombre-red", "contraseña-red")`` reemplace ``nombre-red`` y ``contraseña-red`` con el nombre y contraseña a la red WiFi que quiere conectarse. Entonces suba el sketch al módulo ESP y abra el Monitor Serie. Deberías ver algo como:
 
 .. figure:: pictures/wifi-simple-connect-terminal.png
    :alt: Registro de conexión en el Monitor Serie del IDE Arduino
@@ -53,7 +53,7 @@ En la linea ``WiFi.begin("nombre-red", "contraseña-red")`` reemplace ``nombre-r
 
 ¿Como funciona? En la primera línea del boceto ``#include <ESP8266WiFi.h> `` estamos incluyendo la librería `ESP8266WiFi <https://github.com/esp8266/Arduino/tree/master/libraries/ESP8266WiFi>`__. Esta librería proporciona las rutinas específicas WiFi de ESP8266 a las que llamamos para conectarse a la red.
 
-La conexión real a Wi-Fi se inicia llamando al:
+La conexión real a WiFi se inicia llamando al:
 
 .. code:: cpp
 
@@ -86,7 +86,7 @@ Eso es todo lo que necesita para conectar su ESP8266 al WiFi. En los siguientes 
 Quien es quien
 ~~~~~~~~~~
 
-Los dispositivos que se conectan a la red WiFi se llaman estaciones (STA). La conexión a Wi-Fi es proporcionada por un punto de acceso (AP), que actúa como un centro para una o más estaciones. El punto de acceso en el otro extremo está conectado a una red cableada. Un punto de acceso generalmente se integra con un router para proporcionar acceso desde la red WiFi a Internet. Cada punto de acceso es reconocido por un SSID (**S**\ervice **S**\et **ID**\entifier), que esencialmente es el nombre de la red que usted selecciona cuando conecta un dispositivo (estación) al WiFi.
+Los dispositivos que se conectan a la red WiFi se llaman estaciones (STA). La conexión a WiFi es proporcionada por un punto de acceso (AP), que actúa como un centro para una o más estaciones. El punto de acceso en el otro extremo está conectado a una red cableada. Un punto de acceso generalmente se integra con un router para proporcionar acceso desde la red WiFi a Internet. Cada punto de acceso es reconocido por un SSID (**S**\ervice **S**\et **ID**\entifier), que esencialmente es el nombre de la red que usted selecciona cuando conecta un dispositivo (estación) al WiFi.
 
 El módulo ESP8266 puede funcionar como una estación, por lo que podemos conectarlo a la red WiFi. Y también puede funcionar como un punto de acceso wireless (SoftAP), para establecer su propia red WiFi. Por lo tanto, podemos conectar otras estaciones a dicho módulo ESP. ESP8266 también puede operar tanto en modo estación como en modo punto de acceso. Esto proporciona la posibilidad de construir, p. ej. `redes de malla <https://en.wikipedia.org/wiki/Mesh_networking>`__.
 
@@ -107,7 +107,7 @@ La librería `ESP8266WiFi <https://github.com/esp8266/Arduino/tree/master/librar
 
    Índice de clases de la librería ESP8266WiFi
 
-Los siguientes capítulos describen todas las llamadas a funciones (`methods <https://es.wikipedia.org/wiki/M%C3%A9todo_(inform%C3%A1tica)>`__ y `propiedades <https://es.wikipedia.org/wiki/Atributo_(inform%C3%A1tica)> `__ en términos C++) enumerados en clases particulares de `ESP8266WiFi <https://github.com/esp8266/Arduino/tree/master/libraries/ESP8266WiFi>`__. La descripción se ilustra con ejemplos de aplicaciones y fragmentos de código para mostrar cómo usar las funciones en la práctica. La mayoría de esta información se divide en documentos separados. Por favor, sigue para acceder a ellos.
+Los siguientes capítulos describen todas las llamadas a (`métodos <https://es.wikipedia.org/wiki/M%C3%A9todo_(inform%C3%A1tica)>`__ y `propiedades <https://es.wikipedia.org/wiki/Atributo_(inform%C3%A1tica)> `__ en términos C++) enumerados en clases particulares de `ESP8266WiFi <https://github.com/esp8266/Arduino/tree/master/libraries/ESP8266WiFi>`__. La descripción se ilustra con ejemplos de aplicaciones y fragmentos de código para mostrar cómo usar las funciones en la práctica. La mayoría de esta información se divide en documentos separados. Por favor, sigue para acceder a ellos.
 
 Estación
 ~~~~~~~
@@ -155,15 +155,14 @@ Echa un vistazo a la sección separada con :doc:`ejemplos <scan-examples>`.
 Client
 ~~~~~~
 
-The Client class creates `clients <https://en.wikipedia.org/wiki/Client_(computing)>`__ that can access services provided by `servers <https://en.wikipedia.org/wiki/Server_(computing)>`__ in order to send, receive and process data.
+La clase Client crea `clientes <https://es.wikipedia.org/wiki/Cliente_(inform%C3%A1tica)>`__ que puede acceder a servicios proporcionados por `servidores <https://es.wikipedia.org/wiki/Servidor>`__ para enviar, recibir y procesar datos.
 
 .. figure:: pictures/esp8266-client.png
-   :alt: ESP8266 operating as the Client
+   :alt: ESP8266 operando como Cliente
 
-   alt text
+   ESP8266 operando como Cliente
 
-Echa un vistazo a la sección separada con :doc:`ejemplos <client-examples>` / :doc:`list of functions
-<client-class>`
+Echa un vistazo a la sección separada con :doc:`ejemplos <client-examples>` / :doc:`list of functions <client-class>`
 
 Client Secure
 ~~~~~~~~~~~~~
@@ -305,7 +304,7 @@ El IDE Arduino provee métodos para `activar la depuración <../Troubleshooting/
 
 Si desea analizar en detalle qué hay dentro de la librería ESP8266WiFi, vaya directamente a la carpeta `ESP8266WiFi <https://github.com/esp8266/Arduino/tree/master/libraries/ESP8266WiFi/src>`__ del repositorio ESP8266/Arduino en GitHub.
 
-Para facilitar el análisis, en lugar de buscar en el encabezado individual o en los archivos fuente, use una de las herramientas gratuitas para generar documentación automáticamente. El índice de clase en el capítulo de mas arriba `Descripción de clase <class-description>`__ ha sido preparado en muy poco tiempo usando el gran `Doxygen <http://www.stack.nl/~dimitri/doxygen/>`__, que es el herramienta estándar de facto para generar documentación a partir de fuentes anotadas de C++.
+Para facilitar el análisis, en lugar de buscar en el encabezado individual o en los archivos fuente, use una de las herramientas gratuitas para generar documentación automáticamente. El índice de clase en el capítulo de mas arriba `Descripción de clase <#descripción-de-la-clase>`__ ha sido preparado en muy poco tiempo usando el gran `Doxygen <http://www.stack.nl/~dimitri/doxygen/>`__, que es el herramienta estándar de facto para generar documentación a partir de fuentes anotadas de C++.
 
 .. figure:: pictures/doxygen-esp8266wifi-documentation.png
    :alt: Ejemplo de documentación preparada con Doxygen
