@@ -138,7 +138,7 @@ Las bibliotecas que no dependen del acceso a bajo nivel a los registros AVR debe
 -  `arduinoVNC <https://github.com/Links2004/arduinoVNC>`__ - Cliente VNC para Arduino
 -  `arduinoWebSockets <https://github.com/Links2004/arduinoWebSockets>`__ - Servidor y cliente WebSocket compatible con ESP8266 (RFC6455)
 -  `aREST <https://github.com/marcoschwartz/aREST>`__ - Manejador de la librería REST API.
--  `Blynk <https://github.com/blynkkk/blynk-library>`__ - IoT framework sencillo para Makers (comprueba la `página de inicio rápido <http://tiny.cc/blynk-kick>`__).
+-  `Blynk <https://github.com/blynkkk/blynk-library>`__ - IoT framework sencillo para Makers (comprueba la `página de inicio rápido <https://www.blynk.cc/getting-started/>`__).
 -  `DallasTemperature <https://github.com/milesburton/Arduino-Temperature-Control-Library.git>`__
 -  `DHT-sensor-library <https://github.com/adafruit/DHT-sensor-library>`__ - Librería Arduino para el sensor DHT11/DHT22 de temperatura y humedad. Descarga la última librería v1.1.1 y no serán necesarios cambios. Las versiones antiguas deben inicializar el DHT como sigue: ``DHT dht(DHTPIN, DHTTYPE, 15)``
 -  `DimSwitch <https://github.com/krzychb/DimSwitch>`__ - Control electrónico regulable de balastros para luces de tubo fluorescentes remotamente como si se usara un interruptor de pared.
