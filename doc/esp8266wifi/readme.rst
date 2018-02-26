@@ -69,7 +69,7 @@ El proceso de conexión puede demorar unos segundos, así que comprobamos que es
         Serial.print(".");
       }
 
-El bucle ``while () `` seguirá en bucle mientras ``WiFi.status()`` no es ``WL_CONNECTED``. El ciclo saldrá solo si el estado cambia a ``WL_CONNECTED``.
+El bucle ``while()`` seguirá en bucle mientras ``WiFi.status()`` no es ``WL_CONNECTED``. El ciclo saldrá solo si el estado cambia a ``WL_CONNECTED``.
 
 La última línea imprimirá la dirección IP asignada al módulo ESP por `DHCP <http://whatismyipaddress.com/dhcp>`__:
 
