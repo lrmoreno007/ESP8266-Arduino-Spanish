@@ -51,7 +51,7 @@ En la línea ``WiFi.begin("nombre-red", "contraseña-red")`` reemplace ``nombre-
 
    Registro de conexión en el Monitor Serie del IDE Arduino
 
-¿Como funciona? En la primera línea del boceto ``#include <ESP8266WiFi.h> `` estamos incluyendo la librería `ESP8266WiFi <https://github.com/esp8266/Arduino/tree/master/libraries/ESP8266WiFi>`__. Esta librería proporciona las rutinas específicas WiFi de ESP8266 a las que llamamos para conectarse a la red.
+¿Como funciona? En la primera línea del boceto ``#include <ESP8266WiFi.h>`` estamos incluyendo la librería `ESP8266WiFi <https://github.com/esp8266/Arduino/tree/master/libraries/ESP8266WiFi>`__. Esta librería proporciona las rutinas específicas WiFi de ESP8266 a las que llamamos para conectarse a la red.
 
 La conexión real a WiFi se inicia llamando al:
 
@@ -95,7 +95,7 @@ El módulo ESP8266 puede funcionar como una estación, por lo que podemos conect
 
    ESP8266 operando en modo Estación + Punto de Acceso
 
-La biblioteca `ESP8266WiFi <https://github.com/esp8266/Arduino/tree/master/libraries/ESP8266WiFi>`__ proporciona una amplia colección de métodos C++ `<https://es.wikipedia.org/wiki/M%C3%A9todo_(inform%C3%A1tica)>`__ y `propiedades o atributos <https://es.wikipedia.org/wiki/Atributo_(inform%C3%A1tica)>`__ para configurar y operar un módulo ESP8266 en modo estación y/o punto de acceso. Se describen en los siguientes capítulos.
+La biblioteca `ESP8266WiFi <https://github.com/esp8266/Arduino/tree/master/libraries/ESP8266WiFi>`__ proporciona una amplia colección de `métodos C++ <https://es.wikipedia.org/wiki/M%C3%A9todo_(inform%C3%A1tica)>`__ y `propiedades o atributos <https://es.wikipedia.org/wiki/Atributo_(inform%C3%A1tica)>`__ para configurar y operar un módulo ESP8266 en modo estación y/o punto de acceso. Se describen en los siguientes capítulos.
 
 Descripción de la clase
 -----------------
@@ -107,12 +107,12 @@ La librería `ESP8266WiFi <https://github.com/esp8266/Arduino/tree/master/librar
 
    Índice de clases de la librería ESP8266WiFi
 
-Los siguientes capítulos describen todas las llamadas a (`métodos <https://es.wikipedia.org/wiki/M%C3%A9todo_(inform%C3%A1tica)>`__ y `propiedades <https://es.wikipedia.org/wiki/Atributo_(inform%C3%A1tica)> `__ en términos C++) enumerados en clases particulares de `ESP8266WiFi <https://github.com/esp8266/Arduino/tree/master/libraries/ESP8266WiFi>`__. La descripción se ilustra con ejemplos de aplicaciones y fragmentos de código para mostrar cómo usar las funciones en la práctica. La mayoría de esta información se divide en documentos separados. Por favor, sigue para acceder a ellos.
+Los siguientes capítulos describen todas las llamadas a funciones ( `métodos <https://es.wikipedia.org/wiki/M%C3%A9todo_(inform%C3%A1tica)>`__ y `propiedades <https://es.wikipedia.org/wiki/Atributo_(inform%C3%A1tica)>`__ en términos C++) enumerados en clases particulares de `ESP8266WiFi <https://github.com/esp8266/Arduino/tree/master/libraries/ESP8266WiFi>`__. La descripción se ilustra con ejemplos de aplicaciones y fragmentos de código para mostrar cómo usar las funciones en la práctica. La mayoría de esta información se divide en documentos separados. Por favor, sigue para acceder a ellos.
 
-Estación
+Station
 ~~~~~~~
 
-El modo de estación (STA) se utiliza para conectar el módulo ESP a una red WiFi establecida por un punto de acceso.
+El modo estación (STA) se utiliza para conectar el módulo ESP a una red WiFi establecida por un punto de acceso.
 
 .. figure:: pictures/esp8266-station.png
    :alt: ESP8266 operando en modo estación
