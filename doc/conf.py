@@ -310,6 +310,7 @@ class CreateSectionLabels(docutils.transforms.Transform):
 env.docname, link_id)
 
 def setup(app):
+    app.add_transform(CreateSectionLabels)  
     """Initialize Sphinx extension."""
 """    _add_notebook_parser(app)
 
@@ -338,6 +339,6 @@ def setup(app):
     app.connect('builder-inited', builder_inited)
     app.connect('html-page-context', html_page_context)
     app.connect('html-collect-pages', html_collect_pages)
-    app.connect('env-purge-doc', env_purge_doc)"""
-    app.add_transform(CreateSectionLabels)            
+    app.connect('env-purge-doc', env_purge_doc) """
+          
             
