@@ -309,9 +309,27 @@ class CreateSectionLabels(docutils.transforms.Transform):
             env.domaindata['std']['anonlabels'][label] = (
 env.docname, link_id)
 
+def _add_notebook_parser(app):
+    """Ugly hack to modify source_suffix and source_parsers.
+    Once https://github.com/sphinx-doc/sphinx/pull/2209 is merged (and
+    some additional time has passed), this should be replaced by ::
+        app.add_source_parser('.ipynb', NotebookParser)
+    See also https://github.com/sphinx-doc/sphinx/issues/2162.
+    """
+    source_suffix = app.config._raw_config.get('source_suffix', ['.rst'])
+    if isinstance(source_suffix, sphinx.config.string_types):
+        source_suffix = [source_suffix]
+    if '.html' not in source_suffix:
+        source_suffix.append('.html')
+        app.config._raw_config['source_suffix'] = source_suffix
+    source_parsers = app.config._raw_config.get('source_parsers', {})
+    if '.html' not in source_parsers and 'html' not in source_parsers:
+        source_parsers['.html'] = NotebookParser
+        app.config._raw_config['source_parsers'] = source_parsers
+            
 def setup(app):
     """Initialize Sphinx extension."""
-#    _add_notebook_parser(app)
+    _add_notebook_parser(app)
 
     app.add_config_value('nbsphinx_execute', 'auto', rebuild='env')
     app.add_config_value('nbsphinx_kernel_name', '', rebuild='env')
