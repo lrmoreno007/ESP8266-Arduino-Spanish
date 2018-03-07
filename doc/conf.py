@@ -247,3 +247,59 @@ class ProcessLocalLinks(docutils.transforms.Transform):
                     refwarn=True, refexplicit=True, refdoc=env.docname)
                 xref += docutils.nodes.Text(linktext, linktext)
                 node.replace_self(xref)
+
+class CreateSectionLabels(docutils.transforms.Transform):
+    """Make labels for each document parsed by Sphinx, each section thereof,
+    and each Sphinx domain object.
+    These labels are referenced in ProcessLocalLinks.
+    Note: Sphinx lower-cases the HTML section IDs, Jupyter doesn't.
+    This transform creates labels in the Jupyter style for Jupyter
+    notebooks, but keeps the Sphinx style for all other source files.
+    """
+
+    default_priority = 250  # Before references.PropagateTargets (260)
+
+    def apply(self):
+        env = self.document.settings.env
+        file_ext = os.path.splitext(env.doc2path(env.docname))[1]
+        i_still_have_to_create_the_document_label = True
+        for section in self.document.traverse(docutils.nodes.section):
+            assert section.children
+            assert isinstance(section.children[0], docutils.nodes.title)
+            title = section.children[0].astext()
+            if file_ext.lower() == '.ipynb':
+                link_id = title.replace(' ', '-')
+                section['ids'] = [link_id]
+            else:
+                link_id = section['ids'][0]
+            label = '/' + env.docname + file_ext + '#' + link_id
+            label = label.lower()
+            env.domaindata['std']['labels'][label] = (
+                env.docname, link_id, title)
+            env.domaindata['std']['anonlabels'][label] = (
+                env.docname, link_id)
+
+            # Create a label for the whole document using the first section:
+            if i_still_have_to_create_the_document_label:
+                label = '/' + env.docname.lower() + file_ext
+                env.domaindata['std']['labels'][label] = (
+                    env.docname, '', title)
+                env.domaindata['std']['anonlabels'][label] = (
+                    env.docname, '')
+                i_still_have_to_create_the_document_label = False
+
+        # Create labels for domain-specific object signatures
+        for sig in self.document.traverse(sphinx.addnodes.desc_signature):
+            try:
+                title = sig['ids'][0]
+            except IndexError:
+                # Object has same name as another, so skip it
+                continue
+            link_id = title.replace(' ', '-')
+            sig['ids'] = [link_id]
+            label = '/' + env.docname + file_ext + '#' + link_id
+            label = label.lower()
+            env.domaindata['std']['labels'][label] = (
+                env.docname, link_id, title)
+            env.domaindata['std']['anonlabels'][label] = (
+env.docname, link_id)
