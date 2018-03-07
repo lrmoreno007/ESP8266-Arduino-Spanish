@@ -312,7 +312,6 @@ env.docname, link_id)
 def setup(app):
     app.add_transform(CreateSectionLabels)  
     """Initialize Sphinx extension."""
-    _add_notebook_parser(app)
 
     app.add_config_value('nbsphinx_execute', 'auto', rebuild='env')
     app.add_config_value('nbsphinx_kernel_name', '', rebuild='env')
@@ -325,6 +324,8 @@ def setup(app):
     app.add_config_value('nbsphinx_responsive_width', '540px', rebuild='html')
     app.add_config_value('nbsphinx_prolog', None, rebuild='env')
     app.add_config_value('nbsphinx_epilog', None, rebuild='env')
+
+    _add_notebook_parser(app)
 """
     app.add_directive('nbinput', NbInput)
     app.add_directive('nboutput', NbOutput)
