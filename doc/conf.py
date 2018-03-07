@@ -272,7 +272,7 @@ class CreateSectionLabels(docutils.transforms.Transform):
             assert section.children
             assert isinstance(section.children[0], docutils.nodes.title)
             title = section.children[0].astext()
-            if file_ext.lower() == '.ipynb':
+            if file_ext.lower() == '.rst':
                 link_id = title.replace(' ', '-')
                 section['ids'] = [link_id]
             else:
@@ -311,7 +311,7 @@ env.docname, link_id)
 
 def setup(app):
     """Initialize Sphinx extension."""
-#    _add_notebook_parser(app)
+"""    _add_notebook_parser(app)
 
     app.add_config_value('nbsphinx_execute', 'auto', rebuild='env')
     app.add_config_value('nbsphinx_kernel_name', '', rebuild='env')
@@ -325,19 +325,19 @@ def setup(app):
     app.add_config_value('nbsphinx_prolog', None, rebuild='env')
     app.add_config_value('nbsphinx_epilog', None, rebuild='env')
 
-#    app.add_directive('nbinput', NbInput)
-#    app.add_directive('nboutput', NbOutput)
-#    app.add_directive('nbinfo', NbInfo)
-#    app.add_directive('nbwarning', NbWarning)
-#    app.add_node(CodeNode,
-#                 html=(do_nothing, depart_code_html),
-#                 latex=(visit_code_latex, depart_code_latex))
-#    app.add_node(AdmonitionNode,
-#                 html=(visit_admonition_html, depart_admonition_html),
-#                 latex=(visit_admonition_latex, depart_admonition_latex))
-#    app.connect('builder-inited', builder_inited)
-#    app.connect('html-page-context', html_page_context)
-#    app.connect('html-collect-pages', html_collect_pages)
-#    app.connect('env-purge-doc', env_purge_doc)
+    app.add_directive('nbinput', NbInput)
+    app.add_directive('nboutput', NbOutput)
+    app.add_directive('nbinfo', NbInfo)
+    app.add_directive('nbwarning', NbWarning)
+    app.add_node(CodeNode,
+                 html=(do_nothing, depart_code_html),
+                 latex=(visit_code_latex, depart_code_latex))
+    app.add_node(AdmonitionNode,
+                 html=(visit_admonition_html, depart_admonition_html),
+                 latex=(visit_admonition_latex, depart_admonition_latex))
+    app.connect('builder-inited', builder_inited)
+    app.connect('html-page-context', html_page_context)
+    app.connect('html-collect-pages', html_collect_pages)
+    app.connect('env-purge-doc', env_purge_doc)"""
     app.add_transform(CreateSectionLabels)            
             
