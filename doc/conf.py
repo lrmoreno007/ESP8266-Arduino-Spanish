@@ -323,10 +323,10 @@ def setup(app):
     app.add_config_value('nbsphinx_prolog', None, rebuild='env')
     app.add_config_value('nbsphinx_epilog', None, rebuild='env')
 
-    app.add_directive('nbinput', NbInput)
-    app.add_directive('nboutput', NbOutput)
-    app.add_directive('nbinfo', NbInfo)
-    app.add_directive('nbwarning', NbWarning)
+#    app.add_directive('nbinput', NbInput)
+#    app.add_directive('nboutput', NbOutput)
+#    app.add_directive('nbinfo', NbInfo)
+#    app.add_directive('nbwarning', NbWarning)
     app.add_node(CodeNode,
                  html=(do_nothing, depart_code_html),
                  latex=(visit_code_latex, depart_code_latex))
