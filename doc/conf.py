@@ -18,6 +18,7 @@
 #
 import os
 import sys
+import re
 import docutils
 from docutils.parsers import rst
 # sys.path.insert(0, os.path.abspath('.'))
