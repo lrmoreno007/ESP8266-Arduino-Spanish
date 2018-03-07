@@ -333,9 +333,9 @@ def setup(app):
 #    app.add_node(AdmonitionNode,
 #                 html=(visit_admonition_html, depart_admonition_html),
 #                 latex=(visit_admonition_latex, depart_admonition_latex))
-    app.connect('builder-inited', builder_inited)
-    app.connect('html-page-context', html_page_context)
-    app.connect('html-collect-pages', html_collect_pages)
-    app.connect('env-purge-doc', env_purge_doc)
+#    app.connect('builder-inited', builder_inited)
+#    app.connect('html-page-context', html_page_context)
+#    app.connect('html-collect-pages', html_collect_pages)
+#    app.connect('env-purge-doc', env_purge_doc)
     app.add_transform(CreateSectionLabels)            
             
