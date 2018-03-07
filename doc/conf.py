@@ -327,12 +327,12 @@ def setup(app):
 #    app.add_directive('nboutput', NbOutput)
 #    app.add_directive('nbinfo', NbInfo)
 #    app.add_directive('nbwarning', NbWarning)
-    app.add_node(CodeNode,
-                 html=(do_nothing, depart_code_html),
-                 latex=(visit_code_latex, depart_code_latex))
-    app.add_node(AdmonitionNode,
-                 html=(visit_admonition_html, depart_admonition_html),
-                 latex=(visit_admonition_latex, depart_admonition_latex))
+#    app.add_node(CodeNode,
+#                 html=(do_nothing, depart_code_html),
+#                 latex=(visit_code_latex, depart_code_latex))
+#    app.add_node(AdmonitionNode,
+#                 html=(visit_admonition_html, depart_admonition_html),
+#                 latex=(visit_admonition_latex, depart_admonition_latex))
     app.connect('builder-inited', builder_inited)
     app.connect('html-page-context', html_page_context)
     app.connect('html-collect-pages', html_collect_pages)
