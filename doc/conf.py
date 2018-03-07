@@ -21,6 +21,8 @@ import sys
 import re
 import docutils
 from docutils.parsers import rst
+import sphinx
+import sphinx.errors
 # sys.path.insert(0, os.path.abspath('.'))
 
 # -- General configuration ------------------------------------------------
