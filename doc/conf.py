@@ -309,7 +309,7 @@ env.docname, link_id)
 
 def setup(app):
     """Initialize Sphinx extension."""
-    _add_notebook_parser(app)
+#    _add_notebook_parser(app)
 
     app.add_config_value('nbsphinx_execute', 'auto', rebuild='env')
     app.add_config_value('nbsphinx_kernel_name', '', rebuild='env')
