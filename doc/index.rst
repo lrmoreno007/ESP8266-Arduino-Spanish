@@ -20,4 +20,3 @@ Bienvenido a la documentación de ESP8266 Arduino Core!
    Depuración <Troubleshooting/debugging>
    Volcado de pila <Troubleshooting/stack_dump>
    Uso con Eclipse <eclipse/eclipse>
-   Registro de cambios <changes>
