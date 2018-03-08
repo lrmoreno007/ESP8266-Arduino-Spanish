@@ -48,7 +48,7 @@ A partir de 1.6.4, Arduino permite la instalación de paquetes de plataformas de
 #### Latest release [![Latest release](https://img.shields.io/github/release/esp8266/Arduino.svg)](https://github.com/esp8266/Arduino/releases/latest/)
 URL para el Gestor de Tarjetas: `http://arduino.esp8266.com/stable/package_esp8266com_index.json`
 
-Documentación Inglés: [https://arduino-esp8266.readthedocs.io/en/2.4.0/](https://arduino-esp8266.readthedocs.io/en/2.4.0/)
+Documentación Inglés: [https://arduino-esp8266.readthedocs.io/en/2.4.1/](https://arduino-esp8266.readthedocs.io/en/2.4.1/)
 
 Documentación Español: [http://esp8266-arduino-spanish.readthedocs.io/es/latest/index.html](http://esp8266-arduino-spanish.readthedocs.io/es/latest/index.html)
 
