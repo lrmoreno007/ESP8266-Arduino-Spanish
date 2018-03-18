@@ -40,7 +40,7 @@ En el IDE, para ESP-12E que tiene una flash de 4M, puedo seleccionar 4M (1M SPIF
 
 La razón de que no podamos tener mas de 1MB de código en la flash tiene que ver con limitaciones hardware. El hardware de la cache flash en el ESP8266 solo permite mapear 1MB de código en el espacio de direcciones de la CPU en cualquier momento dado. Puedes cambiar el desplazamiento de mapeo, por lo que técnicamente puede tener más de 1 MB total, pero cambiar esos "bancos" sobre la marcha no es fácil y eficiente, así que no nos molestamos en hacerlo. Además, nadie se ha quejado hasta ahora de que los aproximadamente 1 MB de espacio de código sea insuficiente para fines prácticos.
 
-La opción de seleccionar 4M o 1M SPIFFS es para optimizar el tiempo de subida. Subir 3MB toma mas tiempo que subir 1MB. Otras capacidades de flash 2MB también pueden utilizarse con las APIs ``ESP.flashRead`` y ``ESP.flashWrite`` si es necesario.
+La opción de seleccionar 3M o 1M SPIFFS es para optimizar el tiempo de subida. Subir 3MB toma mas tiempo que subir 1MB. Otras capacidades de flash 2MB también pueden utilizarse con las APIs ``ESP.flashRead`` y ``ESP.flashWrite`` si es necesario.
 
 He observado un caso en que ESP.restart() no funciona. ¿Cual es la razón para esto?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
