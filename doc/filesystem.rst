@@ -1,7 +1,7 @@
 Sistema de ficheros
 ==========
 
-Esquema de la memoria flash
+Esquema de la memoria flash _esquema-de-la-memoria-flash
 ------------
 
 Aunque el sistema de archivos está almacenado en el mismo chip flash que el sketch, la programación de un nuevo boceto no modificará el contenido del sistema de archivos. Esto permite utilizar el sistema de archivos para almacenar datos del sketch, archivos de configuración o contenido para el servidor web.
