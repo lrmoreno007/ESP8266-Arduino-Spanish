@@ -57,10 +57,7 @@ Basic Requirements
 
 Flash chip size should be able to hold the old sketch (currently running) and the new sketch (OTA) at the same time.
 
-Keep in mind that the File system and EEPROM for example needs space too (one time) see :ref:`esquema-de-la-memoria-flash`.
-
-
-:ref:`flash layout <../filesystem.html#esquema-de-la-memoria-flash>`__.
+Keep in mind that the File system and EEPROM for example needs space too (one time) see :ref:`esquema-de-la-memoria-flash`. `flash layout <../filesystem.html#esquema-de-la-memoria-flash>`__.
 
 .. code:: cpp
 
