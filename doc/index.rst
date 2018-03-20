@@ -5,7 +5,7 @@ Bienvenido a la documentación de ESP8266 Arduino Core!
    :maxdepth: 2
    :caption: Contenido:
 
-   Readme First <../readme.md>
+   Readme First <../readme>
    Instalación <installing>
    Referencia <reference>
    Librerías <libraries>
