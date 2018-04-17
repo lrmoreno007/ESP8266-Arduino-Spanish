@@ -65,7 +65,7 @@ APIs especificas de ESP
 
 Algunas APIs especificas de ESP relacionadas a deep sleep, RTC y memoria flash están disponibles en el objeto ``ESP``.
 
-``ESP.deepSleep(microseconds, mode)`` pondrá el chip en deep sleep (sueño profundo - ahorro de energía). ``mode`` puede ser ``WAKE_RF_DEFAULT``, ``WAKE_RFCAL``, ``WAKE_NO_RFCAL``, ``WAKE_RF_DISABLED``. (Se necesita unir GPIO16 a RST para despertar del deep sleep).
+``ESP.deepSleep(microseconds, mode)`` pondrá el chip en deep sleep (sueño profundo - ahorro de energía). ``mode`` puede ser ``WAKE_RF_DEFAULT``, ``WAKE_RFCAL``, ``WAKE_NO_RFCAL``, ``WAKE_RF_DISABLED``. (Se necesita unir GPIO16 a RST para despertar del deep sleep). El chip puede dormir como mucho ``ESP.deepSleepMax()`` microsegundos.
 
 ``ESP.rtcUserMemoryWrite(offset, &data, sizeof(data))`` y ``ESP.rtcUserMemoryRead(offset, &data, sizeof(data))`` permite a los datos ser almacenados y recuperados de la memoria de usuario RTC del chip, respectivamente. El tamaño total de la memoria de usuario RTC es 512 bytes, así que ``offset + sizeof(data)`` no debe exceder 512. Los datos deben tener una alineación de 4-byte. Los datos almacenados pueden retenerse entre ciclos deep sleep. Sin embargo, los datos se pierden tras un ciclo de realimentación del chip.
 
