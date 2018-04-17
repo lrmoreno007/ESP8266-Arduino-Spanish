@@ -380,3 +380,8 @@ El Oak requiere un `Adaptador Serie`_ para la conexión serie o flaseado; Su pue
 Para realizar la conexión serie, conecte el adaptador **TX a P3**, **RX a P4** y **GND a GND**. Alimentar 3.3v desde el adaptador serie si no está ya alimentado mediante el USB.
 
 Para poner la tarjeta en modo bootloader, configure una conexión serie como anteriormente y conecte **P2 a GND**, después vuelva a alimentar.  Una vez que el flaseado se ha completado, elimine la conexión de P2 a GND, entonces vuelva a alimentar para iniciar en modo normal.
+
+WiFiduino
+---------
+
+Product page: https://wifiduino.com/esp8266
