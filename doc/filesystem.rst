@@ -49,6 +49,8 @@ El tamaño del sistema de ficheros depende del tamaño del chip flash. Dependien
 +---------------------------------+--------------------------+---------------------------+
 | ESPDuino                        | 4M                       | 1M, 3M                    |
 +---------------------------------+--------------------------+---------------------------+
+| WiFiduino                       | 4M                       | 1M, 3M                    |
++---------------------------------+--------------------------+---------------------------+
 
 **Nota** para utilizar funciones del sistema de ficheros en el sketch, añade la siguiente línea include al sketch:
 
