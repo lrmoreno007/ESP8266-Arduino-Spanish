@@ -129,6 +129,13 @@ Servo
 
 Esta biblioteca permite la capacidad de controlar motores servo RC (hobby). Admite hasta 24 servos en cualquier pin de salida disponible. Por definición, los primeros 12 servos usarán Timer0 y actualmente esto no interferirá con ningún otro soporte. Los conteos de servos superiores a 12 utilizarán Timer1 y las funciones que lo utilizan se verán afectadas. Si bien muchos servomotores RC aceptarán el pin de datos IO de 3.3V de un ESP8266, la mayoría no podrá funcionar a 3.3v y requerirá otra fuente de alimentación que coincida con sus especificaciones. Asegúrese de conectar los cables entre el ESP8266 y la fuente de alimentación del servomotor.
 
+Improved EEPROM library for ESP (ESP_EEPROM)
+--------------------------------------------
+
+Una biblioteca mejorada para la EEPROM de ESPxxxx. Utiliza la memoria flash de acuerdo con la biblioteca estándar ESP EEPROM, pero reduce el reflash, por lo que reduce el desgaste y mejora el rendimiento de commit().
+
+Como las acciones en el flash deben detener las interrupciones, un reflash de la EEPROM podría afectar notoriamente cualquier cosa usando PWM, etc.
+
 Otras librerías (no incluidas con el IDE)
 -------------------------------------------
 
