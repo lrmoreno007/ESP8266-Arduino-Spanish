@@ -384,4 +384,4 @@ Para poner la tarjeta en modo bootloader, configure una conexión serie como ant
 WiFiduino
 ---------
 
-Product page: https://wifiduino.com/esp8266
+Página de producto: https://wifiduino.com/esp8266
