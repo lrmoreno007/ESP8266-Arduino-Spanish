@@ -59,7 +59,14 @@ Este error puede aparecer al cambiar entre los paquetes de instalación de ESP82
 ¿Cómo borrar PCBs TCP en estado de espera de tiempo?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Esto es necesario con lwIP-v1.4 y menos necesario con lwIP-v2 pero el timeout es aún así muy alto.
+Esto ya no es necesario:
+
+Los PCBs en tiempo de estado de espera están limitados a 5 y se eliminan cuando ese número es excedido.
+
+Ref.  `lwIP-v1.4 <https://github.com/esp8266/Arduino/commit/07f4d4c241df2c552899857f39a4295164f686f2#diff-f8258e71e25fb9985ca3799e3d8b88ecR399>`__,
+`lwIP-v2 <https://github.com/d-a-v/esp82xx-nonos-linklayer/commit/420960dfc0dbe07114f7364845836ac333bc84f7>`__
+
+Como información:
 
 El estado Time-wait PCB ayuda al TCP a no confundir dos conexiones consecutivas con el mismo: IP de origen ip, puerto de origen, IP de destino y puerto de destino, cuando el primero ya está cerrado pero aún están llegando tarde durante segundos paquetes duplicados perdidos en internet. Limpiarlos artificialmente es una solución alternativa para ayudar a salvar heap preciosos.
 
