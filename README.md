@@ -55,8 +55,13 @@ Documentación Español: [http://esp8266-arduino-spanish.readthedocs.io/es/lates
 ### Usando versión git
 [![Linux build status](https://travis-ci.org/esp8266/Arduino.svg)](https://travis-ci.org/esp8266/Arduino)
 
-- Instala el IDE Arduino 1.8.2 desde [Arduino website](http://www.arduino.cc/en/main/software).
+- Instala el IDE Arduino 1.8 o superior. La versión actual se encuentra en [Arduino website](http://www.arduino.cc/en/main/software).
 - Ve al directorio de Arduino.
+  - Para Mac OS X, `Arduino.app` es mostrado como icono de Arduino.  
+    Esta localización puede ser `~/Downloads`, `~/Desktop` o incluso `/Applications`.
+    ```bash
+    cd <application-directory>/Arduino.app/Contents/Java
+    ```
 - Clona este repositorio en la carpeta hardware/esp8266com/esp8266 (o clónalo donde quieras y crea un enlace simbólico).
 ```bash
 cd hardware
