@@ -18,6 +18,7 @@
 #
 import os
 import sys
+import nbsphinx
 
 # sys.path.insert(0, os.path.abspath('.'))
 
