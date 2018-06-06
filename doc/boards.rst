@@ -384,4 +384,9 @@ Para poner la tarjeta en modo bootloader, configure una conexión serie como ant
 WiFiduino
 ---------
 
-Página de producto: https://wifiduino.com/esp8266
+- Página del producto: https://wifiduino.com/esp8266
+
+Amperka WiFi Slot
+-----------------
+
+- Página del producto: http://wiki.amperka.ru/wifi-slot
