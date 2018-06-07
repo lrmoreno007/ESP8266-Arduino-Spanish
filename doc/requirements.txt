@@ -4,3 +4,6 @@ sphinx
 sphinx-rtd-theme
 breathe
 recommonmark
+sphinx>=1.4
+ipykernel
+nbsphinx
