@@ -9,8 +9,7 @@ Este es el método elegido para los usuarios finales.
 Prerequisitos
 ~~~~~~~~~~~~~
 
--  Arduino 1.6.8, descárgalo de la página web de Arduino:
-      <https://www.arduino.cc/en/Main/OldSoftwareReleases#previous>.
+-  Arduino 1.6.8, descárgalo de la página `web de Arduino <https://www.arduino.cc/en/Main/OldSoftwareReleases#previous>`__ :
 -  Conexión a internet
 
 Instrucciones
