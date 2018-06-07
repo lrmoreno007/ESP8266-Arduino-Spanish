@@ -25,8 +25,11 @@ Ejemplos de tarjetas con convertidor USB a Serie integrado, que harán que el de
    Ejemplos de tarjetas con convertidor USB a Serie integrado
 
 Si estás utilizando un módulo Genérico ESP8266, con convertidor USB a Serie separado y conectado por ti mismo, asegúrate de que haces bien lo siguiente:
+
 1. Se suministra al módulo suficiente energía
+
 2. GPIO0, GPIO15 y CH_PD están conectados utilizando resistencias pull up / pull down. 
+
 3. El módulo entra en modo bootloader.
 
 Para detalles específicos consulta la sección `Módulo Genérico ESP8266 <../boards.rst#generic-esp8266-modules>`__. Ejemplos de módulos sin convertidor USB a Serie en la tarjeta:
