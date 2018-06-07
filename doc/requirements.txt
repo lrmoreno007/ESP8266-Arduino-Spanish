@@ -4,5 +4,5 @@ sphinx
 sphinx-rtd-theme
 breathe
 recommonmark
-ipykernel
 nbsphinx
+# ipykernel
