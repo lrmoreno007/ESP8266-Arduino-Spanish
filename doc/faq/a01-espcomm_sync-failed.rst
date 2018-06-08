@@ -32,7 +32,8 @@ Si estás utilizando un módulo Genérico ESP8266, con convertidor USB a Serie s
 
 3. El módulo entra en modo bootloader.
 
-Para detalles específicos consulta la sección `Módulo Genérico ESP8266 <../boards.rst#modulo-generico-esp8266>`__ .
+Para detalles específicos consulta la sección [Módulo Genérico ESP8266](../boards.rst#modulo-generico-esp8266>) .
+`Módulo Genérico ESP8266 <../boards.rst#modulo-generico-esp8266>`__ .
 
 Ejemplos de módulos sin convertidor USB a Serie en la tarjeta:
 
