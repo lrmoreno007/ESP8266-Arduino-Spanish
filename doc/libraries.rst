@@ -6,7 +6,7 @@ WiFi(librería ESP8266WiFi)
 
 La librería ESP8266WiFi ha sido desarrollada basándose en el SDK ESP8266, utilizando la nomenclatura convencional y la filosofía de la funcionalidad de la `Librería de la Shield Arduino WiFi <https://www.arduino.cc/en/Reference/WiFi>`__. Con el tiempo, la riqueza de las funciones WiFi portadas del desde el SDK ESP8266 a esta librería superaron a las APIs de la librería de la Shield WiFi y se hizo evidente que tenemos que proporcionar documentación por separado sobre lo que es nuevo y extra.
 
-`Documentación de la librería ESP8266WiFi <esp8266wifi/readme.rst>`__.
+`Documentación de la librería ESP8266WiFi <esp8266wifi/readme.rst>`__
 
 Ticker
 ------
