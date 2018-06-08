@@ -121,9 +121,9 @@ El modo estación (STA) se utiliza para conectar el módulo ESP a una red WiFi e
 
 La clase de estación tiene varias características para facilitar la administración de la conexión WiFi. En caso de que se pierda la conexión, el ESP8266 se volverá a conectar automáticamente al último punto de acceso utilizado, una vez que esté nuevamente disponible. Lo mismo ocurre en el reinicio del módulo. Esto es posible ya que ESP guarda las credenciales al último punto de acceso utilizado en la memoria flash (no volátil). Usando los datos guardados, ESP también se volverá a conectar si se modificó el sketch, si el código no altera el modo WiFi o las credenciales.
 
-:doc:`Documentación clase Station <station-class>`
+`Documentación clase Station <station-class.rst>`__
 
-Echa un vistazo a la sección separada con :doc:`ejemplos <station-examples>`.
+Echa un vistazo a la sección separada con `ejemplos <station-examples.rst>`__-.
 
 Punto de Acceso Wireless
 ~~~~~~~~~~~~~~~~~
@@ -139,18 +139,18 @@ El modo SoftAP se usa a menudo y es un paso intermedio antes de conectar ESP a u
 
 Otra aplicación práctica del modo SoftAP es configurar una `red mallada <https://es.wikipedia.org/wiki/Red_inal%C3%A1mbrica_mallada>`__. ESP puede funcionar tanto en modo SoftAP como en modo Estación para que pueda actuar como un nodo de una red mallada.
 
-:doc:`Documentación clase Soft Access Point <soft-access-point-class>`
+`Documentación clase Soft Access Point <soft-access-point-class.rst>`__
 
-Echa un vistazo a la sección separada con :doc:`ejemplos <soft-access-point-examples>`.
+Echa un vistazo a la sección separada con `ejemplos <soft-access-point-examples.rst>`__.
 
 Scan
 ~~~~
 
 Para conectar un teléfono móvil a un punto de acceso público, normalmente abre la aplicación de configuración de Wi-Fi, enumera las redes disponibles y elige el punto de acceso que necesita. Luego ingresa una contraseña (o no) y estás dentro. Puedes hacer lo mismo con ESP. La clase de escaneo implementa la funcionalidad del escaneo y la lista de redes disponibles en el rango.
 
-:doc:`Documentación clase Scan <scan-class>`.
+`Documentación clase Scan <scan-class.rst>`__
 
-Echa un vistazo a la sección separada con :doc:`ejemplos <scan-examples>`.
+Echa un vistazo a la sección separada con `ejemplos <scan-examples.rst>`__.
 
 Client
 ~~~~~~
@@ -162,7 +162,7 @@ La clase Client crea `clientes <https://es.wikipedia.org/wiki/Cliente_(inform%C3
 
    ESP8266 operando como Cliente
 
-Echa un vistazo a la sección separada con :doc:`ejemplos <client-examples>` / :doc:`Lista de funciones <client-class>`
+Echa un vistazo a la sección separada con `ejemplos <client-examples.rst>`__ / `Lista de funciones <client-class.rst>`__
 
 Client Secure
 ~~~~~~~~~~~~~
@@ -176,7 +176,7 @@ Client Secure es una extensión de la `clase Client <#client>`__ donde la conexi
 
 Las aplicaciones seguras tienen una sobrecarga adicional de memoria (y procesamiento) debido a la necesidad de ejecutar algoritmos de criptografía. Cuanto más fuerte sea la clave del certificado, más gastos generales se necesitan. En la práctica, no es posible ejecutar más de un único cliente seguro a la vez. El problema se refiere a la memoria RAM que no podemos agregar, el tamaño de la memoria flash por lo general no es el problema. Si desea aprender cómo se ha desarrollado `la librería de Client Secure <https://github.com/esp8266/Arduino/blob/master/libraries/ESP8266WiFi/src/WiFiClientSecure.h>`__, qué servidores se han probado y cómo se han superado las limitaciones de la memoria, lea el fascinante informe de problemas `#43 <https://github.com/esp8266/Arduino/issues/43>`__.
 
-Echa un vistazo a la sección separada con :doc:`ejemplos <client-secure-examples>` / :doc:`lista de funciones <client-secure-class>`
+Echa un vistazo a la sección separada con `ejemplos <client-secure-examples.rst>`__ / `lista de funciones <client-secure-class.rst>`__
 
 Server
 ~~~~~~
@@ -190,21 +190,21 @@ La clase de Server crea `Servidores <https://es.wikipedia.org/wiki/Servidor>`__ 
 
 Los clientes se conectan para enviar y recibir datos y acceder a la funcionalidad provista.
 
-Echa un vistazo a la sección separada con :doc:`ejemplos <server-examples>` / :doc:`lista de funciones <server-class>`.
+Echa un vistazo a la sección separada con `ejemplos <server-examples.rst>`__ / `lista de funciones <server-class.rst>`__.
 
 UDP
 ~~~
 
 La clase UDP permite el envío y recepción de mensajes `User Datagram Protocol (UDP) <https://es.wikipedia.org/wiki/User_Datagram_Protocol>`__. El UDP usa un modelo de transmisión simple de "disparar y olvidar" sin garantía de entrega, pedido o protección duplicada. UDP proporciona sumas de comprobación para la integridad de datos y números de puertos para direccionar diferentes funciones a la fuente y el destino del datagrama.
 
-Echa un vistazo a la sección separada con :doc:`ejemplos <udp-examples>` / :doc:`lista de funciones <udp-class>`.
+Echa un vistazo a la sección separada con `ejemplos <udp-examples.rst>`__ / `lista de funciones <udp-class.rst>`__.
 
 Generic
 ~~~~~~~
 
 Hay varias funciones ofrecidas por el `SDK <http://bbs.espressif.com/viewtopic.php?f=51&t=1023>`__ de ESP8266 y no están presentes en la biblioteca `Arduino WiFi <https://www.arduino.cc/en/Reference/WiFi>`__. Si una función no encaja en una de las clases discutidas anteriormente, probablemente estará en la Clase Genérica. Entre ellas se encuentra el controlador para gestionar eventos WiFi como conexión, desconexión u obtención de una IP, cambios en el modo WiFi, funciones para gestionar el modo de suspensión del módulo, nombre de host para una resolución de dirección IP, etc.
 
-Echa un vistazo a la sección separada con :doc:`ejemplos <generic-examples>` / :doc:`lista de funciones <generic-class>`.
+Echa un vistazo a la sección separada con `ejemplos <generic-examples.rst>`__ / `lista de funciones <generic-class.rst>`__.
 
 Diagnóstico
 -----------
@@ -266,7 +266,7 @@ Utilice esta función para proporcionar una instantánea del estado de Wi-Fi en 
 Activar el diagnóstico WiFi
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-Por defecto, la salida de diagnóstico de las librerías WiFi están desactivadas cuando se invoca ``Serial.begin``. Para habilitar nuevamente la salida de depuración, llame a ``Serial.setDebugOutput(true)``. Para redirigir la salida de depuración a ``Serial1``, llame a ``Serial1.setDebugOutput(true)``. Para obtener más detalles sobre el diagnóstico con puertos serie, consulte :doc:`the documentation <../reference>`.
+Por defecto, la salida de diagnóstico de las librerías WiFi están desactivadas cuando se invoca ``Serial.begin``. Para habilitar nuevamente la salida de depuración, llame a ``Serial.setDebugOutput(true)``. Para redirigir la salida de depuración a ``Serial1``, llame a ``Serial1.setDebugOutput(true)``. Para obtener más detalles sobre el diagnóstico con puertos serie, consulte `the documentation <../reference.rst>`__.
 
 A continuación se muestra un ejemplo de salida para el sketch de muestra discutido mas arriba en `Inicio rápido <#inicio rápido>`__ con ``Serial.setDebugOutput(true)``:
 
