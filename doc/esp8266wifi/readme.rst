@@ -266,7 +266,7 @@ Utilice esta función para proporcionar una instantánea del estado de Wi-Fi en 
 Activar el diagnóstico WiFi
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-Por defecto, la salida de diagnóstico de las librerías WiFi están desactivadas cuando se invoca ``Serial.begin``. Para habilitar nuevamente la salida de depuración, llame a ``Serial.setDebugOutput(true)``. Para redirigir la salida de depuración a ``Serial1``, llame a ``Serial1.setDebugOutput(true)``. Para obtener más detalles sobre el diagnóstico con puertos serie, consulte `the documentation <../reference.rst>`__.
+Por defecto, la salida de diagnóstico de las librerías WiFi están desactivadas cuando se invoca ``Serial.begin``. Para habilitar nuevamente la salida de depuración, llame a ``Serial.setDebugOutput(true)``. Para redirigir la salida de depuración a ``Serial1``, llame a ``Serial1.setDebugOutput(true)``. Para obtener más detalles sobre el diagnóstico con puertos serie, consulte la `documentación <../reference.rst>`__.
 
 A continuación se muestra un ejemplo de salida para el sketch de muestra discutido mas arriba en `Inicio rápido <#inicio rápido>`__ con ``Serial.setDebugOutput(true)``:
 
