@@ -44,7 +44,7 @@ Tabla de contenidos
 
 Los puntos siguientes proporcionan descripciones y retazos de código sobre como usar métodos particulares.
 
-Para obtener más muestras de código, consulte la sección separada con :doc:`ejemplos <station-examples>` dedicada específicamente a la Clase Station.
+Para obtener más muestras de código, consulte la sección separada con `ejemplos <station-examples>` dedicada específicamente a la Clase Station.
 
 Comienza aquí
 ~~~~~~~~~~
@@ -669,4 +669,4 @@ Detiene Smart Config y libera el buffer tomado por ``beginSmartConfig()``. Depen
 Para obtener más información acerca de Smart Config, consulte la guía de usuario de la `API ESP8266 <http://bbs.espressif.com/viewtopic.php?f=51&t=1023>`__.
 
 
-Consulte la sección separada con :doc:`ejemplos <station-examples>` dedicada específicamente a la Clase Station.
+Consulte la sección separada con `ejemplos <station-examples.rst>`__ dedicada específicamente a la Clase Station.
