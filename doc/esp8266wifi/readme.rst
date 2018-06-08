@@ -123,7 +123,7 @@ La clase de estación tiene varias características para facilitar la administra
 
 `Documentación clase Station <station-class.rst>`__
 
-Echa un vistazo a la sección separada con `ejemplos <station-examples.rst>`__-.
+Echa un vistazo a la sección separada con `ejemplos <station-examples.rst>`__.
 
 Punto de Acceso Wireless
 ~~~~~~~~~~~~~~~~~
