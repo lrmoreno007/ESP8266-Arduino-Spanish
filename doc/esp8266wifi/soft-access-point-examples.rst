@@ -122,4 +122,4 @@ Conclusion
 
 Once you try above sketch check out `WiFiAccessPoint.ino <https://github.com/esp8266/Arduino/blob/master/libraries/ESP8266WiFi/examples/WiFiAccessPoint/WiFiAccessPoint.ino>`__ as a next step. It demonstrates how to access ESP operating in soft-AP mode from a web browser.
 
-For the list of functions to manage ESP module in soft-AP mode please refer to the :doc:`Soft Access Point Class <soft-access-point-class>` documentation.
+For the list of functions to manage ESP module in soft-AP mode please refer to the `Soft Access Point Class <soft-access-point-class.rst>`__ documentation.
