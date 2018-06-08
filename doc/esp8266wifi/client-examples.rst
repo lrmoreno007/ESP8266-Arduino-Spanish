@@ -44,8 +44,6 @@ I have selected ``www.example.com`` domain name and you can select any other. Ju
 .. figure:: pictures/client-example-domain.png
    :alt: A web page to be retreived by the clinet program
 
-   alt text
-
 Instantiate the Client
 ~~~~~~~~~~~~~~~~~~~~~~
 
