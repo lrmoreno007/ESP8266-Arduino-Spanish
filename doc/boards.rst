@@ -317,7 +317,7 @@ Página del producto: https://www.wemos.cc/
 WeMos D1 mini Lite
 ------------------
 
-Parametros en el IDE Arduino:
+Parámetros en el IDE Arduino:
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
 - Tarjeta: "WEMOS D1 Mini Lite"
