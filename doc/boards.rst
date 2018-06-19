@@ -317,7 +317,28 @@ Página del producto: https://www.wemos.cc/
 WeMos D1 mini Lite
 ------------------
 
-Página del producto: https://www.wemos.cc/
+Parametros en el IDE Arduino:
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Tarjeta: "WEMOS D1 Mini Lite"
+- Tamaño de la flash: "1M (512K SPIFFS)"
+- Frecuencia de la CPU: "80 Mhz"
+- Velocidad de subida: "230400"
+
+Potencias:
+~~~~~
+
+- Pin 5V : salida 4.7V 500mA cuando la tarjeta se alimenta mediante USB; Entrada 3.5V-6V
+- Pin 3V3 : salida regulada 3.3V 500mA
+- Pines digitales : 3.3V 30mA.
+
+Enlaces:
+~~~~~
+
+- Página del producto: https://www.wemos.cc/
+- Esquema de la tarjeta: https://wiki.wemos.cc/_media/products:d1:sch_d1_mini_lite_v1.0.0.pdf
+- Datasheet del ESP8285: https://www.espressif.com/sites/default/files/0a-esp8285_datasheet_en_v1.0_20160422.pdf
+- Datasheet del regulador de voltaje: http://pdf-datasheet.datasheet.netdna-cdn.com/pdf-down/M/E/6/ME6211-Microne.pdf
 
 WeMos D1 R1
 -----------
