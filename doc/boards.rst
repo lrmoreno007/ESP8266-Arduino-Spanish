@@ -272,6 +272,8 @@ De acuerdo con el fabricante, "con un micro cable USB, puedes conectar el kit de
 
 La tarjeta también integra un regulador de voltaje NCP1117, un LED azul en GPIO16 y un divisor de voltaje 220k/100k Ohm en el pin de entrada ADC.
 
+El ESP-12E normalmente tiene un led conectado en el GPIO2.
+
 El pinout completo y esquema en PDF, se encuentra `aquí <https://github.com/nodemcu/nodemcu-devkit-v1.0>`__
 
 Olimex MOD-WIFI-ESP8266(-DEV)
