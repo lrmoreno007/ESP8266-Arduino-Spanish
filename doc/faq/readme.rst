@@ -12,7 +12,7 @@ Obtengo el error "espcomm\_sync failed" cuando intento subir a mi ESP. ¿Como re
 
 Este mensaje indica un problema al subir al módulo ESP mediante conexión por puerto serie. Existen varias posibles causas que dependen del tipo de módulo y de si tiene un convertidor serie independiente.
 
-:doc:`Leer mas <a01-espcomm_sync-failed>`.
+`Leer mas <a01-espcomm_sync-failed.rst>`__.
 
 ¿Porqué no aparece esptool en el menú "Programador"? ¿Como subo al ESP sin él?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -26,14 +26,14 @@ Mi ESP se bloquea al correr el programa. ¿Como lo resuelvo?
 
 El programa puede bloquearse por un error software o hardware. Antes de abrir un nuevo issue, por favor realice una serie de comprobaciones iniciales.
 
-:doc:`Leer mas <a02-my-esp-crashes>`.
+`Leer mas <a02-my-esp-crashes.rst>`__.
 
 Esta librería de Arduino no funciona en ESP. ¿Como la hago funcionar?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Te gustaría usar una librería de Arduino con ESP8266 y no funciona. Si no se encuentra entre las bibliotecas verificadas para trabajar con ESP8266:
 
-:doc:`Leer mas <a03-library-does-not-work>`.
+`Leer mas <a03-library-does-not-work.rst>`__.
 
 En el IDE, para ESP-12E que tiene una flash de 4M, puedo seleccionar 4M (1M SPIFFS) o 4M (3M SPIFFS). No importa lo que seleccione, el IDE me dice que la capacidad máxima es de 1M. ¿Donde va mi flash?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -54,7 +54,7 @@ Ref. `#1017 <https://github.com/esp8266/Arduino/issues/1017>`__, `#1107 <https:/
 
 Este error puede aparecer al cambiar entre los paquetes de instalación de ESP8266/Arduino `staging <https://github.com/esp8266/Arduino#staging-version->`__ y `stable <https://github.com/esp8266/Arduino#stable-version->`__, o tras actualizar de versión de paquete.
 
-:doc:`Leer mas <a04-board-generic-is-unknown>`.
+`Leer mas <a04-board-generic-is-unknown.rst>`__.
 
 ¿Cómo borrar PCBs TCP en estado de espera de tiempo?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
