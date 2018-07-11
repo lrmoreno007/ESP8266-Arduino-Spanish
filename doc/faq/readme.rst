@@ -28,6 +28,20 @@ El programa puede bloquearse por un error software o hardware. Antes de abrir un
 
 `Leer mas <a02-my-esp-crashes.rst>`__.
 
+¿Como puedo obtener algunos KBs extra en la flash?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+La utilización de ``*printf()`` con floats está activada por defecto. Puedes salvar algunos KBs de flash utilizando la opción ``--nofloat`` con el generador de tarjetas:
+
+``./tools/boards.txt.py --nofloat --allgen``
+
+¿Porqué no puedo utilizar WPS ?
+~~~~~~~~~~~~~~~~~~~~~
+
+WPS está desactivado por defecto, esto libera 4KBs extra en ram/heap. Para activar WPS (y perder 4KBs de ram), utiliza esta opción en el generador de tarjetas:
+
+``./tools/boards.txt.py --allowWPS --allgen``
+
 Esta librería de Arduino no funciona en ESP. ¿Como la hago funcionar?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
