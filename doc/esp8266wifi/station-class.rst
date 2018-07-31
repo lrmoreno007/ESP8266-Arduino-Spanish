@@ -68,7 +68,13 @@ La sobrecarga mas simple de ``begin`` es la siguiente:
 
     WiFi.begin()
 
-Al llamarla se le indicará al módulo que cambie al modo estación y se conecte al último punto de acceso utilizado basándose en la configuración guardada en la memoria flash.
+Al llamarlo se habilitará el modo de STATION y se conectará al último punto de acceso utilizado según la configuración guardada en la memoria flash.
+
+Notas:
+
+* Es posible que al llamar a ``begin`` el módulo esté en modo STA+softAP si el módulo se colocó previamente en modo AP.
+
+* Si observa un comportamiento extraño con DNS u otra funcionalidad de red, verifique en qué modo se encuentra su módulo (consulte ``WiFi.mode()`` en `Documentación de la clase genérica <generic-class.rst # mode>`__) .
 
 A continuación se muestra la sintaxis de otra sobrecarga de ``begin`` con todos los parámetros posibles:
 
