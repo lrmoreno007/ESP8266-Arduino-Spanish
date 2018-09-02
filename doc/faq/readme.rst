@@ -50,6 +50,8 @@ En la versión 2.4.2 solo, WPS está desactivado por defecto y se requiere el Ge
 
 `Leer mas <a05-board-generator.rst>`__.
 
+Para platformIO (y posíblemente en otros entornos de desarrollo), también necesitas añadir la bandera de compilación (build flag): -D NO_EXTRA_4K_HEAP
+
 La selección manual no es necesaria a partir de la versión 2.5.0 (y en la versión git). El WPS está siempre disponible y no usarlo libera ~4.5KB comparado con las versiones anteriores a 2.4.1 (incluida).
 
 Esta librería de Arduino no funciona en ESP. ¿Como la hago funcionar?
@@ -118,7 +120,3 @@ El generador de tarjetas es una secuencia de comandos python originalmente desti
 Este script también se usa para administrar opciones poco comunes que actualmente no están disponibles en el menú IDE.
 
 `Leer mas <a05-board-generator.rst>`__.
-
-Para platformIO (y posíblemente en otros entornos de desarrollo), también necesitas añadir la bandera de compilación (build flag): -D NO_EXTRA_4K_HEAP
-
-Esta selección manual no será necesaria a partir de la versión 2.5.0 (y en la versión git). WPS está siempre disponible y no utilizarlo libera ~4.5KB extra comparado con las versiones anteriores a 2.4.1 (incluida).
