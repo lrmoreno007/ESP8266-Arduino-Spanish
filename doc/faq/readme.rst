@@ -33,20 +33,24 @@ El programa puede bloquearse por un error software o hardware. Antes de abrir un
 
 La utilización de ``*printf()`` con floats está activada por defecto. Puedes salvar algunos KBs de flash utilizando la opción ``--nofloat`` con el generador de tarjetas:
 
-``./tools/boards.txt.py --nofloat --allgen``
+``./tools/boards.txt.py --nofloat --boardsgen``
 
  Utiliza la opción del nivel de debug ``NoAssert-NDEBUG`` (en el menú Herramientas).
  
  `Leer mas <a05-board-generator.rst>`__.
  
-¿Porqué no puedo utilizar WPS ?
-~~~~~~~~~~~~~~~~~~~~~
+Sobre WPS
+~~~~~~~~~~
 
-WPS está desactivado por defecto, esto libera 4KBs extra en ram/heap. Para activar WPS (y perder 4KBs de ram), utiliza esta opción en el generador de tarjetas:
+A partir de la versión 2.4.2 y superiores, no utilizar WPS libera ~4.5KB estra en heap.
 
-``./tools/boards.txt.py --allowWPS --allgen``
+En la versión 2.4.2 solo, WPS está desactivado por defecto y se requiere el Generador de tarjetas para activarlo:
+
+``./tools/boards.txt.py --allowWPS --boardsgen``
 
 `Leer mas <a05-board-generator.rst>`__.
+
+La selección manual no es necesaria a partir de la versión 2.5.0 (y en la versión git). El WPS está siempre disponible y no usarlo libera ~4.5KB comparado con las versiones anteriores a 2.4.1 (incluida).
 
 Esta librería de Arduino no funciona en ESP. ¿Como la hago funcionar?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
