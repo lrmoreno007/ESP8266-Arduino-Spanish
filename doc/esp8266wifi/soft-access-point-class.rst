@@ -43,9 +43,9 @@ Para establecer una red protegida con contraseña, o para configurar parámetros
 
 .. code:: cpp
 
-    WiFi.softAP(ssid, password, channel, hidden)
+    WiFi.softAP(ssid, password, channel, hidden, max_connection)
 
-El primer parámetro de esta función es obligatorio, los otros tres son opcionales.
+El primer parámetro de esta función es obligatorio, los otros cuatro son opcionales.
 
 El significado de todos los parámetros es el siguiente:
 
@@ -56,6 +56,8 @@ El significado de todos los parámetros es el siguiente:
 * ``channel`` - parámetro opcional para establecer el canal de WiFi, del 1 aa 13. Canal predeterminado = 1.
 
 * ``hidden`` - parámetro opcional, si se establece en ``true`` se ocultará el SSID
+
+* ``max_connection`` - parámetro opcional para establecer el número máximo de estaciones conectadas simultaneamente, `de 1 a 8 <https://bbs.espressif.com/viewtopic.php?f=46&t=481&p=1832&hilit=max_connection#p1832>`__. Por defecto 4. Una vez que el número máximo se ha alcanzado, cualquier otra estación que quiera conectarse se verá forzada a esperar hasta que alguna estación conectada se desconecte.
 
 La función devolverá ``true`` o ``false`` según el resultado de configurar el soft-AP.
 
@@ -145,7 +147,7 @@ Obtiene el número de estaciones que están conectadas al interfaz Soft-AP.
 
     Estaciones conectadas a soft-AP = 2
 
-Nota: el número máximo de estaciones que pueden estar conectadas al Soft-AP ESP8266 son cinco.
+Nota: el número máximo de estaciones que pueden estar conectadas al Soft-AP ESP8266 es 4 por defecto. Esto puede cambiarse de 1 a 8 mediante el argumento ``max_connection`` del método softAP.
 
 softAPdisconnect
 ^^^^^^^^^^^^^^^^
