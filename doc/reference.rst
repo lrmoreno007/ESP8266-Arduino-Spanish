@@ -86,9 +86,11 @@ Se ha implementado un nuevo método en ambos ``Serial`` y ``Serial1`` para obten
     // Imprimirá "Serial is 57600 bps"
     Serial.printf("Serial is %d bps", br);
 
-| Ambos objetos ``Serial`` y ``Serial1`` son instancias de la clase ``HardwareSerial``.
-| Se ha realizado también una librería oficial de ESP8266 de la librería `Software Serial <libraries.rst#softwareserial>`__, ver este `pull request <https://github.com/plerup/espsoftwareserial/pull/22>`__.
-| Nota: es una implementación **solo para tarjetas basadas en ESP8266** y no funcionará con otras tarjetas Arduino.
+Ambos objetos ``Serial`` y ``Serial1`` son instancias de la clase ``HardwareSerial``.
+
+Se ha realizado también una librería oficial de ESP8266 de la librería `Software Serial <libraries.rst#softwareserial>`__, ver este `pull request <https://github.com/plerup/espsoftwareserial/pull/22>`__.
+
+Nota: es una implementación **solo para tarjetas basadas en ESP8266** y no funcionará con otras tarjetas Arduino.
 
 Para detectar la velocidad en baudios desconocida de los datos que entran en el puerto serie, use ``Serial.detectBaudrate(time_t timeoutMillis)``. Este método intenta detectar la velocidad de transmisión en baudios para un máximo de tiempo timeoutMillis en ms. Devuelve cero si no se detectó la velocidad en baudios, o de lo contrario la velocidad en baudios detectada. La función ``detectBaudrate()`` se puede invocar antes de llamar a ``Serial.begin()``, ya que no necesita el búfer de recepción ni los parámetros de SerialConfig.
 
