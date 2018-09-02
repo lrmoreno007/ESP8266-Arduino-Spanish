@@ -35,12 +35,18 @@ La utilización de ``*printf()`` con floats está activada por defecto. Puedes s
 
 ``./tools/boards.txt.py --nofloat --allgen``
 
+ Utiliza la opción del nivel de debug ``NoAssert-NDEBUG`` (en el menú Herramientas).
+ 
+ `Leer mas <a05-board-generator.rst>`__.
+ 
 ¿Porqué no puedo utilizar WPS ?
 ~~~~~~~~~~~~~~~~~~~~~
 
 WPS está desactivado por defecto, esto libera 4KBs extra en ram/heap. Para activar WPS (y perder 4KBs de ram), utiliza esta opción en el generador de tarjetas:
 
 ``./tools/boards.txt.py --allowWPS --allgen``
+
+`Leer mas <a05-board-generator.rst>`__.
 
 Esta librería de Arduino no funciona en ESP. ¿Como la hago funcionar?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -99,3 +105,12 @@ La líneas siguientes son compatibles con ambas versiones de lwIP:
     }
 
 Ref.  `#1923 <https://github.com/esp8266/Arduino/issues/1923>`__
+
+¿Por qué hay un generador de tarjetas y para que sirve?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+El generador de tarjetas es una secuencia de comandos python originalmente destinada a facilitar el archivo de configuración `boards.txt` de Arduino IDE sobre la multitud de tarjetas disponibles, especialmente cuando los parámetros comunes deben actualizarse para todos ellos.
+
+Este script también se usa para administrar opciones poco comunes que actualmente no están disponibles en el menú IDE.
+
+`Leer mas <a05-board-generator.rst>`__.
