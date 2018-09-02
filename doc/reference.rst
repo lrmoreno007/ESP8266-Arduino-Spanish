@@ -90,6 +90,16 @@ Se ha implementado un nuevo método en ambos ``Serial`` y ``Serial1`` para obten
 | Se ha realizado también una librería oficial de ESP8266 de la librería `Software Serial <libraries.rst#softwareserial>`__, ver este `pull request <https://github.com/plerup/espsoftwareserial/pull/22>`__.
 | Nota: es una implementación **solo para tarjetas basadas en ESP8266** y no funcionará con otras tarjetas Arduino.
 
+Para detectar la velocidad en baudios desconocida de los datos que entran en el puerto serie, use ``Serial.detectBaudrate(time_t timeoutMillis)``. Este método intenta detectar la velocidad de transmisión en baudios para un máximo de tiempo timeoutMillis en ms. Devuelve cero si no se detectó la velocidad en baudios, o de lo contrario la velocidad en baudios detectada. La función ``detectBaudrate()`` se puede invocar antes de llamar a ``Serial.begin()``, ya que no necesita el búfer de recepción ni los parámetros de SerialConfig.
+
+El UART no puede detectar otros parámetros como el start- o stopbits, número de Data bits o paridad.
+
+La detección no cambia a si mismo la velocidad, tras la detección debes establecerla como normalmente utilizando ``Serial.begin(detectedBaudrate)``.
+
+La detección es muy rápida, solo requiere unos pocos bytes entrantes.
+
+SerialDetectBaudrate.ino es un ejemplo completo de uso.
+
 Progmem
 -------
 
