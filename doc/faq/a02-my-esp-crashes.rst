@@ -171,7 +171,9 @@ Además, al realizar muchas concatenaciones de cadenas en secuencia, por ejemplo
 
 Entonces, ¿por qué existen estos fallos silenciosos? Por un lado, hay interfaces específicos que deben cumplirse. Por ejemplo, los métodos del objeto String no permiten el manejo de errores a nivel de aplicación de usuario (es decir, no se devuelve ningún error de la vieja escuela). Por otro lado, algunas librerías no tienen el código de asignación accesible para su modificación. Por ejemplo, std::vector está disponible para su uso. Las implementaciones estándar se basan en excepciones para el manejo de errores, que no están disponibles para el ESP y en cualquier caso no hay acceso al código subyacente.
 
-Instrumentar el código con la opción de depuración OOM y las llamadas a ``ESP.getFreeHeap()`` ayudarán al proceso de búsqueda de fugas. Ahora es el momento de volver a leer sobre el `decodificador de excepción <# exception-decoder>`__.
+Instrumentar el código con la opción de depuración OOM y las llamadas a ``ESP.getFreeHeap()`` / ``ESP.getHeapFragmentation()`` / ``ESP.getMaxFreeBlockSize()`` ayudarán al proceso de búsqueda de fugas. 
+
+Ahora es el momento de volver a leer sobre el `decodificador de excepciones <# exception-decoder>`__.
 
 *Algunas técnicas para reducir el uso de memoria*
 
