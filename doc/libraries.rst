@@ -77,6 +77,10 @@ Algunas APIs especificas de ESP relacionadas a deep sleep, RTC y memoria flash e
 
 ``ESP.getFreeHeap()`` devuelve el tamaño libre de la pila.
 
+``ESP.getHeapFragmentation()`` devuelve la métrica de fragmentación (0% está limpio, más de ~50% no es inofensivo).
+
+``ESP.getMaxFreeBlockSize()`` devuelve el bloque de ram asignable máximo con respecto a la fragmentación de la pila.
+
 ``ESP.getChipId()`` devuelve el ID del chip ESP8266 como un 32-bit integer.
 
 ``ESP.getCoreVersion()`` devuelve un String con la versión del core.
