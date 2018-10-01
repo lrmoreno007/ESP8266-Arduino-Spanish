@@ -16,6 +16,15 @@ Metodos documentados para `Client <https://www.arduino.cc/en/Reference/WiFiClien
 
 Los métodos y propiedades descritos más abajo son específicos de ESP8266. No están cubiertos en la documentación de `librería WiFi de Arduino <https://www.arduino.cc/en/Reference/WiFi>`__. Antes de que estén complétamente documentados, consulte la información a continuación.
 
+flush y stop
+~~~~~~~~~~~~~~
+``flush(timeoutMs)`` y ``stop(timeoutMs)`` ambos tienen ahora argumentos opcionales: ``timeout`` en millisegundos y ambos devuelven un booleano.
+
+El valor de entrada por defecto es 0 significa que el valor efectivo se deja a discreción del implementador.
+``flush()`` devolviendo ``true`` indica que los datos de salida han sido efectivamente enviados y ``false`` que se ha superado el tiempo de espera.
+
+``stop()`` devuelve ``false`` en caso de problemas cuando se cierra un cliente (por ejemplo por fuera de tiempo ``flush``). Dependiendo de la implementación, el parámetro puede pasársele a ``flush()``.
+
 setNoDelay
 ~~~~~~~~~~
 
@@ -32,6 +41,36 @@ Este algoritmo está destinado a reducir el tráfico TCP/IP de pequeños paquete
 .. code:: cpp
 
     client.setNoDelay(true);
+
+getNoDelay
+~~~~~~~~~~
+Devuelve si NoDelay está habilitado o no para la conexión actual.
+
+setSync
+~~~~~~~
+Esta es una API experimental que configurará al cliente en modo sincronizado.
+
+En este modo, cada ``write()`` se vacía. Significa que después de una llamada a ``write()``, los datos están asegurados para ser recibidos donde fueron enviados (es decir ``flush`` semántica).
+
+Cuando se establece en ``true`` en la implementación ``WiFiClient``:
+- Ralentiza las transferencias e implícitamente desactiva el algoritmo de Nagle.
+- También permite evitar una copia temporal de datos que de otra manera consumiría al menos `` TCP_SND_BUF`` = (2 * `` MSS``) bytes por conexión.
+
+getSync
+~~~~~~~
+Devuelve si la sincronización está habilitada o no para la conexión actual.
+
+setDefaultNoDelay and setDefaultSync
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Esto establece el valor predeterminado para ``setSync`` y ``setNoDelay`` para cada instancia futura de ``WiFiClient`` (incluidos los que vienen de ``WiFiServer.available()`` por defecto).
+
+Los valores predeterminados son false para ``NoDelay`` y ``Sync``.
+
+Esto significa que Nagle está habilitado de forma predeterminada *para todas las conexiones nuevas*.
+
+getDefaultNoDelay and getDefaultSync
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Devuelve los valores que se utilizarán como predeterminados para NoDelay y Sync para todas las conexiones futuras.
 
 Otras llamadas a funciones
 ~~~~~~~~~~~~~~~~~~~~
@@ -52,7 +91,6 @@ Otras llamadas a funciones
     uint16_t  remotePort () 
     IPAddress  localIP () 
     uint16_t  localPort () 
-    bool  getNoDelay () 
 
 La documentación para las funciones anteriores aún no se ha realizado.
 
