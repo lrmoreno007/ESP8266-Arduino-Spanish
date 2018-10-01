@@ -30,6 +30,10 @@ Este algoritmo está destinado a reducir el tráfico TCP/IP de pequeños paquete
     server.begin();
     server.setNoDelay(true);
 
+Por defecto, el valor de ``nodelay`` dependerá de ``WiFiClient::getDefaultNoDelay()`` global (actualmente falso de forma predeterminada).
+
+Sin embargo, una llamada a ``wiFiServer.setNoDelay()`` anulará ``NoDelay`` para todos los ``WiFiClient`` nuevos proporcionados por la instancia de llamada (``wiFiServer``).
+
 Otras llamas a funciones
 ~~~~~~~~~~~~~~~~~~~~
 
