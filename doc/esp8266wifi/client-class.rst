@@ -60,7 +60,7 @@ getSync
 ~~~~~~~
 Devuelve si la sincronización está habilitada o no para la conexión actual.
 
-setDefaultNoDelay and setDefaultSync
+setDefaultNoDelay y setDefaultSync
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Esto establece el valor predeterminado para ``setSync`` y ``setNoDelay`` para cada instancia futura de ``WiFiClient`` (incluidos los que vienen de ``WiFiServer.available()`` por defecto).
 
@@ -68,7 +68,7 @@ Los valores predeterminados son false para ``NoDelay`` y ``Sync``.
 
 Esto significa que Nagle está habilitado de forma predeterminada *para todas las conexiones nuevas*.
 
-getDefaultNoDelay and getDefaultSync
+getDefaultNoDelay y getDefaultSync
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Devuelve los valores que se utilizarán como predeterminados para NoDelay y Sync para todas las conexiones futuras.
 
