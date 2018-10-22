@@ -51,6 +51,24 @@ mode
 -  ``WiFi.mode(m)``: establece el modo a ``WIFI_AP``, ``WIFI_STA``, ``WIFI_AP_STA`` o ``WIFI_OFF``
 -  ``WiFi.getMode()``: devuelve el modo WiFi actual (alguno de los cuatro anteriores)
 
+Administración de energía WiFi, DTIM
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.. code:: cpp
+    bool setSleepMode (WiFiSleepType_t type, int listenInterval = 0)
+    
+El tipo de modo de suspensión es ``WIFI_NONE_SLEEP``, ``WIFI_LIGHT_SLEEP`` o ``WIFI_MODEM_SLEEP``. (``listenInterval`` apareció en esp8266-arduino core v2.5.0 utilizando la última revisión de V2 de nonos-sdk antes de V3)
+
+Citando la hoja de datos de nonos-sdk:
+
+* ``NONE``: desactiva el ahorro de energía
+
+* ``LIGHT`` o ``MODEM``: tasa de temporizador TCP aumentada de 250 ms a 3 segundos
+
+Cuando ``listenInterval`` se establece en 1..10, en el modo ``LIGHT`` o ``MODEM``, la estación se activa cada (DTIM-interval * ``listenInterval``). Esto salva energía pero la interfaz de la estación puede perder datos de transmisión. De lo contrario (valor predeterminado 0), la estación se activa a cada intervalo DTIM (configurado en el punto de acceso).
+
+Citando Wikipedia:
+Un mapa de indicación de tráfico de entrega (DTIM) es un tipo de mapa de indicación de tráfico (TIM) que informa a los clientes sobre la presencia de búferes de datos de multicast/broadcast en el punto de acceso. Se genera dentro de la beacon periódica a una frecuencia especificada por el intervalo DTIM. Las bbeacon son paquetes enviados por un punto de acceso para sincronizar una red inalámbrica.
+
 Otras llamadas a funciones
 ~~~~~~~~~~~~~~~~~~~~
 
