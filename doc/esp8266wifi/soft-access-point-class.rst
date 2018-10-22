@@ -147,7 +147,7 @@ Obtiene el número de estaciones que están conectadas al interfaz Soft-AP.
 
     Estaciones conectadas a soft-AP = 2
 
-Nota: el número máximo de estaciones que pueden estar conectadas al Soft-AP ESP8266 es 4 por defecto. Esto puede cambiarse de 1 a 8 mediante el argumento ``max_connection`` del método softAP.
+Nota: el número máximo de estaciones que pueden estar conectadas al Soft-AP ESP8266 es 4 por defecto. Esto puede cambiarse de 0 a 8 mediante el argumento ``max_connection`` del método softAP.
 
 softAPdisconnect
 ^^^^^^^^^^^^^^^^
