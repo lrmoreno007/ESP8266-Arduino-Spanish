@@ -71,7 +71,7 @@ Debug Level - Nivel de depuración
 
 Todos los defines para los diferentes niveles comienzan con ``DEBUG_ESP_``
 
-Puede encontrar una lista completa en el fichero `boards.txt <https://github.com/esp8266/Arduino/blob/master/boards.txt#L180>`__
+Puede encontrar una lista completa en el fichero `boards.txt <https://github.com/esp8266/Arduino/blob/master/tools/boards.txt.py#L1045-L1047>`__
 
 Ejemplo para sus propios mensajes de depuración
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
