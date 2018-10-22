@@ -57,7 +57,7 @@ El significado de todos los parámetros es el siguiente:
 
 * ``hidden`` - parámetro opcional, si se establece en ``true`` se ocultará el SSID
 
-* ``max_connection`` - parámetro opcional para establecer el número máximo de estaciones conectadas simultaneamente, `de 1 a 8 <https://bbs.espressif.com/viewtopic.php?f=46&t=481&p=1832&hilit=max_connection#p1832>`__. Por defecto 4. Una vez que el número máximo se ha alcanzado, cualquier otra estación que quiera conectarse se verá forzada a esperar hasta que alguna estación conectada se desconecte.
+* ``max_connection`` - parámetro opcional para establecer el número máximo de estaciones conectadas simultaneamente, `de 0 a 8 <https://bbs.espressif.com/viewtopic.php?f=46&t=481&p=1832&hilit=max_connection#p1832>`__. Por defecto 4. Una vez que el número máximo se ha alcanzado, cualquier otra estación que quiera conectarse se verá forzada a esperar hasta que alguna estación conectada se desconecte.
 
 La función devolverá ``true`` o ``false`` según el resultado de configurar el soft-AP.
 
