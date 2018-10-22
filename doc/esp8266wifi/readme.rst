@@ -128,7 +128,7 @@ Echa un vistazo a la sección separada con `ejemplos <station-examples.rst>`__.
 Punto de Acceso Wireless
 ~~~~~~~~~~~~~~~~~
 
-Un `punto de acceso inalámbrico (AP) <https://es.wikipedia.org/wiki/Punto_de_acceso_inal%C3%A1mbrico>`__ es un dispositivo que proporciona acceso a la red WiFi a otros dispositivos (estaciones) y los conecta a una red cableada. ESP8266 puede proporcionar una funcionalidad similar, excepto que no tiene interfaz para una red cableada. Tal modo de operación se llama punto de acceso SoftAP. La cantidad máxima de estaciones que pueden estar simultaneamente conectadas al SoftAP puede establecerse de `1 a 8 <https://bbs.espressif.com/viewtopic.php?f=46&t=481&p=1832&hilit=max_connection#p1832>`__, pero por defecto son 4.
+Un `punto de acceso inalámbrico (AP) <https://es.wikipedia.org/wiki/Punto_de_acceso_inal%C3%A1mbrico>`__ es un dispositivo que proporciona acceso a la red WiFi a otros dispositivos (estaciones) y los conecta a una red cableada. ESP8266 puede proporcionar una funcionalidad similar, excepto que no tiene interfaz para una red cableada. Tal modo de operación se llama punto de acceso SoftAP. La cantidad máxima de estaciones que pueden estar simultaneamente conectadas al SoftAP puede establecerse de `0 a 8 <https://bbs.espressif.com/viewtopic.php?f=46&t=481&p=1832&hilit=max_connection#p1832>`__, pero por defecto es 4.
 
 .. figure:: pictures/esp8266-soft-access-point.png
    :alt: ESP8266 operando en modo Punto de acceso SoftAP
