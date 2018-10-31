@@ -217,6 +217,13 @@ El ESP8266 Adafruit Feather HUZZAH es una tarjeta de desarrollo WiFi Arduino-com
 
 Página del producto: https://www.adafruit.com/product/2821
 
+Invent One
+----------
+Invent One es una tarjeta de desarrollo WiFi compatible con Arduino alimentada por un Ai-Thinker ESP-12F, con reloj a 80 MHz y lógica de 3.3V. Posee un ADC (PCF8591) el cual tiene multiples entradas analógicas para trabajar con ellas. Mas información aquí: https://blog.inventone.ng
+
+Página del producto: https://inventone.ng
+
+
 ESPresso Lite 1.0
 -----------------
 
