@@ -428,7 +428,7 @@ Página del producto: http://wiki.amperka.ru/wifi-slot
 
 Seeed Wio Link
 --------------
-Wio Link está diseñado para simplificar tu desarrollo IoT. Es una tarjeta de desarrollo open-source WiFi basada en un ESP8266 para crear aplicaciones IoT virtualizando módulos plug-n-play a APIs RESTful aon aplicaciones APP. Wio Link también es compatible con el IDE Arduino.
+Wio Link está diseñado para simplificar tu desarrollo IoT. Es una tarjeta de desarrollo open-source WiFi basada en un ESP8266 para crear aplicaciones IoT virtualizando módulos "plug and play" a APIs RESTful con aplicaciones APP. Wio Link también es compatible con el IDE Arduino.
 
 ADVIERTA que DEBE pull up el pin 15 para activar la alimentación de los puertos Grove, la placa está diseñada de esta manera para la administración de energía de periféricos.
 
