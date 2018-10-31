@@ -233,7 +233,7 @@ Esta es la estructura que se rellena al usar el método FS::info .
 Objeto directorio *Dir*
 ----------------------
 
-El propósito del objeto *Dir* es iterar sobre los ficheros dentro del directorio. Provee tres métodos: ``next()``, ``fileName()``, y ``openFile(mode)``.
+El propósito del objeto *Dir* es iterar sobre los ficheros dentro del directorio. Provee los métodos: ``next()``, ``fileName()``, y ``openFile(mode)``.
 
 El siguiente ejemplo muestra como debe utilizarse:
 
@@ -244,16 +244,35 @@ El siguiente ejemplo muestra como debe utilizarse:
         Serial.print(dir.fileName());
         File f = dir.openFile("r");
         Serial.println(f.size());
+        if(dir.fileSize()) {
+            File f = dir.openFile("r");
+            Serial.println(f.size());
+        }
     }
+next
+~~~~
 
-``dir.next()`` devuelve *true* mientras haya ficheros en el directorio para iterar. Debe llamarse antes de llamar a las funciones ``fileName`` y ``openFile`` .
+Devuelve *true* mientras haya ficheros en el directorio para iterar. Debe llamarse antes de llamar a las funciones ``fileName()``, ``fileSize()`` y ``openFile()`` .
 
-El método ``openFile`` toma el argumento *mode* que tiene el mismo significado que para la función ``SPIFFS.open`` .
+fileName
+~~~~~~~~~
+
+Devuelve el nombre del archivo actual apuntado por el iterador interno.
+
+fileSize
+~~~~~~~~
+
+Devuelve el tamaño del archivo actual apuntado por el iterador interno
+
+openFile
+~~~~~~~~
+
+Este método toma el argumento *mode* que tiene el mismo significado que para la función ``SPIFFS.open()`` .
 
 Objeto fichero *File*
 -----------
 
-Las funciones ``SPIFFS.open`` y ``dir.openFile`` devuelven un objeto *File*. Este objeto soporta todas las funciones de *Stream*, para que puedas usar ``readBytes``, ``findUntil``, ``parseInt``, ``println`` y todos los otros métodos *Stream*.
+Las funciones ``SPIFFS.open()`` y ``dir.openFile()`` devuelven un objeto *File*. Este objeto soporta todas las funciones de *Stream*, para que puedas usar ``readBytes``, ``findUntil``, ``parseInt``, ``println`` y todos los otros métodos *Stream*.
 
 Hay algunas funciones que son específicas del objeto *File*.
 
