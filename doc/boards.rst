@@ -226,7 +226,8 @@ Página del producto: https://inventone.ng
 XinaBox CW01
 ------------
 XinaBox CW01  es una tarjeta de desarrollo WiFi compatible con Arduino alimentada por un Ai-Thinker ESP-12F, con reloj a 80 MHz y lógica de 3.3V. Posee un led RGB integrado.
-Product page: https://xinabox.cc/products/CW01
+
+Página del producto: https://xinabox.cc/products/CW01
 
 ESPresso Lite 1.0
 -----------------
