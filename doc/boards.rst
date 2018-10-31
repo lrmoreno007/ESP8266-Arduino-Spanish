@@ -405,7 +405,7 @@ Datasheet y descargas asociadas pueden encontrarse en la página del producto de
 
 La gama de productos gen4-IoD puede programarse utilizando el IDE de Arduino y también IDE 4D Systems Workshop4, el cual incorpora muchos beneficios gráficos adicionales. La librería GFX4d está disponible, junto con una serie de aplicaciones de demostración.
 
-- Página del producto: http://www.4dsystems.com.au/product/gen4-IoD
+Página del producto: http://www.4dsystems.com.au/product/gen4-IoD
 
 Digistump Oak
 -------------
@@ -419,9 +419,17 @@ Para poner la tarjeta en modo bootloader, configure una conexión serie como ant
 WiFiduino
 ---------
 
-- Página del producto: https://wifiduino.com/esp8266
+Página del producto: https://wifiduino.com/esp8266
 
 Amperka WiFi Slot
 -----------------
 
-- Página del producto: http://wiki.amperka.ru/wifi-slot
+Página del producto: http://wiki.amperka.ru/wifi-slot
+
+Seeed Wio Link
+--------------
+Wio Link está diseñado para simplificar tu desarrollo IoT. Es una tarjeta de desarrollo open-source WiFi basada en un ESP8266 para crear aplicaciones IoT virtualizando módulos plug-n-play a APIs RESTful aon aplicaciones APP. Wio Link también es compatible con el IDE Arduino.
+
+ADVIERTA que DEBE pull up el pin 15 para activar la alimentación de los puertos Grove, la placa está diseñada de esta manera para la administración de energía de periféricos.
+
+Página del producto: https://www.seeedstudio.com/Wio-Link-p-2604.html
