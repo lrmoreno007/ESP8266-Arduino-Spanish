@@ -36,8 +36,6 @@ Cierta funcionalidad de protección ya está incorporada y no requiere ninguna c
 
 Haga su propio análisis de riesgos y dependiendo de la aplicación, decida qué funciones de la librería implementa. Si es necesario, considere la implementación de otros medios de protección contra la piratería, por ejemplo: exponer el módulo para cargar solo según el programa específico, desencadenar OTA solo si el usuario presiona el botón dedicado "Actualizar" conectado al ESP, etc.
 
-Make your own risk analysis and depending on application decide what library functions to implement. If required, consider implementation of other means of protection from being hacked, e.g. exposing module for uploads only according to specific schedule, trigger OTA only be user pressing dedicated “Update” button wired to ESP, etc.
-
 Protección
 ~~~~~~
 
@@ -79,8 +77,6 @@ La carga inalámbrica de módulos desde Arduino IDE está diseñada para los sig
 - durante el desarrollo del firmware como una alternativa más rápida a la carga en serie.
 - para actualizar una pequeña cantidad de módulos.
 - solo si los módulos están disponibles en la misma red que la computadora con Arduino IDE.
-
-Uploading modules wirelessly from Arduino IDE is intended for the following typical scenarios: - during firmware development as a quicker alternative to loading over a serial, - for updating small quantity of modules, - only if modules are available on the same network as the computer with Arduino IDE.
 
 Requerimientos
 ~~~~~~~~~~~~
