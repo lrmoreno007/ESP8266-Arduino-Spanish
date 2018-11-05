@@ -104,9 +104,11 @@ Las siguientes instrucciones muestran la configuración de OTA en la placa NodeM
 
 2. Ahora prepare el sketch y la configuración para la carga a través del puerto serie.
 
-   -  Inicie Arduino IDE y cargue el sketch BasicOTA.ino disponible en Archivo > Ejemplos > ArduinoOTA |ota sketch selection|
+   -  Inicie Arduino IDE y cargue el sketch BasicOTA.ino disponible en Archivo > Ejemplos > ArduinoOTA 
+   |ota sketch selection|
 
-   -  Actualice el SSID y la contraseña en el sketch, para que el módulo pueda unirse a su red Wi-Fi |ota ssid pass entry|
+   -  Actualice el SSID y la contraseña en el sketch, para que el módulo pueda unirse a su red Wi-Fi 
+   |ota ssid pass entry|
 
    -  Configure los parámetros de carga como se muestra a continuación (es posible que deba ajustar la configuración si está utilizando un módulo diferente): 
    |ota serial upload config|
