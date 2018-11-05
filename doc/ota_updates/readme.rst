@@ -154,7 +154,7 @@ Proteger sus cargas OTA con contraseña es realmente sencillo. Todo lo que neces
 
     ArduinoOTA.setPassword((const char *)"123");
 
-Sonde ``123`` es una contraseña de ejemplo que debe reemplazar con la suya.
+Donde ``123`` es una contraseña de ejemplo que debe reemplazar con la suya.
 
 Antes de implementarlo en su sketch, es una buena idea verificar cómo funciona el sketch *BasicOTA.ino* disponible en *Archivo > Ejemplos > ArduinoOTA*. Adelante, abra *BasicOTA.ino*, descomente la declaración anterior y cargue el sketch. Para facilitar la resolución de problemas, no modifique el boceto de ejemplo, solo lo absolutamente necesario. Se incluye una contraseña OTA ``123`` simple y original. A continuación, intente cargar el sketch de nuevo (utilizando OTA). Una vez finalizada la compilación, una vez que la carga está a punto de comenzar, debería ver la solicitud de contraseña de la siguiente manera:
 
@@ -185,62 +185,58 @@ En la imagen puede verse que al subir, el IDE de Arduino utilizó la contraseña
 Solución de problemas
 ^^^^^^^^^^^^^^^
 
-If OTA update fails, first step is to check for error messages that may be shown in upload window of Arduino IDE. If this is not providing any useful hints, try to upload again while checking what is shown by ESP on serial port. Serial Monitor from IDE will not be useful in that case. When attempting to open it, you will likely see the following:
+Si la actualización de OTA falla, el primer paso es verificar los mensajes de error que pueden aparecer en la ventana de carga del IDE de Arduino. Si esto no proporciona sugerencias útiles, intente cargar de nuevo mientras verifica lo que muestra ESP en el puerto serie. Serial Monitor de IDE no será útil en ese caso. Al intentar abrirlo, es probable que veas lo siguiente:
 
 .. figure:: a-ota-network-terminal.png
    :alt: Arduino IDE network terminal window
 
-This window is for Arduino Yún and not yet implemented for esp8266/Arduino. It shows up because IDE is attempting to open Serial Monitor using network port you have selected for OTA upload.
+Esta ventana es para Arduino Yún y aún no está implementada para esp8266/Arduino. Aparece porque el IDE está intentando abrir Serial Monitor utilizando el puerto de red que ha seleccionado para la carga OTA.
 
-Instead you need an external serial monitor. If you are a Windows user check out `Termite <http://www.compuphase.com/software_termite.htm>`__. This is handy, slick and simple RS232 terminal that does not impose RTS or DTR flow control. Such flow control may cause issues if you are using respective lines to toggle GPIO0 and RESET pins on ESP for upload.
+En su lugar, necesita un monitor serie externo. Si es un usuario de Windows, consulte `Termite <http://www.compuphase.com/software_termite.htm>`__. Este es un terminal RS232 práctico, elegante y simple que no impone el control de flujo RTS o DTR. Dicho control de flujo puede causar problemas si está utilizando líneas respectivas para alternar los pines GPIO0 y RESET en ESP para la carga.
 
-Select COM port and baud rate on external terminal program as if you were using Arduino Serial Monitor. Please see typical settings for `Termite <http://www.compuphase.com/software_termite.htm>`__ below:
+Seleccione el puerto COM y la velocidad en baudios en el programa terminal externo como si estuviera usando Arduino Serial Monitor. Consulte la configuración típica de `Termite <http://www.compuphase.com/software_termite.htm>`__ a continuación:
 
 .. figure:: termite-configuration.png
-   :alt: Termite settings
+   :alt: Configuración Termite
 
-
-Then run OTA from IDE and look what is displayed on terminal. Successful `ArduinoOTA <#arduinoota>`__ process using BasicOTA.ino sketch looks like below (IP address depends on your network configuration):
+Luego ejecute OTA desde el IDE y observe lo que se muestra en el terminal. El proceso `ArduinoOTA <#arduinoota>`__ exitoso usando el sketch BasicOTA.ino se ve a continuación (la dirección IP depende de la configuración de su red):
 
 .. figure:: a-ota-external-serial-terminal-output.png
-   :alt: OTA upload successful - output on an external serial terminal
+   :alt: Subida OTA satisfactoria - Salida en un Terminal Serie externo
 
-If upload fails you will likely see errors caught by the uploader, exception and the stack trace, or both.
+Si la carga falla, es probable que vea los errores detectados por el cargador, la excepción y el seguimiento de la pila, o ambos.
 
-Instead of the log as on the above screen you may see the following:
+En lugar del registro como en la pantalla anterior, puede ver lo siguiente:
 
 .. figure:: a-ota-external-serial-terminal-output-failed.png
-   :alt: OTA upload failed - output on an external serial terminal
+   :alt: Subida OTA fallida - Salida en un Terminal Serie externo
 
-If this is the case, then most likely ESP module has not been reset after initial upload using serial port.
+Si este es el caso, lo más probable es que el módulo ESP no se haya reiniciado después de la primera subida utilizando el puerto serie.
 
-The most common causes of OTA failure are as follows:
+Las causas más comunes de fallo OTA son las siguientes:
 
-- not enough physical memory on the chip (e.g. ESP01 with 512K flash memory is not enough for OTA).
-- too much memory declared for SPIFFS so new sketch will not fit between existing sketch and SPIFFS – see `Update process - memory view <#update-process-memory-view>`__.
-- too little memory declared in Arduino IDE for your selected board (i.e. less than physical size).
-- not resetting the ESP module after initial upload using serial port.
+- no hay suficiente memoria física en el chip (por ejemplo, ESP01 con 512K de memoria flash no es suficiente para OTA).
+- demasiada memoria declarada para SPIFFS, por lo que el nuevo sketch no se ajustará entre el boceto existente y SPIFFS - vea `Proceso de actualización - vista de la memoria <#proceso-de-actualizacion-vista-de-la-memoria>`__.
+- muy poca memoria declarada en Arduino IDE para su placa seleccionada (es decir, menor que el tamaño físico).
+- no reiniciar el módulo ESP después de la primera subida utilizando el puerto serie.
 
-For more details regarding flash memory layout please check `File system <../filesystem.rst>`__. For overview where new sketch is stored, how it is copied and how memory is organized for the purpose of OTA see `Update process - memory view <#update-process-memory-view>`__.
+Para obtener más información sobre el diseño de la memoria flash, consulte `Sistema de ficheros <../filesystem.rst>`__. Para obtener información general sobre dónde se almacena el nuevo boceto, cómo se copia y cómo se organiza la memoria para el propósito de OTA, consulte `Proceso de actualización - vista de la memoria <#proceso-de-actualizacion-vista-de-la-memoria>`__.
 
 Buscador Web
 -----------
 
-Updates described in this chapter are done with a web browser that can be useful in the following typical scenarios:
+Las actualizaciones descritas en este capítulo se realizan con un navegador web que puede ser útil en los siguientes escenarios típicos:
 
--  after application deployment if loading directly from Arduino IDE is
-   inconvenient or not possible,
--  after deployment if user is unable to expose module for OTA from
-   external update server,
--  to provide updates after deployment to small quantity of modules when
-   setting an update server is not practicable.
+- después de la implementación de la aplicación si la carga directa desde Arduino IDE es inconveniente o no es posible.
+- después de la implementación si el usuario no puede exponer el módulo para OTA desde un servidor de actualización externo.
+- para proporcionar actualizaciones después de la implementación a una pequeña cantidad de módulos al configurar un servidor de actualización no es factible.
 
-Requirements
+Requerimientos
 ~~~~~~~~~~~~
 
--  The ESP and the computer must be connected to the same network.
+-  El ESP y el ordenador deben estar conectados a la misma red.
 
-Implementation Overview
+Descripción general de la implementación
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 Updates with a web browser are implemented using ``ESP8266HTTPUpdateServer`` class together with ``ESP8266WebServer`` and ``ESP8266mDNS`` classes. The following code is required to get it work:
