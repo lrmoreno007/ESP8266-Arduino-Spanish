@@ -74,83 +74,70 @@ Los siguientes capítulos proporcionan más detalles y métodos específicos par
 Arduino IDE
 -----------
 
+La carga inalámbrica de módulos desde Arduino IDE está diseñada para los siguientes escenarios típicos: 
+
+- durante el desarrollo del firmware como una alternativa más rápida a la carga en serie.
+- para actualizar una pequeña cantidad de módulos.
+- solo si los módulos están disponibles en la misma red que la computadora con Arduino IDE.
+
 Uploading modules wirelessly from Arduino IDE is intended for the following typical scenarios: - during firmware development as a quicker alternative to loading over a serial, - for updating small quantity of modules, - only if modules are available on the same network as the computer with Arduino IDE.
 
-Requirements
+Requerimientos
 ~~~~~~~~~~~~
 
--  The ESP and the computer must be connected to the same network.
+-  El ESP y el ordenador deben estar conectados a la misma red.
 
-Application Example
+Ejemplo de Aplicación
 ~~~~~~~~~~~~~~~~~~~
 
-Instructions below show configuration of OTA on NodeMCU 1.0 (ESP-12E Module) board. You can use any other board assuming that it meets `requirements <#basic-requirements>`__ described above. This instruction is valid for all operating systems supported by Arduino IDE. Screen captures have been made on Windows 7 and you may see small differences (like name of serial port), if you are using Linux and MacOS.
+Las siguientes instrucciones muestran la configuración de OTA en la placa NodeMCU 1.0 (módulo ESP-12E). Puedes usar cualquier otra placa asumiendo que cumple `Requerimientos Básicos <#requerimientos-basicos>`__ descritos anteriormente. Esta instrucción es válida para todos los sistemas operativos compatibles con Arduino IDE. Se han realizado capturas de pantalla en Windows 7 y es posible que vea pequeñas diferencias (como el nombre del puerto serie), si está usando Linux y MacOS.
 
 1. Before you begin, please make sure that you have the following s/w
    installed:
 
-   -  Arduino IDE 1.6.7 or newer -
+   -  Arduino IDE 1.6.7 o posterior -
       https://www.arduino.cc/en/Main/Software
-   -  esp8266/Arduino platform package 2.0.0 or newer - for instructions
-      follow
+   -  Paquete de la plataforma esp8266/Arduino 2.0.0 o posterior - para instrucciones siga
       https://github.com/esp8266/Arduino#installing-with-boards-manager
    -  Python 2.7 - https://www.python.org/
 
-      **Note:** Windows users should select “Add python.exe to Path”
-      (see below – this option is not selected by default).
+      **Nota:** Los usuarios de Windows deben seleccionar "Agregar python.exe a la ruta" (ver más abajo, esta opción no está seleccionada de manera predeterminada).
 
       .. figure:: a-ota-python-configuration.png
-         :alt: Python installation set up
+         :alt: Configuración de la instalación de Python
 
-2. Now prepare the sketch and configuration for the upload over a serial
-   port.
+2. Ahora prepare el sketch y la configuración para la carga a través del puerto serie.
 
-   -  Start Arduino IDE and load sketch BasicOTA.ino available under
-      File > Examples > ArduinoOTA |ota sketch selection|
+   -  Inicie Arduino IDE y cargue el sketch BasicOTA.ino disponible en Archivo > Ejemplos > ArduinoOTA |ota sketch selection|
 
-   -  Update SSID and password in the sketch, so the module can join
-      your Wi-Fi network |ota ssid pass entry|
+   -  Actualice el SSID y la contraseña en el sketch, para que el módulo pueda unirse a su red Wi-Fi |ota ssid pass entry|
 
-   -  Configure upload parameters as below (you may need to adjust
-      configuration if you are using a different module): |ota serial upload config|
+   -  Configure los parámetros de carga como se muestra a continuación (es posible que deba ajustar la configuración si está utilizando un módulo diferente): |ota serial upload config|
 
-      **Note:** Depending on version of platform package and board you
-      have, you may see ``Upload Using:`` in the menu above. This option
-      is inactive and it does not matter what you select. It has been
-      left for compatibility with older implementation of OTA and
-      finally removed in platform package version 2.2.0.
-
-3. Upload the sketch (Ctrl+U). Once done, open Serial Monitor
-   (Ctrl+Shift+M) and check if module has joined your Wi-Fi network:
+      **Nota:** Dependiendo de la versión del paquete de plataforma y la placa que tenga, puede ver ``Upload using:`` en el menú de arriba. Esta opción está inactiva y no importa lo que seleccione. Se dejó para compatibilidad con la implementación anterior de OTA y finalmente se eliminó en la versión 2.2.0 del paquete de plataforma.
+      
+3. Suba el sketch (Ctrl+U). Una vez hecho, abra el Monitor Serie (Ctrl+Shift+M) y compruebe si el módulo se ha unido a su red Wi-Fi:
 
    .. figure:: a-ota-upload-complete-and-joined-wifi.png
-      :alt: Check if module joined network
+      :alt: Compruebe que el módulo ha entrado en la red
 
-**Note:** ESP module should be reset after serial upload. Otherwise subsequent steps will not work. Reset may be done automatically for you after opening serial monitor as visible on the screenshot above. It depends on how you have DTR and RTS wired from USB-Serial converter to the ESP. If reset is not done automatically, then do it by pressing reset button or manually cycling the power. For more details why this should be done please refer to `FAQ <../faq#i-have-observed-a-case-when-esprestart-doesnt-work-what-is-the-reason-for-that>`__ regarding ``ESP.restart()``.
+**Nota:** El módulo ESP debe reiniciarse después de la carga por el puerto serie. De lo contrario, los siguientes pasos no funcionarán. El reinicio se puede hacer automáticamente después de abrir el monitor serie como se muestra en la captura de pantalla anterior. Depende de cómo tengas conectado DTR y RTS desde el convertidor USB-serie al ESP. Si el restablecimiento no se realiza automáticamente, hágalo presionando el botón de reset o reiniciando manualmente la alimentación. Para obtener más información sobre por qué debería hacerse esto, consulte `Preguntas frecuentes <../faq#he-observado-un-caso-en-que-esprestart-no-funciona-cual-es-la-razón-para-esto`__ con respecto a ``ESP.restart()``.
 
-4. Only if module is connected to network, after a couple of seconds,
-   the esp8266-ota port will show up in Arduino IDE. Select port with IP
-   address shown in the Serial Monitor window in previous step:
+4. Only if module is connected to network, after a couple of seconds, the esp8266-ota port will show up in Arduino IDE. Select port with IP address shown in the Serial Monitor window in previous step:
 
    .. figure:: a-ota-ota-port-selection.png
       :alt: Selection of OTA port
 
-   **Note:** If OTA port does not show up, exit Arduino IDE, open it
-   again and check if port is there. If it does not help, check your
-   firewall and router settings. OTA port is advertised using mDNS
-   service. To check if port is visible by your PC, you can use
-   application like Bonjour Browser.
+   **Note:** If OTA port does not show up, exit Arduino IDE, open it again and check if port is there. If it does not help, check your firewall and router settings. OTA port is advertised using mDNS service. To check if port is visible by your PC, you can use application like Bonjour Browser.
 
 5. Now get ready for your first OTA upload by selecting the OTA port:
 
    .. figure:: a-ota-ota-upload-configuration.png
       :alt: Configuration of OTA upload
 
-   **Note:** The menu entry ``Upload Speed:`` does not matter at this
-   point as it concerns the serial port. Just left it unchanged.
+   **Note:** The menu entry ``Upload Speed:`` does not matter at this point as it concerns the serial port. Just left it unchanged.
 
-6. If you have successfully completed all the above steps, you can
-   upload (Ctrl+U) the same (or any other) sketch over OTA:
+6. If you have successfully completed all the above steps, you can upload (Ctrl+U) the same (or any other) sketch over OTA:
 
    .. figure:: a-ota-ota-upload-complete.png
       :alt: OTA upload complete
