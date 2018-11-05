@@ -108,7 +108,8 @@ Las siguientes instrucciones muestran la configuración de OTA en la placa NodeM
 
    -  Actualice el SSID y la contraseña en el sketch, para que el módulo pueda unirse a su red Wi-Fi |ota ssid pass entry|
 
-   -  Configure los parámetros de carga como se muestra a continuación (es posible que deba ajustar la configuración si está utilizando un módulo diferente): |ota serial upload config|
+   -  Configure los parámetros de carga como se muestra a continuación (es posible que deba ajustar la configuración si está utilizando un módulo diferente): 
+   |ota serial upload config|
 
       **Nota:** Dependiendo de la versión del paquete de plataforma y la placa que tenga, puede ver ``Upload using:`` en el menú de arriba. Esta opción está inactiva y no importa lo que seleccione. Se dejó para compatibilidad con la implementación anterior de OTA y finalmente se eliminó en la versión 2.2.0 del paquete de plataforma.
       
