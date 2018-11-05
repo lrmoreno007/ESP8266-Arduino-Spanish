@@ -124,65 +124,65 @@ Las siguientes instrucciones muestran la configuración de OTA en la placa NodeM
 
       **Nota:** El módulo ESP debe reiniciarse después de la carga por el puerto serie. De lo contrario, los siguientes pasos no funcionarán. El reinicio se puede hacer automáticamente después de abrir el monitor serie como se muestra en la captura de pantalla anterior. Depende de cómo tengas conectado DTR y RTS desde el convertidor USB-serie al ESP. Si el restablecimiento no se realiza automáticamente, hágalo presionando el botón de reset o reiniciando manualmente la alimentación. Para obtener más información sobre por qué debería hacerse esto, consulte `Preguntas frecuentes <../faq#he-observado-que-esprestart-no-funciona-cual-es-la-razón>`__ con respecto a ``ESP.restart()``.
 
-4. Only if module is connected to network, after a couple of seconds, the esp8266-ota port will show up in Arduino IDE. Select port with IP address shown in the Serial Monitor window in previous step:
+4. Solo si el módulo está conectado a la red, después de un par de segundos, el puerto esp8266-ota aparecerá en el IDE de Arduino. Seleccione el puerto con la dirección IP que se muestra en la ventana del Monitor serie en el paso anterior:
 
    .. figure:: a-ota-ota-port-selection.png
-      :alt: Selection of OTA port
+      :alt: Selección del puerto OTA
 
-   **Note:** If OTA port does not show up, exit Arduino IDE, open it again and check if port is there. If it does not help, check your firewall and router settings. OTA port is advertised using mDNS service. To check if port is visible by your PC, you can use application like Bonjour Browser.
+   **Nota:** Si el puerto OTA no se muestra, salga del IDE de Arduino, ábralo nuevamente y verifique si el puerto está allí. Si no funciona, verifique la configuración de su firewall y del router. El puerto OTA se anuncia mediante el servicio mDNS. Para verificar si su PC puede ver el puerto, puede usar una aplicación como Bonjour Browser.
 
-5. Now get ready for your first OTA upload by selecting the OTA port:
+5. Ahora prepárate para tu primera carga OTA seleccionando el puerto OTA:
 
    .. figure:: a-ota-ota-upload-configuration.png
-      :alt: Configuration of OTA upload
+      :alt: Configuración para la subida OTA
 
-   **Note:** The menu entry ``Upload Speed:`` does not matter at this point as it concerns the serial port. Just left it unchanged.
+   **Nota:** La entrada del menú ``Upload Speed:`` no importa en este punto ya que se refiere al puerto serie. Dejelo sin cambiar.
 
-6. If you have successfully completed all the above steps, you can upload (Ctrl+U) the same (or any other) sketch over OTA:
+6. Si ha completado con éxito todos los pasos anteriores, puede cargar (Ctrl+U) el mismo (o cualquier otro) sketch sobre OTA:
 
    .. figure:: a-ota-ota-upload-complete.png
-      :alt: OTA upload complete
+      :alt: Subida OTA completa
 
-**Note:** To be able to upload your sketch over and over again using OTA, you need to embed OTA routines inside. Please use BasicOTA.ino as an example.
+**Nota:** Para poder cargar su sketch una y otra vez utilizando OTA, debe insertar rutinas OTA en su interior. Por favor use BasicOTA.ino como ejemplo.
 
-Password Protection
+Protección con contraseña
 ^^^^^^^^^^^^^^^^^^^
 
-Protecting your OTA uploads with password is really straightforward. All you need to do, is to include the following statement in your code:
+Proteger sus cargas OTA con contraseña es realmente sencillo. Todo lo que necesita hacer es incluir la siguiente declaración en su código:
 
 .. code:: cpp
 
     ArduinoOTA.setPassword((const char *)"123");
 
-Where ``123`` is a sample password that you should replace with your own.
+Sonde ``123`` es una contraseña de ejemplo que debe reemplazar con la suya.
 
-Before implementing it in your sketch, it is a good idea to check how it works using *BasicOTA.ino* sketch available under *File > Examples > ArduinoOTA*. Go ahead, open *BasicOTA.ino*, uncomment the above statement that is already there, and upload the sketch. To make troubleshooting easier, do not modify example sketch besides what is absolutely required. This is including original simple ``123`` OTA password. Then attempt to upload sketch again (using OTA). After compilation is complete, once upload is about to begin, you should see prompt for password as follows:
+Antes de implementarlo en su sketch, es una buena idea verificar cómo funciona el sketch *BasicOTA.ino* disponible en *Archivo > Ejemplos > ArduinoOTA*. Adelante, abra *BasicOTA.ino*, descomente la declaración anterior y cargue el sketch. Para facilitar la resolución de problemas, no modifique el boceto de ejemplo, solo lo absolutamente necesario. Se incluye una contraseña OTA ``123`` simple y original. A continuación, intente cargar el sketch de nuevo (utilizando OTA). Una vez finalizada la compilación, una vez que la carga está a punto de comenzar, debería ver la solicitud de contraseña de la siguiente manera:
 
 .. figure:: a-ota-upload-password-prompt.png
-   :alt: Password prompt for OTA upload
+   :alt: Aviso de aontraseña para la subida OTA
 
-Enter the password and upload should be initiated as usual with the only difference being ``Authenticating...OK`` message visible in upload log.
+Ingrese la contraseña y la carga debe iniciarse como de costumbre, con la única diferencia del mensaje ``Autentificando ... OK`` visible en el registro de subida.
 
 .. figure:: a-ota-upload-password-authenticating-ok.png
-   :alt: Authenticating...OK during OTA upload
+   :alt: Authenticating...OK duante la subida OTA
 
-You will not be prompted for a reentering the same password next time. Arduino IDE will remember it for you. You will see prompt for password only after reopening IDE, or if you change it in your sketch, upload the sketch and then try to upload it again.
+No se le solicitará que vuelva a ingresar la misma contraseña la próxima vez. Arduino IDE lo recordará por ti. Verá una solicitud de contraseña solo después de volver a abrir el IDE o si la cambia en su sketch, cargue el sketch y luego intente cargarlo nuevamente.
 
-Please note, it is possible to reveal password entered previously in Arduino IDE, if IDE has not been closed since last upload. This can be done by enabling *Show verbose output during: upload* in *File > Preferences* and attempting to upload the module.
+Tenga en cuenta que es posible revelar la contraseña ingresada previamente en el IDE de Arduino, si el IDE no se ha cerrado desde la última carga. Esto se puede hacer habilitando *Mostrar salida detallada mientras: Subir* en *Archivo > Preferencias* y intentando subir el modulo.
 
 .. figure:: a-ota-upload-password-passing-upload-ok.png
-   :alt: Verbose upload output with password passing in plain text
+   :alt: Salida de subida detallada con contraseña en modo texto
 
-The picture above shows that the password is visible in log, as it is passed to *espota.py* upload script.
+La imagen de arriba muestra que la contraseña es visible en el registro, ya que se pasa al script de subida *espota.py*.
 
-Another example below shows situation when password is changed between uploads.
+Otro ejemplo a continuación muestra la situación cuando la contraseña se cambia entre subidas.
 
 .. figure:: a-ota-upload-password-passing-again-upload-ok.png
-   :alt: Verbose output when OTA password has been changed between uploads
+   :alt: Salida detallada cuando se cambia la contraseña OTA entre subidas
 
-When uploading, Arduino IDE used previously entered password, so the upload failed and that has been clearly reported by IDE. Only then IDE prompted for a new password. That was entered correctly and second attempt to upload has been successful.
+En la imagen puede verse que al subir, el IDE de Arduino utilizó la contraseña ingresada previamente, por lo que la carga falló y eso fue claramente reportado por el IDE. Solo entonces el IDE solicitó una nueva contraseña. Se ingresó correctamente y el segundo intento de carga fue exitoso.
 
-Troubleshooting
+Solución de problemas
 ^^^^^^^^^^^^^^^
 
 If OTA update fails, first step is to check for error messages that may be shown in upload window of Arduino IDE. If this is not providing any useful hints, try to upload again while checking what is shown by ESP on serial port. Serial Monitor from IDE will not be useful in that case. When attempting to open it, you will likely see the following:
