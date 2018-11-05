@@ -120,7 +120,7 @@ Las siguientes instrucciones muestran la configuración de OTA en la placa NodeM
    .. figure:: a-ota-upload-complete-and-joined-wifi.png
       :alt: Compruebe que el módulo ha entrado en la red
 
-**Nota:** El módulo ESP debe reiniciarse después de la carga por el puerto serie. De lo contrario, los siguientes pasos no funcionarán. El reinicio se puede hacer automáticamente después de abrir el monitor serie como se muestra en la captura de pantalla anterior. Depende de cómo tengas conectado DTR y RTS desde el convertidor USB-serie al ESP. Si el restablecimiento no se realiza automáticamente, hágalo presionando el botón de reset o reiniciando manualmente la alimentación. Para obtener más información sobre por qué debería hacerse esto, consulte `Preguntas frecuentes <../faq#he-observado-que-esprestart-no-funciona-cual-es-la-razon`__ con respecto a ``ESP.restart()``.
+**Nota:** El módulo ESP debe reiniciarse después de la carga por el puerto serie. De lo contrario, los siguientes pasos no funcionarán. El reinicio se puede hacer automáticamente después de abrir el monitor serie como se muestra en la captura de pantalla anterior. Depende de cómo tengas conectado DTR y RTS desde el convertidor USB-serie al ESP. Si el restablecimiento no se realiza automáticamente, hágalo presionando el botón de reset o reiniciando manualmente la alimentación. Para obtener más información sobre por qué debería hacerse esto, consulte `Preguntas frecuentes <../faq/readme.rst#he-observado-que-esprestart-no-funciona-cual-es-la-razon`__ con respecto a ``ESP.restart()``.
 
 4. Only if module is connected to network, after a couple of seconds, the esp8266-ota port will show up in Arduino IDE. Select port with IP address shown in the Serial Monitor window in previous step:
 
