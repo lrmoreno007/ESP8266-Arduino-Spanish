@@ -11,6 +11,8 @@ Si encuentras algún problema en esta traducción siéntete libre de abrir un nu
 
 Puedes encontrar la mayor parte de la documentación en español en http://esp8266-arduino-spanish.readthedocs.io/es/latest/index.html.
 
+También puedes descargarte la documentación en formato PDF en: https://media.readthedocs.org/pdf/esp8266-arduino-spanish/latest/esp8266-arduino-spanish.pdf
+
 En este repositorio de Github encontrarás también el fichero POLICY.md donde se exponen las reglas de comunicación del proyecto ESP8266/Arduino y el presente documento que es una traducción del fichero README.md.
 
 A partir de aquí la traducción de README.es del proyecto ESP8266/Arduino
