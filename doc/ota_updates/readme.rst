@@ -32,7 +32,7 @@ Compruebe las funcionalidades proporcionadas con la librería `ArduinoOTA <https
     void setHostname(const char* hostname);
     void setPassword(const char* password);
 
-Cierta funcionalidad de protección ya está incorporada y no requiere ninguna codificación adicional por parte del desarrollador. `ArduinoOTA <https://github.com/esp8266/Arduino/tree/master/libraries/ArduinoOTA>`__ y espota.py utiliza `Digest-MD5 <https://en.wikipedia.org/wiki/Digest_access_authentication>`__ para autentificar la subida. La integridad de los datos transferidos se verifica en el lado ESP utilizando un checksum `MD5 <https://en.wikipedia.org/wiki/MD5>`__.
+Cierta funcionalidad de protección ya está incorporada y no requiere ninguna codificación adicional por parte del desarrollador. `ArduinoOTA <https://github.com/esp8266/Arduino/tree/master/libraries/ArduinoOTA>`__ y espota.py utiliza `Digest-MD5 <https://es.wikipedia.org/wiki/Digest_access_authentication>`__ para autentificar la subida. La integridad de los datos transferidos se verifica en el lado ESP utilizando un checksum `MD5 <https://es.wikipedia.org/wiki/MD5>`__.
 
 Haga su propio análisis de riesgos y dependiendo de la aplicación, decida qué funciones de la librería implementa. Si es necesario, considere la implementación de otros medios de protección contra la piratería, por ejemplo: exponer el módulo para cargar solo según el programa específico, desencadenar OTA solo si el usuario presiona el botón dedicado "Actualizar" conectado al ESP, etc.
 
