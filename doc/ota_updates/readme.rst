@@ -88,8 +88,7 @@ Ejemplo de Aplicación
 
 Las siguientes instrucciones muestran la configuración de OTA en la placa NodeMCU 1.0 (módulo ESP-12E). Puedes usar cualquier otra placa asumiendo que cumple `Requerimientos Básicos <#requerimientos-basicos>`__ descritos anteriormente. Esta instrucción es válida para todos los sistemas operativos compatibles con Arduino IDE. Se han realizado capturas de pantalla en Windows 7 y es posible que vea pequeñas diferencias (como el nombre del puerto serie), si está usando Linux y MacOS.
 
-1. Before you begin, please make sure that you have the following s/w
-   installed:
+1. Antes de continuar, asegurese de tener el siguiente software instalado:
 
    -  Arduino IDE 1.6.7 o posterior -
       https://www.arduino.cc/en/Main/Software
@@ -102,7 +101,7 @@ Las siguientes instrucciones muestran la configuración de OTA en la placa NodeM
       .. figure:: a-ota-python-configuration.png
          :alt: Configuración de la instalación de Python
 
-2. Ahora prepare el sketch y la configuración para la carga a través del puerto serie.
+2. Ahora prepare el sketch y la configuración para la primera subida a través del puerto serie.
 
    -  Inicie Arduino IDE y cargue el sketch BasicOTA.ino disponible en Archivo > Ejemplos > ArduinoOTA 
    |ota sketch selection|
@@ -239,7 +238,7 @@ Requerimientos
 Descripción general de la implementación
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-Updates with a web browser are implemented using ``ESP8266HTTPUpdateServer`` class together with ``ESP8266WebServer`` and ``ESP8266mDNS`` classes. The following code is required to get it work:
+Las actualizaciones con un navegador web se implementan utilizando la clase ``ESP8266HTTPUpdateServer`` junto con las clases ``ESP8266WebServer`` y ``ESP8266mDNS``. Se requiere el siguiente código para que funcione:
 
 setup()
 
@@ -258,134 +257,104 @@ loop()
 
         httpServer.handleClient();
 
-Application Example
+Ejemplo de aplicación
 ~~~~~~~~~~~~~~~~~~~
 
-The sample implementation provided below has been done using:
+La implementación de ejemplo proporcionada a continuación se ha realizado utilizando:
 
--  example sketch WebUpdater.ino available in
-   ``ESP8266HTTPUpdateServer`` library,
--  NodeMCU 1.0 (ESP-12E Module).
+-  Sketch de ejemplo WebUpdater.ino disponible en la librería ``ESP8266HTTPUpdateServer`` library.
+-  NodeMCU 1.0 (Módulo ESP-12E).
 
-You can use another module if it meets previously described `requirements <#basic-requirements>`__.
+Puede utilizar otro módulo si cumple con los requisitos descritos anteriormente. `Requerimientos Básicos <#requerimientos-basicos>`__.
 
-1. Before you begin, please make sure that you have the following
-   software installed:
+1. Before you begin, please make sure that you have the following software installed:
 
-   -  Arduino IDE and 2.0.0-rc1 (of Nov 17, 2015) version of platform
-      package as described under
-      https://github.com/esp8266/Arduino#installing-with-boards-manager
-   -  Host software depending on O/S you use:
+   - Arduino IDE y la versión 2.0.0-rc1 (del 17 de noviembre de 2015) de la plataforma del paquete como se describe en https://github.com/lrmoreno007/ESP8266-Arduino-Spanish#instalando-mediante-el-gestor-de-tarjetas
+   -  Software de host en función del sistema operativo que utilice:
 
-      1. Avahi http://avahi.org/ for Linux
-      2. Bonjour http://www.apple.com/support/bonjour/ for Windows
-      3. Mac OSX and iOS - support is already built in / no any extra
-         s/w is required
+      1. Avahi http://avahi.org/ para Linux
+      2. Bonjour http://www.apple.com/support/bonjour/ para Windows
+      3. Mac OSX y iOS - ya soportado interiormente, no se requiere ningún software extra
 
-2. Prepare the sketch and configuration for initial upload with a serial
-   port.
+2. Prepare el boceto y la configuración para la primera subida mediante puerto serie.
 
-   -  Start Arduino IDE and load sketch WebUpdater.ino available under
-      File > Examples > ESP8266HTTPUpdateServer.
-   -  Update SSID and password in the sketch, so the module can join
-      your Wi-Fi network.
-   -  Open File > Preferences, look for “Show verbose output during:”
-      and check out “compilation” option.
+   -  Inicie Arduino IDE y cargue el sketch WebUpdater.ino disponible en Archivo > Ejemplos > ESP8266HTTPUpdateServer.
+   -  Actualice su SSID y contraseña en el sketch, para que el módulo pueda unirse a su red Wi-Fi.
+   -  Abra Archivo > Preferencias, busque “Mostrar salida detallada mientras:” y active la opción “Compilación”.
 
       .. figure:: ota-web-show-verbose-compilation.png
-         :alt: Preferences - enabling verbose output during compilation
+         :alt: Preferencias - activando salida detallada durante la compilación
 
-      **Note:** This setting will be required in step 5 below. You can
-      uncheck this setting afterwards.
+      **Nota:** Esta configuración será necesaria en el paso 5 a continuación. Puedes desmarcar esta configuración después.
 
-3. Upload sketch (Ctrl+U). Once done, open Serial Monitor (Ctrl+Shift+M)
-   and check if you see the following message displayed, that contains
-   url for OTA update.
+3. Suba el sketch (Ctrl+U). Una vez hecho esto, abra el Monitor Serie (Ctrl+Shift+M) y verifique si aparece el siguiente mensaje, que contiene la url para la actualización OTA.
 
    .. figure:: ota-web-serial-monitor-ready.png
-      :alt: Serial Monitor - after first load using serial
+      :alt: Serial Monitor - Tras la subida inicial mediante serial
 
-   **Note:** Such message will be shown only after module successfully
-   joins network and is ready for an OTA upload. Please remember about
-   resetting the module once after serial upload as discussed in chapter
-   `Arduino IDE <#arduino-ide>`__, step 3.
+   **Nota:** Dicho mensaje se mostrará solo después de que el módulo se una con éxito a la red y esté listo para una carga OTA. Recuerde lo hablado acerca de reiniciar el módulo después de la primera subida mediante serial como se explica en el capítulo `Arduino IDE <#arduino-ide>`__, paso 3.
 
-4. Now open web browser and enter the url provided on Serial Monitor,
-   i.e. ``http://esp8266-webupdate.local/update``. Once entered, browser
-   should display a form like below that has been served by your module.
-   The form invites you to choose a file for update.
+4. Ahora abra el navegador web e ingrese la url proporcionada por el Monitor Serie, es decir, ``http://esp8266-webupdate.local/update``. Una vez ingresado, el navegador debe mostrar un formulario como el que se encuentra en su módulo. El formulario te invita a elegir un archivo para actualizar.
 
    .. figure:: ota-web-browser-form.png
-      :alt: OTA update form in web browser
+      :alt: Formulario de actualización OTA en el buscador Web
 
-   **Note:** If entering ``http://esp8266-webupdate.local/update`` does
-   not work, try replacing ``esp8266-webupdate`` with module’s IP
-   address. For example, if your module IP is ``192.168.1.100`` then url
-   should be ``http://192.168.1.100/update``. This workaround is useful
-   in case the host software installed in step 1 does not work. If still
-   nothing works and there are no clues on the Serial Monitor, try to
-   diagnose issue by opening provided url in Google Chrome, pressing F12
-   and checking contents of “Console” and “Network” tabs. Chrome
-   provides some advanced logging on these tabs.
+   **Nota:** Si mediante ``http://esp8266-webupdate.local/update`` no funciona, intente reemplazar ``esp8266-webupdate`` con la dirección IP del módulo. Por ejemplo, si la IP de su módulo es ``192.168.1.100``, entonces la url debería ser ``http://192.168.1.100/update``. Esta solución es útil en caso de que el software host instalado en el paso 1 no funcione. Si todavía nada funciona y no hay pistas en el Monitor Serie, intente diagnosticar el problema abriendo la URL proporcionada en Google Chrome, presionando F12 y verificando el contenido de las pestañas "Consola" y "Red". Chrome proporciona un registro avanzado en estas pestañas.
 
-5. To obtain the file, navigate to directory used by Arduino IDE to
-   store results of compilation. You can check the path to this file in
-   compilation log shown in IDE debug window as marked below.
+5. Para obtener el archivo, navegue al directorio utilizado por Arduino IDE para almacenar los resultados de la compilación. Puede verificar la ruta de acceso a este archivo en el registro de compilación que se muestra en la ventana de depuración del IDE como se indica a continuación.
 
    .. figure:: ota-web-path-to-binary.png
-      :alt: Compilation complete - path to binary file
+      :alt: Compilación completa - Dirección del fichero binario
 
-6. Now press “Choose File” in web browser, go to directory identified in
-   step 5 above, find the file “WebUpdater.cpp.bin” and upload it. If
-   upload is successful, you will see “OK” on web browser like below.
+6. Ahora presione “Choose File” en el navegador web, vaya al directorio identificado en el paso 5 anterior, busque el archivo "WebUpdater.cpp.bin" y cárguelo. Si la carga se realiza correctamente, verá "OK" en el navegador web como se muestra a continuación.
 
    .. figure:: ota-web-browser-form-ok.png
-      :alt: OTA update complete
+      :alt: Actualización OTA completa
 
-   Module will reboot that should be visible on Serial Monitor:
+   Se reiniciará el módulo que debería estar visible en el Monitor Serie:
 
    .. figure:: ota-web-serial-monitor-reboot.png
-      :alt: Serial Monitor - after OTA update
+      :alt: Monitor Serie - tras actualización OTA
 
-   Just after reboot you should see exactly the same message
-   ``HTTPUpdateServer ready! Open http:// esp8266-webupdate.local /update in your browser``
-   like in step 3. This is because module has been loaded again with the
-   same code – first using serial port, and then using OTA.
+   Justo después de reiniciar, debería ver exactamente el mismo mensaje ``HTTPUpdateServer ready! Open http://esp8266-webupdate.local/update in your browser`` como en el paso 3. Esto se debe a que el módulo se ha cargado nuevamente con el mismo código: primero utilizando el puerto serie y luego usando OTA.
 
-Once you are comfortable with this procedure, go ahead and modify WebUpdater.ino sketch to print some additional messages, compile it, locate new binary file and upload it using web browser to see entered changes on a Serial Monitor.
+Una vez que se sienta cómodo con este procedimiento, siga adelante y modifique el boceto de WebUpdater.ino para imprimir algunos mensajes adicionales, compile, localice un nuevo archivo binario y cárguelo utilizando el navegador web para ver los cambios introducidos en el Monitor Serie.
 
-You can also add OTA routines to your own sketch following guidelines in `Implementation Overview <#implementation-overview>`__ above. If this is done correctly, you should be always able to upload new sketch over the previous one using a web browser.
+También puede agregar rutinas OTA a su propio sketch siguiendo las pautas en `Descripción general de la implementación <#descripcion-general-de-la-implementacion>`__. Si esto se hace correctamente, siempre debe poder cargar un nuevo boceto sobre el anterior utilizando un navegador web.
 
-In case OTA update fails dead after entering modifications in your sketch, you can always recover module by loading it over a serial port. Then diagnose the issue with sketch using Serial Monitor. Once the issue is fixed try OTA again.
+En caso de que la actualización de OTA falle después de introducir modificaciones en su boceto, siempre puede recuperar el módulo cargándolo en un puerto serie. Luego, diagnostique el problema con el boceto utilizando el Monitor Serie. Una vez que se solucione el problema intente OTA otra vez.
 
 Servidor HTTP
 -----------
 
-``ESPhttpUpdate`` class can check for updates and download a binary file from HTTP web server. It is possible to download updates from every IP or domain address on the network or Internet.
+La clase ``ESPhttpUpdate`` puede buscar actualizaciones y descargar un archivo binario desde el servidor web HTTP. Es posible descargar actualizaciones de cada dirección IP o de dominio en la red o en Internet.
 
-Requirements
+Requerimientos
 ~~~~~~~~~~~~
 
--  web server
+-  Servidor Web
 
-Arduino code
+Código Arduino
 ~~~~~~~~~~~~
 
-Simple updater
+Actualizador Sencillo
 ^^^^^^^^^^^^^^
 
-Simple updater downloads the file every time the function is called.
+El actualizador sencillo descarga el archivo cada vez que se llama a la función.
 
 .. code:: cpp
 
     ESPhttpUpdate.update("192.168.0.2", 80, "/arduino.bin");
 
-Advanced updater
+Actualizador Avanzado
 ^^^^^^^^^^^^^^^^
 
-Its possible to point update function to a script at the server. If version string argument is given, it will be sent to the server. Server side script can use this to check if update should be performed.
+Es posible apuntar la función de actualización a un script en el servidor. Si se proporciona un argumento de cadena de versión, se enviará al servidor. El script del lado del servidor puede usar esto para verificar si se debe realizar una actualización.
 
-Server side script can respond as follows: - response code 200, and send the firmware image, - or response code 304 to notify ESP that no update is required.
+El script del lado del servidor puede responder de la siguiente manera: 
+
+- código de respuesta 200, y enviar la imagen del firmware
+- o código de respuesta 304 para notificar a ESP que no se requiere ninguna actualización.
 
 .. code:: cpp
 
@@ -402,20 +371,20 @@ Server side script can respond as follows: - response code 200, and send the fir
             break;
     }
 
-Server request handling
+Manejo de solicitudes del servidor
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-Simple updater
+Actualizador Sencillo
 ^^^^^^^^^^^^^^
 
-For the simple updater the server only needs to deliver the binary file for update.
+Para el actualizador sencillo, el servidor solo necesita entregar el archivo binario para su actualización.
 
 Advanced updater
 ^^^^^^^^^^^^^^^^
 
-For advanced update management a script needs to run at the server side, for example a PHP script. At every update request the ESP sends some information in HTTP headers to the server.
+Para la administración avanzada de actualizaciones, un script debe ejecutarse en el lado del servidor, por ejemplo, un script PHP. En cada solicitud de actualización, el ESP envía alguna información en los encabezados HTTP al servidor.
 
-Example header data:
+Ejemplo de datos de encabezado:
 
 ::
 
@@ -429,9 +398,9 @@ Example header data:
         [HTTP_X_ESP8266_SDK_VERSION] => 1.3.0
         [HTTP_X_ESP8266_VERSION] => DOOR-7-g14f53a19
 
-With this information the script now can check if an update is needed. It is also possible to deliver different binaries based on the MAC address for example.
+Con esta información, el script ahora puede verificar si se necesita una actualización. También es posible entregar diferentes binarios basados en la dirección MAC, por ejemplo.
 
-Script example:
+Ejemplo de guión:
 
 .. code:: php
 
@@ -501,29 +470,28 @@ Script example:
 
     header($_SERVER["SERVER_PROTOCOL"].' 500 no version for ESP MAC', true, 500);
 
-Stream Interface
+Interfaz de transmisión
 ----------------
 
-TODO describe Stream Interface
+POR HACER descripción del Interfaz de Transmisión
 
-The Stream Interface is the base for all other update modes like OTA, http Server / client.
+El Interfaz de Transmisión es la base para todos los demás modos de actualización como OTA, http Server / client.
 
-Updater class
+Clase Updater
 -------------
 
-Updater is in the Core and deals with writing the firmware to the flash, checking its integrity and telling the bootloader to load the new firmware on the next boot.
+Updater está en el Core y se ocupa de escribir el firmware en la memoria flash, verificar su integridad y decirle al cargador de arranque que cargue el nuevo firmware en el siguiente arranque.
 
 Proceso de actualización - Vista de la memoria
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
--  The new sketch will be stored in the space between the old sketch and
-   the spiff.
--  on the next reboot the "eboot" bootloader check for commands.
--  the new sketch is now copied "over" the old one.
--  the new sketch is started.
+- El nuevo sketch se almacenará en el espacio entre el boceto anterior y el spiff
+- En el siguiente reinicio, el gestor de arranque "eboot" verifica los comandos.
+- El nuevo sketch ahora se copia "sobre" el anterior.
+- Se inicia el nuevo sketch.
 
 .. figure:: update_memory_copy.png
-   :alt: Memory layout for OTA updates
+   :alt: Diseño de memoria para actualizaciones OTA
 
 .. |ota sketch selection| image:: a-ota-sketch-selection.png
 .. |ota ssid pass entry| image:: a-ota-ssid-pass-entry.png
