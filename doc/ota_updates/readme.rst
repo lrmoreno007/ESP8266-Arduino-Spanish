@@ -10,8 +10,8 @@ La actualización OTA (Over the Air - Por el aire) es el proceso de carga del fi
 OTA puede usarse mediante:
 
 -  `Arduino IDE <#arduino-ide>`__
--  `Buscador Web <#web-browser>`__
--  `Servidor HTTP <#http-server>`__
+-  `Buscador Web <#buscador-web>`__
+-  `Servidor HTTP <#servidor-http>`__
 
 La opción IDE de Arduino está destinada principalmente para la fase de desarrollo de software. Las otras dos opciones serían más útiles después de la implementación para proporcionar al módulo actualizaciones de la aplicación manualmente con un navegador web o automáticamente utilizando un servidor http.
 
@@ -222,7 +222,7 @@ The most common causes of OTA failure are as follows:
 
 For more details regarding flash memory layout please check `File system <../filesystem.rst>`__. For overview where new sketch is stored, how it is copied and how memory is organized for the purpose of OTA see `Update process - memory view <#update-process-memory-view>`__.
 
-Web Browser
+Buscador Web
 -----------
 
 Updates described in this chapter are done with a web browser that can be useful in the following typical scenarios:
@@ -361,7 +361,7 @@ You can also add OTA routines to your own sketch following guidelines in `Implem
 
 In case OTA update fails dead after entering modifications in your sketch, you can always recover module by loading it over a serial port. Then diagnose the issue with sketch using Serial Monitor. Once the issue is fixed try OTA again.
 
-HTTP Server
+Servidor HTTP
 -----------
 
 ``ESPhttpUpdate`` class can check for updates and download a binary file from HTTP web server. It is possible to download updates from every IP or domain address on the network or Internet.
