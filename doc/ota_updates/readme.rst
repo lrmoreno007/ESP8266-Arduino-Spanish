@@ -59,7 +59,7 @@ Requerimientos Básicos
 
 El tamaño del chip flash debe poder contener el boceto anterior (actualmente en ejecución) y el nuevo boceto (OTA) al mismo tiempo.
 
-Tenga en cuenta que el sistema de archivos y la EEPROM, por ejemplo, también necesitan espacio (una vez), consulte `Flash layout <../filesystem.rst#esquema-de-la-memoria-flash>`__.
+Tenga en cuenta que el sistema de archivos y la EEPROM, por ejemplo, también necesitan espacio (una vez), consulte el `Esquema de la memoria flash <../filesystem.rst#esquema-de-la-memoria-flash>`__.
 
 .. code:: cpp
 
@@ -67,7 +67,7 @@ Tenga en cuenta que el sistema de archivos y la EEPROM, por ejemplo, también ne
 
 puede usarse para comprobar el espacio libre para el nuevo sketch.
 
-Para obtener una descripción general del diseño de la memoria, dónde se almacena el nuevo boceto y cómo se copia durante el proceso OTA, consulte `Proceso de actualización - Vista de la memoria <#proceso-de-actualización-vista-de-la-memoria>`__.
+Para obtener una descripción general del diseño de la memoria, dónde se almacena el nuevo boceto y cómo se copia durante el proceso OTA, consulte `Proceso de actualización - Vista de la memoria <#proceso-de-actualizacion-vista-de-la-memoria>`__.
 
 Los siguientes capítulos proporcionan más detalles y métodos específicos para hacer OTA..
 
