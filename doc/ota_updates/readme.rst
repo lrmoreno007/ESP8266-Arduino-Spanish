@@ -485,7 +485,7 @@ Updater está en el Core y se ocupa de escribir el firmware en la memoria flash,
 Proceso de actualización - Vista de la memoria
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-- El nuevo sketch se almacenará en el espacio entre el sketch anterior y el spiff
+- El nuevo sketch se almacenará en el espacio entre el sketch anterior y el spiff.
 - En el siguiente reinicio, el gestor de arranque "eboot" verifica los comandos.
 - El nuevo sketch ahora se copia "sobre" el anterior.
 - Se inicia el nuevo sketch.
