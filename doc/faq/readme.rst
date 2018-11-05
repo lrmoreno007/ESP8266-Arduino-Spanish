@@ -68,8 +68,8 @@ La razón de que no podamos tener mas de 1MB de código en la flash tiene que ve
 
 La opción de seleccionar 3M o 1M SPIFFS es para optimizar el tiempo de subida. Subir 3MB toma mas tiempo que subir 1MB. Otras capacidades de flash 2MB también pueden utilizarse con las APIs ``ESP.flashRead`` y ``ESP.flashWrite`` si es necesario.
 
-He observado un caso en que ESP.restart() no funciona. ¿Cual es la razón para esto?
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+He observado que ESP.restart() no funciona. Cual es la razón
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Verá este problema solo si después de subir el programa mediante puerto serie no realiza un reset físico (por ejemplo, reinicio de la alimentación). Para un dispositivo que se encuentre en ese estado, ``ESP.restart`` no funcionará. Aparentemente, el problema está causado por `uno de los registros internos que no se actualiza correctamente hasta el reseteo físico <https://github.com/esp8266/Arduino/issues/1017#issuecomment-200605576>`__. Este problema solo afecta a las subidas mediante puerto serie. Las subidas mediante OTA no se ven afectadas. Si está utilizando ``ESP.restart``, solo reinicie ESP físicamente una vez después de cada subida por puerto serie.
 
