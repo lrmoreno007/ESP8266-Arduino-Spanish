@@ -122,7 +122,7 @@ Las siguientes instrucciones muestran la configuración de OTA en la placa NodeM
 
 **Nota:** El módulo ESP debe reiniciarse después de la carga por el puerto serie. De lo contrario, los siguientes pasos no funcionarán. El reinicio se puede hacer automáticamente después de abrir el monitor serie como se muestra en la captura de pantalla anterior. Depende de cómo tengas conectado DTR y RTS desde el convertidor USB-serie al ESP. Si el restablecimiento no se realiza automáticamente, hágalo presionando el botón de reset o reiniciando manualmente la alimentación. Para obtener más información sobre por qué debería hacerse esto, consulte 
 `Preguntas frecuentes <../faq#he-observado-que-esprestart-no-funciona-cual-es-la-razon`__
-                 `FAQ <../faq#he-observado-que-esprestart-no-funciona-cual-es-la-razon>`__
+                 `FAQ <../faq#he-observado-que-esprestart-no-funciona-cual-es-la-razón>`__
 
 
 
