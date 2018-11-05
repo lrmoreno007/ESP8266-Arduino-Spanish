@@ -1,30 +1,30 @@
-OTA Updates
+Actualizaciones OTA
 ===========
 
 
-Introduction
+Introducción
 ------------
 
-OTA (Over the Air) update is the process of loading the firmware to ESP module using Wi-Fi connection rather than a serial port. Such functionality became extremely useful in case of limited or no physical access to the module.
+La actualización OTA (Over the Air - Por el aire) es el proceso de carga del firmware en el módulo ESP mediante una conexión Wi-Fi en lugar de un puerto serie. Dicha funcionalidad se volve extremadamente útil en caso de acceso físico limitado o nulo al módulo.
 
-OTA may be done using:
+OTA puede usarse mediante:
 
 -  `Arduino IDE <#arduino-ide>`__
--  `Web Browser <#web-browser>`__
--  `HTTP Server <#http-server>`__
+-  `Buscador Web <#web-browser>`__
+-  `Servidor HTTP <#http-server>`__
 
-Arduino IDE option is intended primarily for software development phase. The two other options would be more useful after deployment, to provide module with application updates manually with a web browser, or automatically using a http server.
+La opción IDE de Arduino está destinada principalmente para la fase de desarrollo de software. Las otras dos opciones serían más útiles después de la implementación para proporcionar al módulo actualizaciones de la aplicación manualmente con un navegador web o automáticamente utilizando un servidor http.
 
-In any case, the first firmware upload has to be done over a serial port. If the OTA routines are correctly implemented in a sketch, then all subsequent uploads may be done over the air.
+En cualquier caso, la primera carga de firmware debe realizarse a través de un puerto serie. Si las rutinas OTA se implementan correctamente en un sketch, entonces todas las subidas siguientes se pueden realizar por el aire.
 
-There is no imposed security on OTA process from being hacked. It is up to developer to ensure that updates are allowed only from legitimate / trusted sources. Once the update is complete, the module restarts, and the new code is executed. The developer should ensure that the application running on the module is shut down and restarted in a safe manner. Chapters below provide additional information regarding security and safety of OTA process.
+No hay seguridad impuesta en el proceso OTA de ser hackeado. Es responsabilidad del desarrollador garantizar que las actualizaciones solo se permitan desde fuentes legítimas/confiables. Una vez que se completa la actualización, el módulo se reinicia y se ejecuta el nuevo código. El desarrollador debe asegurarse de que la aplicación que se ejecuta en el módulo se cierre y reinicie de manera segura. Los capítulos a continuación proporcionan información adicional sobre la seguridad y protección del proceso OTA.
 
-Security
+Seguridad
 ~~~~~~~~
 
-Module has to be exposed wirelessly to get it updated with a new sketch. That poses chances of module being violently hacked and loaded with some other code. To reduce likelihood of being hacked consider protecting your uploads with a password, selecting certain OTA port, etc.
+El módulo debe exponerse de forma inalámbrica para actualizarse con un nuevo sketch. Eso plantea posibilidades de que el módulo sea hackeado y se cargue otro código. Para reducir la posibilidad de ser hackeado, considere proteger sus subidas con una contraseña, seleccionando cierto puerto OTA, etc.
 
-Check functionality provided with `ArduinoOTA <https://github.com/esp8266/Arduino/tree/master/libraries/ArduinoOTA>`__ library that may improve security:
+Compruebe las funcionalidades proporcionadas con la librería `ArduinoOTA <https://github.com/esp8266/Arduino/tree/master/libraries/ArduinoOTA>`__ para mejorar la seguridad:
 
 .. code:: cpp
 
@@ -32,18 +32,20 @@ Check functionality provided with `ArduinoOTA <https://github.com/esp8266/Arduin
     void setHostname(const char* hostname);
     void setPassword(const char* password);
 
-Certain protection functionality is already built in and do not require any additional coding by developer. `ArduinoOTA <https://github.com/esp8266/Arduino/tree/master/libraries/ArduinoOTA>`__ and espota.py use `Digest-MD5 <https://en.wikipedia.org/wiki/Digest_access_authentication>`__ to authenticate upload. Integrity of transferred data is verified on ESP side using `MD5 <https://en.wikipedia.org/wiki/MD5>`__ checksum.
+Cierta funcionalidad de protección ya está incorporada y no requiere ninguna codificación adicional por parte del desarrollador. `ArduinoOTA <https://github.com/esp8266/Arduino/tree/master/libraries/ArduinoOTA>`__ y espota.py utiliza `Digest-MD5 <https://en.wikipedia.org/wiki/Digest_access_authentication>`__ para autentificar la subida. La integridad de los datos transferidos se verifica en el lado ESP utilizando un checksum `MD5 <https://en.wikipedia.org/wiki/MD5>`__.
+
+Haga su propio análisis de riesgos y dependiendo de la aplicación, decida qué funciones de la librería implementa. Si es necesario, considere la implementación de otros medios de protección contra la piratería, por ejemplo: exponer el módulo para cargar solo según el programa específico, desencadenar OTA solo si el usuario presiona el botón dedicado "Actualizar" conectado al ESP, etc.
 
 Make your own risk analysis and depending on application decide what library functions to implement. If required, consider implementation of other means of protection from being hacked, e.g. exposing module for uploads only according to specific schedule, trigger OTA only be user pressing dedicated “Update” button wired to ESP, etc.
 
-Safety
+Protección
 ~~~~~~
 
-OTA process takes ESP’s resources and bandwidth during upload. Then module is restarted and a new sketch executed. Analyse and test how it affects functionality of existing and new sketch.
+El proceso OTA toma los recursos y el ancho de banda del ESP durante la carga. Luego se reinicia el módulo y se ejecuta un nuevo bsketch. Analiza y prueba cómo afecta la funcionalidad del sketch existente y nuevo.
 
-If ESP is placed in remote location and controlling some equipment, you should put additional attention what happens if operation of this equipment is suddenly interrupted by update process. Therefore, decide how to put this equipment into safe state before starting the update. For instance, your module may be controlling a garden watering system in a sequence. If this sequence is not properly shut down and a water valve left open, your garden may be flooded.
+Si el ESP se coloca en una ubicación remota y controla algún equipo, debe poner atención adicional sobre lo que sucede si el proceso de actualización interrumpe repentinamente la operación de este equipo. Por lo tanto, decida cómo poner este equipo en un estado seguro antes de iniciar la actualización. Por ejemplo, su módulo puede estar controlando el sistema de riego de un jardín en una secuencia. Si esta secuencia no se cierra correctamente y se deja abierta una válvula de agua, su jardín puede quedar inundado.
 
-The following functions are provided with `ArduinoOTA <https://github.com/esp8266/Arduino/tree/master/libraries/ArduinoOTA>`__ library and intended to handle functionality of your application during specific stages of OTA, or on an OTA error:
+La siguientes funciones son proporcionadas en la librería `ArduinoOTA <https://github.com/esp8266/Arduino/tree/master/libraries/ArduinoOTA>`__, destinadas a manejar la funcionalidad de su aplicación durante etapas específicas de OTA o ante un error de OTA:
 
 .. code:: cpp
 
@@ -52,22 +54,22 @@ The following functions are provided with `ArduinoOTA <https://github.com/esp826
     void onProgress(OTA_CALLBACK_PROGRESS(fn));
     void onError(OTA_CALLBACK_ERROR (fn));
 
-Basic Requirements
+Requerimientos Básicos
 ~~~~~~~~~~~~~~~~~~
 
-Flash chip size should be able to hold the old sketch (currently running) and the new sketch (OTA) at the same time.
+El tamaño del chip flash debe poder contener el boceto anterior (actualmente en ejecución) y el nuevo boceto (OTA) al mismo tiempo.
 
-Keep in mind that the File system and EEPROM for example needs space too (one time) see `Flash layout <../filesystem.rst#flash-layout>`__.
+Tenga en cuenta que el sistema de archivos y la EEPROM, por ejemplo, también necesitan espacio (una vez), consulte `Flash layout <../filesystem.rst#esquema-de-la-memoria-flash>`__.
 
 .. code:: cpp
 
     ESP.getFreeSketchSpace();
 
-can be used for checking the free space for the new sketch.
+puede usarse para comprobar el espacio libre para el nuevo sketch.
 
-For overview of memory layout, where new sketch is stored and how it is copied during OTA process, see `Update process - memory view <#update-process-memory-view>`__.
+Para obtener una descripción general del diseño de la memoria, dónde se almacena el nuevo boceto y cómo se copia durante el proceso OTA, consulte `Proceso de actualización - Vista de la memoria <#proceso-de-actualización-vista-de-la-memoria>`__.
 
-The following chapters provide more details and specific methods of doing OTA.
+Los siguientes capítulos proporcionan más detalles y métodos específicos para hacer OTA..
 
 Arduino IDE
 -----------
@@ -527,7 +529,7 @@ Updater class
 
 Updater is in the Core and deals with writing the firmware to the flash, checking its integrity and telling the bootloader to load the new firmware on the next boot.
 
-Update process - memory view
+Proceso de actualización - Vista de la memoria
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 -  The new sketch will be stored in the space between the old sketch and
