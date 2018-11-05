@@ -97,8 +97,8 @@ Las siguientes instrucciones muestran la configuración de OTA en la placa NodeM
 
    -  Arduino IDE 1.6.7 o posterior -
       https://www.arduino.cc/en/Main/Software
-   -  Paquete de la plataforma esp8266/Arduino 2.0.0 o posterior - para instrucciones siga
-      https://github.com/esp8266/Arduino#installing-with-boards-manager
+   -  Paquete de la plataforma esp8266/Arduino 2.0.0 o posterior - para instrucciones vaya a:
+      https://github.com/lrmoreno007/ESP8266-Arduino-Spanish#instalando-mediante-el-gestor-de-tarjetas
    -  Python 2.7 - https://www.python.org/
 
       **Nota:** Los usuarios de Windows deben seleccionar "Agregar python.exe a la ruta" (ver más abajo, esta opción no está seleccionada de manera predeterminada).
