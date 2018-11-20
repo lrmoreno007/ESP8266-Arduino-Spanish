@@ -157,6 +157,7 @@ Las bibliotecas que no dependen del acceso a bajo nivel a los registros AVR debe
 -  `DimSwitch <https://github.com/krzychb/DimSwitch>`__ - Control electrónico regulable de balastros para luces de tubo fluorescentes remotamente como si se usara un interruptor de pared.
 -  `Encoder <https://github.com/PaulStoffregen/Encoder>`__ - Librería Arduino para encoders rotatorios. Versión 1.4 soporta ESP8266.
 -  `esp8266\_mdns <https://github.com/mrdunk/esp8266_mdns>`__ - Llamadas y respuestas mDNS en esp8266. O dicho de otro modo: Un cliente mDNS o librería de cliente Bonjour para el ESP8266.
+`ESP-NOW <https://github.com/yoursunny/WifiEspNow>`__ - Wrapper lib para ESP-NOW (Ver `#2227 <https://github.com/esp8266/Arduino/issues/2227>`__)
 -  `ESPAsyncTCP <https://github.com/me-no-dev/ESPAsyncTCP>`__ - Librería asíncrona TCP para ESP8266 y ESP32/31B
 -  `ESPAsyncWebServer <https://github.com/me-no-dev/ESPAsyncWebServer>`__ - Librería de Servidor Web asíncrono para ESP8266 y ESP32/31B
 -  `Homie for ESP8266 <https://github.com/marvinroger/homie-esp8266>`__ - Arduino framework para ESP8266 implementando Homie, una convención MQTT para IoT.
