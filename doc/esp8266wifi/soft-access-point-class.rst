@@ -49,11 +49,11 @@ El primer parámetro de esta función es obligatorio, los otros cuatro son opcio
 
 El significado de todos los parámetros es el siguiente:
 
-* ``ssid`` - cadena de caracteres que contiene el SSID de la red (máximo 63 caracteres)
+* ``ssid`` - cadena de caracteres que contiene el SSID de la red (máximo 31 caracteres)
 
-* ``password`` - cadena de caracteres opcional con una contraseña. Para la red WPA2-PSK, debe tener al menos 8 caracteres de longitud. Si no se especifica, el punto de acceso estará abierto para que cualquiera pueda conectarse.
+* ``password`` - cadena de caracteres opcional con una contraseña. Para la red WPA2-PSK, debe tener al menos 8 caracteres de longitud (max. 63 caracteres). Si no se especifica, el punto de acceso estará abierto para que cualquiera pueda conectarse.
 
-* ``channel`` - parámetro opcional para establecer el canal de WiFi, del 1 aa 13. Canal predeterminado = 1.
+* ``channel`` - parámetro opcional para establecer el canal de WiFi, del 1 al 13. Canal predeterminado = 1.
 
 * ``hidden`` - parámetro opcional, si se establece en ``true`` se ocultará el SSID
 
