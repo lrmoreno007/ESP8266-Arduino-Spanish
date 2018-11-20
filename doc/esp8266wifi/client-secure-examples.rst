@@ -31,12 +31,16 @@ The build status of esp8266 / Adruino may be checked on the repository's `home p
 .. figure:: pictures/esp8266-arduino-build-status-travisci.png
    :alt: Build status of esp8266 / Arduino repository on Travis CI site
 
+   alt text
+
 GitHub provides a separate server with `API <https://developer.github.com/v3/>`__ to access such information is structured form as `JSON <https://en.wikipedia.org/wiki/JSON>`__.
 
 As you may guess we will use the client secure to contact https://api.github.com server and request the `build status <https://developer.github.com/v3/repos/statuses/#get-the-combined-status-for-a-specific-ref>`__. If we open specific resource provided in the API with a web browser, the following should show up:
 
 .. figure:: pictures/esp8266-arduino-build-status-json.png
    :alt: Build status of esp8266 / Arduino repository in JSON fromat
+
+   alt text
 
 What we need to do, is to use client secure to connect to ``https://api.github.com``, to GET ``/repos/esp8266/Arduino/commits/master/status``, search for the line ``"state": "success"`` and display "Build Successful" if we find it, or "Build Failed" if otherwise.
 
@@ -64,6 +68,8 @@ We can obtain the ``fingerprint`` for specific ``host`` using a web browser. For
 
 .. figure:: pictures/client-secure-check-fingerprint.png
    :alt: Locating the fingerprint of GitHub api
+
+   alt text
 
 Remaining steps look almost identical as for the `non-secure client example <client-examples.rst>`__.
 
