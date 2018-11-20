@@ -164,19 +164,35 @@ La clase Client crea `clientes <https://es.wikipedia.org/wiki/Cliente_(inform%C3
 
 Echa un vistazo a la sección separada con `ejemplos <client-examples.rst>`__ / `Lista de funciones <client-class.rst>`__
 
-Client Secure
-~~~~~~~~~~~~~
+Cliente Seguro axTLS - OBSOLETO
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Client Secure es una extensión de la `clase Client <#client>`__ donde la conexión y el intercambio de datos con los servidores se hace usando un `protocolo seguro <https://es.wikipedia.org/wiki/Transport_Layer_Security>`__. Es compatible con `TLS 1.1 <https://es.wikipedia.org/wiki/Transport_Layer_Security#TLS_1.1>`__. El `TLS 1.2 <https://es.wikipedia.org/wiki/Transport_Layer_Security#TLS_1.2>`__ no es compatible.
+La siguiente sección detalla axTLS, la biblioteca TLS más antigua utilizada por el proyecto. Todavía se admite, pero generalmente no se realizarán correcciones y documentación adicionales. Consulte la siguiente sección para el objeto cliente TLS actualizado.
+
+El cliente seguro axTLS es una extensión de la `clase Client <#client>`__ donde la conexión y el intercambio de datos con los servidores se hace usando un `protocolo seguro <https://es.wikipedia.org/wiki/Transport_Layer_Security>`__. Es compatible con `TLS 1.1 <https://es.wikipedia.org/wiki/Transport_Layer_Security#TLS_1.1>`__. El `TLS 1.2 <https://es.wikipedia.org/wiki/Transport_Layer_Security#TLS_1.2>`__ no es compatible.
+
+
+
+Las aplicaciones seguras tienen una sobrecarga adicional de memoria (y procesamiento) debido a la necesidad de ejecutar algoritmos de criptografía. Cuanto más fuerte sea la clave del certificado, más gastos generales se necesitan. En la práctica, no es posible ejecutar más de un único cliente seguro a la vez. El problema se refiere a la memoria RAM que no podemos agregar, el tamaño de la memoria flash por lo general no es el problema. Si desea aprender cómo se ha desarrollado `la librería de Client Secure <https://github.com/esp8266/Arduino/blob/master/libraries/ESP8266WiFi/src/WiFiClientSecure.h>`__, qué servidores se han probado y cómo se han superado las limitaciones de la memoria, lea el fascinante informe de problemas `#43 <https://github.com/esp8266/Arduino/issues/43>`__.
+
+Echa un vistazo a la sección separada con `ejemplos <client-secure-examples.rst>`__ / `lista de funciones <client-secure-class.rst>`__
+
+Cliente seguro BearSSL y servidor seguro
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+`BearSSL::WiFiClientSecure` y `BearSSL::WiFiServerSecure` son extensiones de las clases estandar `Client <#client>`__ y `Server <#server>`__ donde la conexión y el intercambio de de datos con servidores y clientes utilizan un `protocolo seguro <https://es.wikipedia.org/wiki/Transport_Layer_Security>`__.  Soporta `TLS 1.2 <https://es.wikipedia.org/wiki/Transport_Layer_Security#TLS_1.2>`__ utilizando una amplia variedad de cifrados modernos, hashes y tipos de clave.
 
 .. figure:: pictures/esp8266-client-secure.png
    :alt: ESP8266 operando como Cliente seguro
 
    ESP8266 operando como Cliente seguro
 
-Las aplicaciones seguras tienen una sobrecarga adicional de memoria (y procesamiento) debido a la necesidad de ejecutar algoritmos de criptografía. Cuanto más fuerte sea la clave del certificado, más gastos generales se necesitan. En la práctica, no es posible ejecutar más de un único cliente seguro a la vez. El problema se refiere a la memoria RAM que no podemos agregar, el tamaño de la memoria flash por lo general no es el problema. Si desea aprender cómo se ha desarrollado `la librería de Client Secure <https://github.com/esp8266/Arduino/blob/master/libraries/ESP8266WiFi/src/WiFiClientSecure.h>`__, qué servidores se han probado y cómo se han superado las limitaciones de la memoria, lea el fascinante informe de problemas `#43 <https://github.com/esp8266/Arduino/issues/43>`__.
+Los clientes y servidores seguros requieren cantidades significativas de memoria y procesamiento adicionales para habilitar sus algoritmos criptográficos. En general, solo se puede procesar una única conexión segura de servidor o cliente a la vez, dada la poca memoria RAM presente en el ESP8266, pero existen métodos para reducir este requisito de memoria RAM que se detalla en las secciones correspondientes.
 
-Echa un vistazo a la sección separada con `ejemplos <client-secure-examples.rst>`__ / `lista de funciones <client-secure-class.rst>`__
+`BearSSL::WiFiClientSecure <bearssl-client-secure-class.rst>`__ contiene mas información sobre el uso y configuración de conexiones TLS.
+
+`BearSSL::WiFiServerSecure <bearssl-server-secure-class.rst>`__ discute el modo servidor TLS disponible. Por favor lea y entienda primero `BearSSL::WiFiClientSecure <bearssl-client-secure-class.rst>`__ ya que el servidor usa la mayoría de los mismos conceptos.
+
 
 Server
 ~~~~~~
