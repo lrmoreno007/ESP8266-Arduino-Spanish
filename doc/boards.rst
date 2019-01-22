@@ -441,11 +441,3 @@ ESPectro Core es una placa de desarrollo ESP8266 culminación de nuestra experie
 Inicialmente diseñado para niños en mente, todos deberían poder usarlo. Sin embargo, sigue siendo fácil para los hackers informáticos ya que rompemos todos los pines del ESP8266 ESP-12F.
 
 Más detalles en https://shop.makestro.com/product/espectrocore/
-
-
-
-ESPectro Core is ESP8266 development board as the culmination of our 3+ year experience in exploring and developing products with ESP8266 MCU.
-
-Initially designed for kids in mind, everybody should be able to use it. Yet it's still hacker-friendly as we break out all ESP8266 ESP-12F pins.
-
-More details at https://shop.makestro.com/product/espectrocore/
