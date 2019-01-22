@@ -69,7 +69,7 @@ Algunas APIs especificas de ESP relacionadas a deep sleep, RTC y memoria flash e
 
 ``ESP.deepSleepInstant(microseconds, mode)`` funciona similar a ``ESP.deepSleep`` pero duerme instantaneamente sin esperar a que el WiFi se apague.
 
-``ESP.rtcUserMemoryWrite(offset, &data, sizeof(data))`` y ``ESP.rtcUserMemoryRead(offset, &data, sizeof(data))`` permite a los datos ser almacenados y recuperados de la memoria de usuario RTC del chip, respectivamente. El tamaño total de la memoria de usuario RTC es 512 bytes, así que ``offset + sizeof(data)`` no debe exceder 512. Los datos deben tener una alineación de 4-byte. Los datos almacenados pueden retenerse entre ciclos deep sleep. Sin embargo, los datos se pierden tras un ciclo de realimentación del chip.
+``ESP.rtcUserMemoryWrite(offset, &data, sizeof(data))`` y ``ESP.rtcUserMemoryRead(offset, &data, sizeof(data))`` permite a los datos ser almacenados y recuperados de la memoria de usuario RTC del chip, respectivamente. ``offset`` se mide en bloques de 4 bytes y puede variar de 0 a 127 bloques (el tamaño total de la memoria RTC es de 512 bytes). ``data`` debe estar alineado con 4 bytes. Los datos almacenados pueden conservarse entre ciclos de sueño profundo, pero pueden perderse después de apagar y encender el chip. Los datos almacenados en los primeros 32 bloques se perderán después de realizar una actualización de OTA, ya que son utilizados por el núcleo interno. 
 
 ``ESP.restart()`` reinicia la CPU.
 
