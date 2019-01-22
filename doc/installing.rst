@@ -87,6 +87,15 @@ Instrucciones - Windows 10
                    --- boards.txt
                    --- LICENSE
 
+-  Inicialice los submodulos
+   
+   .. code:: bash
+
+       cd %USERPROFILE%\Documents\hardware\esp8266com\esp8266
+       git submodules update --init   
+  
+   Si tiene mensajes de error sobre archivos faltantes relacionados con ``SoftwareSerial`` durante el proceso de compilación, debe ser porque omitió este paso y es necesario.
+  
 -  Descarga las herramientas binarias:
 
    .. code:: bash
@@ -149,6 +158,15 @@ Instrucciones - Otros Sistemas Operativos
                    --- boards.txt
                    --- LICENSE
 
+-  Inicialice los submodulos
+   
+   .. code:: bash
+
+       cd %USERPROFILE%\Documents\hardware\esp8266com\esp8266
+       git submodules update --init   
+  
+   Si tiene mensajes de error sobre archivos faltantes relacionados con ``SoftwareSerial`` durante el proceso de compilación, debe ser porque omitió este paso y es necesario.
+
 -  Descarga las herramientas binarias:
 
    .. code:: bash
@@ -157,3 +175,11 @@ Instrucciones - Otros Sistemas Operativos
        python get.py
 
 -  Reinicia Arduino.
+
+- Cuando actualice más tarde su biblioteca local, vaya al directorio esp8266 y haga un git pull:
+
+  .. code:: bash
+
+       cd hardware\esp8266com\esp8266
+       git status
+       git pull
