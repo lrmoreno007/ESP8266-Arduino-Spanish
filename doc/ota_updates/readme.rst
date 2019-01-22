@@ -482,6 +482,8 @@ Clase Updater
 
 Updater está en el Core y se ocupa de escribir el firmware en la memoria flash, verificar su integridad y decirle al cargador de arranque que cargue el nuevo firmware en el siguiente arranque.
 
+**Nota:** El comando del cargador de arranque se almacenará en los primeros 128 bytes de la memoria RTC del usuario, y luego será recuperado por eboot en el arranque. Eso significa que los datos de usuario presentes allí se perderán `(discusión en #5330) <https://github.com/esp8266/Arduino/pull/5330#issuecomment-437803456>`__.
+
 Proceso de actualización - Vista de la memoria
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
