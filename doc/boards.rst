@@ -433,3 +433,19 @@ Wio Link está diseñado para simplificar tu desarrollo IoT. Es una tarjeta de d
 ADVIERTA que DEBE pull up el pin 15 para activar la alimentación de los puertos Grove, la placa está diseñada de esta manera para la administración de energía de periféricos.
 
 Página del producto: https://www.seeedstudio.com/Wio-Link-p-2604.html
+
+ESPectro Core
+-------------
+ESPectro Core es una placa de desarrollo ESP8266 culminación de nuestra experiencia de más de 3 años en la exploración y el desarrollo de productos con ESP8266 MCU.
+
+Inicialmente diseñado para niños en mente, todos deberían poder usarlo. Sin embargo, sigue siendo fácil para los hackers informáticos ya que rompemos todos los pines del ESP8266 ESP-12F.
+
+Más detalles en https://shop.makestro.com/product/espectrocore/
+
+
+
+ESPectro Core is ESP8266 development board as the culmination of our 3+ year experience in exploring and developing products with ESP8266 MCU.
+
+Initially designed for kids in mind, everybody should be able to use it. Yet it's still hacker-friendly as we break out all ESP8266 ESP-12F pins.
+
+More details at https://shop.makestro.com/product/espectrocore/
