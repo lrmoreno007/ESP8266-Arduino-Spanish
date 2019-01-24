@@ -92,7 +92,7 @@ Instrucciones - Windows 10
    .. code:: bash
 
        cd %USERPROFILE%\Documents\hardware\esp8266com\esp8266
-       git submodules update --init   
+       git submodule update --init   
   
    Si tiene mensajes de error sobre archivos faltantes relacionados con ``SoftwareSerial`` durante el proceso de compilación, debe ser porque omitió este paso y es necesario.
   
@@ -163,7 +163,7 @@ Instrucciones - Otros Sistemas Operativos
    .. code:: bash
 
        cd %USERPROFILE%\Documents\hardware\esp8266com\esp8266
-       git submodules update --init   
+       git submodule update --init   
   
    Si tiene mensajes de error sobre archivos faltantes relacionados con ``SoftwareSerial`` durante el proceso de compilación, debe ser porque omitió este paso y es necesario.
 
