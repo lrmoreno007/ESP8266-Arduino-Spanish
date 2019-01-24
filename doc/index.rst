@@ -12,6 +12,7 @@ Bienvenido a la documentación de ESP8266 Arduino Core!
    ESP8266WiFi <esp8266wifi/readme>
    Actualizaciones OTA <ota_updates/readme>
    PROGMEM <PROGMEM>
+   Utilizando GDB para depurar <gdb>
 
    Tarjetas <boards>
    Preguntas - FAQ <faq/readme>
