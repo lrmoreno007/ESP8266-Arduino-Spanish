@@ -1,94 +1,67 @@
-Using GDB to Debug Applications
+Utilizando GDB para depurar aplicaciones
 ===============================
 
-ESP applications can be debugged using GDB, the GNU debugger, which is
-included with the standard IDE installation.  This note will only discuss
-the ESP specific steps, so please refer to the
-`main GNU GDB documentation
+Las aplicaciones ESP se pueden depurar usando GDB, el depurador de GNU, que se incluye con la instalación estándar de IDE. Esta nota solo discute los pasos específicos de ESP, así que por favor consulte la `documentación principal de GNU GDB
 <//sourceware.org/gdb/download/onlinedocs/gdb/index.html>`__.
 
-Note that as of 2.5.0, the toolchain moved from the ESPRESSIF patched,
-closed-source version of GDB to the main GNU version.  The debugging
-formats are different, so please be sure to use only the latest Arduino
-toolchain GDB executable.
+Tenga en cuenta que a partir de 2.5.0, la cadena de herramientas se movió desde el parche ESPRESSIF, versión de código cerrado de GDB a la versión principal de GNU.  Los formatos de depuración son diferentes, así que asegúrese de usar solo el último ejecutable GDB del toolchain de Arduino.
 
-CLI and IDE Note
+Nota CLI e IDE
 ----------------
 
-Because the Arduino IDE doesn't support interactive debugging, the following
-sections describe debugging using the command line.  Other IDEs which use
-GDB in their debug backends should work identically, but you may need to
-edit their configuration files or options to enable the remote serial
-debugging required and to set the standard options.  PRs are happily
-accepted for updates to this document with additional IDEs!
+Debido a que el IDE de Arduino no admite la depuración interactiva, las siguientes secciones describen la depuración utilizando la línea de comandos. Otros IDE que utilizan GDB en sus backends de depuración deberían funcionar de manera idéntica, pero es posible que deba editar sus opciones de archivos de configuración para habilitar la depuración de serie remota requerida y establecer las opciones estándar. ¡Felizmente, se aceptan PRs para actualizar este documento con IDEs adicionales!
 
-
-Preparing your application for GDB
+Preparando tu aplicación para GDB
 ----------------------------------
 
-Applications need to be changed to enable GDB debugging support.  This
-change will add 2-3KB of flash and around 700 bytes of IRAM usage, but
-should not affect operation of the application.
+Las aplicaciones deben cambiarse para habilitar el soporte de depuración GDB. Este cambio agregará 2-3KB de flash y alrededor de 700 bytes de uso de IRAM, pero no debería afectar el funcionamiento de la aplicación.
 
-In your main ``sketch.ino`` file, add the following line to the top of
-the application:
+En su archivo principal ``sketch.ino``, agregue la siguiente línea en la parte superior de la aplicación:
 
 .. code:: cpp
 
     #include <GDBStub.h>
 
-And in the ``void setup()`` function ensure the serial port is initialized
-and call ``gdbstub_init()``:
+Y en la función ``void setup()`` asegúrese de que el puerto serie esté inicializado y llame a ``gdbstub_init()``:
 
 .. code:: cpp
 
     Serial.begin(115200);
     gdbstub_init();
 
-Rebuild and reupload your application and it should run exactly as before.
+Vuelva a compilar y cargar su aplicación, debería ejecutarse exactamente como antes.
 
-
-Starting a Debug Session
+Iniciando la sesión de depuración
 ------------------------
 
-Once your application is running, the process to attach a debugger is
-quite simple:
-. Close the Arduino Serial Monitor
-. Locate Application.ino.elf File
-. Open a Command Prompt and Start GDB
-. Apply the GDB configurations
-. Attach the Debugger
-. Debug Away!
+Una vez que su aplicación se está ejecutando, el proceso para añadir un depurador es bastante simple:
+    - Cierre el Monitor Serie de Arduino
+    - Localice el archivo Application.ino.elf
+    - Abra un Símbolo del sistema e inicie GDB
+    - Aplicar las configuraciones GDB
+    - Añadir el depurador
+    - A depurar!
 
-
-Close the Arduino Serial Monitor
+Cierre el Monitor Serie de Arduino
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Because GDB needs full control of the serial port, you will need to close
-any Arduino Serial Monitor windows you may have open.  Otherwise GDB will
-report an error while attempting to debug.
+Debido a que GDB necesita el control total del puerto serie, deberá cerrar todas las ventanas del Monitor Serie de Arduino que pueda tener abiertas. De lo contrario, GDB informará de un error al intentar depurar.
 
-Locate Application.ino.elf File
+Localice el archivo Application.ino.elf
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-In order for GDB to debug your application, you need to locate the compiled
-ELF format version of it (which includes needed debug symbols).  Under Linux
-these files are stored in ``/tmp/arduino_build_*`` and the following command
-will help locate the right file for your app
+Para que GDB pueda depurar su aplicación, necesita localizar la versión compilada en formato ELF (que incluye los símbolos de depuración necesarios). Bajo Linux, estos archivos se almacenan en ``/tmp/arduino_build_*`` y el siguiente comando ayudará a localizar el archivo correcto para su aplicación
 
 .. code:: cpp
 
     find /tmp -name "*.elf" -print
 
-Note the full path of ELF file that corresponds to your sketch name, it will
-be needed later once GDB is started.
+Tenga en cuenta la ruta completa del archivo ELF que corresponde al nombre de su boceto, se necesitará más adelante una vez que se inicie GDB.
 
-
-Open a Command Prompt and Start GDB
+Abra un Símbolo del sistema e inicie GDB
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Open a terminal or ``CMD`` prompt and navigate to the proper ESP8266 toolchain
-directory.
+Abra un terminal o Símbolo de sistema y navegue hasta el directorio adecuado de la cadena de herramientas ESP8266.
 
 .. code:: cpp
 
@@ -99,15 +72,12 @@ directory.
     cd TODO WINDOWS
     xtensa-lx106-elf-gdb.exe
 
-Please note the proper GDB name is "xtensa-lx106-elf-gdb".  If you accidentally
-run "gdb" you may start your own operating system's GDB, which will not know how
-to talk to the ESP8266.
+Tenga en cuenta que el nombre correcto de GDB es "xtensa-lx106-elf-gdb". Si ejecuta accidentalmente "gdb", puede iniciar el propio GDB de su sistema operativo, que no sabrá cómo hablar con el ESP8266.
 
-Apply the GDB Configurations
+Aplicar las configuraciones GDB
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-At the ``(gdb)`` prompt, enter the following options to configure GDB for the
-ESP8266 memory map and configuration:
+En el prompt ``(gdb)``, ingrese las siguientes opciones para configurar GDB con el mapa de memoria ESP8266 y la configuración:
 
 .. code:: cpp
 
@@ -125,32 +95,28 @@ ESP8266 memory map and configuration:
     mem 0x60000000 0x60001fff rw
     set serial baud 115200
 
-Now tell GDB where your compiled ELF file is located:
+Ahora dile a GDB dónde se encuentra tu archivo ELF compilado:
 
 .. code:: cpp
 
     file /tmp/arduino_build_257110/sketch_dec26a.ino.elf
 
-Attach the Debugger
+Añadir el depurador
 ~~~~~~~~~~~~~~~~~~~
 
-Once GDB has been configured properly and loaded your debugging symbols, connect
-it to the ESP with the command (replace the ttyUSB0 or COM9 with your ESP's serial
-port):
+Una vez que GDB se haya configurado correctamente y haya cargado sus símbolos de depuración, conéctelo al ESP con el comando (reemplace ttyUSB0 o COM9 con el puerto serie de su ESP):
 
 .. code:: cpp
 
     target remote /dev/ttyUSB0
 
-or
+o
 
 .. code:: cpp
 
     target remote \\.\COM9
 
-At this point GDB will send a stop the application on the ESP8266 and you can
-begin setting a breakpoint (``break loop``) or any other debugging operation.
-
+En este punto, GDB enviará una detención de la aplicación en el ESP8266 y podrá comenzar a configurar un punto de interrupción (``break loop``) o cualquier otra operación de depuración.
 
 Example Debugging Session
 -------------------------
@@ -173,8 +139,7 @@ Create a new sketch and paste the following code into it:
       delay(100);
     }
 
-Save it and then build and upload to your ESP8266.  On the Serial monitor you
-should see something like
+Save it and then build and upload to your ESP8266.  On the Serial monitor you should see something like
 
 .. code:: cpp
 
@@ -195,8 +160,7 @@ Open a command prompt and find the ELF file:
     /tmp/arduino_build_531411/listfiles.ino.elf
     /tmp/arduino_build_156712/SDWebServer.ino.elf
 
-In this example there are multiple ``elf`` files found, but we only care about
-the one we just built, ``testgdb.ino.elf``.
+In this example there are multiple ``elf`` files found, but we only care about the one we just built, ``testgdb.ino.elf``.
 
 Open up the proper ESP8266-specific GDB
 
@@ -220,8 +184,7 @@ Open up the proper ESP8266-specific GDB
     Type "apropos word" to search for commands related to "word".
     (gdb) 
 
-We're now at the GDB prompt, but nothing has been set up for the ESP8266
-and no debug information has been loaded.  Cut-and-paste the setup options:
+We're now at the GDB prompt, but nothing has been set up for the ESP8266 and no debug information has been loaded.  Cut-and-paste the setup options:
 
 .. code:: cpp
     (gdb) set remote hardware-breakpoint-limit 1
@@ -255,11 +218,7 @@ Now, connect to the running ESP8266:
     0x40000f68 in ?? ()
     (gdb)
 
-Don't worry that GDB doesn't know what is at our present address, we broke
-into the code at a random spot and we could be in an interrupt, in the
-ROM, or elsewhere.  The important bit is that we're now connected and
-two things will now happen: we can debug, and the app's regular serial
-output will be displayed on the GDB console..
+Don't worry that GDB doesn't know what is at our present address, we broke into the code at a random spot and we could be in an interrupt, in the ROM, or elsewhere.  The important bit is that we're now connected and two things will now happen: we can debug, and the app's regular serial output will be displayed on the GDB console..
 
 Continue the running app to see the serial output:
 
@@ -282,8 +241,7 @@ The app is back running and we can stop it at any time using ``Ctrl-C``:
     0x40000f68 in ?? ()
     (gdb) 
 
-At this point we can set a breakpoint on the main ``loop()`` and restart
-to get into our own code:
+At this point we can set a breakpoint on the main ``loop()`` and restart to get into our own code:
 
 .. code:: cpp
 
@@ -355,10 +313,5 @@ At this point we can exit GDB with ``quit`` or do further debugging.
 ESP8266 Hardware Debugging Limitations
 --------------------------------------
 
-The ESP8266 only supports a single hardware breakpoint and a single
-hardware data watchpoint.  This means only one breakpoint in user code
-is allowed at any time.  Consider using the ``thb`` (temporary hardware
-breakpoint) command in GDB while debugging instead of the more common
-``break`` command, since ``thb`` will remove the breakpoint once it is
-reached automatically and save you some trouble.
+The ESP8266 only supports a single hardware breakpoint and a single hardware data watchpoint.  This means only one breakpoint in user code is allowed at any time.  Consider using the ``thb`` (temporary hardware breakpoint) command in GDB while debugging instead of the more common ``break`` command, since ``thb`` will remove the breakpoint once it is reached automatically and save you some trouble.
 
