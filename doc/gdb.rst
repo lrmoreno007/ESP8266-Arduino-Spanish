@@ -36,12 +36,12 @@ Iniciando la sesión de depuración
 
 Una vez que su aplicación se está ejecutando, el proceso para añadir un depurador es bastante simple:
 
-    - Cierre el Monitor Serie de Arduino
-    - Localice el archivo Application.ino.elf
-    - Abra un Símbolo del sistema e inicie GDB
-    - Aplicar las configuraciones GDB
-    - Añadir el depurador
-    - A depurar!
+- Cierre el Monitor Serie de Arduino
+- Localice el archivo Application.ino.elf
+- Abra un Símbolo del sistema e inicie GDB
+- Aplicar las configuraciones GDB
+- Añadir el depurador
+- A depurar!
 
 Cierre el Monitor Serie de Arduino
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
