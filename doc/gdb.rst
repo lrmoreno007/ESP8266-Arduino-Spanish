@@ -119,10 +119,10 @@ o
 
 En este punto, GDB enviará una detención de la aplicación en el ESP8266 y podrá comenzar a configurar un punto de interrupción (``break loop``) o cualquier otra operación de depuración.
 
-Example Debugging Session
+Ejemplo de sesión de depuración
 -------------------------
 
-Create a new sketch and paste the following code into it:
+Cree un nuevo boceto y pegue el siguiente código en él:
 
 .. code:: cpp
 
@@ -131,7 +131,7 @@ Create a new sketch and paste the following code into it:
     void setup() {
       Serial.begin(115200);
       gdbstub_init();
-      Serial.printf("Starting...\n");
+      Serial.printf("Iniciando...\n");
     }
     
     void loop() {
@@ -140,19 +140,20 @@ Create a new sketch and paste the following code into it:
       delay(100);
     }
 
-Save it and then build and upload to your ESP8266.  On the Serial monitor you should see something like
+Guárdelo, compilelo y carguelo en su ESP8266. En el Monitor Serie debería ver algo como:
 
 .. code:: cpp
 
+    Iniciando...
     1
     2
     3
     ....
 
 
-Now close the Serial Monitor.
+Ahora cierre el Monitor Serie.
 
-Open a command prompt and find the ELF file:
+Abra un Símbolo de sistema y busque el fichero ELF:
 
 .. code:: cpp
 
@@ -161,9 +162,9 @@ Open a command prompt and find the ELF file:
     /tmp/arduino_build_531411/listfiles.ino.elf
     /tmp/arduino_build_156712/SDWebServer.ino.elf
 
-In this example there are multiple ``elf`` files found, but we only care about the one we just built, ``testgdb.ino.elf``.
+En este ejemplo, se encuentran varios archivos ``elf``, pero solo nos importa el que acabamos de crear, ``testgdb.ino.elf``.
 
-Open up the proper ESP8266-specific GDB
+Abre el GDB específico para ESP8266 adecuado
 
 .. code:: cpp
 
@@ -185,7 +186,7 @@ Open up the proper ESP8266-specific GDB
     Type "apropos word" to search for commands related to "word".
     (gdb) 
 
-We're now at the GDB prompt, but nothing has been set up for the ESP8266 and no debug information has been loaded.  Cut-and-paste the setup options:
+Ahora estamos en el indicador de GDB, pero no se ha configurado nada para el ESP8266 y no se ha cargado información de depuración. Cortar y pegar las opciones de configuración:
 
 .. code:: cpp
     (gdb) set remote hardware-breakpoint-limit 1
@@ -203,14 +204,14 @@ We're now at the GDB prompt, but nothing has been set up for the ESP8266 and no 
     (gdb) set serial baud 115200
     (gdb) 
 
-And tell GDB where the debugging info ELF file is located:
+Y dile a GDB dónde se encuentra el archivo ELF de información de depuración:
 
 .. code:: cpp
 
     (gdb) file /tmp/arduino_build_257110/testgdb.ino.elf
     Reading symbols from /tmp/arduino_build_257110/testgdb.ino.elf...done.
 
-Now, connect to the running ESP8266:
+Ahora, conéctate al ESP8266 en ejecución:
 
 .. code:: cpp
 
@@ -219,9 +220,9 @@ Now, connect to the running ESP8266:
     0x40000f68 in ?? ()
     (gdb)
 
-Don't worry that GDB doesn't know what is at our present address, we broke into the code at a random spot and we could be in an interrupt, in the ROM, or elsewhere.  The important bit is that we're now connected and two things will now happen: we can debug, and the app's regular serial output will be displayed on the GDB console..
+No se preocupe de que GDB no sepa qué hay en nuestra dirección actual, ingresamos el código en un lugar aleatorio y podríamos estar en una interrupción, en la ROM o en cualquier otro lugar. Lo importante es que ahora estamos conectados y ahora sucederán dos cosas: podemos depurar y la salida Serie de la aplicación se mostrará en la consola GDB.
 
-Continue the running app to see the serial output:
+Continúa la aplicación en ejecución para ver la salida en Serie:
 
 .. code:: cpp
 
@@ -233,7 +234,7 @@ Continue the running app to see the serial output:
     77
     ...
 
-The app is back running and we can stop it at any time using ``Ctrl-C``:
+La aplicación vuelve a funcionar y podemos detenerla en cualquier momento usando ``Ctrl-C``:
 
 .. code:: cpp 
     113
@@ -242,7 +243,7 @@ The app is back running and we can stop it at any time using ``Ctrl-C``:
     0x40000f68 in ?? ()
     (gdb) 
 
-At this point we can set a breakpoint on the main ``loop()`` and restart to get into our own code:
+En este punto, podemos establecer un punto de interrupción en el ``loop()`` principal y reiniciar para ingresar nuestro propio código:
 
 .. code:: cpp
 
@@ -257,7 +258,7 @@ At this point we can set a breakpoint on the main ``loop()`` and restart to get 
     10	void loop()
     (gdb) 
 
-Let's examine the local variable:
+Examinemos la variable local:
 
 .. code:: cpp
     (gdb) next
@@ -267,7 +268,7 @@ Let's examine the local variable:
     $1 = 114
     (gdb) 
 
-And change it:
+Y cambiémosla:
 
 .. code:: cpp
 
@@ -277,7 +278,7 @@ And change it:
     $3 = 2000
     (gdb) 
 
-And restart the app and see our changes take effect:
+Y reinicie la aplicación y vea que nuestros cambios surten efecto:
 
 .. code:: cpp
 
@@ -293,7 +294,7 @@ And restart the app and see our changes take effect:
     10	void loop() {
     (gdb) 
 
-Looks like we left the breakpoint on loop(), let's get rid of it and try again:
+Parece que dejamos el punto de interrupción en ``loop()``, deshagámonos de él e intentemos nuevamente:
 
 .. code:: cpp
 
@@ -308,11 +309,9 @@ Looks like we left the breakpoint on loop(), let's get rid of it and try again:
     2006
     ....
 
-At this point we can exit GDB with ``quit`` or do further debugging.
+En este punto, podemos salir de GDB con ``quit`` o hacer más depuración.
 
-
-ESP8266 Hardware Debugging Limitations
+Limitaciones de depuración del Hardware ESP8266
 --------------------------------------
 
-The ESP8266 only supports a single hardware breakpoint and a single hardware data watchpoint.  This means only one breakpoint in user code is allowed at any time.  Consider using the ``thb`` (temporary hardware breakpoint) command in GDB while debugging instead of the more common ``break`` command, since ``thb`` will remove the breakpoint once it is reached automatically and save you some trouble.
-
+El ESP8266 solo admite un único punto de interrupción de hardware y un solo punto de vigilancia de datos de hardware. Esto significa que solo se permite un punto de interrupción en el código de usuario en cualquier momento. Considere usar el comando ``thb`` (punto de interrupción temporal de hardware) en GDB mientras realiza la depuración en lugar del comando más común ``break``, ya que ``thb`` eliminará el punto de interrupción una vez que se alcance automáticamente y le ahorrará algunos problemas .
