@@ -59,7 +59,7 @@ Bajo Linux, estos archivos se almacenan en ``/tmp/arduino_build_*`` y el siguien
 
     find /tmp -name "*.elf" -print
 
-Bajo Windows, estos archivos se almacenan en `%userprofile%\AppData\Local\Temp\arduino_build_*`` y el siguiente comando ayudará a localizar el archivo correcto para su aplicación:
+Bajo Windows, estos archivos se almacenan en ``%userprofile%\AppData\Local\Temp\arduino_build_*`` y el siguiente comando ayudará a localizar el archivo correcto para su aplicación:
 
 .. code:: cpp
 
