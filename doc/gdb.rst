@@ -64,14 +64,22 @@ Abra un Símbolo del sistema e inicie GDB
 
 Abra un terminal o Símbolo de sistema y navegue hasta el directorio adecuado de la cadena de herramientas ESP8266.
 
+Linux
+
 .. code:: cpp
 
     ~/.arduino15/packages/esp8266/hardware/xtensa-lx106-elf/bin/xtensa-lx106-elf-gdb
 
+Windows (Usando versión del Gestor de Tarjetas)
+
 .. code:: cpp
 
-    cd TODO WINDOWS
-    xtensa-lx106-elf-gdb.exe
+    %userprofile%\AppData\Local\Arduino15\packages\esp8266\tools\xtensa-lx106-elf-gcc\2.5.0-3-20ed2b9\bin\xtensa-lx106-elf-gdb.exe
+
+Windows (Usando versión Git)
+
+.. code:: cpp
+    %userprofile%\Documents\Arduino\hardware\esp8266com\esp8266\tools\xtensa-lx106-elf\bin\xtensa-lx106-elf-gdb.exe
 
 Tenga en cuenta que el nombre correcto de GDB es "xtensa-lx106-elf-gdb". Si ejecuta accidentalmente "gdb", puede iniciar el propio GDB de su sistema operativo, que no sabrá cómo hablar con el ESP8266.
 
