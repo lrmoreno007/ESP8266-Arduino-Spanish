@@ -51,13 +51,21 @@ Debido a que GDB necesita el control total del puerto serie, deberá cerrar toda
 Localice el archivo Application.ino.elf
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Para que GDB pueda depurar su aplicación, necesita localizar la versión compilada en formato ELF (que incluye los símbolos de depuración necesarios). Bajo Linux, estos archivos se almacenan en ``/tmp/arduino_build_*`` y el siguiente comando ayudará a localizar el archivo correcto para su aplicación
+Para que GDB pueda depurar su aplicación, necesita localizar la versión compilada en formato ELF (que incluye los símbolos de depuración necesarios). 
+
+Bajo Linux, estos archivos se almacenan en ``/tmp/arduino_build_*`` y el siguiente comando ayudará a localizar el archivo correcto para su aplicación:
 
 .. code:: cpp
 
     find /tmp -name "*.elf" -print
 
-Tenga en cuenta la ruta completa del archivo ELF que corresponde al nombre de su boceto, se necesitará más adelante una vez que se inicie GDB.
+Bajo Windows, estos archivos se almacenan en `%userprofile%\AppData\Local\Temp\arduino_build_*`` y el siguiente comando ayudará a localizar el archivo correcto para su aplicación:
+
+.. code:: cpp
+
+    dir %userprofile%\appdata\*.elf /s/b
+
+Tenga en cuenta que la ruta completa del archivo ELF que corresponde al nombre de su boceto, se necesitará más adelante una vez que se inicie GDB.
 
 Abra un Símbolo del sistema e inicie GDB
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
