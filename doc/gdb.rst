@@ -79,6 +79,7 @@ Windows (Usando versión del Gestor de Tarjetas)
 Windows (Usando versión Git)
 
 .. code:: cpp
+
     %userprofile%\Documents\Arduino\hardware\esp8266com\esp8266\tools\xtensa-lx106-elf\bin\xtensa-lx106-elf-gdb.exe
 
 Tenga en cuenta que el nombre correcto de GDB es "xtensa-lx106-elf-gdb". Si ejecuta accidentalmente "gdb", puede iniciar el propio GDB de su sistema operativo, que no sabrá cómo hablar con el ESP8266.
