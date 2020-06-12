@@ -109,7 +109,7 @@ See the `BearSSL_CertStore` example for full details as the `BearSSL::CertStore`
 Supported Crypto
 ~~~~~~~~~~~~~~~~
 
-Please see the `BearSSL website <htps://bearssl.org>`__ for detailed cryptographic information.  In general, TLS 1.2, TLS 1.1, and TLS 1.0 are supported with RSA and Elliptic Curve keys and a very rich set of hashing and symmetric encryption codes.  Please note that Elliptic Curve (EC) key operations take a significant amount of time.
+Please see the `BearSSL website <https://bearssl.org>`__ for detailed cryptographic information.  In general, TLS 1.2, TLS 1.1, and TLS 1.0 are supported with RSA and Elliptic Curve keys and a very rich set of hashing and symmetric encryption codes.  Please note that Elliptic Curve (EC) key operations take a significant amount of time.
 
 
 BearSSL::WiFiClientSecure Class
