@@ -79,7 +79,7 @@ Subiendo ficheros al sistema de archivos
 
 *ESP8266FS* es una herramienta que se integra en el IDE de Arduino. Añadiendo una nueva casilla al menú *Herramientas* para subir el contenido del directorio "data" del sketch al sistema de ficheros flash del ESP8266.
 
--  Descarga la herramienta: https://github.com/esp8266/arduino-esp8266fs-plugin/releases/download/0.3.0/ESP8266FS-0.3.0.zip.
+-  Descarga la herramienta: https://github.com/esp8266/arduino-esp8266fs-plugin/releases/download/0.4.0/ESP8266FS-0.4.0.zip
 -  En el directorio de sketchs de Arduino, crea el directorio ``tools`` si no existe todavía.
 -  Descomprime la herramienta en el directorio ``tools`` (la ruta debe quedar ``<home_dir>/Arduino/tools/ESP8266FS/tool/esp8266fs.jar``).
 -  Reinicia el IDE de Arduino.
