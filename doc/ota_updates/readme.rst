@@ -5,7 +5,7 @@ Actualizaciones OTA
 Introducción
 ------------
 
-La actualización OTA (Over the Air - Por el aire) es el proceso de carga del firmware en el módulo ESP mediante una conexión Wi-Fi en lugar de un puerto serie. Dicha funcionalidad se volve extremadamente útil en caso de acceso físico limitado o nulo al módulo.
+La actualización OTA (Over the Air - Por el aire) es el proceso de carga del firmware en el módulo ESP mediante una conexión Wi-Fi en lugar de un puerto serie. Dicha funcionalidad se vuelve extremadamente útil en caso de acceso físico limitado o nulo al módulo.
 
 OTA puede usarse mediante:
 
